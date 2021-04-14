@@ -17,7 +17,6 @@ public class AirHockeyAgent : Agent
 {
     public ActionType actionType;
     public float maxMovementSpeed;
-    public bool randomPuckPosition;
     public bool randomAgentPosition;
     
     private Boundary agentBoundary;
@@ -29,6 +28,7 @@ public class AirHockeyAgent : Agent
     private Vector2 startingPosition;
     private Vector2 position;
     public TaskType taskType;
+    public ResetPuckState resetPuckState;
 
     // Start is called before the first frame update
     void Start()
@@ -55,8 +55,9 @@ public class AirHockeyAgent : Agent
     {
         while (true)
         {
-            puck.Reset(randomPuckPosition, agentBoundary);
+            puck.Reset(resetPuckState, agentBoundary);
             agentRB.velocity = Vector2.zero;
+
             if (randomAgentPosition)
             {
                 agentRB.position = new Vector2(Random.Range(agentBoundary.Left, agentBoundary.Right) * 0.8f, Random.Range(agentBoundary.Down, agentBoundary.Up) * 0.8f);
@@ -133,6 +134,27 @@ public class AirHockeyAgent : Agent
                 return;
             }
             SetReward(-0.01f);
+        }
+        else if(taskType == TaskType.Defending)
+        {
+            if (puck.AgentScored)
+            {
+                SetReward(1f);
+                EndEpisode();
+                return;
+            }
+            else if (puck.HumanScored)
+            {
+                SetReward(-1f);
+                EndEpisode();
+                return;
+            }
+            else if (StepCount == MaxStep)
+            {
+                EndEpisode();
+                return;
+            }
+            SetReward(-0.001f);
         }
         else if(taskType == TaskType.FullGame)
         {
