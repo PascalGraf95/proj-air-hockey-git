@@ -7,7 +7,8 @@ public enum ResetPuckState
     normalPosition,
     randomPosition,
     shotOnGoal,
-    randomVelocity
+    randomVelocity,
+    randomMiddlePosition
 }
 
 public class PuckScript : MonoBehaviour
@@ -34,7 +35,7 @@ public class PuckScript : MonoBehaviour
         markerContainer = GameObject.Find("MarkerContainer").transform;
         var puckBoundaryHolder = GameObject.Find("AgentPuckBoundaryHolder").GetComponent<Transform>();
         float offset = 0.21f;
-        puckBoundary = new Boundary(puckBoundaryHolder.GetChild(0).position.y - offset,
+        puckBoundary = new Boundary(puckBoundaryHolder.GetChild(0).position.y - offset/2,
                       puckBoundaryHolder.GetChild(1).position.y + offset,
                       puckBoundaryHolder.GetChild(2).position.x + offset,
                       puckBoundaryHolder.GetChild(3).position.x - offset);
@@ -60,6 +61,11 @@ public class PuckScript : MonoBehaviour
         {
             puckRB.position = new Vector2(Random.Range(agentBoundary.Left, agentBoundary.Right) * 0.9f, Random.Range(agentBoundary.Down, agentBoundary.Up) * 0.9f);
         }
+        else if(resetPuckState == ResetPuckState.randomMiddlePosition)
+        {
+            puckRB.position = new Vector2(Random.Range(agentBoundary.Left, agentBoundary.Right) * 0.9f, agentBoundary.Down + Random.Range(0, agentBoundary.Up) * 0.3f);
+        }
+
         else if(resetPuckState == ResetPuckState.shotOnGoal)
         {
             foreach(Transform m in markerContainer)
@@ -67,7 +73,7 @@ public class PuckScript : MonoBehaviour
                 Destroy(m.gameObject);
             }
 
-            var currentPoint = new Vector2(0, puckBoundary.Up);
+            var currentPoint = new Vector2(Random.Range(-.35f, .35f), puckBoundary.Up);
             Instantiate(marker, new Vector3(currentPoint.x, currentPoint.y, 0), Quaternion.identity, markerContainer);
             var angle = Random.Range(-70f, 70f);
             var spawnLine = Random.Range(puckBoundary.Down, -puckBoundary.Up);
@@ -96,7 +102,7 @@ public class PuckScript : MonoBehaviour
                 }
                 else { 
                     angle = -angle;
-                    Debug.DrawLine(currentPoint, nextPoint, Color.green, 1f);
+                    Debug.DrawLine(currentPoint, nextPoint, Color.green, 1f, false);
                     currentPoint = nextPoint;
                 }
                 Instantiate(marker, new Vector3(nextPoint.x, nextPoint.y, 0), Quaternion.identity, markerContainer);
