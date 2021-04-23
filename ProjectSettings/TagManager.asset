@@ -8,6 +8,7 @@ TagManager:
   - AIGoal
   - PlayerGoal
   - Boundary
+  - PlayerBackWall
   layers:
   - Default
   - TransparentFX

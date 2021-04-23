@@ -3,6 +3,7 @@ using System.Collections;
 using Unity.MLAgents;
 using Unity.MLAgents.Sensors;
 using Unity.MLAgents.Actuators;
+using System.Collections.Generic;
 
 public enum ActionType { Discrete, Continuous };
 public enum TaskType
@@ -22,15 +23,24 @@ public class AirHockeyAgent : Agent
     private Boundary agentBoundary;
 
     private Rigidbody2D agentRB;
+    private Rigidbody2D puckRB;
     private PuckScript puck;
     private HumanPlayer humanPlayer;
 
     private Vector2 startingPosition;
+    private Vector2 lastDirection;
     private Vector2 position;
     public TaskType taskType;
     public ResetPuckState resetPuckState;
 
-    public bool avoidBoundaries;
+    public float avoidBoundaries;
+    public float avoidDirectionChanges;
+    public float encouragePuckMovement;
+    public bool puckStopPenalty;
+    public bool backWallReward;
+    public bool deflectOnly;
+
+    public Dictionary<string, float> episodeReward;
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +49,7 @@ public class AirHockeyAgent : Agent
 
         var puckGameObject = GameObject.Find("Puck");
         puck = puckGameObject.GetComponent<PuckScript>();
+        puckRB = puckGameObject.GetComponent<Rigidbody2D>();
 
 
         var humanPlayerGameObject = GameObject.Find("HumanPlayer");
@@ -76,13 +87,21 @@ public class AirHockeyAgent : Agent
                 break;
             }
         }
+        episodeReward = new Dictionary<string, float>();
+        episodeReward["StepReward"] = 0f;
+        episodeReward["DirectionReward"] = 0f;
+        episodeReward["BoundaryReward"] = 0f;
+        episodeReward["PuckVelocityReward"] = 0f;
+        //Debug.Log("-------------------------------------");
+
 
     }
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        sensor.AddObservation(agentRB.position);
-        sensor.AddObservation(puck.PuckRB.position);
+        sensor.AddObservation(transform.position);
+        sensor.AddObservation(puck.transform.position);
+        sensor.AddObservation(puckRB.velocity);
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)
@@ -139,15 +158,32 @@ public class AirHockeyAgent : Agent
         }
         else if(taskType == TaskType.Defending)
         {
-            if (puck.AgentScored)
+            if (puck.playState == PlayState.agentScored)
+            {
+                SetReward(3f);
+                EndEpisode();
+                return;
+            }
+            else if (puck.playState == PlayState.playerScored)
+            {
+                SetReward(-1f);
+                EndEpisode();
+                return;
+            }
+            else if (puck.playState == PlayState.backWallReached && backWallReward == true)
             {
                 SetReward(1f);
                 EndEpisode();
                 return;
             }
-            else if (puck.HumanScored)
+            else if (puck.playState == PlayState.puckStopped && puckStopPenalty == true){
+                SetReward(-.3f);
+                EndEpisode();
+                return;
+            }
+            else if(puck.transform.position.y < 0 && puck.AgentContact == true && deflectOnly == true)
             {
-                SetReward(-1f);
+                //SetReward(1f);
                 EndEpisode();
                 return;
             }
@@ -156,17 +192,17 @@ public class AirHockeyAgent : Agent
                 EndEpisode();
                 return;
             }
-            SetReward(-0.001f);
+            SetReward(-0.001f); // Negative Step Reward
         }
         else if(taskType == TaskType.Scoring)
         {
-            if (puck.AgentScored)
+            if (puck.playState == PlayState.agentScored)
             {
                 SetReward(1f);
                 EndEpisode();
                 return;
             }
-            else if (puck.HumanScored)
+            else if (puck.playState == PlayState.playerScored)
             {
                 SetReward(-.1f);
                 EndEpisode();
@@ -181,40 +217,49 @@ public class AirHockeyAgent : Agent
         }
         else if(taskType == TaskType.FullGame)
         {
-            if (puck.AgentScored)
+            if (puck.playState == PlayState.agentScored)
             {
                 SetReward(1f);
                 EndEpisode();
                 return;
             }
-            else if (puck.HumanScored)
+            else if (puck.playState == PlayState.playerScored)
             {
                 SetReward(-1f);
                 EndEpisode();
                 return;
             }
         }
-
-
-
-        float x = 0;
-        float y = 0;
-
-        x = continouosActions[0];
-        y = continouosActions[1];
+        float x = continouosActions[0];
+        float y = continouosActions[1];
         
 
         // normalize so going diagonally doesn't speed things up
         Vector2 direction = new Vector2(x, y).normalized;
+        
+        if(avoidDirectionChanges > 0f) // Punish changing direction too much.
+        {
+            SetReward(-(lastDirection - direction).magnitude * avoidDirectionChanges);
+            episodeReward["DirectionReward"] -= (lastDirection - direction).magnitude * avoidDirectionChanges;
+        }
+        lastDirection = direction;
 
-        // move Position
-        if (avoidBoundaries)
+        if (avoidBoundaries > 0f) // Punish running into boundaries.
         {
             if (agentRB.position.x < agentBoundary.Left || agentRB.position.x > agentBoundary.Right || agentRB.position.y > agentBoundary.Up || agentRB.position.y < agentBoundary.Down)
             {
-                SetReward(-0.01f);
+                SetReward(-1f*avoidBoundaries);
+                episodeReward["BoundaryReward"] -= 1f * avoidBoundaries;
             }
         }
+
+        if (encouragePuckMovement > 0f) // Reward high puck velocities
+        {
+            SetReward(puckRB.velocity.magnitude * encouragePuckMovement);
+            episodeReward["PuckVelocityReward"] += puckRB.velocity.magnitude * encouragePuckMovement;
+        }
+
+        // Movement
         position = new Vector2(Mathf.Clamp(agentRB.position.x, agentBoundary.Left,
                             agentBoundary.Right),
                             Mathf.Clamp(agentRB.position.y, agentBoundary.Down,

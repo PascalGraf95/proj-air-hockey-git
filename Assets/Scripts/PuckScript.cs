@@ -11,19 +11,24 @@ public enum ResetPuckState
     randomMiddlePosition
 }
 
+public enum PlayState
+{
+    normal,
+    playerScored,
+    agentScored,
+    backWallReached,
+    puckStopped
+}
+
 public class PuckScript : MonoBehaviour
 {
     public ScoreScript ScoreScriptInstance;
     public float MaxSpeed;
-    public bool AgentScored { get { return agentScored; } }
-    public bool HumanScored { get { return humanScored; } }
-
     public bool AgentContact { get { return agentContact; } }
     public Rigidbody2D PuckRB { get { return puckRB; } }
 
     private Rigidbody2D puckRB;
-    private bool agentScored;
-    private bool humanScored;
+    public PlayState playState;
     private bool agentContact;
     public GameObject marker;
     private Transform markerContainer;
@@ -48,11 +53,11 @@ public class PuckScript : MonoBehaviour
 
         if (resetPuckState == ResetPuckState.normalPosition)
         {
-            if (agentScored)
+            if (playState == PlayState.agentScored)
             {
                 puckRB.position = new Vector2(0, -1);
             }
-            else
+            else if(playState == PlayState.playerScored)
             {
                 puckRB.position = new Vector2(0, 1);
             }
@@ -97,7 +102,7 @@ public class PuckScript : MonoBehaviour
                     Debug.DrawLine(currentPoint, nextPoint, Color.green, 1f);
                     Instantiate(marker, new Vector3(nextPoint.x, nextPoint.y, 0), Quaternion.identity, markerContainer);
                     angle = -angle;
-                    startingVelocity = new Vector2(Mathf.Sin(angle * Mathf.Deg2Rad), Mathf.Cos(angle * Mathf.Deg2Rad))*Random.Range(5f, 20f);
+                    startingVelocity = new Vector2(Mathf.Sin(angle * Mathf.Deg2Rad), Mathf.Cos(angle * Mathf.Deg2Rad))*Random.Range(4f, 18f);
                     break;
                 }
                 else { 
@@ -110,20 +115,28 @@ public class PuckScript : MonoBehaviour
             puckRB.position = nextPoint;
             puckRB.velocity = startingVelocity;
         }
-        agentScored = humanScored = agentContact = false;
+        agentContact = false;
+        playState = PlayState.normal;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        playState = PlayState.normal;
+
         if (other.tag == "AIGoal")
         {
             ScoreScriptInstance.Increment(ScoreScript.Score.PlayerScore);
-            humanScored = true;
+            playState = PlayState.playerScored;
         }
         else if (other.tag == "PlayerGoal")
         {
             ScoreScriptInstance.Increment(ScoreScript.Score.AIScore);
-            agentScored = true;
+            playState = PlayState.agentScored;
+        }
+        else if (other.tag == "PlayerBackWall")
+        {
+            //ScoreScriptInstance.Increment(ScoreScript.Score.AIScore);
+            playState = PlayState.backWallReached;
         }
     }
 
@@ -142,5 +155,9 @@ public class PuckScript : MonoBehaviour
     private void FixedUpdate()
     {
         puckRB.velocity = Vector2.ClampMagnitude(puckRB.velocity, MaxSpeed);
+        if(puckRB.velocity.magnitude == 0)
+        {
+            playState = PlayState.puckStopped;
+        }
     }
 }
