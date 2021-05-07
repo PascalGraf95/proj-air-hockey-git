@@ -160,7 +160,7 @@ public class AirHockeyAgent : Agent
         {
             if (puck.playState == PlayState.agentScored)
             {
-                SetReward(3f);
+                SetReward(1.5f);
                 EndEpisode();
                 return;
             }
@@ -189,10 +189,11 @@ public class AirHockeyAgent : Agent
             }
             else if (StepCount == MaxStep)
             {
+                SetReward(-1f);
                 EndEpisode();
                 return;
             }
-            SetReward(-0.001f); // Negative Step Reward
+            SetReward(-0.003f); // Negative Step Reward
         }
         else if(taskType == TaskType.Scoring)
         {
@@ -232,10 +233,24 @@ public class AirHockeyAgent : Agent
         }
         float x = continouosActions[0];
         float y = continouosActions[1];
-        
 
+        if(Mathf.Abs(x) < 0.03f)
+        {
+            x = 0f;
+        }
+        if (Mathf.Abs(y) < 0.03f)
+        {
+            y = 0f;
+        }
         // normalize so going diagonally doesn't speed things up
-        Vector2 direction = new Vector2(x, y).normalized;
+
+        Vector2 direction = new Vector2(x, y);
+
+        if(direction.magnitude > 1f)
+        {
+            direction.Normalize();
+        }
+
         
         if(avoidDirectionChanges > 0f) // Punish changing direction too much.
         {

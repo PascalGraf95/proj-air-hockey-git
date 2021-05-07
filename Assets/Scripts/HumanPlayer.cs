@@ -7,13 +7,14 @@ public class HumanPlayer : MonoBehaviour
 
     private Rigidbody2D humanPlayerRB;
     private Rigidbody2D PuckRB;
+    public GameObject targetPositionObject;
 
     private Vector2 startingPosition;
     private Boundary playerBoundary;
     private Boundary puckBoundary;
     private Vector2 targetPosition;
 
-    private bool isFirstTimeInOpponentsHalf = true;
+    private bool randomSetFlag = false;
     private float offsetXFromTarget;
     private Collider2D humanPlayerCollider;
     bool wasJustClicked = true;
@@ -53,32 +54,37 @@ public class HumanPlayer : MonoBehaviour
     {
         if(automaticMovement)
         {
-                float movementSpeed;
-                if (PuckRB.position.y < puckBoundary.Down || PuckRB.position.y > puckBoundary.Up)
+            float movementSpeed;
+            if (PuckRB.position.y > playerBoundary.Up) // Puck in Opponents half
+            {
+            if (!randomSetFlag)
+            {
+                offsetXFromTarget = Random.Range(-1f, 1f);
+                randomSetFlag = true;
+            }
+                movementSpeed = Random.Range(maxMovementSpeed * 0.5f, maxMovementSpeed);
+                targetPosition = new Vector2(offsetXFromTarget, startingPosition.y);
+            }
+            else // Puck in Opponents half
+            {
+                movementSpeed = Random.Range(maxMovementSpeed * 0.5f, maxMovementSpeed);
+                randomSetFlag = false;
+                if (PuckRB.position.y < humanPlayerRB.position.y)
                 {
-                    if (isFirstTimeInOpponentsHalf)
-                    {
-                        isFirstTimeInOpponentsHalf = false;
-                        offsetXFromTarget = Random.Range(-0.1f, 0.1f);
-                    }
-
-                    movementSpeed = Random.Range(maxMovementSpeed * 0.5f, maxMovementSpeed);
-                    targetPosition = new Vector2(Mathf.Clamp(PuckRB.position.x, -0.5f,
-                                                            0.5f),
-                                                startingPosition.y);
+                    targetPosition = new Vector2(0, Mathf.Clamp(PuckRB.position.y-1f, playerBoundary.Down,
+                            playerBoundary.Up));
                 }
                 else
                 {
-                    isFirstTimeInOpponentsHalf = true;
-
-                    movementSpeed = Random.Range(maxMovementSpeed * 0.5f, maxMovementSpeed);
                     targetPosition = new Vector2(Mathf.Clamp(PuckRB.position.x, playerBoundary.Left,
                                                 playerBoundary.Right),
                                                 Mathf.Clamp(PuckRB.position.y, playerBoundary.Down,
                                                 playerBoundary.Up));
                 }
-                humanPlayerRB.MovePosition(Vector2.MoveTowards(humanPlayerRB.position, targetPosition,
-                        movementSpeed * Time.fixedDeltaTime));
+            }        
+            targetPositionObject.transform.position = targetPosition;
+            humanPlayerRB.MovePosition(Vector2.MoveTowards(humanPlayerRB.position, targetPosition,
+                movementSpeed * Time.fixedDeltaTime));
         }
         else
         {

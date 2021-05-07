@@ -6,6 +6,7 @@ public enum ResetPuckState
 {
     normalPosition,
     randomPosition,
+    randomPositionGlobal,
     shotOnGoal,
     randomVelocity,
     randomMiddlePosition
@@ -66,6 +67,10 @@ public class PuckScript : MonoBehaviour
         {
             puckRB.position = new Vector2(Random.Range(agentBoundary.Left, agentBoundary.Right) * 0.9f, Random.Range(agentBoundary.Down, agentBoundary.Up) * 0.9f);
         }
+        else if(resetPuckState == ResetPuckState.randomPositionGlobal)
+        {
+            puckRB.position = new Vector2(Random.Range(agentBoundary.Left, agentBoundary.Right) * 0.9f, Random.Range(-agentBoundary.Up, agentBoundary.Up) * 0.9f);
+        }
         else if(resetPuckState == ResetPuckState.randomMiddlePosition)
         {
             puckRB.position = new Vector2(Random.Range(agentBoundary.Left, agentBoundary.Right) * 0.9f, agentBoundary.Down + Random.Range(0, agentBoundary.Up) * 0.3f);
@@ -79,7 +84,7 @@ public class PuckScript : MonoBehaviour
             }
 
             var currentPoint = new Vector2(Random.Range(-.35f, .35f), puckBoundary.Up);
-            Instantiate(marker, new Vector3(currentPoint.x, currentPoint.y, 0), Quaternion.identity, markerContainer);
+            //Instantiate(marker, new Vector3(currentPoint.x, currentPoint.y, 0), Quaternion.identity, markerContainer);
             var angle = Random.Range(-70f, 70f);
             var spawnLine = Random.Range(puckBoundary.Down, -puckBoundary.Up);
 
@@ -99,18 +104,18 @@ public class PuckScript : MonoBehaviour
                 if(nextPoint.y < spawnLine)
                 {
                     nextPoint = new Vector2(currentPoint.x - (spawnLine - currentPoint.y) * Mathf.Tan(angle * Mathf.Deg2Rad), spawnLine);
-                    Debug.DrawLine(currentPoint, nextPoint, Color.green, 1f);
-                    Instantiate(marker, new Vector3(nextPoint.x, nextPoint.y, 0), Quaternion.identity, markerContainer);
+                    //Debug.DrawLine(currentPoint, nextPoint, Color.green, 1f);
+                    //Instantiate(marker, new Vector3(nextPoint.x, nextPoint.y, 0), Quaternion.identity, markerContainer);
                     angle = -angle;
                     startingVelocity = new Vector2(Mathf.Sin(angle * Mathf.Deg2Rad), Mathf.Cos(angle * Mathf.Deg2Rad))*Random.Range(4f, 18f);
                     break;
                 }
                 else { 
                     angle = -angle;
-                    Debug.DrawLine(currentPoint, nextPoint, Color.green, 1f, false);
+                    //Debug.DrawLine(currentPoint, nextPoint, Color.green, 1f, false);
                     currentPoint = nextPoint;
                 }
-                Instantiate(marker, new Vector3(nextPoint.x, nextPoint.y, 0), Quaternion.identity, markerContainer);
+                //Instantiate(marker, new Vector3(nextPoint.x, nextPoint.y, 0), Quaternion.identity, markerContainer);
             }                  
             puckRB.position = nextPoint;
             puckRB.velocity = startingVelocity;
