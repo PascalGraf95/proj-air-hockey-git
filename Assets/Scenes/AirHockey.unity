@@ -335,7 +335,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0.2
+  m_LinearDrag: 0.3
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: 5344cb052630ffa46ba42eb83ea673c7, type: 2}
@@ -418,7 +418,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 201495658}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.84, y: 0.93, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -437,8 +437,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScoreScriptInstance: {fileID: 664683785}
-  MaxSpeed: 20
-  playState: 0
+  MaxSpeed: 17
+  gameState: 0
   marker: {fileID: 723058135145224372, guid: ca336c8ee313faa4c87ed51676b6c552, type: 3}
 --- !u!1 &253143295
 GameObject:
@@ -639,7 +639,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8185652a5b0e7b94db43fe02db168205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  automaticMovement: 1
+  automaticMovement: 0
   maxMovementSpeed: 7
   targetPositionObject: {fileID: 1904599341}
 --- !u!1 &336155887
@@ -706,7 +706,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DecisionPeriod: 2
+  DecisionPeriod: 3
   TakeActionsBetweenDecisions: 1
 --- !u!50 &366521948
 Rigidbody2D:
@@ -804,7 +804,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 366521946}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4, z: 0}
+  m_LocalPosition: {x: 0, y: 3.72, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children:
   - {fileID: 481241148}
@@ -824,7 +824,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 8
+    VectorObservationSize: 11
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 2
@@ -856,18 +856,23 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 1000
+  MaxStep: 500
   actionType: 1
+  observationType: 3
   maxMovementSpeed: 7
   randomAgentPosition: 1
-  taskType: 2
-  resetPuckState: 2
-  avoidBoundaries: 0.001
-  avoidDirectionChanges: 0.001
-  encouragePuckMovement: 0
-  puckStopPenalty: 0
+  taskType: 1
+  resetPuckState: 3
+  agentScoredReward: 5
+  humanScoredReward: -2
+  avoidBoundariesReward: -0.001
+  avoidDirectionChangesReward: -0.01
+  encouragePuckMovementReward: 0
+  puckStopReward: 0
   backWallReward: 1
-  deflectOnly: 0
+  deflectOnlyReward: 0
+  maxStepReward: 0
+  stepReward: -0.001
 --- !u!1 &404863711
 GameObject:
   m_ObjectHideFlags: 0
@@ -1160,7 +1165,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &481241148
 Transform:
   m_ObjectHideFlags: 0
@@ -2056,6 +2061,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
 --- !u!223 &1481314806
 Canvas:
   m_ObjectHideFlags: 0
@@ -2236,7 +2242,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!135 &1904599342
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2307,8 +2313,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1904599341}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.81, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalPosition: {x: 1.189, y: 3.073, z: 0}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8

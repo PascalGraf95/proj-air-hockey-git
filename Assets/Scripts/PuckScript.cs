@@ -12,7 +12,7 @@ public enum ResetPuckState
     randomMiddlePosition
 }
 
-public enum PlayState
+public enum GameState
 {
     normal,
     playerScored,
@@ -29,7 +29,8 @@ public class PuckScript : MonoBehaviour
     public Rigidbody2D PuckRB { get { return puckRB; } }
 
     private Rigidbody2D puckRB;
-    public PlayState playState;
+    [HideInInspector]
+    public GameState gameState;
     private bool agentContact;
     public GameObject marker;
     private Transform markerContainer;
@@ -54,11 +55,11 @@ public class PuckScript : MonoBehaviour
 
         if (resetPuckState == ResetPuckState.normalPosition)
         {
-            if (playState == PlayState.agentScored)
+            if (gameState == GameState.agentScored)
             {
                 puckRB.position = new Vector2(0, -1);
             }
-            else if(playState == PlayState.playerScored)
+            else if(gameState == GameState.playerScored)
             {
                 puckRB.position = new Vector2(0, 1);
             }
@@ -121,27 +122,27 @@ public class PuckScript : MonoBehaviour
             puckRB.velocity = startingVelocity;
         }
         agentContact = false;
-        playState = PlayState.normal;
+        gameState = GameState.normal;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        playState = PlayState.normal;
+        gameState = GameState.normal;
 
         if (other.tag == "AIGoal")
         {
             ScoreScriptInstance.Increment(ScoreScript.Score.PlayerScore);
-            playState = PlayState.playerScored;
+            gameState = GameState.playerScored;
         }
         else if (other.tag == "PlayerGoal")
         {
             ScoreScriptInstance.Increment(ScoreScript.Score.AIScore);
-            playState = PlayState.agentScored;
+            gameState = GameState.agentScored;
         }
         else if (other.tag == "PlayerBackWall")
         {
             //ScoreScriptInstance.Increment(ScoreScript.Score.AIScore);
-            playState = PlayState.backWallReached;
+            gameState = GameState.backWallReached;
         }
     }
 
@@ -162,7 +163,7 @@ public class PuckScript : MonoBehaviour
         puckRB.velocity = Vector2.ClampMagnitude(puckRB.velocity, MaxSpeed);
         if(puckRB.velocity.magnitude == 0)
         {
-            playState = PlayState.puckStopped;
+            gameState = GameState.puckStopped;
         }
     }
 }

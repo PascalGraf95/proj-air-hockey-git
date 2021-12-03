@@ -46,7 +46,7 @@ public class HumanPlayer : MonoBehaviour
 
     public void ResetPosition()
     {
-        humanPlayerRB.position = startingPosition;
+        humanPlayerRB.position = new Vector2(Random.Range(playerBoundary.Left, playerBoundary.Right) * 0.8f, startingPosition[1]);
     }
 
 
