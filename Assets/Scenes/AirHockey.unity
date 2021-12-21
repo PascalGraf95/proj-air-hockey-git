@@ -597,7 +597,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 322290452}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -856,20 +856,20 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 500
+  MaxStep: 300
   actionType: 1
   observationType: 3
   maxMovementSpeed: 7
-  randomAgentPosition: 1
+  randomAgentPosition: 0
   taskType: 1
   resetPuckState: 3
-  agentScoredReward: 5
-  humanScoredReward: -2
-  avoidBoundariesReward: -0.001
+  agentScoredReward: 7
+  humanScoredReward: -4
+  avoidBoundariesReward: -0.01
   avoidDirectionChangesReward: -0.01
   encouragePuckMovementReward: 0
   puckStopReward: 0
-  backWallReward: 1
+  backWallReward: 0
   deflectOnlyReward: 0
   maxStepReward: 0
   stepReward: -0.001
@@ -1165,7 +1165,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &481241148
 Transform:
   m_ObjectHideFlags: 0

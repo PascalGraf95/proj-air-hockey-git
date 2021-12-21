@@ -2,124 +2,145 @@
 
 public class HumanPlayer : MonoBehaviour
 {
-    public bool automaticMovement;
-    public float maxMovementSpeed;
+    private float maxHumanAcceleration;
+    private float maxHumanVelocity;
 
-    private Rigidbody2D humanPlayerRB;
-    private Rigidbody2D PuckRB;
+    HumanBehavior humanBehavior;
+
+    private Rigidbody humanPlayerRB;
+    private Rigidbody PuckRB;
     public GameObject targetPositionObject;
 
-    private Vector2 startingPosition;
-    private Boundary playerBoundary;
-    private Boundary puckBoundary;
-    private Vector2 targetPosition;
+    private Vector3 startingPosition;
+    private FieldBoundary humanBoundary;
+    private Vector3 targetPosition;
 
     private bool randomSetFlag = false;
     private float offsetXFromTarget;
-    private Collider2D humanPlayerCollider;
-    bool wasJustClicked = true;
-    bool canMove;
+    private Collider humanPlayerCollider;
+    private Collider airHockeyTableCollider;
 
-    private void Start()
+    public void Init(HumanBehavior humanBehavior, float maxHumanVelocity, float maxHumanAcceleration)
     {
+        airHockeyTableCollider = GameObject.Find("AirHockeyTableTop").GetComponent<Collider>();
+
+        this.humanBehavior = humanBehavior;
+        this.maxHumanVelocity = maxHumanVelocity;
+        this.maxHumanAcceleration = maxHumanAcceleration;
         // Find Puck in Scene
         var puckGameObject = GameObject.Find("Puck");
-        PuckRB = puckGameObject.GetComponent<Rigidbody2D>();
-        // Find Boundary in Scene
-        var playerBoundaryHolder = GameObject.Find("PlayerBoundaryHolder").GetComponent<Transform>();
-        var puckBoundaryHolder = GameObject.Find("PlayerPuckBoundaryHolder").GetComponent<Transform>();
+        PuckRB = puckGameObject.GetComponent<Rigidbody>();
         // Get Rigidbody and Collider
-        humanPlayerRB = GetComponent<Rigidbody2D>();
-        humanPlayerCollider = GetComponent<Collider2D>();
+        humanPlayerRB = GetComponent<Rigidbody>();
+        humanPlayerCollider = GetComponent<Collider>();
         startingPosition = humanPlayerRB.position;
 
-        playerBoundary = new Boundary(playerBoundaryHolder.GetChild(0).position.y,
-            playerBoundaryHolder.GetChild(1).position.y,
-            playerBoundaryHolder.GetChild(2).position.x,
-            playerBoundaryHolder.GetChild(3).position.x);
-
-        puckBoundary = new Boundary(puckBoundaryHolder.GetChild(0).position.y,
-            puckBoundaryHolder.GetChild(1).position.y,
-            puckBoundaryHolder.GetChild(2).position.x,
-            puckBoundaryHolder.GetChild(3).position.x);
+        humanBoundary = GameObject.Find("HumanBoundaries").GetComponent<FieldBoundary>();
+        targetPositionObject = GameObject.Find("TargetPositionObject");
     }
 
     public void ResetPosition()
     {
-        humanPlayerRB.position = new Vector2(Random.Range(playerBoundary.Left, playerBoundary.Right) * 0.8f, startingPosition[1]);
+        if(humanBehavior == HumanBehavior.None)
+        {
+            this.gameObject.SetActive(false);
+        }
+        else
+        {
+            this.gameObject.SetActive(true);
+        }
+
+        if (humanBehavior == HumanBehavior.RandomPosition || humanBehavior == HumanBehavior.Heuristic)
+        {
+            humanPlayerRB.position = new Vector3(Random.Range(humanBoundary.xMin, humanBoundary.xMax), 0f,
+                Random.Range(humanBoundary.zMin, humanBoundary.zMax));
+        }
+        else if (humanBehavior == HumanBehavior.StartingPosition)
+        {
+            humanPlayerRB.position = startingPosition;
+        }
     }
 
 
     private void FixedUpdate()
     {
-        if(automaticMovement)
+        if (humanBehavior == HumanBehavior.Heuristic)
         {
-            float movementSpeed;
-            if (PuckRB.position.y > playerBoundary.Up) // Puck in Opponents half
+            if (PuckRB.position.z > 0) // Puck in Agent Half
             {
-            if (!randomSetFlag)
-            {
-                offsetXFromTarget = Random.Range(-1f, 1f);
-                randomSetFlag = true;
-            }
-                movementSpeed = Random.Range(maxMovementSpeed * 0.5f, maxMovementSpeed);
-                targetPosition = new Vector2(offsetXFromTarget, startingPosition.y);
-            }
-            else // Puck in Opponents half
-            {
-                movementSpeed = Random.Range(maxMovementSpeed * 0.5f, maxMovementSpeed);
-                randomSetFlag = false;
-                if (PuckRB.position.y < humanPlayerRB.position.y)
+                if (!randomSetFlag)
                 {
-                    targetPosition = new Vector2(0, Mathf.Clamp(PuckRB.position.y-1f, playerBoundary.Down,
-                            playerBoundary.Up));
+                    offsetXFromTarget = Random.Range(humanBoundary.xMin * 0.5f, humanBoundary.xMax * 0.5f);
+                    randomSetFlag = true;
+                }
+                targetPosition = new Vector3(offsetXFromTarget, 0f, startingPosition.z);
+            }
+            else // Puck in Human Half
+            {
+                randomSetFlag = false;
+                if (PuckRB.position.z < humanPlayerRB.position.z)
+                {
+                    targetPosition = new Vector3(0, 0f, Mathf.Clamp(PuckRB.position.z - 10f, humanBoundary.zMin,
+                        humanBoundary.zMax));
                 }
                 else
                 {
-                    targetPosition = new Vector2(Mathf.Clamp(PuckRB.position.x, playerBoundary.Left,
-                                                playerBoundary.Right),
-                                                Mathf.Clamp(PuckRB.position.y, playerBoundary.Down,
-                                                playerBoundary.Up));
+                    targetPosition = new Vector3(Mathf.Clamp(PuckRB.position.x, humanBoundary.xMin,
+                                                humanBoundary.xMax), 0f,
+                                                Mathf.Clamp(PuckRB.position.z, humanBoundary.zMin,
+                                                humanBoundary.zMax));
                 }
-            }        
+            }
             targetPositionObject.transform.position = targetPosition;
-            humanPlayerRB.MovePosition(Vector2.MoveTowards(humanPlayerRB.position, targetPosition,
-                movementSpeed * Time.fixedDeltaTime));
         }
         else
         {
             if (Input.GetMouseButton(0))
             {
-                Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-                if (wasJustClicked)
+                RaycastHit hitData;
+                Vector3 mousePosWorld = humanPlayerRB.position;
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (airHockeyTableCollider.Raycast(ray, out hitData, 1000f))
                 {
-                    wasJustClicked = false;
-
-                    if (humanPlayerCollider.OverlapPoint(mousePos))
-                    {
-                        canMove = true;
-                    }
-                    else
-                    {
-                        canMove = false;
-                    }
+                    mousePosWorld = hitData.point;
                 }
-
-                if (canMove)
-                {
-                    Vector2 clampedMousePos = new Vector2(Mathf.Clamp(mousePos.x, playerBoundary.Left,
-                                                                      playerBoundary.Right),
-                                                          Mathf.Clamp(mousePos.y, playerBoundary.Down,
-                                                                      playerBoundary.Up));
-                    humanPlayerRB.MovePosition(clampedMousePos);
-                }
+                targetPosition = new Vector3(Mathf.Clamp(mousePosWorld.x, humanBoundary.xMin, humanBoundary.xMax),
+                                            0,
+                                            Mathf.Clamp(mousePosWorld.z, humanBoundary.zMin, humanBoundary.zMax));
             }
             else
             {
-                wasJustClicked = true;
+                targetPosition = humanPlayerRB.position;
             }
         }
-        
+        // Apply Force
+        humanPlayerRB.AddForce((targetPosition - humanPlayerRB.position).normalized * maxHumanAcceleration * humanPlayerRB.mass * Time.deltaTime);
+        // Limit Velocity
+        if(humanPlayerRB.velocity.magnitude > maxHumanVelocity)
+        {
+            humanPlayerRB.velocity = humanPlayerRB.velocity.normalized * maxHumanVelocity;
+        }
+        // Limit Position
+        if(humanPlayerRB.position.x < humanBoundary.xMin)
+        {
+            humanPlayerRB.velocity = new Vector3(0, 0, humanPlayerRB.velocity.z);
+            humanPlayerRB.position = new Vector3(humanBoundary.xMin, 0, humanPlayerRB.position.z);
+        }
+        else if(humanPlayerRB.position.x > humanBoundary.xMax)
+        {
+            humanPlayerRB.velocity = new Vector3(0, 0, humanPlayerRB.velocity.z);
+            humanPlayerRB.position = new Vector3(humanBoundary.xMax, 0, humanPlayerRB.position.z);
+        }
+        if (humanPlayerRB.position.z < humanBoundary.zMin)
+        {
+            humanPlayerRB.velocity = new Vector3(humanPlayerRB.velocity.x, 0, 0);
+            humanPlayerRB.position = new Vector3(humanPlayerRB.position.x, 0, humanBoundary.zMin);
+        }
+        else if (humanPlayerRB.position.z > humanBoundary.zMax)
+        {
+            humanPlayerRB.velocity = new Vector3(humanPlayerRB.velocity.x, 0, 0);
+            humanPlayerRB.position = new Vector3(humanPlayerRB.position.x, 0, humanBoundary.zMax);
+        }
+
     }
 }

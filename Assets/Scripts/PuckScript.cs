@@ -23,58 +23,56 @@ public enum GameState
 
 public class PuckScript : MonoBehaviour
 {
-    public ScoreScript ScoreScriptInstance;
-    public float MaxSpeed;
     public bool AgentContact { get { return agentContact; } }
-    public Rigidbody2D PuckRB { get { return puckRB; } }
+    public Rigidbody PuckRB { get { return puckRB; } }
 
-    private Rigidbody2D puckRB;
+    private Rigidbody puckRB;
     [HideInInspector]
     public GameState gameState;
     private bool agentContact;
     public GameObject marker;
     private Transform markerContainer;
-    Boundary puckBoundary;
+    ResetPuckState resetPuckState;
+    FieldBoundary puckBoundary;
+    FieldBoundary agentBoundary;
 
-    void Start()
+    public void Init(ResetPuckState resetPuckState, FieldBoundary agentBoundary, GameObject puckMarkerPrefab)
     {
-        puckRB = GetComponent<Rigidbody2D>();
+        puckRB = GetComponent<Rigidbody>();
         markerContainer = GameObject.Find("MarkerContainer").transform;
-        var puckBoundaryHolder = GameObject.Find("AgentPuckBoundaryHolder").GetComponent<Transform>();
-        float offset = 0.21f;
-        puckBoundary = new Boundary(puckBoundaryHolder.GetChild(0).position.y - offset/2,
-                      puckBoundaryHolder.GetChild(1).position.y + offset,
-                      puckBoundaryHolder.GetChild(2).position.x + offset,
-                      puckBoundaryHolder.GetChild(3).position.x - offset);
+        puckBoundary = GameObject.Find("PuckSpawnBoundaries").GetComponent<FieldBoundary>();
+        this.resetPuckState = resetPuckState;
+        this.agentBoundary = agentBoundary;
+        marker = puckMarkerPrefab;
     }
 
-    public void Reset(ResetPuckState resetPuckState, Boundary agentBoundary)
+    public void Reset()
     {
-        puckRB.velocity = puckRB.position = Vector2.zero;
-        puckRB.angularVelocity = 0f;
+        puckRB.velocity = puckRB.position = Vector3.zero;
+        puckRB.angularVelocity = Vector3.zero;
 
         if (resetPuckState == ResetPuckState.normalPosition)
         {
-            if (gameState == GameState.agentScored)
+            if (gameState == GameState.agentScored || gameState == GameState.backWallReached)
             {
-                puckRB.position = new Vector2(0, -1);
+                puckRB.position = new Vector3(0, 0, -1);
             }
             else if(gameState == GameState.playerScored)
             {
-                puckRB.position = new Vector2(0, 1);
+                puckRB.position = new Vector3(0, 0, 1);
             }
         }
         else if(resetPuckState == ResetPuckState.randomPosition)
         {
-            puckRB.position = new Vector2(Random.Range(agentBoundary.Left, agentBoundary.Right) * 0.9f, Random.Range(agentBoundary.Down, agentBoundary.Up) * 0.9f);
+            puckRB.position = new Vector3(Random.Range(agentBoundary.xMin, agentBoundary.xMax) * 0.9f, 0f, Random.Range(agentBoundary.zMin, agentBoundary.zMax) * 0.9f);
         }
         else if(resetPuckState == ResetPuckState.randomPositionGlobal)
         {
-            puckRB.position = new Vector2(Random.Range(agentBoundary.Left, agentBoundary.Right) * 0.9f, Random.Range(-agentBoundary.Up, agentBoundary.Up) * 0.9f);
+            puckRB.position = new Vector3(Random.Range(puckBoundary.xMin, puckBoundary.xMax) * 0.9f, 0f, Random.Range(-agentBoundary.zMax, agentBoundary.zMax) * 0.9f);
         }
         else if(resetPuckState == ResetPuckState.randomMiddlePosition)
         {
-            puckRB.position = new Vector2(Random.Range(agentBoundary.Left, agentBoundary.Right) * 0.9f, agentBoundary.Down + Random.Range(0, agentBoundary.Up) * 0.3f);
+            puckRB.position = new Vector3(Random.Range(puckBoundary.xMin, puckBoundary.xMax) * 0.9f, 0f, Random.Range(agentBoundary.zMin, agentBoundary.zMax) * 0.9f);
         }
 
         else if(resetPuckState == ResetPuckState.shotOnGoal)
@@ -84,39 +82,38 @@ public class PuckScript : MonoBehaviour
                 Destroy(m.gameObject);
             }
 
-            var currentPoint = new Vector2(Random.Range(-.35f, .35f), puckBoundary.Up);
-            //Instantiate(marker, new Vector3(currentPoint.x, currentPoint.y, 0), Quaternion.identity, markerContainer);
-            var angle = Random.Range(-70f, 70f);
-            var spawnLine = Random.Range(puckBoundary.Down, -puckBoundary.Up);
+            var currentPoint = new Vector3(0f, 0f, 75f);
+            Instantiate(marker, new Vector3(currentPoint.x, 0, currentPoint.z), Quaternion.identity, markerContainer);
+            var angle = Random.Range(-60f, 60f);
+            var spawnLine = Random.Range(puckBoundary.zMin, puckBoundary.zMax);
 
-            Vector2 nextPoint = Vector2.zero;
-            Vector2 startingVelocity = Vector2.zero;
+            Vector3 nextPoint = Vector3.zero;
+            Vector3 startingVelocity = Vector3.zero;
             while (true)
             {
                 if(angle > 0)
                 {
-                    nextPoint = new Vector2(puckBoundary.Right, currentPoint.y - (puckBoundary.Right - currentPoint.x) / Mathf.Tan(angle * Mathf.Deg2Rad));
-
+                    nextPoint = new Vector3(puckBoundary.xMax, 0f, currentPoint.z - (puckBoundary.xMax - currentPoint.x) / Mathf.Tan(angle * Mathf.Deg2Rad));
                 }
                 else
                 {
-                    nextPoint = new Vector2(puckBoundary.Left, currentPoint.y - (puckBoundary.Left - currentPoint.x) / Mathf.Tan(angle * Mathf.Deg2Rad));
+                    nextPoint = new Vector3(puckBoundary.xMin, 0f, currentPoint.z - (puckBoundary.xMin - currentPoint.x) / Mathf.Tan(angle * Mathf.Deg2Rad));
                 }
-                if(nextPoint.y < spawnLine)
+                if(nextPoint.z < spawnLine)
                 {
-                    nextPoint = new Vector2(currentPoint.x - (spawnLine - currentPoint.y) * Mathf.Tan(angle * Mathf.Deg2Rad), spawnLine);
-                    //Debug.DrawLine(currentPoint, nextPoint, Color.green, 1f);
-                    //Instantiate(marker, new Vector3(nextPoint.x, nextPoint.y, 0), Quaternion.identity, markerContainer);
+                    nextPoint = new Vector3(currentPoint.x - (spawnLine - currentPoint.z) * Mathf.Tan(angle * Mathf.Deg2Rad), 0f, spawnLine);
+                    //Debug.DrawLine(currentPoint, nextPoint, Color.green, 3f);
+                    Instantiate(marker, new Vector3(nextPoint.x, 0, nextPoint.z), Quaternion.identity, markerContainer);
                     angle = -angle;
-                    startingVelocity = new Vector2(Mathf.Sin(angle * Mathf.Deg2Rad), Mathf.Cos(angle * Mathf.Deg2Rad))*Random.Range(4f, 18f);
+                    startingVelocity = new Vector3(Mathf.Sin(angle * Mathf.Deg2Rad), 0f, Mathf.Cos(angle * Mathf.Deg2Rad))*Random.Range(80f, 400f);
                     break;
                 }
                 else { 
                     angle = -angle;
-                    //Debug.DrawLine(currentPoint, nextPoint, Color.green, 1f, false);
+                    //Debug.DrawLine(currentPoint, nextPoint, Color.green, 3f, false);
                     currentPoint = nextPoint;
                 }
-                //Instantiate(marker, new Vector3(nextPoint.x, nextPoint.y, 0), Quaternion.identity, markerContainer);
+                Instantiate(marker, new Vector3(nextPoint.x, 0, nextPoint.z), Quaternion.identity, markerContainer);
             }                  
             puckRB.position = nextPoint;
             puckRB.velocity = startingVelocity;
@@ -125,23 +122,20 @@ public class PuckScript : MonoBehaviour
         gameState = GameState.normal;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter(Collider other)
     {
         gameState = GameState.normal;
 
-        if (other.tag == "AIGoal")
+        if (other.tag == "AgentGoal")
         {
-            ScoreScriptInstance.Increment(ScoreScript.Score.PlayerScore);
             gameState = GameState.playerScored;
         }
-        else if (other.tag == "PlayerGoal")
+        else if (other.tag == "HumanGoal")
         {
-            ScoreScriptInstance.Increment(ScoreScript.Score.AIScore);
             gameState = GameState.agentScored;
         }
-        else if (other.tag == "PlayerBackWall")
+        else if (other.tag == "HumanBackWall")
         {
-            //ScoreScriptInstance.Increment(ScoreScript.Score.AIScore);
             gameState = GameState.backWallReached;
         }
     }
@@ -160,7 +154,7 @@ public class PuckScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        puckRB.velocity = Vector2.ClampMagnitude(puckRB.velocity, MaxSpeed);
+        //puckRB.velocity = Vector2.ClampMagnitude(puckRB.velocity, MaxSpeed);
         if(puckRB.velocity.magnitude == 0)
         {
             gameState = GameState.puckStopped;

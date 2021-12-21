@@ -5,15 +5,15 @@ TagManager:
   serializedVersion: 2
   tags:
   - Agent
-  - AIGoal
-  - PlayerGoal
   - Boundary
-  - PlayerBackWall
+  - HumanGoal
+  - AgentGoal
+  - HumanBackWall
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Boundaries
   - Water
   - UI
   - 
