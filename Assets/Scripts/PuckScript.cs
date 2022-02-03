@@ -29,6 +29,7 @@ public class PuckScript : MonoBehaviour
     private Rigidbody puckRB;
     [HideInInspector]
     public GameState gameState;
+    private float maxPuckVelocity;
     private bool agentContact;
     public GameObject marker;
     private Transform markerContainer;
@@ -36,13 +37,14 @@ public class PuckScript : MonoBehaviour
     FieldBoundary puckBoundary;
     FieldBoundary agentBoundary;
 
-    public void Init(ResetPuckState resetPuckState, FieldBoundary agentBoundary, GameObject puckMarkerPrefab)
+    public void Init(ResetPuckState resetPuckState, float maxPuckVelocity, FieldBoundary agentBoundary, GameObject puckMarkerPrefab)
     {
         puckRB = GetComponent<Rigidbody>();
         markerContainer = GameObject.Find("MarkerContainer").transform;
         puckBoundary = GameObject.Find("PuckSpawnBoundaries").GetComponent<FieldBoundary>();
         this.resetPuckState = resetPuckState;
         this.agentBoundary = agentBoundary;
+        this.maxPuckVelocity = maxPuckVelocity;
         marker = puckMarkerPrefab;
     }
 
@@ -66,9 +68,13 @@ public class PuckScript : MonoBehaviour
         {
             puckRB.position = new Vector3(Random.Range(agentBoundary.xMin, agentBoundary.xMax) * 0.9f, 0f, Random.Range(agentBoundary.zMin, agentBoundary.zMax) * 0.9f);
         }
-        else if(resetPuckState == ResetPuckState.randomPositionGlobal)
+        else if(resetPuckState == ResetPuckState.randomPositionGlobal || resetPuckState == ResetPuckState.randomVelocity)
         {
             puckRB.position = new Vector3(Random.Range(puckBoundary.xMin, puckBoundary.xMax) * 0.9f, 0f, Random.Range(-agentBoundary.zMax, agentBoundary.zMax) * 0.9f);
+            if(resetPuckState == ResetPuckState.randomVelocity)
+            {
+                puckRB.velocity = new Vector3(Mathf.Sin(Random.Range(-180f, 180f) * Mathf.Deg2Rad), 0f, Mathf.Cos(Random.Range(-180f, 180f) * Mathf.Deg2Rad)) * Random.Range(30f, 150f);
+            }
         }
         else if(resetPuckState == ResetPuckState.randomMiddlePosition)
         {
@@ -83,7 +89,7 @@ public class PuckScript : MonoBehaviour
             }
 
             var currentPoint = new Vector3(0f, 0f, 75f);
-            Instantiate(marker, new Vector3(currentPoint.x, 0, currentPoint.z), Quaternion.identity, markerContainer);
+            //Instantiate(marker, new Vector3(currentPoint.x, 0, currentPoint.z), Quaternion.identity, markerContainer);
             var angle = Random.Range(-60f, 60f);
             var spawnLine = Random.Range(puckBoundary.zMin, puckBoundary.zMax);
 
@@ -103,7 +109,7 @@ public class PuckScript : MonoBehaviour
                 {
                     nextPoint = new Vector3(currentPoint.x - (spawnLine - currentPoint.z) * Mathf.Tan(angle * Mathf.Deg2Rad), 0f, spawnLine);
                     //Debug.DrawLine(currentPoint, nextPoint, Color.green, 3f);
-                    Instantiate(marker, new Vector3(nextPoint.x, 0, nextPoint.z), Quaternion.identity, markerContainer);
+                    //Instantiate(marker, new Vector3(nextPoint.x, 0, nextPoint.z), Quaternion.identity, markerContainer);
                     angle = -angle;
                     startingVelocity = new Vector3(Mathf.Sin(angle * Mathf.Deg2Rad), 0f, Mathf.Cos(angle * Mathf.Deg2Rad))*Random.Range(80f, 400f);
                     break;
@@ -113,7 +119,7 @@ public class PuckScript : MonoBehaviour
                     //Debug.DrawLine(currentPoint, nextPoint, Color.green, 3f, false);
                     currentPoint = nextPoint;
                 }
-                Instantiate(marker, new Vector3(nextPoint.x, 0, nextPoint.z), Quaternion.identity, markerContainer);
+                //Instantiate(marker, new Vector3(nextPoint.x, 0, nextPoint.z), Quaternion.identity, markerContainer);
             }                  
             puckRB.position = nextPoint;
             puckRB.velocity = startingVelocity;
@@ -140,7 +146,7 @@ public class PuckScript : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Agent")
         {
@@ -154,7 +160,11 @@ public class PuckScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //puckRB.velocity = Vector2.ClampMagnitude(puckRB.velocity, MaxSpeed);
+        if(puckRB.velocity.magnitude > maxPuckVelocity)
+        {
+            puckRB.ResetInertiaTensor();
+        }
+        puckRB.velocity = Vector3.ClampMagnitude(puckRB.velocity, maxPuckVelocity);
         if(puckRB.velocity.magnitude == 0)
         {
             gameState = GameState.puckStopped;

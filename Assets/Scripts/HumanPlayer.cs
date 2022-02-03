@@ -93,7 +93,7 @@ public class HumanPlayer : MonoBehaviour
             }
             targetPositionObject.transform.position = targetPosition;
         }
-        else
+        else if(humanBehavior == HumanBehavior.ManualMovement)
         {
             if (Input.GetMouseButton(0))
             {
@@ -113,34 +113,36 @@ public class HumanPlayer : MonoBehaviour
                 targetPosition = humanPlayerRB.position;
             }
         }
-        // Apply Force
-        humanPlayerRB.AddForce((targetPosition - humanPlayerRB.position).normalized * maxHumanAcceleration * humanPlayerRB.mass * Time.deltaTime);
-        // Limit Velocity
-        if(humanPlayerRB.velocity.magnitude > maxHumanVelocity)
+        if(humanBehavior != HumanBehavior.Selfplay && humanBehavior != HumanBehavior.RandomPosition)
         {
-            humanPlayerRB.velocity = humanPlayerRB.velocity.normalized * maxHumanVelocity;
+            // Apply Force
+            humanPlayerRB.AddForce((targetPosition - humanPlayerRB.position).normalized * maxHumanAcceleration * humanPlayerRB.mass * Time.fixedDeltaTime);
+            // Limit Velocity
+            if (humanPlayerRB.velocity.magnitude > maxHumanVelocity)
+            {
+                humanPlayerRB.velocity = humanPlayerRB.velocity.normalized * maxHumanVelocity;
+            }
+            // Limit Position
+            if (humanPlayerRB.position.x < humanBoundary.xMin)
+            {
+                humanPlayerRB.velocity = new Vector3(0, 0, humanPlayerRB.velocity.z);
+                humanPlayerRB.position = new Vector3(humanBoundary.xMin, 0, humanPlayerRB.position.z);
+            }
+            else if (humanPlayerRB.position.x > humanBoundary.xMax)
+            {
+                humanPlayerRB.velocity = new Vector3(0, 0, humanPlayerRB.velocity.z);
+                humanPlayerRB.position = new Vector3(humanBoundary.xMax, 0, humanPlayerRB.position.z);
+            }
+            if (humanPlayerRB.position.z < humanBoundary.zMin)
+            {
+                humanPlayerRB.velocity = new Vector3(humanPlayerRB.velocity.x, 0, 0);
+                humanPlayerRB.position = new Vector3(humanPlayerRB.position.x, 0, humanBoundary.zMin);
+            }
+            else if (humanPlayerRB.position.z > humanBoundary.zMax)
+            {
+                humanPlayerRB.velocity = new Vector3(humanPlayerRB.velocity.x, 0, 0);
+                humanPlayerRB.position = new Vector3(humanPlayerRB.position.x, 0, humanBoundary.zMax);
+            }
         }
-        // Limit Position
-        if(humanPlayerRB.position.x < humanBoundary.xMin)
-        {
-            humanPlayerRB.velocity = new Vector3(0, 0, humanPlayerRB.velocity.z);
-            humanPlayerRB.position = new Vector3(humanBoundary.xMin, 0, humanPlayerRB.position.z);
-        }
-        else if(humanPlayerRB.position.x > humanBoundary.xMax)
-        {
-            humanPlayerRB.velocity = new Vector3(0, 0, humanPlayerRB.velocity.z);
-            humanPlayerRB.position = new Vector3(humanBoundary.xMax, 0, humanPlayerRB.position.z);
-        }
-        if (humanPlayerRB.position.z < humanBoundary.zMin)
-        {
-            humanPlayerRB.velocity = new Vector3(humanPlayerRB.velocity.x, 0, 0);
-            humanPlayerRB.position = new Vector3(humanPlayerRB.position.x, 0, humanBoundary.zMin);
-        }
-        else if (humanPlayerRB.position.z > humanBoundary.zMax)
-        {
-            humanPlayerRB.velocity = new Vector3(humanPlayerRB.velocity.x, 0, 0);
-            humanPlayerRB.position = new Vector3(humanPlayerRB.position.x, 0, humanBoundary.zMax);
-        }
-
     }
 }

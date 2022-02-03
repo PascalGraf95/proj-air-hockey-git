@@ -5,6 +5,8 @@ using Unity.MLAgents.Sensors;
 using Unity.MLAgents.Actuators;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using System.Text;
+using System.IO;
 
 public enum ActionType { Discrete, Continuous };
 public enum TaskType
@@ -54,8 +56,10 @@ public class AirHockeyAgent : Agent
     [Header("Training Scenario")]
     public TaskType taskType;
     public ResetPuckState resetPuckState;
+    public float maxPuckVelocity;
     public GameObject puckMarkerPrefab;
     public int maxStepsPerGame;
+    public bool writeCSV;
 
     [Space(5)]
     [Header("Human Pusher Behavior")]
@@ -81,6 +85,7 @@ public class AirHockeyAgent : Agent
     public float puckStopReward;
     [Range(0f, 5f)]
     public float backWallReward;
+    public bool endOnBackWall;
     [Range(0f, 1f)]
     public float deflectOnlyReward;
     [Range(-5f, 0f)]
@@ -97,6 +102,7 @@ public class AirHockeyAgent : Agent
 
     private Rigidbody agentRB;
     private Rigidbody puckRB;
+    private Rigidbody humanRB;
     private PuckScript puck;
     private HumanPlayer humanPlayer;
     private Rigidbody guidanceRods;
@@ -111,6 +117,7 @@ public class AirHockeyAgent : Agent
 
     private int gamesSinceNewEpisode;
     private int lastGameReset;
+    private StreamWriter writer;
 
     #endregion
 
@@ -136,17 +143,29 @@ public class AirHockeyAgent : Agent
 
         // Get Boundaries
         agentBoundary = GameObject.Find("AgentBoundaries").GetComponent<FieldBoundary>();
+        var humanBoundary = GameObject.Find("HumanBoundaries").GetComponent<FieldBoundary>();
 
         var puckGameObject = GameObject.Find("Puck");
         puckRB = puckGameObject.GetComponent<Rigidbody>();
         puck = puckGameObject.AddComponent<PuckScript>();
-        puck.Init(resetPuckState, agentBoundary, puckMarkerPrefab);
+        puck.Init(resetPuckState, maxPuckVelocity, agentBoundary, puckMarkerPrefab);
 
         var humanPlayerGameObject = GameObject.Find("PusherHuman");
         humanPlayer = humanPlayerGameObject.AddComponent<HumanPlayer>();
+        humanRB = humanPlayerGameObject.GetComponent<Rigidbody>();
         humanPlayer.Init(humanBehavior, maxHumanPusherVelocity, maxHumanPusherAcceleration);
 
+        var humanPlayerClone = humanPlayerGameObject.GetComponent<HumanAgentClone>();
+        
+        if (humanBehavior == HumanBehavior.Selfplay)
+        {
+            humanPlayerClone.Init(transform, humanRB, puckRB, observationType, actionType, humanBoundary, maxHumanPusherVelocity, maxHumanPusherAcceleration);
+        }
 
+        if(writeCSV)
+        {
+            writer = new StreamWriter("./export.csv");
+        }
     }
 
     public override void OnEpisodeBegin()
@@ -212,6 +231,7 @@ public class AirHockeyAgent : Agent
     public override void CollectObservations(VectorSensor sensor)
     {
         sensor.AddObservation(transform.position);
+        sensor.AddObservation(agentRB.velocity);
         sensor.AddObservation(puckRB.position);
 
         if (observationType == ObservationType.AgentPuckHuman || observationType == ObservationType.AgentPuckHumanVelocity)
@@ -222,26 +242,95 @@ public class AirHockeyAgent : Agent
         {
             sensor.AddObservation(puckRB.velocity);
         }
+
+        if (writeCSV)
+        {
+            writer.WriteLine(transform.position[0].ToString().Replace(",", ".") + "," + transform.position[2].ToString().Replace(",", ".") + ";" + agentRB.velocity[0].ToString().Replace(",", ".") + "," + agentRB.velocity[2].ToString().Replace(",", "."));
+        }
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)
     {
-        var continuousActionsOut = actionsOut.ContinuousActions;
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
-        continuousActionsOut[0] = horizontalInput;
-        continuousActionsOut[1] = verticalInput;
+        if(actionType == ActionType.Continuous)
+        {
+            var continuousActionsOut = actionsOut.ContinuousActions;
+            float horizontalInput = Input.GetAxis("Horizontal");
+            float verticalInput = Input.GetAxis("Vertical");
+            continuousActionsOut[0] = horizontalInput;
+            continuousActionsOut[1] = verticalInput;
+        }
+        else
+        {
+            var discreteActionsOut = actionsOut.DiscreteActions;
+            int horizontalInput = Mathf.RoundToInt(Input.GetAxis("Horizontal"));
+            int verticalInput = Mathf.RoundToInt(Input.GetAxis("Vertical"));
+
+            if (horizontalInput == 1)
+            {
+                discreteActionsOut[0] = 1;
+            }
+            else if(horizontalInput == -1)
+            {
+                discreteActionsOut[0] = 2;
+            }
+            else if(verticalInput == 1)
+            {
+                discreteActionsOut[0] = 3;
+            }
+            else if(verticalInput == -1)
+            {
+                discreteActionsOut[0] = 4;
+            }
+            else
+            {
+                discreteActionsOut[0] = 0;
+            }
+        }
+
     }
     
 
     public override void OnActionReceived(ActionBuffers actionsIn) 
     {
         #region Action Calculations
-        var continouosActions = actionsIn.ContinuousActions;
+        float x = 0f;
+        float z = 0f;
 
-        // MOVEMENT CALCULATIONS
-        float x = continouosActions[0];
-        float z = continouosActions[1];
+        if(actionType == ActionType.Continuous)
+        {
+            var continouosActions = actionsIn.ContinuousActions;
+            // MOVEMENT CALCULATIONS
+            x = continouosActions[0];
+            z = continouosActions[1];
+        }
+        else
+        {
+            var discreteActions = actionsIn.DiscreteActions;
+            
+            switch(discreteActions[0])
+            {
+                case 0:
+                    x = 0;
+                    z = 0;
+                    break;
+                case 1:
+                    x = 1;
+                    z = 0;
+                    break;
+                case 2:
+                    x = -1;
+                    z = 0;
+                    break;
+                case 3:
+                    x = 0;
+                    z = 1;
+                    break;
+                case 4:
+                    x = 0;
+                    z = -1;
+                    break;
+            }
+        }
 
         // Action Dead Zone to avoid unneccessary movement
         if (Mathf.Abs(x) < 0.03f)
@@ -307,18 +396,26 @@ public class AirHockeyAgent : Agent
         else if (puck.gameState == GameState.backWallReached && backWallReward > 0)
         {
             episodeReward["ScoreReward"] += backWallReward;
-            SetReward(backWallReward);
+            AddReward(backWallReward);
 
-            if (taskType != TaskType.FullGameMultipleGoals || gamesSinceNewEpisode >= 9)
+            if(endOnBackWall)
             {
-                EndEpisode();
-                return;
+                if (taskType != TaskType.FullGameMultipleGoals || gamesSinceNewEpisode >= 9)
+                {
+                    EndEpisode();
+                    return;
+                }
+                else
+                {
+                    ResetGameWithoutNewEpisode();
+                    return;
+                }
             }
             else
             {
-                ResetGameWithoutNewEpisode();
-                return;
+                puck.gameState = GameState.normal;
             }
+
         }
         // PUCK HAS BEEN DEFLECTED INTO THE OPPONENT'S FIELD
         else if (puck.transform.position.z < 0 && puck.AgentContact == true && deflectOnlyReward > 0f)
@@ -377,7 +474,7 @@ public class AirHockeyAgent : Agent
             }
             else if (StepCount == MaxStep)
             {
-                SetReward(1f - Vector2.Distance(agentRB.position, puck.PuckRB.position));
+                SetReward(1f - (0.1f*Vector2.Distance(agentRB.position, puck.PuckRB.position)));
                 return;
             }
         }
@@ -406,7 +503,8 @@ public class AirHockeyAgent : Agent
         #region Movement and Clipping
 
         // Apply Force
-        agentRB.AddForce(direction * maxAgentPusherAcceleration * agentRB.mass * Time.deltaTime);
+        agentRB.AddForce(direction * maxAgentPusherAcceleration * agentRB.mass * Time.fixedDeltaTime);
+
         
         // Limit Velocity
         if (agentRB.velocity.magnitude > maxAgentPusherVelocity)

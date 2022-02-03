@@ -197,7 +197,7 @@ Camera:
     m_Bits: 55
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
+  m_TargetDisplay: 1
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
@@ -308,7 +308,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xMin: -31
-  zMin: -70.1
+  zMin: -68
   xMax: 31
   zMax: -2.5
   planeColor: {r: 0, g: 0, b: 0, a: 0}
@@ -935,7 +935,7 @@ Camera:
     m_Bits: 55
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 1
+  m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
@@ -1167,10 +1167,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6dec9c01ee20ec4f91a0838ce2e1783, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xMin: -32
+  xMin: -31
   zMin: 2.5
-  xMax: 32
-  zMax: 70
+  xMax: 31
+  zMax: 68
   planeColor: {r: 1, g: 0, b: 0, a: 0}
 --- !u!33 &1680928037
 MeshFilter:
@@ -1300,7 +1300,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_TargetDisplay: 1
+  m_TargetDisplay: 0
 --- !u!224 &1809321130
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1643,27 +1643,30 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 2000
+  MaxStep: 1000
   actionType: 1
   observationType: 3
   maxAgentPusherVelocity: 1000
-  maxAgentPusherAcceleration: 40000
+  maxAgentPusherAcceleration: 50000
   randomAgentPosition: 1
-  taskType: 2
+  taskType: 1
   resetPuckState: 3
+  maxPuckVelocity: 1000
   puckMarkerPrefab: {fileID: 1642733138088713587, guid: 064c64aa28207bd4eb91ede085ba986d,
     type: 3}
   maxStepsPerGame: 500
+  writeCSV: 1
   maxHumanPusherVelocity: 1000
-  maxHumanPusherAcceleration: 10000
-  humanBehavior: 0
+  maxHumanPusherAcceleration: 50000
+  humanBehavior: 5
   agentScoredReward: 5
   humanScoredReward: -3
-  avoidBoundariesReward: -0.01
-  avoidDirectionChangesReward: -0.01
+  avoidBoundariesReward: -0.1
+  avoidDirectionChangesReward: -0.001
   encouragePuckMovementReward: 0
   puckStopReward: 0
   backWallReward: 1
+  endOnBackWall: 0
   deflectOnlyReward: 0
   maxStepReward: 0
   stepReward: -0.001
@@ -1680,7 +1683,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 12
+    VectorObservationSize: 15
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 2
@@ -1692,7 +1695,7 @@ MonoBehaviour:
   m_Model: {fileID: 0}
   m_InferenceDevice: 2
   m_BehaviorType: 0
-  m_BehaviorName: My Behavior
+  m_BehaviorName: PusherAgentBehavior
   TeamId: 0
   m_UseChildSensors: 1
   m_UseChildActuators: 1
@@ -2069,6 +2072,9 @@ GameObject:
   - component: {fileID: 4262561314208479597}
   - component: {fileID: 3704963512434782015}
   - component: {fileID: 3704963512434782016}
+  - component: {fileID: 3704963512434782017}
+  - component: {fileID: 3704963512434782018}
+  - component: {fileID: 3704963512434782019}
   m_Layer: 0
   m_Name: PusherHuman
   m_TagString: Player
@@ -2099,13 +2105,73 @@ Rigidbody:
   m_GameObject: {fileID: 3704963512434782014}
   serializedVersion: 2
   m_Mass: 10
-  m_Drag: 0
+  m_Drag: 1
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 116
   m_CollisionDetection: 2
+--- !u!114 &3704963512434782017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3704963512434782014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85156eba9fcc53a4ebce90bd59d727aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 0
+  hasUpgradedFromAgentParameters: 1
+  MaxStep: 2000
+--- !u!114 &3704963512434782018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3704963512434782014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DecisionPeriod: 3
+  TakeActionsBetweenDecisions: 1
+--- !u!114 &3704963512434782019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3704963512434782014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BrainParameters:
+    VectorObservationSize: 15
+    NumStackedVectorObservations: 1
+    m_ActionSpec:
+      m_NumContinuousActions: 2
+      BranchSizes: 
+    VectorActionSize: 02000000
+    VectorActionDescriptions: []
+    VectorActionSpaceType: 1
+    hasUpgradedBrainParametersWithActionSpec: 1
+  m_Model: {fileID: 0}
+  m_InferenceDevice: 0
+  m_BehaviorType: 0
+  m_BehaviorName: PusherAgentBehaviorClone
+  TeamId: 0
+  m_UseChildSensors: 1
+  m_UseChildActuators: 1
+  m_ObservableAttributeHandling: 0
 --- !u!1 &3881779651548995388
 GameObject:
   m_ObjectHideFlags: 0
