@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FieldBoundary : MonoBehaviour
+public class FieldBoundary
 {
     public float xMin;
     public float zMin;
@@ -26,7 +26,7 @@ public class FieldBoundary : MonoBehaviour
     void CreatePlane()
     {
         plane = new GameObject("Plane");
-        plane.transform.parent = this.transform;
+        //plane.transform.parent = this.transform;
         meshRenderer = plane.AddComponent<MeshRenderer>();
         meshFilter = plane.AddComponent<MeshFilter>();
     }

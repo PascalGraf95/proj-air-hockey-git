@@ -1,0 +1,27 @@
+Wed Jun  8 10:52:15 2022
+WARNING: Pre-allocated contact buffer is full. Increase nconmax above 100. Time = 1.3400.
+
+Wed Jun  8 11:06:00 2022
+WARNING: Pre-allocated contact buffer is full. Increase nconmax above 100. Time = 0.0800.
+
+Wed Jun  8 11:06:00 2022
+WARNING: Pre-allocated contact buffer is full. Increase nconmax above 100. Time = 0.1000.
+
+Wed Jun  8 12:27:25 2022
+ERROR: Broadphase buffer full
+
+Wed Jun  8 13:14:11 2022
+WARNING: Nan, Inf or huge value in QACC at DOF 2. The simulation is unstable. Time = 39.4200.
+
+Wed Jun  8 13:45:57 2022
+WARNING: Nan, Inf or huge value in QACC at DOF 2. The simulation is unstable. Time = 10.9600.
+
+Wed Jun  8 13:47:49 2022
+WARNING: Nan, Inf or huge value in QACC at DOF 2. The simulation is unstable. Time = 9.5600.
+
+Wed Jun  8 13:48:14 2022
+WARNING: Nan, Inf or huge value in QACC at DOF 2. The simulation is unstable. Time = 19.6400.
+
+Thu Jun  9 08:50:18 2022
+WARNING: Nan, Inf or huge value in QACC at DOF 1. The simulation is unstable. Time = 0.7800.
+
