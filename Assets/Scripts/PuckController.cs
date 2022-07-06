@@ -11,6 +11,9 @@ public class PuckController : MonoBehaviour
     [SerializeField] private MjActuator actuatorX;
     [SerializeField] private MjActuator actuatorZ;
     [SerializeField] private ResetPuckState resetPuckState;
+    public float VEL = 0f;
+    public float ANG = 0f;
+    public Vector3 startPos = Vector3.zero;
     private GameState gameState;
     private FieldBoundary agentBoundary = new FieldBoundary();
     private FieldBoundary puckBoundary = new FieldBoundary();
@@ -32,7 +35,6 @@ public class PuckController : MonoBehaviour
         puckBoundary.xMax = 30f;
         puckBoundary.zMin = -50f;
         puckBoundary.zMax = 50f;
-
     }
     private void Update()
     {
@@ -90,7 +92,6 @@ public class PuckController : MonoBehaviour
         {
             //puckRB.position = new Vector3(Random.Range(puckBoundary.xMin, puckBoundary.xMax) * 0.9f, 0f, Random.Range(agentBoundary.zMin, agentBoundary.zMax) * 0.9f);
         }
-
         else if (resetPuckState == ResetPuckState.shotOnGoal)
         {
             /*
@@ -136,6 +137,16 @@ public class PuckController : MonoBehaviour
             puckRB.position = nextPoint;
             puckRB.velocity = startingVelocity;
             */
+        }
+        else if (resetPuckState == ResetPuckState.ColliderTest)
+        {
+            slideJointX.Configuration = startPos.x;
+            slideJointZ.Configuration = startPos.z;
+            transform.position = new Vector3(startPos.x, 0.1f, startPos.z);
+
+            slideJointX.Velocity = Mathf.Sin(ANG * Mathf.Deg2Rad) * VEL;
+            slideJointZ.Velocity = Mathf.Cos(ANG * Mathf.Deg2Rad) * VEL;
+
         }
     }
 }

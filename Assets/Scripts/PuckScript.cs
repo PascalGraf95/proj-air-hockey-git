@@ -9,7 +9,8 @@ public enum ResetPuckState
     randomPositionGlobal,
     shotOnGoal,
     randomVelocity,
-    randomMiddlePosition
+    randomMiddlePosition,
+    ColliderTest
 }
 
 public enum GameState
@@ -80,7 +81,6 @@ public class PuckScript : MonoBehaviour
         {
             puckRB.position = new Vector3(Random.Range(puckBoundary.xMin, puckBoundary.xMax) * 0.9f, 0f, Random.Range(agentBoundary.zMin, agentBoundary.zMax) * 0.9f);
         }
-
         else if(resetPuckState == ResetPuckState.shotOnGoal)
         {
             foreach(Transform m in markerContainer)
