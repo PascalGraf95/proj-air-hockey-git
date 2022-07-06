@@ -10,7 +10,7 @@ public class HumanAgentClone : Agent
 {
     private Transform agent;
     private Rigidbody humanRB;
-    private Rigidbody puckRB;
+    private Rigidbody puckBody;
     private ObservationType observationType;
     private ActionType actionType;
     private FieldBoundary humanBoundary;
@@ -24,7 +24,7 @@ public class HumanAgentClone : Agent
     */
 
 
-    public void Init(Transform agent, Rigidbody humanRB, Rigidbody puckRB, 
+    public void Init(Transform agent, Rigidbody humanRB, Rigidbody puckBody, 
         ObservationType observationType, 
         ActionType actionType, 
         FieldBoundary humanBoundary, 
@@ -33,7 +33,7 @@ public class HumanAgentClone : Agent
     {
         this.agent = agent;
         this.humanRB = humanRB;
-        this.puckRB = puckRB;
+        this.puckBody = puckBody;
         this.observationType = observationType;
         this.actionType = actionType;
         this.humanBoundary = humanBoundary;
@@ -45,16 +45,16 @@ public class HumanAgentClone : Agent
     {
         sensor.AddObservation(-transform.position);
         sensor.AddObservation(-humanRB.velocity);
-        sensor.AddObservation(-puckRB.position);
+        sensor.AddObservation(-puckBody.position);
 
-        if (observationType == ObservationType.AgentPuckHuman || observationType == ObservationType.AgentPuckHumanVelocity)
-        {
-            sensor.AddObservation(-agent.position);
-        }
-        if (observationType == ObservationType.AgentPuckVelocity || observationType == ObservationType.AgentPuckHumanVelocity)
-        {
-            sensor.AddObservation(-puckRB.velocity);
-        }
+        //if (observationType == ObservationType.AgentPuckHuman || observationType == ObservationType.AgentPuckHumanVelocity)
+        //{
+        //    sensor.AddObservation(-agent.position);
+        //}
+        //if (observationType == ObservationType.AgentPuckVelocity || observationType == ObservationType.AgentPuckHumanVelocity)
+        //{
+        //    sensor.AddObservation(-puckBody.velocity);
+        //}
     }
 
     public override void OnActionReceived(ActionBuffers actionsIn)
