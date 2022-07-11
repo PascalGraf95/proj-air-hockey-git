@@ -19,7 +19,7 @@ public class PusherController : MonoBehaviour
     [SerializeField] private MjSlideJoint slideJointX;
     [SerializeField] private MjSlideJoint slideJointZ;
 
-    [SerializeField] private float acceleration;
+    [SerializeField] private float maxVelocity;
     [SerializeField] private ControlMode controlMode;
 
     // Start is called before the first frame update
@@ -32,15 +32,15 @@ public class PusherController : MonoBehaviour
     {
         float xInput;
         float zInput;
-
+        /*
         switch (controlMode)
         {
             case ControlMode.Keyboard:
                 xInput = Input.GetAxis("Horizontal");
                 zInput = Input.GetAxis("Vertical");
 
-                pusherActuatorX.Control = xInput * Time.deltaTime * acceleration * 100;
-                pusherActuatorZ.Control = -zInput * Time.deltaTime * acceleration * 100;
+                pusherActuatorX.Control = xInput * Time.deltaTime * maxVelocity * 100;
+                pusherActuatorZ.Control = -zInput * Time.deltaTime * maxVelocity * 100;
                 break;
             case ControlMode.Click:
                 break;
@@ -49,19 +49,43 @@ public class PusherController : MonoBehaviour
                 zInput = Input.GetAxis("Mouse Y");
                 print(xInput + " " + zInput);
 
-                pusherActuatorX.Control = xInput * Time.deltaTime * acceleration * 100;
-                pusherActuatorZ.Control = -zInput * Time.deltaTime * acceleration * 100;
+                pusherActuatorX.Control = xInput * Time.deltaTime * maxVelocity * 100;
+                pusherActuatorZ.Control = -zInput * Time.deltaTime * maxVelocity * 100;
                 break;
         }
+        */
 
     }
 
-    public void Reset()
+    public void Reset(string pusherType)
     {
-        transform.position = new Vector3(0, 0, 45.75f);
+        if(pusherType == "Agent")
+        {
+            transform.position = new Vector3(0, 0, 45.75f);
+        }
+        else if(pusherType == "Human")
+        {
+            transform.position = new Vector3(0, 0, -45.75f);
+        }
         slideJointX.Configuration = 0f;
         slideJointZ.Configuration = 0f;
         slideJointX.Velocity = 0f;
         slideJointZ.Velocity = 0f;
+    }
+
+    public void Act(Vector2 targetVelocity)
+    {
+        pusherActuatorX.Control = targetVelocity.x * maxVelocity;
+        pusherActuatorZ.Control = targetVelocity.y * maxVelocity;
+    }
+
+    public Vector2 GetCurrentPosition()
+    {
+        return new Vector2(transform.position.x, transform.position.z);
+    }
+
+    public Vector2 GetCurrentVelocity()
+    {
+        return new Vector2(pusherActuatorX.Velocity, pusherActuatorZ.Velocity);
     }
 }

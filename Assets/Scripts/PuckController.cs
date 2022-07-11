@@ -4,40 +4,48 @@ using UnityEngine;
 using Mujoco;
 using System;
 
+public enum ResetPuckState
+{
+    normalPosition,
+    randomPosition,
+    randomPositionGlobal,
+    shotOnGoal,
+    randomVelocity,
+    randomMiddlePosition,
+    ColliderTest
+}
+
 public class PuckController : MonoBehaviour
 {
     [SerializeField] private MjSlideJoint slideJointX;
     [SerializeField] private MjSlideJoint slideJointZ;
     [SerializeField] private MjActuator actuatorX;
     [SerializeField] private MjActuator actuatorZ;
-    [SerializeField] private ResetPuckState resetPuckState;
+    public ResetPuckState resetPuckState;
     public float VEL = 0f;
     public float ANG = 0f;
     public Vector3 startPos = Vector3.zero;
-    private GameState gameState;
-    private FieldBoundary agentBoundary = new FieldBoundary();
-    private FieldBoundary puckBoundary = new FieldBoundary();
-
-    private MjScene mjScene;
-    private int episodeNumber;
-    private float episodeReward;
-    private DateTime resetTime;
+    public Boundary agentPusherBoundary = new Boundary(68.8f, 0f, -30f, 30f);
+    public Boundary humanPusherBoundary = new Boundary(0, -68.8f, -30f, 30f);
+    public Boundary puckBoundary = new Boundary(50f, -50f, -30f, 30f);
+    private PusherController pusherAgentController;
+    private PusherController pusherHumanController;
 
     // Start is called before the first frame update
     void Start()
     {
-        agentBoundary.xMin = -30f;
-        agentBoundary.xMax = 30f;
-        agentBoundary.zMin = 0f;
-        agentBoundary.zMax = 50f;
-
-        puckBoundary.xMin = -30f;
-        puckBoundary.xMax = 30f;
-        puckBoundary.zMin = -50f;
-        puckBoundary.zMax = 50f;
+        pusherAgentController = GameObject.Find("PusherAgent").GetComponent<PusherController>();
+        pusherHumanController = GameObject.Find("PusherHuman").GetComponent<PusherController>();
     }
-    private void Update()
+
+    public Vector2 GetCurrentPosition()
     {
+        return new Vector2(transform.position.x, transform.position.z);
+    }
+
+    public Vector2 GetCurrentVelocity()
+    {
+        return new Vector2(actuatorX.Velocity, actuatorZ.Velocity);
     }
 
 
@@ -63,19 +71,33 @@ public class PuckController : MonoBehaviour
         }
         else if (resetPuckState == ResetPuckState.randomPosition)
         {
-            var posX = UnityEngine.Random.Range(agentBoundary.xMin, agentBoundary.xMax) * 0.9f;
-            var posZ = UnityEngine.Random.Range(agentBoundary.zMin, agentBoundary.zMax) * 0.9f;
-            slideJointX.Configuration = posX;
-            slideJointZ.Configuration = posZ;
-            transform.position = new Vector3(posX, 0.1f, posZ); 
+            Vector2 newPuckPosition;
+            while(true)
+            {
+                var posX = UnityEngine.Random.Range(agentPusherBoundary.Left, agentPusherBoundary.Right) * 0.9f;
+                var posZ = UnityEngine.Random.Range(agentPusherBoundary.Down, agentPusherBoundary.Up) * 0.9f;
+                newPuckPosition = new Vector2(posX, posZ);
+                if (Vector2.Distance(newPuckPosition, pusherAgentController.GetCurrentPosition()) > 5f &&
+                    Vector2.Distance(newPuckPosition, pusherHumanController.GetCurrentPosition()) > 5f) break;
+            }
+            slideJointX.Configuration = newPuckPosition.x;
+            slideJointZ.Configuration = newPuckPosition.y;
+            transform.position = new Vector3(newPuckPosition.x, 0.1f, newPuckPosition.y); 
         }
         else if (resetPuckState == ResetPuckState.randomPositionGlobal || resetPuckState == ResetPuckState.randomVelocity)
         {
-            var posX = UnityEngine.Random.Range(puckBoundary.xMin, puckBoundary.xMax) * 0.9f;
-            var posZ = UnityEngine.Random.Range(puckBoundary.zMin, puckBoundary.zMax) * 0.9f;
-            slideJointX.Configuration = posX;
-            slideJointZ.Configuration = posZ;
-            transform.position = new Vector3(posX, 0.1f, posZ);
+            Vector2 newPuckPosition;
+            while (true)
+            {
+                var posX = UnityEngine.Random.Range(puckBoundary.Left, puckBoundary.Right) * 0.9f;
+                var posZ = UnityEngine.Random.Range(puckBoundary.Down, puckBoundary.Up) * 0.9f;
+                newPuckPosition = new Vector2(posX, posZ);
+                if (Vector2.Distance(newPuckPosition, pusherAgentController.GetCurrentPosition()) > 5f && 
+                    Vector2.Distance(newPuckPosition, pusherHumanController.GetCurrentPosition()) > 5f)  break;
+            }
+            slideJointX.Configuration = newPuckPosition.x;
+            slideJointZ.Configuration = newPuckPosition.y;
+            transform.position = new Vector3(newPuckPosition.x, 0.1f, newPuckPosition.y);
 
             if (resetPuckState == ResetPuckState.randomVelocity)
             {

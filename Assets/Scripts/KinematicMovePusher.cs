@@ -139,6 +139,7 @@ public class KinematicMovePusher : MonoBehaviour
         if (ColliderPlane.Raycast(ray, out RaycastHit hitData, 100000000f))
         {
             mousePosWorld = hitData.point;
+            print("HIT");
         }
         Vector3 targetPosition = new Vector3(mousePosWorld.x, 0, mousePosWorld.z);
         return targetPosition;

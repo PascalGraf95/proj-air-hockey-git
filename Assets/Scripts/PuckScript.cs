@@ -2,16 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ResetPuckState
-{
-    normalPosition,
-    randomPosition,
-    randomPositionGlobal,
-    shotOnGoal,
-    randomVelocity,
-    randomMiddlePosition,
-    ColliderTest
-}
+
 
 public enum GameState
 {

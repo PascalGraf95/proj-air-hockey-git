@@ -11,17 +11,8 @@ using System.IO;
 public enum ActionType { Discrete, Continuous };
 public enum TaskType
 {
-    ReachThePuck,
     FullGameUntilGoal,
     FullGameMultipleGoals
-}
-
-public enum ObservationType
-{
-    AgentPuck,
-    AgentPuckVelocity,
-    AgentPuckHuman,
-    AgentPuckHumanVelocity
 }
 
 public enum HumanBehavior
@@ -43,186 +34,106 @@ public class AirHockeyAgent : Agent
     [Header("Learning Agent Parameters")]
     [Tooltip("Choose between Discrete and Continuous action space. This depends on your training algorithm.")]
     public ActionType actionType;
-    [Tooltip("Choose the type of observation the agent receives. Remember to adapt the space size in the Behavior Parameters.")]
-    public ObservationType observationType;
-
-    [Space(5)]
-    [Header("Agent Pusher Behavior")]
-    public float maxAgentPusherVelocity;
-    public float maxAgentPusherAcceleration;
-    public bool randomAgentPosition;
 
     [Space(5)]
     [Header("Training Scenario")]
     public TaskType taskType;
     public ResetPuckState resetPuckState;
-    public float maxPuckVelocity;
-    public GameObject puckMarkerPrefab;
     public int maxStepsPerGame;
-    public bool writeCSV;
 
     [Space(5)]
     [Header("Human Pusher Behavior")]
-    public float maxHumanPusherVelocity;
-    public float maxHumanPusherAcceleration;
     public HumanBehavior humanBehavior;
-
-
 
     [Space(5)]
     [Header("Reward Composition")]
     [Range(0f, 10f)]
-    public float agentScoredReward;
+    [SerializeField] private float agentScoredReward;
     [Range(-10f, 0f)]
-    public float humanScoredReward;
+    [SerializeField] private float humanScoredReward;
     [Range(-1f, 0f)]
-    public float avoidBoundariesReward;
+    [SerializeField] private float avoidBoundariesReward;
     [Range(-1f, 0f)]
-    public float avoidDirectionChangesReward;
+    [SerializeField] private float avoidDirectionChangesReward;
     [Range(0f, 1f)]
-    public float encouragePuckMovementReward;
+    [SerializeField] private float encouragePuckMovementReward;
     [Range(-1f, 0f)]
-    public float puckStopReward;
+    [SerializeField] private float puckStopReward;
     [Range(0f, 5f)]
-    public float backWallReward;
-    public bool endOnBackWall;
+    [SerializeField] private float backWallReward;
+    [SerializeField] private bool endOnBackWall;
     [Range(0f, 1f)]
-    public float deflectOnlyReward;
-    [Range(-5f, 0f)]
-    public float maxStepReward;
+    [SerializeField] private float deflectOnlyReward;
     [Range(-1f, 0f)]
-    public float stepReward;
+    [SerializeField] private float puckInAgentsHalfReward;
+    [Range(-5f, 0f)]
+    [SerializeField] private float maxStepReward;
+    [Range(-1f, 0f)]
+    [SerializeField] private float stepReward;
 
+
+    // Used to track the influence of each reward component in each episode
     public Dictionary<string, float> episodeReward;
     #endregion
 
     #region Private Parameters
-    // PRIVATE
-    private FieldBoundary agentBoundary;
-
-    private Rigidbody agentRB;
-    private Rigidbody puckRB;
-    private Rigidbody humanRB;
-    private PuckScript puck;
-    private HumanPlayer humanPlayer;
+    private SceneController sceneController;
+    private PuckController puckController;
+    private PusherController pusherAgentController;
+    private PusherController pusherHumanController;
     private Rigidbody guidanceRods;
 
     private Vector3 startingPosition;
     private Vector3 lastDirection;
     private Vector3 position;
 
-    private int agentScore;
-    private int humanScore;
-    private Text scoreText;
-
     private int gamesSinceNewEpisode;
     private int lastGameReset;
-    private StreamWriter writer;
-
     #endregion
 
+    private void ResetEpisodeRewards()
+    {
+        episodeReward = new Dictionary<string, float>();
+        episodeReward["StepReward"] = 0f;
+        episodeReward["DirectionReward"] = 0f;
+        episodeReward["BoundaryReward"] = 0f;
+        episodeReward["PuckVelocityReward"] = 0f;
+        episodeReward["PuckInAgentsHalfReward"] = 0f;
+        episodeReward["ScoreReward"] = 0f;
+        episodeReward["BackwallReward"] = 0f;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         // Initialize Reward Dictionary
-        episodeReward = new Dictionary<string, float>();
-        episodeReward["StepReward"] = 0f;
-        episodeReward["DirectionReward"] = 0f;
-        episodeReward["BoundaryReward"] = 0f;
-        episodeReward["PuckVelocityReward"] = 0f;
-        episodeReward["ScoreReward"] = 0f;
+        ResetEpisodeRewards();
 
-        // Get Rigidbodies, Puck and Human Player and initilize their scripts
-        agentRB = GetComponent<Rigidbody>();
-        startingPosition = agentRB.position;
+        // Get the controllers for scene, puck and the two pushers
+        sceneController = GetComponent<SceneController>();
+        pusherAgentController = GameObject.Find("PusherAgent").GetComponent<PusherController>();
+        puckController = GameObject.Find("Puck").GetComponent<PuckController>();
+        pusherHumanController = GameObject.Find("PusherHuman").GetComponent<PusherController>();
 
         // Get Guidance Rods and UI
-        guidanceRods = GameObject.Find("GuidanceRods").GetComponent<Rigidbody>();
-        scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
-
-        // Get Boundaries
-        agentBoundary = GameObject.Find("AgentBoundaries").GetComponent<FieldBoundary>();
-        var humanBoundary = GameObject.Find("HumanBoundaries").GetComponent<FieldBoundary>();
-
-        var puckGameObject = GameObject.Find("Puck");
-        puckRB = puckGameObject.GetComponent<Rigidbody>();
-        puck = puckGameObject.AddComponent<PuckScript>();
-        puck.Init(resetPuckState, maxPuckVelocity, agentBoundary, puckMarkerPrefab);
-
-        var humanPlayerGameObject = GameObject.Find("PusherHuman");
-        humanPlayer = humanPlayerGameObject.AddComponent<HumanPlayer>();
-        humanRB = humanPlayerGameObject.GetComponent<Rigidbody>();
-        humanPlayer.Init(humanBehavior, maxHumanPusherVelocity, maxHumanPusherAcceleration);
-
-        var humanPlayerClone = humanPlayerGameObject.GetComponent<HumanAgentClone>();
-        
-        if (humanBehavior == HumanBehavior.Selfplay)
-        {
-            humanPlayerClone.Init(transform, humanRB, puckRB, observationType, actionType, humanBoundary, maxHumanPusherVelocity, maxHumanPusherAcceleration);
-        }
-
-        if(writeCSV)
-        {
-            writer = new StreamWriter("./export.csv");
-        }
+        //guidanceRods = GameObject.Find("GuidanceRods").GetComponent<Rigidbody>();
     }
 
     public override void OnEpisodeBegin()
     {
-        agentRB.velocity = Vector2.zero;
-
-        if (randomAgentPosition)
+        string dict_string = "";
+        foreach (KeyValuePair<string, float> kvp in episodeReward)
         {
-            agentRB.position = new Vector3(Random.Range(agentBoundary.xMin, agentBoundary.xMax), 0f, Random.Range(agentBoundary.zMin, agentBoundary.zMax));
+            dict_string += kvp.Key + ": " + kvp.Value + ";   ";
         }
-        else
-        {
-            agentRB.position = startingPosition;
-        }
-        // Player Position Reset
-        humanPlayer.ResetPosition();
-        puck.Reset();
-
-        if (taskType == TaskType.FullGameMultipleGoals)
-        {
-            agentScore = 0;
-            humanScore = 0;
-            scoreText.text = "0:0";
-            gamesSinceNewEpisode = 0;
-            lastGameReset = 0;
-        }
-
-        /*
-        print("StepReward:" + episodeReward["StepReward"]);
-        print("DirectionReward:" + episodeReward["DirectionReward"]);
-        print("BoundaryReward:" + episodeReward["BoundaryReward"]);
-        print("PuckVelocityReward:" + episodeReward["PuckVelocityReward"]);
-        print("ScoreReward:" + episodeReward["ScoreReward"]);
-        */
-        episodeReward = new Dictionary<string, float>();
-        episodeReward["StepReward"] = 0f;
-        episodeReward["DirectionReward"] = 0f;
-        episodeReward["BoundaryReward"] = 0f;
-        episodeReward["PuckVelocityReward"] = 0f;
-        episodeReward["ScoreReward"] = 0f;
+        print(dict_string);
+        sceneController.ResetScene();
+        ResetEpisodeRewards();
     }
 
     public void ResetGameWithoutNewEpisode()
     {
-        agentRB.velocity = Vector2.zero;
-
-        if (randomAgentPosition)
-        {
-            agentRB.position = new Vector3(Random.Range(agentBoundary.xMin, agentBoundary.xMax), 0f, Random.Range(agentBoundary.zMin, agentBoundary.zMax));
-        }
-        else
-        {
-            agentRB.position = startingPosition;
-        }
-        // Player Position Reset
-        humanPlayer.ResetPosition();
-        puck.Reset();
+        sceneController.ResetScene();
         gamesSinceNewEpisode++;
         lastGameReset = StepCount;
     }
@@ -230,23 +141,12 @@ public class AirHockeyAgent : Agent
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        sensor.AddObservation(transform.position);
-        sensor.AddObservation(agentRB.velocity);
-        sensor.AddObservation(puckRB.position);
-
-        if (observationType == ObservationType.AgentPuckHuman || observationType == ObservationType.AgentPuckHumanVelocity)
-        {
-            sensor.AddObservation(humanPlayer.transform.position);
-        }
-        if(observationType == ObservationType.AgentPuckVelocity || observationType == ObservationType.AgentPuckHumanVelocity)
-        {
-            sensor.AddObservation(puckRB.velocity);
-        }
-
-        if (writeCSV)
-        {
-            writer.WriteLine(transform.position[0].ToString().Replace(",", ".") + "," + transform.position[2].ToString().Replace(",", ".") + ";" + agentRB.velocity[0].ToString().Replace(",", ".") + "," + agentRB.velocity[2].ToString().Replace(",", "."));
-        }
+        sensor.AddObservation(pusherAgentController.GetCurrentPosition());
+        sensor.AddObservation(pusherAgentController.GetCurrentVelocity());
+        sensor.AddObservation(pusherHumanController.GetCurrentPosition());
+        sensor.AddObservation(pusherAgentController.GetCurrentVelocity());
+        sensor.AddObservation(puckController.GetCurrentPosition());
+        sensor.AddObservation(puckController.GetCurrentVelocity());
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)
@@ -341,26 +241,26 @@ public class AirHockeyAgent : Agent
         {
             z = 0f;
         }
-
-        // Normalize so going diagonally doesn't speed things up
-        Vector3 direction = new Vector3(x, 0f, z);
-        if (direction.magnitude > 1f)
-        {
-            direction.Normalize();
-        }
         #endregion
 
         #region RewardComposition
 
         #region UniversalRewards
+
         // Rewards that are available for all Task Types
+        // PUCK CLIPPED OUT OF FIELD
+        if(!sceneController.puckIsInGame())
+        {
+            print("PUCK OUT OF BOUNDS!!!");
+            EndEpisode();
+            return;
+        }
+
         // AGENT SCORED
-        if (puck.gameState == GameState.agentScored)
+        if (sceneController.CurrentGameState == GameState.agentScored)
         {
             episodeReward["ScoreReward"] += agentScoredReward;
             SetReward(agentScoredReward);
-            agentScore++;
-            scoreText.text = humanScore.ToString() + ":" + agentScore.ToString();
             
             if(taskType != TaskType.FullGameMultipleGoals || gamesSinceNewEpisode >= 9)
             {
@@ -374,12 +274,10 @@ public class AirHockeyAgent : Agent
             }
         }
         // HUMAN SCORED
-        else if (puck.gameState == GameState.playerScored)
+        else if (sceneController.CurrentGameState == GameState.playerScored)
         {
             episodeReward["ScoreReward"] += humanScoredReward;
             SetReward(humanScoredReward);
-            humanScore++;
-            scoreText.text = humanScore.ToString() + ":" + agentScore.ToString();
 
             if (taskType != TaskType.FullGameMultipleGoals || gamesSinceNewEpisode >= 9)
             {
@@ -393,45 +291,45 @@ public class AirHockeyAgent : Agent
             }
         }
         // PUCK REACHED OPPONENT'S BACKWALL
-        else if (puck.gameState == GameState.backWallReached && backWallReward > 0)
+        else if (sceneController.CurrentGameState == GameState.backWallReached)
         {
-            episodeReward["ScoreReward"] += backWallReward;
-            AddReward(backWallReward);
+            sceneController.CurrentGameState = GameState.normal;
+            if(backWallReward > 0)
+            {
+                episodeReward["BackwallReward"] += backWallReward;
+                AddReward(backWallReward);
 
-            if(endOnBackWall)
-            {
-                if (taskType != TaskType.FullGameMultipleGoals || gamesSinceNewEpisode >= 9)
+                if (endOnBackWall)
                 {
-                    EndEpisode();
-                    return;
+                    if (taskType != TaskType.FullGameMultipleGoals || gamesSinceNewEpisode >= 9)
+                    {
+                        EndEpisode();
+                        return;
+                    }
+                    else
+                    {
+                        ResetGameWithoutNewEpisode();
+                        return;
+                    }
                 }
-                else
-                {
-                    ResetGameWithoutNewEpisode();
-                    return;
-                }
-            }
-            else
-            {
-                puck.gameState = GameState.normal;
             }
 
         }
-        // PUCK HAS BEEN DEFLECTED INTO THE OPPONENT'S FIELD
-        else if (puck.transform.position.z < 0 && puck.AgentContact == true && deflectOnlyReward > 0f)
+        // PUCK IS IN AGENT'S HALF
+        if (puckInAgentsHalfReward < 0f)
         {
-            SetReward(deflectOnlyReward);
-            EndEpisode();
-            return;
-        }
-        // PUCK HAS STOPPED MOVING
-        if (puck.gameState == GameState.puckStopped && puckStopReward < 0f)
-        {
-            AddReward(puckStopReward);
+            // Get Puck Position
+            var puckPosition = puckController.GetCurrentPosition();
+            if(puckPosition.y > 0f)
+            {
+                episodeReward["PuckInAgentsHalfReward"] += puckInAgentsHalfReward; 
+                AddReward(puckInAgentsHalfReward);
+            }
         }
         // Punish changing direction too much.
         if (avoidDirectionChangesReward < 0f)
         {
+            var direction = new Vector2(x, z);
             if(lastDirection.magnitude > 0f && direction.magnitude > 0f)
             {
                 float cosAngle = Vector2.Dot(direction, lastDirection) / (lastDirection.magnitude * direction.magnitude);
@@ -440,12 +338,16 @@ public class AirHockeyAgent : Agent
                 AddReward(angle * avoidDirectionChangesReward);
                 episodeReward["DirectionReward"] += angle * avoidDirectionChangesReward;
             }
+            lastDirection = direction;
         }
-        lastDirection = direction;
+
         // Punish running into boundaries.
         if (avoidBoundariesReward < 0f)
         {
-            if (agentRB.position.x < agentBoundary.xMin || agentRB.position.x > agentBoundary.xMax || agentRB.position.z > agentBoundary.zMax || agentRB.position.z < agentBoundary.zMin)
+            var agentPosition = pusherAgentController.GetCurrentPosition();
+
+            if (agentPosition.x < -29.9f || agentPosition.x > 29.9f ||
+                agentPosition.y > 68.7f || agentPosition.y < 5.8f)
             {
                 AddReward(avoidBoundariesReward);
                 episodeReward["BoundaryReward"] += avoidBoundariesReward;
@@ -454,8 +356,9 @@ public class AirHockeyAgent : Agent
         // Reward high puck velocities
         if (encouragePuckMovementReward > 0f)
         {
-            AddReward(puckRB.velocity.magnitude * encouragePuckMovementReward);
-            episodeReward["PuckVelocityReward"] += puckRB.velocity.magnitude * encouragePuckMovementReward;
+            var puckVelocity = puckController.GetCurrentVelocity()/100;
+            AddReward(Mathf.Clamp(puckVelocity.magnitude * encouragePuckMovementReward, 0f, 1f));
+            episodeReward["PuckVelocityReward"] += Mathf.Clamp(puckVelocity.magnitude * encouragePuckMovementReward, 0f, 1f);
         }
         // STEP REWARD
         AddReward(stepReward);
@@ -464,21 +367,7 @@ public class AirHockeyAgent : Agent
         
         #region TaskSpecificRewards
         // Task specific Rewards
-        if (taskType == TaskType.ReachThePuck)
-        {
-            if (puck.AgentContact)
-            {
-                SetReward(1f);
-                EndEpisode();
-                return;
-            }
-            else if (StepCount == MaxStep)
-            {
-                SetReward(1f - (0.1f*Vector2.Distance(agentRB.position, puck.PuckRB.position)));
-                return;
-            }
-        }
-        else if(taskType == TaskType.FullGameUntilGoal)
+        if(taskType == TaskType.FullGameUntilGoal)
         {
             if (StepCount == MaxStep)
             {
@@ -501,43 +390,13 @@ public class AirHockeyAgent : Agent
         #endregion
 
         #region Movement and Clipping
-
-        // Apply Force
-        agentRB.AddForce(direction * maxAgentPusherAcceleration * agentRB.mass * Time.fixedDeltaTime);
-
-        
-        // Limit Velocity
-        if (agentRB.velocity.magnitude > maxAgentPusherVelocity)
-        {
-            agentRB.velocity = agentRB.velocity.normalized * maxAgentPusherVelocity;
-        }
-        // Limit Position
-        if (agentRB.position.x < agentBoundary.xMin)
-        {
-            agentRB.velocity = new Vector3(0, 0, agentRB.velocity.z);
-            agentRB.position = new Vector3(agentBoundary.xMin, 0, agentRB.position.z);
-        }
-        else if (agentRB.position.x > agentBoundary.xMax)
-        {
-            agentRB.velocity = new Vector3(0, 0, agentRB.velocity.z);
-            agentRB.position = new Vector3(agentBoundary.xMax, 0, agentRB.position.z);
-        }
-        if (agentRB.position.z < agentBoundary.zMin)
-        {
-            agentRB.velocity = new Vector3(agentRB.velocity.x, 0, 0);
-            agentRB.position = new Vector3(agentRB.position.x, 0, agentBoundary.zMin);
-        }
-        else if (agentRB.position.z > agentBoundary.zMax)
-        {
-            agentRB.velocity = new Vector3(agentRB.velocity.x, 0, 0);
-            agentRB.position = new Vector3(agentRB.position.x, 0, agentBoundary.zMax);
-        }
+        pusherAgentController.Act(new Vector2(x, z));
         #endregion
     }
 
     void FixedUpdate()
     {
-        guidanceRods.position = new Vector3(0, 0, transform.position.z);
-        guidanceRods.velocity = new Vector3(0, 0, agentRB.velocity.z);
+        //guidanceRods.position = new Vector3(0, 0, pusherAgentController.transform.position.z);
+        //guidanceRods.velocity = new Vector3(0, 0, agentRB.velocity.z);
     }
 }

@@ -8,14 +8,10 @@ using Unity.MLAgents.Actuators;
 
 public class HumanAgentClone : Agent
 {
-    private Transform agent;
-    private Rigidbody humanRB;
-    private Rigidbody puckRB;
-    private ObservationType observationType;
-    private ActionType actionType;
-    private FieldBoundary humanBoundary;
-    private float maxHumanPusherVelocity;
-    private float maxHumanPusherAcceleration;
+    private PuckController puckController;
+    private PusherController pusherAgentController;
+    private PusherController pusherHumanController;
+    [SerializeField] private ActionType actionType = ActionType.Continuous;
 
     /*
      *  Rotationsmatrix 
@@ -23,38 +19,28 @@ public class HumanAgentClone : Agent
      *    0 -1)
     */
 
-
-    public void Init(Transform agent, Rigidbody humanRB, Rigidbody puckRB, 
-        ObservationType observationType, 
-        ActionType actionType, 
-        FieldBoundary humanBoundary, 
-        float maxHumanPusherVelocity, 
-        float maxHumanPusherAcceleration)
+    private void Start()
     {
-        this.agent = agent;
-        this.humanRB = humanRB;
-        this.puckRB = puckRB;
-        this.observationType = observationType;
-        this.actionType = actionType;
-        this.humanBoundary = humanBoundary;
-        this.maxHumanPusherVelocity = maxHumanPusherVelocity;
-        this.maxHumanPusherAcceleration = maxHumanPusherAcceleration;
+        pusherAgentController = GameObject.Find("PusherAgent").GetComponent<PusherController>();
+        puckController = GameObject.Find("Puck").GetComponent<PuckController>();
+        pusherHumanController = GameObject.Find("PusherHuman").GetComponent<PusherController>();
     }
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        sensor.AddObservation(-transform.position);
-        sensor.AddObservation(-humanRB.velocity);
-        sensor.AddObservation(-puckRB.position);
+        sensor.AddObservation(-pusherHumanController.GetCurrentPosition());
+        sensor.AddObservation(-pusherHumanController.GetCurrentVelocity());
+        sensor.AddObservation(-pusherAgentController.GetCurrentPosition());
+        sensor.AddObservation(-pusherAgentController.GetCurrentVelocity());
+        sensor.AddObservation(-puckController.GetCurrentPosition());
+        sensor.AddObservation(-puckController.GetCurrentVelocity());
+    }
 
-        if (observationType == ObservationType.AgentPuckHuman || observationType == ObservationType.AgentPuckHumanVelocity)
-        {
-            sensor.AddObservation(-agent.position);
-        }
-        if (observationType == ObservationType.AgentPuckVelocity || observationType == ObservationType.AgentPuckHumanVelocity)
-        {
-            sensor.AddObservation(-puckRB.velocity);
-        }
+    public override void Heuristic(in ActionBuffers actionsOut)
+    {
+        var continuousActionsOut = actionsOut.ContinuousActions;
+        continuousActionsOut[0] = 0f;
+        continuousActionsOut[1] = 0f;
     }
 
     public override void OnActionReceived(ActionBuffers actionsIn)
@@ -73,7 +59,6 @@ public class HumanAgentClone : Agent
         else
         {
             var discreteActions = actionsIn.DiscreteActions;
-
             switch (discreteActions[0])
             {
                 case 0:
@@ -108,45 +93,9 @@ public class HumanAgentClone : Agent
         {
             z = 0f;
         }
-
-        // Normalize so going diagonally doesn't speed things up
-        Vector3 direction = new Vector3(-x, 0f, -z);
-        if (direction.magnitude > 1f)
-        {
-            direction.Normalize();
-        }
         #endregion
         #region Movement and Clipping
-
-        // Apply Force
-        humanRB.AddForce(direction * maxHumanPusherAcceleration * humanRB.mass * Time.fixedDeltaTime);
-        
-        // Limit Velocity
-        if (humanRB.velocity.magnitude > maxHumanPusherVelocity)
-        {
-            humanRB.velocity = humanRB.velocity.normalized * maxHumanPusherVelocity;
-        }
-        // Limit Position
-        if (humanRB.position.x < humanBoundary.xMin)
-        {
-            humanRB.velocity = new Vector3(0, 0, humanRB.velocity.z);
-            humanRB.position = new Vector3(humanBoundary.xMin, 0, humanRB.position.z);
-        }
-        else if (humanRB.position.x > humanBoundary.xMax)
-        {
-            humanRB.velocity = new Vector3(0, 0, humanRB.velocity.z);
-            humanRB.position = new Vector3(humanBoundary.xMax, 0, humanRB.position.z);
-        }
-        if (humanRB.position.z < humanBoundary.zMin)
-        {
-            humanRB.velocity = new Vector3(humanRB.velocity.x, 0, 0);
-            humanRB.position = new Vector3(humanRB.position.x, 0, humanBoundary.zMin);
-        }
-        else if (humanRB.position.z > humanBoundary.zMax)
-        {
-            humanRB.velocity = new Vector3(humanRB.velocity.x, 0, 0);
-            humanRB.position = new Vector3(humanRB.position.x, 0, humanBoundary.zMax);
-        }
+        pusherHumanController.Act(new Vector2(-x, -z));
         #endregion
         
     }
