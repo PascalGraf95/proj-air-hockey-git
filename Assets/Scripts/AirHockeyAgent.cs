@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using System.Text;
 using System.IO;
+using Mujoco;
+using Assets.Scripts;
 
 public enum ActionType { Discrete, Continuous };
 public enum TaskType
@@ -23,7 +25,8 @@ public enum HumanBehavior
     OscillatingMovement,
     Heuristic,
     Selfplay,
-    ManualMovement
+    ManualMovement,
+    TrainingScenario,
 }
 
 public class AirHockeyAgent : Agent
@@ -47,6 +50,7 @@ public class AirHockeyAgent : Agent
 
     [Space(5)]
     [Header("Reward Composition")]
+    [Tooltip("Agent scored a goal.")]
     [Range(0f, 10f)]
     [SerializeField] private float agentScoredReward;
     [Range(-10f, 0f)]
@@ -74,6 +78,8 @@ public class AirHockeyAgent : Agent
 
     // Used to track the influence of each reward component in each episode
     public Dictionary<string, float> episodeReward;
+
+    
     #endregion
 
     #region Private Parameters
@@ -82,6 +88,7 @@ public class AirHockeyAgent : Agent
     private PusherController pusherAgentController;
     private PusherController pusherHumanController;
     private Rigidbody guidanceRods;
+    private const float PusherOffsetY = 0.01f;
 
     private Vector3 startingPosition;
     private Vector3 lastDirection;

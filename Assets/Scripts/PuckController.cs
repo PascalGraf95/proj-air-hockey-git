@@ -58,16 +58,7 @@ public class PuckController : MonoBehaviour
 
         if (resetPuckState == ResetPuckState.normalPosition)
         {
-            /*
-            if (gameState == GameState.agentScored || gameState == GameState.backWallReached)
-            {
-                puckRB.position = new Vector3(0, 0, -1);
-            }
-            else if (gameState == GameState.playerScored)
-            {
-                puckRB.position = new Vector3(0, 0, 1);
-            }
-            */
+            transform.position = Vector3.zero;
         }
         else if (resetPuckState == ResetPuckState.randomPosition)
         {
@@ -112,63 +103,8 @@ public class PuckController : MonoBehaviour
         }
         else if (resetPuckState == ResetPuckState.randomMiddlePosition)
         {
-            //puckRB.position = new Vector3(Random.Range(puckBoundary.xMin, puckBoundary.xMax) * 0.9f, 0f, Random.Range(agentBoundary.zMin, agentBoundary.zMax) * 0.9f);
+            transform.position = new Vector3(UnityEngine.Random.Range(puckBoundary.xMin, puckBoundary.xMax) * 0.9f, 0.5f, UnityEngine.Random.Range(agentBoundary.zMin, agentBoundary.zMax) * 0.9f);
         }
-        else if (resetPuckState == ResetPuckState.shotOnGoal)
-        {
-            /*
-            foreach (Transform m in markerContainer)
-            {
-                Destroy(m.gameObject);
-            }
 
-            var currentPoint = new Vector3(0f, 0f, 75f);
-            //Instantiate(marker, new Vector3(currentPoint.x, 0, currentPoint.z), Quaternion.identity, markerContainer);
-            var angle = Random.Range(-60f, 60f);
-            var spawnLine = Random.Range(puckBoundary.zMin, puckBoundary.zMax);
-
-            Vector3 nextPoint = Vector3.zero;
-            Vector3 startingVelocity = Vector3.zero;
-            while (true)
-            {
-                if (angle > 0)
-                {
-                    nextPoint = new Vector3(puckBoundary.xMax, 0f, currentPoint.z - (puckBoundary.xMax - currentPoint.x) / Mathf.Tan(angle * Mathf.Deg2Rad));
-                }
-                else
-                {
-                    nextPoint = new Vector3(puckBoundary.xMin, 0f, currentPoint.z - (puckBoundary.xMin - currentPoint.x) / Mathf.Tan(angle * Mathf.Deg2Rad));
-                }
-                if (nextPoint.z < spawnLine)
-                {
-                    nextPoint = new Vector3(currentPoint.x - (spawnLine - currentPoint.z) * Mathf.Tan(angle * Mathf.Deg2Rad), 0f, spawnLine);
-                    //Debug.DrawLine(currentPoint, nextPoint, Color.green, 3f);
-                    //Instantiate(marker, new Vector3(nextPoint.x, 0, nextPoint.z), Quaternion.identity, markerContainer);
-                    angle = -angle;
-                    startingVelocity = new Vector3(Mathf.Sin(angle * Mathf.Deg2Rad), 0f, Mathf.Cos(angle * Mathf.Deg2Rad)) * Random.Range(80f, 400f);
-                    break;
-                }
-                else
-                {
-                    angle = -angle;
-                    //Debug.DrawLine(currentPoint, nextPoint, Color.green, 3f, false);
-                    currentPoint = nextPoint;
-                }
-                //Instantiate(marker, new Vector3(nextPoint.x, 0, nextPoint.z), Quaternion.identity, markerContainer);
-            }
-            puckRB.position = nextPoint;
-            puckRB.velocity = startingVelocity;
-            */
-        }
-        else if (resetPuckState == ResetPuckState.ColliderTest)
-        {
-            slideJointX.Configuration = startPos.x;
-            slideJointZ.Configuration = startPos.z;
-            transform.position = new Vector3(startPos.x, 0.1f, startPos.z);
-
-            slideJointX.Velocity = Mathf.Sin(ANG * Mathf.Deg2Rad) * VEL;
-            slideJointZ.Velocity = Mathf.Cos(ANG * Mathf.Deg2Rad) * VEL;
-
-        }
     }
 }

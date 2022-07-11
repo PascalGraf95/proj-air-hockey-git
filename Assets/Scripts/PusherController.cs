@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mujoco;
+using Assets.Scripts;
 
 enum ControlMode
 {
@@ -10,21 +11,56 @@ enum ControlMode
     Mouse
 }
 
-
 public class PusherController : MonoBehaviour
 {
-    [SerializeField] private MjActuator pusherActuatorX;
-    [SerializeField] private MjActuator pusherActuatorZ;
+    //[SerializeField] private MjActuator pusherActuatorX;
+    //[SerializeField] private MjActuator pusherActuatorZ;
 
-    [SerializeField] private MjSlideJoint slideJointX;
-    [SerializeField] private MjSlideJoint slideJointZ;
+    //[SerializeField] private MjSlideJoint slideJointX;
+    //[SerializeField] private MjSlideJoint slideJointZ;
 
     [SerializeField] private float maxVelocity;
     [SerializeField] private ControlMode controlMode;
 
+    public MjBody PusherBody;
+    public MjBody PuckBody;
+    public MjGeom PuckGeom;
+    public MjActuator ActuatorZ;
+    public MjActuator ActuatorX;
+    public MjSlideJoint JointX;
+    public MjSlideJoint JointZ;
+    public Collider ColliderPlane;
+
+    private const float PusherOffsetY = 0.01f;
+    private const float PuckOffsetY = 0.5f;
+
+    [Header("Steering Behavior")]
+    [Tooltip("Maximum acceleration the Character is able to reach.")]
+    public float MaxAcceleration;
+    [Tooltip("Maximum speed the Character is able to reach.")]
+    public float MaxSpeed;
+    [Tooltip("Radius for arriving at the target.")]
+    public float TargetRadius;
+    [Tooltip("Radius for beginning to slow down.")]
+    public float SlowDownRadius;
+    [Tooltip("Time over which to achieve the target speed.")]
+    public float TimeToTarget;
+
+    // steering behavior properties
+    public Character Character;
+    private Vector3 targetPosition;
+    private Vector3 accelaration;
+    private ArriveSteeringBehavior arriveSteeringBehavior;
+
     // Start is called before the first frame update
     void Start()
     {
+        Character = new Character();
+
+        // set targetPosition to pusher position
+        targetPosition = PusherBody.transform.position;
+        accelaration = new Vector3();
+        arriveSteeringBehavior = new ArriveSteeringBehavior();
     }
 
     // Update is called once per frame
@@ -45,9 +81,9 @@ public class PusherController : MonoBehaviour
             case ControlMode.Click:
                 break;
             case ControlMode.Mouse:
-                xInput = Input.GetAxis("Mouse X");
-                zInput = Input.GetAxis("Mouse Y");
-                print(xInput + " " + zInput);
+                // get pusher velocity and position
+                Character.Velocity = new Vector3(ActuatorX.Velocity, 0, ActuatorZ.Velocity);
+                Character.Position = PusherBody.transform.position;
 
                 pusherActuatorX.Control = xInput * Time.deltaTime * maxVelocity * 100;
                 pusherActuatorZ.Control = -zInput * Time.deltaTime * maxVelocity * 100;

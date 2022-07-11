@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mujoco;
-using TMPro;
 
 public class SceneController : MonoBehaviour
 {
@@ -58,7 +57,7 @@ public class SceneController : MonoBehaviour
         }
     }
 
-    private void AgentPlayerScored()
+    public void ResetScene()
     {
         agentPlayerScore++;
         currentGameState = GameState.agentScored;
@@ -104,6 +103,8 @@ public class SceneController : MonoBehaviour
 
         // Reset Puck
         puckController.Reset();
+        pusherHumanController.Reset();
+
 
         // Reset Game Score
         if(humanPlayerScore >= 7 || agentPlayerScore >= 7)
