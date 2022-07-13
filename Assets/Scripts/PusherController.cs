@@ -19,7 +19,7 @@ public class PusherController : MonoBehaviour
     //[SerializeField] private MjSlideJoint slideJointX;
     //[SerializeField] private MjSlideJoint slideJointZ;
 
-    [SerializeField] private float maxVelocity;
+    //[SerializeField] private float acceleration;
     [SerializeField] private ControlMode controlMode;
 
     public MjBody PusherBody;
@@ -68,15 +68,18 @@ public class PusherController : MonoBehaviour
     {
         float xInput;
         float zInput;
-        /*
+
         switch (controlMode)
         {
             case ControlMode.Keyboard:
                 xInput = Input.GetAxis("Horizontal");
                 zInput = Input.GetAxis("Vertical");
 
-                pusherActuatorX.Control = xInput * Time.deltaTime * maxVelocity * 100;
-                pusherActuatorZ.Control = -zInput * Time.deltaTime * maxVelocity * 100;
+                if (xInput > 0 && zInput > 0)
+                {
+                    ActuatorX.Control = xInput * accelaration.x;
+                    ActuatorZ.Control = -zInput * accelaration.z;
+                }
                 break;
             case ControlMode.Click:
                 break;
@@ -85,43 +88,78 @@ public class PusherController : MonoBehaviour
                 Character.Velocity = new Vector3(ActuatorX.Velocity, 0, ActuatorZ.Velocity);
                 Character.Position = PusherBody.transform.position;
 
-                pusherActuatorX.Control = xInput * Time.deltaTime * maxVelocity * 100;
-                pusherActuatorZ.Control = -zInput * Time.deltaTime * maxVelocity * 100;
+                // get current mouse position on left mouse button click
+                if (Input.GetMouseButton(0))
+                {
+                    targetPosition = GetMousePosition();
+                }
+
+                // compute arrive steering behavior
+                accelaration = arriveSteeringBehavior.Arrive(targetPosition, Character, TargetRadius, SlowDownRadius, MaxSpeed, MaxAcceleration, TimeToTarget);
+
+                // update Character values
+                Character.Position = PusherBody.transform.position;
+                Character.Velocity = new Vector3(ActuatorX.Velocity, 0, ActuatorZ.Velocity);
+                Character.Accelaration = accelaration;
+
+                // set actuator acceleration
+                ActuatorX.Control = accelaration.x;
+                ActuatorZ.Control = accelaration.z;
                 break;
         }
-        */
-
+        // compute arrive steering behavior
+        accelaration = arriveSteeringBehavior.Arrive(targetPosition, Character, TargetRadius, SlowDownRadius, MaxSpeed, MaxAcceleration, TimeToTarget);
+        // update Character values
+        Character.Position = PusherBody.transform.position;
+        Character.Velocity = new Vector3(ActuatorX.Velocity, 0, ActuatorZ.Velocity);
+        Character.Accelaration = accelaration;
     }
 
-    public void Reset(string pusherType)
+    /// <summary>
+    /// Gets the current mouse position in relation to a plane.
+    /// </summary>
+    /// <returns>The target position</returns>
+    private Vector3 GetMousePosition()
     {
-        if(pusherType == "Agent")
+        Vector3 mousePosWorld = new Vector3();
+        Ray ray = new Ray();
+
+        // get current active display
+        int display = Display.activeEditorGameViewTarget;
+
+        // get other cameras
+        Camera playerViewCamera = GameObject.Find("PlayerViewCamera").GetComponent<Camera>();
+        Camera agentViewCamera = GameObject.Find("AgentViewCamera").GetComponent<Camera>();
+
+        if (display == 0)
         {
-            transform.position = new Vector3(0, 0, 45.75f);
+            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         }
-        else if(pusherType == "Human")
+        else if (display == 1)  
         {
-            transform.position = new Vector3(0, 0, -45.75f);
+            ray = playerViewCamera.ScreenPointToRay(Input.mousePosition);
         }
-        slideJointX.Configuration = 0f;
-        slideJointZ.Configuration = 0f;
-        slideJointX.Velocity = 0f;
-        slideJointZ.Velocity = 0f;
+        else if (display == 2)
+        {
+            ray = agentViewCamera.ScreenPointToRay(Input.mousePosition);
+        }
+
+        if (ColliderPlane.Raycast(ray, out RaycastHit hitData, 1000f))
+        {
+            mousePosWorld = hitData.point;
+        }
+        Vector3 targetPosition = new Vector3(mousePosWorld.x, 0, mousePosWorld.z);
+        return targetPosition;
     }
 
-    public void Act(Vector2 targetVelocity)
+    public void Reset()
     {
-        pusherActuatorX.Control = targetVelocity.x * maxVelocity;
-        pusherActuatorZ.Control = targetVelocity.y * maxVelocity;
-    }
+        // reset velocity
+        JointX.Velocity = 0f;
+        JointZ.Velocity = 0f;
 
-    public Vector2 GetCurrentPosition()
-    {
-        return new Vector2(transform.position.x, transform.position.z);
-    }
-
-    public Vector2 GetCurrentVelocity()
-    {
-        return new Vector2(pusherActuatorX.Velocity, pusherActuatorZ.Velocity);
+        // reset sensor readings
+        JointX.Configuration = 0f;
+        JointZ.Configuration = 0f;
     }
 }
