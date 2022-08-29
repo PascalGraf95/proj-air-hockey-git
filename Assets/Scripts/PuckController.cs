@@ -35,7 +35,15 @@ public class PuckController : MonoBehaviour
     void Start()
     {
         pusherAgentController = GameObject.Find("PusherAgent").GetComponent<PusherController>();
-        pusherHumanController = GameObject.Find("PusherHuman").GetComponent<PusherController>();
+        try
+        {
+            pusherHumanController = GameObject.Find("PusherHuman").GetComponent<PusherController>();
+        }
+        catch (NullReferenceException e)
+        {
+            pusherHumanController = GameObject.Find("PusherHumanSelfplay").GetComponent<PusherController>();
+        }
+
     }
 
     public Vector2 GetCurrentPosition()

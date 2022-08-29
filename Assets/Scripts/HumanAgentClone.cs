@@ -5,6 +5,7 @@ using Unity.MLAgents;
 using Unity;
 using Unity.MLAgents.Sensors;
 using Unity.MLAgents.Actuators;
+using System;
 
 public class HumanAgentClone : Agent
 {
@@ -23,7 +24,15 @@ public class HumanAgentClone : Agent
     {
         pusherAgentController = GameObject.Find("PusherAgent").GetComponent<PusherController>();
         puckController = GameObject.Find("Puck").GetComponent<PuckController>();
-        pusherHumanController = GameObject.Find("PusherHuman").GetComponent<PusherController>();
+        try
+        {
+            pusherHumanController = GameObject.Find("PusherHuman").GetComponent<PusherController>();
+        }
+        catch(NullReferenceException e)
+        {
+            pusherHumanController = GameObject.Find("PusherHumanSelfplay").GetComponent<PusherController>();
+        }
+
     }
 
     public override void CollectObservations(VectorSensor sensor)

@@ -9,6 +9,7 @@ using System.Text;
 using System.IO;
 using Mujoco;
 using Assets.Scripts;
+using System;
 
 public enum ActionType { Discrete, Continuous };
 public enum TaskType
@@ -97,7 +98,6 @@ public class AirHockeyAgent : Agent
     private Vector2 lastVel;
     private Vector2 lastDirection;
     private Vector2 lastAcc;
-    private int[] currentJerkMagnitudeBins = new int[5];
     public float currentVelMag;
     public float currentAccMag;
     public float currentJerkMag;
@@ -144,7 +144,15 @@ public class AirHockeyAgent : Agent
         sceneController = GetComponent<SceneController>();
         pusherAgentController = GameObject.Find("PusherAgent").GetComponent<PusherController>();
         puckController = GameObject.Find("Puck").GetComponent<PuckController>();
-        pusherHumanController = GameObject.Find("PusherHuman").GetComponent<PusherController>();
+        try
+        {
+            pusherHumanController = GameObject.Find("PusherHuman").GetComponent<PusherController>();
+        }
+        catch(NullReferenceException e)
+        {
+            pusherHumanController = GameObject.Find("PusherHumanSelfplay").GetComponent<PusherController>();
+        }
+
 
         // Get Guidance Rods and UI
         //guidanceRods = GameObject.Find("GuidanceRods").GetComponent<Rigidbody>();
@@ -175,7 +183,7 @@ public class AirHockeyAgent : Agent
         sensor.AddObservation(pusherAgentController.GetCurrentPosition());
         sensor.AddObservation(pusherAgentController.GetCurrentVelocity());
         sensor.AddObservation(pusherHumanController.GetCurrentPosition());
-        sensor.AddObservation(pusherAgentController.GetCurrentVelocity());
+        sensor.AddObservation(pusherHumanController.GetCurrentVelocity());
         sensor.AddObservation(puckController.GetCurrentPosition());
         sensor.AddObservation(puckController.GetCurrentVelocity());
     }

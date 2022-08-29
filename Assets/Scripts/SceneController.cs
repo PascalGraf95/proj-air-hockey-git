@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mujoco;
+using System;
 
 public class SceneController : MonoBehaviour
 {
@@ -29,7 +30,16 @@ public class SceneController : MonoBehaviour
     {
         pusherAgentController = GameObject.Find("PusherAgent").GetComponent<PusherController>();
         puckController = GameObject.Find("Puck").GetComponent<PuckController>();
-        pusherHumanController = GameObject.Find("PusherHuman").GetComponent<PusherController>();
+        try
+        {
+            pusherHumanController = GameObject.Find("PusherHuman").GetComponent<PusherController>();
+        }
+        catch(NullReferenceException e)
+        {
+            pusherHumanController = GameObject.Find("PusherHumanSelfplay").GetComponent<PusherController>();
+        }
+
+
 
 
         // Subscribe to Goal Events

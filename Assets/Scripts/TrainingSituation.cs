@@ -76,7 +76,7 @@ public class TrainingSituation : MonoBehaviour
         Character.Position = PusherBody.transform.position;
         Character.Velocity = new Vector3(ActuatorX.Velocity, 0, ActuatorZ.Velocity);
 
-        Vector3 acceleration = arriveSteering.Arrive(targetPos, Character, TargetRadius, SlowDownRadius, MaxSpeed, MaxAcceleration, TimeToTarget);
+        Vector3 acceleration = arriveSteering.Arrive(targetPos, Character.Position, Character.Velocity, TargetRadius, SlowDownRadius, MaxSpeed, MaxAcceleration, TimeToTarget);
 
         // update Character values
         Character.Position = PusherBody.transform.position;
