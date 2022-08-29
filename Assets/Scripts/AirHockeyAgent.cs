@@ -55,11 +55,11 @@ public class AirHockeyAgent : Agent
     [SerializeField] private float agentScoredReward;
     [Range(-10f, 0f)]
     [SerializeField] private float humanScoredReward;
-    [Range(-1f, 0f)]
+    [Range(-0.1f, 0f)]
     [SerializeField] private float avoidBoundariesReward;
     [Range(-1f, 0f)]
     [SerializeField] private float avoidDirectionChangesReward;
-    [Range(0f, 1f)]
+    [Range(0f, 0.1f)]
     [SerializeField] private float encouragePuckMovementReward;
     [Range(-1f, 0f)]
     [SerializeField] private float puckStopReward;
@@ -68,16 +68,20 @@ public class AirHockeyAgent : Agent
     [SerializeField] private bool endOnBackWall;
     [Range(0f, 1f)]
     [SerializeField] private float deflectOnlyReward;
-    [Range(-1f, 0f)]
+    [Range(-0.1f, 0f)]
     [SerializeField] private float puckInAgentsHalfReward;
     [Range(-5f, 0f)]
     [SerializeField] private float maxStepReward;
     [Range(-1f, 0f)]
     [SerializeField] private float stepReward;
-
+    [Range(-10f, 0f)]
+    [SerializeField] private float outOfBoundsReward;
+    [Range(-0.1f, 0f)]
+    [SerializeField] private float stayInCenterReward;
 
     // Used to track the influence of each reward component in each episode
     public Dictionary<string, float> episodeReward;
+    public Dictionary<string, float[]> episodeRewardShift;
 
     
     #endregion
@@ -90,16 +94,34 @@ public class AirHockeyAgent : Agent
     private Rigidbody guidanceRods;
     private const float PusherOffsetY = 0.01f;
 
-    private Vector3 startingPosition;
-    private Vector3 lastDirection;
-    private Vector3 position;
+    private Vector2 lastVel;
+    private Vector2 lastDirection;
+    private Vector2 lastAcc;
+    private int[] currentJerkMagnitudeBins = new int[5];
+    public float currentVelMag;
+    public float currentAccMag;
+    public float currentJerkMag;
 
     private int gamesSinceNewEpisode;
     private int lastGameReset;
+    private int shiftIdx;
+    private int shiftLen = 100;
+
+    //StringBuilder csv = new StringBuilder();
     #endregion
 
     private void ResetEpisodeRewards()
     {
+        shiftIdx = 0;
+        episodeRewardShift = new Dictionary<string, float[]>();
+        episodeRewardShift["DirectionRewardShift"] = new float[shiftLen];
+        episodeRewardShift["BoundaryRewardShift"] = new float[shiftLen];
+        episodeRewardShift["PuckVelocityRewardShift"] = new float[shiftLen];
+        episodeRewardShift["PuckInAgentsHalfRewardShift"] = new float[shiftLen];
+        episodeRewardShift["ScoreRewardShift"] = new float[shiftLen];
+        episodeRewardShift["BackwallRewardShift"] = new float[shiftLen];
+        episodeRewardShift["StayInCenterRewardShift"] = new float[shiftLen];
+
         episodeReward = new Dictionary<string, float>();
         episodeReward["StepReward"] = 0f;
         episodeReward["DirectionReward"] = 0f;
@@ -108,6 +130,8 @@ public class AirHockeyAgent : Agent
         episodeReward["PuckInAgentsHalfReward"] = 0f;
         episodeReward["ScoreReward"] = 0f;
         episodeReward["BackwallReward"] = 0f;
+        episodeReward["OutOfBounds"] = 0f;
+        episodeReward["StayInCenterReward"] = 0f;
     }
 
     // Start is called before the first frame update
@@ -251,14 +275,27 @@ public class AirHockeyAgent : Agent
         #endregion
 
         #region RewardComposition
+        if (shiftIdx >= shiftLen)
+        {
+            shiftIdx = 0;
+        }
+        episodeRewardShift["DirectionRewardShift"][shiftIdx] = 0;
+        episodeRewardShift["BoundaryRewardShift"][shiftIdx] = 0;
+        episodeRewardShift["PuckVelocityRewardShift"][shiftIdx] = 0;
+        episodeRewardShift["PuckInAgentsHalfRewardShift"][shiftIdx] = 0;
+        episodeRewardShift["ScoreRewardShift"][shiftIdx] = 0;
+        episodeRewardShift["BackwallRewardShift"][shiftIdx] = 0;
+
 
         #region UniversalRewards
 
         // Rewards that are available for all Task Types
         // PUCK CLIPPED OUT OF FIELD
-        if(!sceneController.puckIsInGame())
+        if (!sceneController.puckIsInGame())
         {
             print("PUCK OUT OF BOUNDS!!!");
+            AddReward(outOfBoundsReward);
+            episodeReward["OutOfBounds"] += outOfBoundsReward;
             EndEpisode();
             return;
         }
@@ -267,6 +304,7 @@ public class AirHockeyAgent : Agent
         if (sceneController.CurrentGameState == GameState.agentScored)
         {
             episodeReward["ScoreReward"] += agentScoredReward;
+            episodeRewardShift["ScoreRewardShift"][shiftIdx] = agentScoredReward;
             SetReward(agentScoredReward);
             
             if(taskType != TaskType.FullGameMultipleGoals || gamesSinceNewEpisode >= 9)
@@ -284,6 +322,7 @@ public class AirHockeyAgent : Agent
         else if (sceneController.CurrentGameState == GameState.playerScored)
         {
             episodeReward["ScoreReward"] += humanScoredReward;
+            episodeRewardShift["ScoreRewardShift"][shiftIdx] = humanScoredReward;
             SetReward(humanScoredReward);
 
             if (taskType != TaskType.FullGameMultipleGoals || gamesSinceNewEpisode >= 9)
@@ -304,6 +343,7 @@ public class AirHockeyAgent : Agent
             if(backWallReward > 0)
             {
                 episodeReward["BackwallReward"] += backWallReward;
+                episodeRewardShift["BackwallRewardShift"][shiftIdx] = backWallReward;
                 AddReward(backWallReward);
 
                 if (endOnBackWall)
@@ -329,25 +369,54 @@ public class AirHockeyAgent : Agent
             var puckPosition = puckController.GetCurrentPosition();
             if(puckPosition.y > 0f)
             {
-                episodeReward["PuckInAgentsHalfReward"] += puckInAgentsHalfReward; 
+                episodeReward["PuckInAgentsHalfReward"] += puckInAgentsHalfReward;
+                episodeRewardShift["PuckInAgentsHalfRewardShift"][shiftIdx] = puckInAgentsHalfReward;
                 AddReward(puckInAgentsHalfReward);
             }
         }
         // Punish changing direction too much.
         if (avoidDirectionChangesReward < 0f)
         {
-            var direction = new Vector2(x, z);
-            if(lastDirection.magnitude > 0f && direction.magnitude > 0f)
-            {
-                float cosAngle = Vector2.Dot(direction, lastDirection) / (lastDirection.magnitude * direction.magnitude);
-                cosAngle = Mathf.Clamp(cosAngle, -1, 1);
-                float angle = Mathf.Acos(cosAngle);
-                AddReward(angle * avoidDirectionChangesReward);
-                episodeReward["DirectionReward"] += angle * avoidDirectionChangesReward;
-            }
-            lastDirection = direction;
-        }
+            var currentVel = pusherAgentController.GetCurrentVelocity();
+            currentVelMag = currentVel.magnitude;
+            var currentAcc = lastVel - currentVel;
+            currentAccMag = currentAcc.magnitude;
 
+            var currentJerk = lastAcc - currentAcc;
+            if((pusherAgentController.GetCurrentPosition() - puckController.GetCurrentPosition()).magnitude > 10)
+            {
+                currentJerkMag = currentJerk.magnitude / 100;
+            }
+            else
+            {
+                currentJerkMag = 0;
+            }
+            
+            /*
+            if (currentJerkMag > 10f)
+            {
+                var jerkMagClamped = Mathf.Clamp(currentJerkMag, 0f, 50f);
+                AddReward(jerkMagClamped * avoidDirectionChangesReward);
+                episodeReward["DirectionReward"] += jerkMagClamped * avoidDirectionChangesReward;
+            }
+
+
+            var currentVel = new Vector2(x, z);
+            currentVelMag = currentVel.magnitude;
+            var currentAcc = lastVel - currentVel;
+            currentAccMag = currentAcc.magnitude;
+            */
+            //var currentJerk = lastAcc - currentAcc;
+            //currentJerkMag = currentJerk.magnitude;
+            AddReward(currentJerkMag * avoidDirectionChangesReward);
+            episodeReward["DirectionReward"] += currentJerkMag * avoidDirectionChangesReward;
+            episodeRewardShift["DirectionRewardShift"][shiftIdx] = currentJerkMag * avoidDirectionChangesReward;
+            //csv.AppendLine(currentJerkMag.ToString());
+
+
+            lastVel = currentVel;
+            lastAcc = currentAcc;
+        }
         // Punish running into boundaries.
         if (avoidBoundariesReward < 0f)
         {
@@ -358,6 +427,21 @@ public class AirHockeyAgent : Agent
             {
                 AddReward(avoidBoundariesReward);
                 episodeReward["BoundaryReward"] += avoidBoundariesReward;
+                episodeRewardShift["BoundaryRewardShift"][shiftIdx] = avoidBoundariesReward;
+            }
+        }
+        if (stayInCenterReward < 0f)
+        {
+            var puckPosition = puckController.GetCurrentPosition();
+            if(puckPosition.y < 0f)
+            {
+                var agentPosition = pusherAgentController.GetCurrentPosition();
+                if(agentPosition.y < 35f || agentPosition.y > 60f || agentPosition.x < -18f || agentPosition.x > 18f)
+                {
+                    AddReward(stayInCenterReward * 0.1f);
+                    episodeReward["StayInCenterReward"] += stayInCenterReward * 0.1f;
+                    episodeRewardShift["StayInCenterRewardShift"][shiftIdx] = stayInCenterReward * 0.1f;
+                }
             }
         }
         // Reward high puck velocities
@@ -366,6 +450,7 @@ public class AirHockeyAgent : Agent
             var puckVelocity = puckController.GetCurrentVelocity()/100;
             AddReward(Mathf.Clamp(puckVelocity.magnitude * encouragePuckMovementReward, 0f, 1f));
             episodeReward["PuckVelocityReward"] += Mathf.Clamp(puckVelocity.magnitude * encouragePuckMovementReward, 0f, 1f);
+            episodeRewardShift["PuckVelocityRewardShift"][shiftIdx] = Mathf.Clamp(puckVelocity.magnitude * encouragePuckMovementReward, 0f, 1f);
         }
         // STEP REWARD
         AddReward(stepReward);
@@ -394,9 +479,11 @@ public class AirHockeyAgent : Agent
             }
         }
         #endregion
+        shiftIdx++;
         #endregion
 
         #region Movement and Clipping
+        //print((puckController.GetCurrentPosition() - pusherAgentController.GetCurrentPosition()).magnitude);
         pusherAgentController.Act(new Vector2(x, z));
         #endregion
     }
@@ -405,5 +492,16 @@ public class AirHockeyAgent : Agent
     {
         //guidanceRods.position = new Vector3(0, 0, pusherAgentController.transform.position.z);
         //guidanceRods.velocity = new Vector3(0, 0, agentRB.velocity.z);
+    }
+
+    public void GetRewardComposition(out Dictionary<string, float> dict1, out Dictionary<string, float[]> dict2)
+    {
+        dict1 = episodeReward;
+        dict2 = episodeRewardShift;      
+    }
+
+    private void OnApplicationQuit()
+    {
+        //File.WriteAllText("AccelerationLog.csv", csv.ToString());
     }
 }

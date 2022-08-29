@@ -22,17 +22,10 @@ public class PusherController : MonoBehaviour
     [SerializeField] private float maxVelocity;
     [SerializeField] private ControlMode controlMode;
 
-    public MjBody PusherBody;
-    public MjBody PuckBody;
-    public MjGeom PuckGeom;
-    public MjActuator ActuatorZ;
-    public MjActuator ActuatorX;
-    public MjSlideJoint JointX;
-    public MjSlideJoint JointZ;
-    public Collider ColliderPlane;
-
-    private const float PusherOffsetY = 0.01f;
-    private const float PuckOffsetY = 0.5f;
+    public MjActuator pusherActuatorZ;
+    public MjActuator pusherActuatorX;
+    public MjSlideJoint slideJointX;
+    public MjSlideJoint slideJointZ;
 
     [Header("Steering Behavior")]
     [Tooltip("Maximum acceleration the Character is able to reach.")]
@@ -51,17 +44,6 @@ public class PusherController : MonoBehaviour
     private Vector3 targetPosition;
     private Vector3 accelaration;
     private ArriveSteeringBehavior arriveSteeringBehavior;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        Character = new Character();
-
-        // set targetPosition to pusher position
-        targetPosition = PusherBody.transform.position;
-        accelaration = new Vector3();
-        arriveSteeringBehavior = new ArriveSteeringBehavior();
-    }
 
     // Update is called once per frame
     void Update()

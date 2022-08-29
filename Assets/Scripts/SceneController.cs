@@ -57,7 +57,7 @@ public class SceneController : MonoBehaviour
         }
     }
 
-    public void ResetScene()
+    public void AgentPlayerScored()
     {
         agentPlayerScore++;
         currentGameState = GameState.agentScored;
@@ -103,8 +103,6 @@ public class SceneController : MonoBehaviour
 
         // Reset Puck
         puckController.Reset();
-        pusherHumanController.Reset();
-
 
         // Reset Game Score
         if(humanPlayerScore >= 7 || agentPlayerScore >= 7)
