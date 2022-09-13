@@ -30,6 +30,13 @@ public enum HumanBehavior
     TrainingScenario,
 }
 
+public enum ObservationSpace
+{
+    KinematicNoAccel,
+    Kinematic,
+    Full,
+}
+
 public class AirHockeyAgent : Agent
 {
     #region Public Parameters
@@ -48,6 +55,10 @@ public class AirHockeyAgent : Agent
     [Space(5)]
     [Header("Human Pusher Behavior")]
     public HumanBehavior humanBehavior;
+
+    [Space(5)]
+    [Header("Observation Space")]
+    public ObservationSpace observationSpace;
 
     [Space(5)]
     [Header("Reward Composition")]
@@ -194,12 +205,47 @@ public class AirHockeyAgent : Agent
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        sensor.AddObservation(pusherAgentController.GetCurrentPosition());
-        sensor.AddObservation(pusherAgentController.GetCurrentVelocity());
-        sensor.AddObservation(pusherHumanController.GetCurrentPosition());
-        sensor.AddObservation(pusherHumanController.GetCurrentVelocity());
-        sensor.AddObservation(puckController.GetCurrentPosition());
-        sensor.AddObservation(puckController.GetCurrentVelocity());
+        switch (observationSpace)
+        {
+            case ObservationSpace.KinematicNoAccel:
+                sensor.AddObservation(pusherAgentController.GetCurrentPosition());
+                sensor.AddObservation(pusherAgentController.GetCurrentVelocity());
+                sensor.AddObservation(pusherHumanController.GetCurrentPosition());
+                sensor.AddObservation(pusherHumanController.GetCurrentVelocity());
+                sensor.AddObservation(puckController.GetCurrentPosition());
+                sensor.AddObservation(puckController.GetCurrentVelocity());
+                break;
+            case ObservationSpace.Kinematic:
+                sensor.AddObservation(pusherAgentController.GetCurrentPosition());
+                sensor.AddObservation(pusherAgentController.GetCurrentVelocity());
+                sensor.AddObservation(pusherAgentController.GetCurrentAccelaration());
+                sensor.AddObservation(pusherHumanController.GetCurrentPosition());
+                sensor.AddObservation(pusherHumanController.GetCurrentVelocity());
+                sensor.AddObservation(pusherHumanController.GetCurrentAccelaration());
+                sensor.AddObservation(puckController.GetCurrentPosition());
+                sensor.AddObservation(puckController.GetCurrentVelocity());
+                sensor.AddObservation(puckController.GetCurrentAccelaration());
+                break;
+            case ObservationSpace.Full:
+                sensor.AddObservation(pusherAgentController.GetCurrentPosition());
+                sensor.AddObservation(pusherAgentController.GetCurrentVelocity());
+                sensor.AddObservation(pusherAgentController.GetCurrentAccelaration());
+                sensor.AddObservation(pusherHumanController.GetCurrentPosition());
+                sensor.AddObservation(pusherHumanController.GetCurrentVelocity());
+                sensor.AddObservation(pusherHumanController.GetCurrentAccelaration());
+                sensor.AddObservation(puckController.GetCurrentPosition());
+                sensor.AddObservation(puckController.GetCurrentVelocity());
+                sensor.AddObservation(puckController.GetCurrentAccelaration());
+
+                sensor.AddObservation(pusherAgentController.GetDistanceAgentGoal());
+                sensor.AddObservation(pusherHumanController.GetDistanceHumanGoal());
+                sensor.AddObservation(pusherAgentController.GetDistancePuck());
+                sensor.AddObservation(pusherHumanController.GetDistancePuck());
+                break;
+            default:
+                break;
+        }
+        
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)

@@ -31,6 +31,10 @@ public class PuckController : MonoBehaviour
     private PusherController pusherAgentController;
     private PusherController pusherHumanController;
 
+    // Accelaration calculation
+    Vector2 lastVelocity;
+    Vector2 currentAccelaration;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,6 +54,13 @@ public class PuckController : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        var currentVelocity = new Vector2(actuatorX.Velocity, actuatorZ.Velocity);
+        currentAccelaration = currentVelocity - lastVelocity;
+        lastVelocity = currentVelocity;
+    }
+
     public Vector2 GetCurrentPosition()
     {
         return new Vector2(transform.position.x, transform.position.z);
@@ -60,6 +71,10 @@ public class PuckController : MonoBehaviour
         return new Vector2(actuatorX.Velocity, actuatorZ.Velocity);
     }
 
+    public Vector2 GetCurrentAccelaration()
+    {
+        return currentAccelaration;
+    }
 
     public void Reset()
     {

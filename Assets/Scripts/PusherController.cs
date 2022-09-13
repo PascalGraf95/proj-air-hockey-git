@@ -12,12 +12,6 @@ enum ControlMode
 
 public class PusherController : MonoBehaviour
 {
-    //[SerializeField] private MjActuator pusherActuatorX;
-    //[SerializeField] private MjActuator pusherActuatorZ;
-
-    //[SerializeField] private MjSlideJoint slideJointX;
-    //[SerializeField] private MjSlideJoint slideJointZ;
-
     [SerializeField] private float maxVelocity;
     [SerializeField] private ControlMode controlMode;
 
@@ -44,9 +38,14 @@ public class PusherController : MonoBehaviour
     private Vector2 accelaration;
     private ArriveSteeringBehavior arriveSteeringBehavior;
 
-    // Accelartion calculation
+    // Accelaration calculation
     Vector2 lastVelocity;
     Vector2 currentAccelaration;
+
+    // Additional observations calculations
+    private Vector3 agentGoalPos;
+    private Vector3 humanGoalPos;
+    private Vector3 puckPos;
 
     //Cameras
     private Camera playerViewCamera;
@@ -59,6 +58,9 @@ public class PusherController : MonoBehaviour
         playerViewCamera = GameObject.Find("PlayerViewCamera").GetComponent<Camera>();
         agentViewCamera = GameObject.Find("AgentViewCamera").GetComponent<Camera>();
         colliderPlane = GameObject.Find("AirHockeyTableTop").GetComponent<Collider>();
+        agentGoalPos = GameObject.Find("AgentPlayerGoal").GetComponent<Transform>().position;
+        humanGoalPos = GameObject.Find("AgentPlayerGoal").GetComponent<Transform>().position;
+        puckPos = GameObject.Find("AgentPlayerGoal").GetComponent<Transform>().position;
 
         arriveSteeringBehavior = new ArriveSteeringBehavior();
         targetPosition = GetCurrentPosition();
@@ -70,7 +72,7 @@ public class PusherController : MonoBehaviour
         {
             case ControlMode.Selfplay:
                 break;
-            case ControlMode.Human:
+            case ControlMode.Human:              
                 // get current mouse position on left mouse button click
                 if (Input.GetMouseButton(0))
                 {
@@ -97,14 +99,14 @@ public class PusherController : MonoBehaviour
         Vector3 mousePosWorld = new Vector3();
         Ray ray = new Ray();
         // get current active display
-        int display = 1;//Display.activeEditorGameViewTarget;
+        int display = Display.activeEditorGameViewTarget;
         // get other cameras
 
-        if (display == 0)
+        if (display == 1)
         {
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         }
-        else if (display == 1)
+        else if (display == 0)
         {
             ray = playerViewCamera.ScreenPointToRay(Input.mousePosition);
         }
@@ -164,6 +166,24 @@ public class PusherController : MonoBehaviour
     public Vector2 GetCurrentAccelaration()
     {
         return currentAccelaration;
+    }
+
+    public Vector2 GetDistanceAgentGoal()
+    {
+        Vector2 goalPos = new Vector2(agentGoalPos.x, agentGoalPos.z);
+        return goalPos - GetCurrentPosition();
+    }
+
+    public Vector2 GetDistanceHumanGoal()
+    {
+        Vector2 goalPos = new Vector2(humanGoalPos.x, humanGoalPos.z);
+        return goalPos - GetCurrentPosition();
+    }
+
+    public Vector2 GetDistancePuck()
+    {
+        Vector2 pos = new Vector2(puckPos.x, puckPos.z);
+        return pos - GetCurrentPosition();
     }
 
     private void FixedUpdate()
