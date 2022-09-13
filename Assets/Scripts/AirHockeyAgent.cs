@@ -107,6 +107,8 @@ public class AirHockeyAgent : Agent
     private int shiftIdx;
     private int shiftLen = 100;
 
+    private int episodesPlayed = 0;
+
     //StringBuilder csv = new StringBuilder();
     #endregion
 
@@ -137,6 +139,11 @@ public class AirHockeyAgent : Agent
     // Start is called before the first frame update
     void Start()
     {
+        SetupAirHockeyAgent();
+    }
+
+    public void SetupAirHockeyAgent()
+    {
         // Initialize Reward Dictionary
         ResetEpisodeRewards();
 
@@ -148,7 +155,7 @@ public class AirHockeyAgent : Agent
         {
             pusherHumanController = GameObject.Find("PusherHuman").GetComponent<PusherController>();
         }
-        catch(NullReferenceException e)
+        catch (NullReferenceException e)
         {
             pusherHumanController = GameObject.Find("PusherHumanSelfplay").GetComponent<PusherController>();
         }
@@ -165,14 +172,21 @@ public class AirHockeyAgent : Agent
         {
             dict_string += kvp.Key + ": " + kvp.Value + ";   ";
         }
-        print(dict_string);
-        sceneController.ResetScene();
+        //print(dict_string);
+        sceneController.ResetScene(false);
         ResetEpisodeRewards();
+
+        if(episodesPlayed % 15 == 0)
+        {
+            Resources.UnloadUnusedAssets();
+            GC.Collect();
+        }
+        episodesPlayed++;
     }
 
     public void ResetGameWithoutNewEpisode()
     {
-        sceneController.ResetScene();
+        sceneController.ResetScene(false);
         gamesSinceNewEpisode++;
         lastGameReset = StepCount;
     }
@@ -293,7 +307,7 @@ public class AirHockeyAgent : Agent
         episodeRewardShift["PuckInAgentsHalfRewardShift"][shiftIdx] = 0;
         episodeRewardShift["ScoreRewardShift"][shiftIdx] = 0;
         episodeRewardShift["BackwallRewardShift"][shiftIdx] = 0;
-
+        episodeRewardShift["StayInCenterRewardShift"][shiftIdx] = 0;
 
         #region UniversalRewards
 
@@ -344,7 +358,7 @@ public class AirHockeyAgent : Agent
                 return;
             }
         }
-        // PUCK REACHED OPPONENT'S BACKWALL
+        // Reward the puck touching the opponent's back wall.
         else if (sceneController.CurrentGameState == GameState.backWallReached)
         {
             sceneController.CurrentGameState = GameState.normal;
@@ -370,7 +384,7 @@ public class AirHockeyAgent : Agent
             }
 
         }
-        // PUCK IS IN AGENT'S HALF
+        // Punish if the puck is in the agent's half.
         if (puckInAgentsHalfReward < 0f)
         {
             // Get Puck Position
@@ -429,7 +443,23 @@ public class AirHockeyAgent : Agent
         if (avoidBoundariesReward < 0f)
         {
             var agentPosition = pusherAgentController.GetCurrentPosition();
-
+            // Hard boundaries: Left: -29.9f Right: 29.9f Top: 68.7f Bottom: 5.8f
+            // Soft boundaries: Left: -24.9f Right: 24.9f Top: 63.7f Bottom: 10.8f
+            if(agentPosition.x < -24.9f || agentPosition.x > 24.9f ||
+                agentPosition.y > 63.7f || agentPosition.y < 10.8f)
+            {
+                float currentBoundaryRewardX = 0f;
+                if (agentPosition.x < -24.9f || agentPosition.x > 24.9f) { currentBoundaryRewardX = Mathf.Clamp(Mathf.Abs(agentPosition.x * 0.2f) - 4.98f, 0f, 1f); }
+                float currentBoundaryRewardY = 0f;
+                if(agentPosition.y > 63.7f) { currentBoundaryRewardY = Mathf.Clamp(agentPosition.y * 0.2f - 12.74f, 0f, 1f); }
+                else if(agentPosition.y < 10.8f) {currentBoundaryRewardY = Mathf.Clamp(- agentPosition.y * 0.2f + 2.16f, 0f, 1f); }
+                //print(currentBoundaryRewardX.ToString("0.00") + " " + currentBoundaryRewardY.ToString("0.00"));
+                var currentBoundaryReward = avoidBoundariesReward * Mathf.Sqrt(Mathf.Pow(currentBoundaryRewardX, 2) + Mathf.Pow(currentBoundaryRewardY, 2));
+                AddReward(currentBoundaryReward);
+                episodeReward["BoundaryReward"] += currentBoundaryReward;
+                episodeRewardShift["BoundaryRewardShift"][shiftIdx] = currentBoundaryReward;
+            }
+            /*
             if (agentPosition.x < -29.9f || agentPosition.x > 29.9f ||
                 agentPosition.y > 68.7f || agentPosition.y < 5.8f)
             {
@@ -437,18 +467,30 @@ public class AirHockeyAgent : Agent
                 episodeReward["BoundaryReward"] += avoidBoundariesReward;
                 episodeRewardShift["BoundaryRewardShift"][shiftIdx] = avoidBoundariesReward;
             }
+            */
         }
+        // Punish staying away from the center as soon as the puck is in the opponent's half.
         if (stayInCenterReward < 0f)
         {
             var puckPosition = puckController.GetCurrentPosition();
             if(puckPosition.y < 0f)
             {
                 var agentPosition = pusherAgentController.GetCurrentPosition();
-                if(agentPosition.y < 35f || agentPosition.y > 60f || agentPosition.x < -18f || agentPosition.x > 18f)
+                // Hard boundaries: Left: -20f Right: 20f Top: 65f Bottom: 33f
+                // Soft boundaries: Left: -10f Right: 10f Top: 55f Bottom: 43f
+                if (agentPosition.y < 43f || agentPosition.y > 55f || agentPosition.x < -10f || agentPosition.x > 10f)
                 {
-                    AddReward(stayInCenterReward * 0.1f);
-                    episodeReward["StayInCenterReward"] += stayInCenterReward * 0.1f;
-                    episodeRewardShift["StayInCenterRewardShift"][shiftIdx] = stayInCenterReward * 0.1f;
+                    float currentCenterRewardX = 0f;
+                    if (agentPosition.x < -10f || agentPosition.x > 10f) { currentCenterRewardX = Mathf.Clamp(Mathf.Abs(agentPosition.x * 0.1f) - 1f, 0f, 1f); }
+                    float currentCenterRewardY = 0f;
+                    if (agentPosition.y > 55f) { currentCenterRewardY = Mathf.Clamp(agentPosition.y * 0.1f - 5.5f, 0f, 1f); }
+                    else if (agentPosition.y < 43f) { currentCenterRewardY = Mathf.Clamp(-agentPosition.y * 0.1f + 4.3f, 0f, 1f); }
+
+                    //print("CENTER: " + currentCenterRewardX.ToString("0.00") + " " + currentCenterRewardY.ToString("0.00"));
+                    var currentCenterReward = stayInCenterReward * 0.1f * Mathf.Sqrt(Mathf.Pow(currentCenterRewardX, 2) + Mathf.Pow(currentCenterRewardY, 2));
+                    AddReward(currentCenterReward);
+                    episodeReward["StayInCenterReward"] += currentCenterReward;
+                    episodeRewardShift["StayInCenterRewardShift"][shiftIdx] = currentCenterReward;
                 }
             }
         }
@@ -471,7 +513,7 @@ public class AirHockeyAgent : Agent
         {
             if (StepCount == MaxStep)
             {
-                SetReward(maxStepReward);
+                AddReward(maxStepReward);
                 episodeReward["StepReward"] += stepReward;
                 return;
             }
@@ -480,7 +522,7 @@ public class AirHockeyAgent : Agent
         {
             if(StepCount - lastGameReset > maxStepsPerGame)
             {
-                SetReward(maxStepReward);
+                AddReward(maxStepReward);
                 episodeReward["StepReward"] += stepReward;
                 ResetGameWithoutNewEpisode();
                 return;

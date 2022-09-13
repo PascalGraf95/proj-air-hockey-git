@@ -34,6 +34,11 @@ public class PuckController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SetupPuckController();
+    }
+
+    public void SetupPuckController()
+    {
         pusherAgentController = GameObject.Find("PusherAgent").GetComponent<PusherController>();
         try
         {
@@ -43,7 +48,6 @@ public class PuckController : MonoBehaviour
         {
             pusherHumanController = GameObject.Find("PusherHumanSelfplay").GetComponent<PusherController>();
         }
-
     }
 
     public Vector2 GetCurrentPosition()
