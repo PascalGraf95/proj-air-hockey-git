@@ -4,6 +4,9 @@ using UnityEngine;
 using Mujoco;
 using System;
 using UnityEngine.SceneManagement;
+using Assets.Scripts;
+using Unity.MLAgents.SideChannels;
+using Unity.MLAgents;
 
 public class SceneController : MonoBehaviour
 {
@@ -27,6 +30,8 @@ public class SceneController : MonoBehaviour
     private GameState currentGameState;
     private bool humanPlaying = false;
 
+    AdditionalGameInformationsSideChannel gameResultsSideChannel;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,6 +53,19 @@ public class SceneController : MonoBehaviour
 
     }
 
+    public void Awake()
+    {
+        gameResultsSideChannel = new AdditionalGameInformationsSideChannel();
+        SideChannelManager.RegisterSideChannel(gameResultsSideChannel);
+    }
+
+    public void OnDestroy()
+    {
+        if (Academy.IsInitialized)
+        {
+            SideChannelManager.UnregisterSideChannel(gameResultsSideChannel);
+        }
+    }
     public void SetupSceneController()
     {
         pusherAgentController = GameObject.Find("PusherAgent").GetComponent<PusherController>();
