@@ -99,7 +99,6 @@ public class PusherController : MonoBehaviour
 
                 break;
         }
-
     }
 
     /// <summary>
@@ -155,15 +154,22 @@ public class PusherController : MonoBehaviour
         }
     }
 
-    public void Reset(string pusherType)
+    public void Reset(string pusherType, bool setToNirvana)
     {
-        if(pusherType == "Agent")
+        if (pusherType == "Agent")
         {
             transform.position = new Vector3(0, 0, 45.75f);
         }
         else if(pusherType == "Human")
         {
-            transform.position = new Vector3(0, 0, -45.75f);
+            if (setToNirvana)
+            {
+                transform.position = new Vector3(0, 0, -450.75f);
+            }
+            else
+            {
+                transform.position = new Vector3(0, 0, -45.75f);
+            }
         }
         slideJointX.Configuration = 0f;
         slideJointZ.Configuration = 0f;

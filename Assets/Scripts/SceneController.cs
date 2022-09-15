@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mujoco;
 using System;
+using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
@@ -24,23 +25,12 @@ public class SceneController : MonoBehaviour
     private int humanPlayerScore = 0;
     private int agentPlayerScore = 0;
     private GameState currentGameState;
+    private bool humanPlaying = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        pusherAgentController = GameObject.Find("PusherAgent").GetComponent<PusherController>();
-        puckController = GameObject.Find("Puck").GetComponent<PuckController>();
-        try
-        {
-            pusherHumanController = GameObject.Find("PusherHuman").GetComponent<PusherController>();
-        }
-        catch(NullReferenceException e)
-        {
-            pusherHumanController = GameObject.Find("PusherHumanSelfplay").GetComponent<PusherController>();
-        }
-
-
-
+        SetupSceneController();
 
         // Subscribe to Goal Events
         agentGoalColliderScript.onGoalDetected += HumanPlayerScored;
@@ -51,11 +41,25 @@ public class SceneController : MonoBehaviour
 
         // Initialize UI Controller
         uiController = GetComponent<UIController>();
-        if(uiController != null)
+        if (uiController != null)
         {
             uiController.ResetUI();
         }
 
+    }
+
+    public void SetupSceneController()
+    {
+        pusherAgentController = GameObject.Find("PusherAgent").GetComponent<PusherController>();
+        puckController = GameObject.Find("Puck").GetComponent<PuckController>();
+        try
+        {
+            pusherHumanController = GameObject.Find("PusherHuman").GetComponent<PusherController>();
+        }
+        catch (NullReferenceException e)
+        {
+            pusherHumanController = GameObject.Find("PusherHumanSelfplay").GetComponent<PusherController>();
+        }
     }
 
     // Update is called once per frame
@@ -63,7 +67,7 @@ public class SceneController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            ResetScene();
+            ResetScene(false);
         }
     }
 
@@ -102,24 +106,32 @@ public class SceneController : MonoBehaviour
         currentGameState = GameState.backWallReached;
     }
 
-    public void ResetScene()
+    public void ResetScene(bool forceScoreReset)
     {
         currentGameState = GameState.normal;
         puckController.transform.GetComponent<MeshRenderer>().enabled = false;
 
         // Reset Human and Agent Pusher
-        pusherAgentController.Reset("Agent");
-        pusherHumanController.Reset("Human");
+        pusherAgentController.Reset("Agent", false);
+        pusherHumanController.Reset("Human", false);
 
         // Reset Puck
         puckController.Reset();
 
         // Reset Game Score
-        if(humanPlayerScore >= 7 || agentPlayerScore >= 7)
+        if(humanPlayerScore >= 10 || agentPlayerScore >= 10 || forceScoreReset)
         {
-            uiController.ResetUI();
-            humanPlayerScore = 0;
-            agentPlayerScore = 0;
+            if(!humanPlaying)
+            {
+                uiController.ResetUI();
+                humanPlayerScore = 0;
+                agentPlayerScore = 0;
+            }
+            else
+            {
+                ResetSceneAgentPlaying();
+            }
+
         }
 
         // Mujoco Scene Reset
@@ -131,5 +143,59 @@ public class SceneController : MonoBehaviour
         mjScene.CreateScene();
 
         puckController.transform.GetComponent<MeshRenderer>().enabled = true;
+    }
+
+    /// <summary>
+    /// Resets the scene in a way so that a human player can play against the artificial intelligence for one game to 10.
+    /// This includes setting the PusherHuman active and disabling the mesh renderer of the ai controlled human pusher.
+    /// Furthermore, all game objects need new references to the human pusher.
+    /// </summary>
+    public void ResetSceneHumanPlaying()
+    {
+        pusherHumanController.Reset("Human", true);
+        // Deactivate the Agent Controlled Pusher
+        gameObject.transform.Find("PusherHumanSelfplay").GetComponent<MeshRenderer>().enabled = false;
+
+        // Then activate the Human Controlled Pusher
+        gameObject.transform.Find("PusherHuman").gameObject.SetActive(true);
+
+        // Furthermore modify the puck reset scenario
+        gameObject.transform.Find("Puck").GetComponent<PuckController>().resetPuckState = ResetPuckState.normalPosition;
+
+        // Trigger der Start Function again for all important GameObjects
+        gameObject.transform.Find("Puck").GetComponent<PuckController>().SetupPuckController();
+        transform.GetComponent<AirHockeyAgent>().SetupAirHockeyAgent();
+        SetupSceneController();
+
+        // Reset whole game score
+        ResetScene(true);
+
+        // Set human playing bool to true
+        humanPlaying = true;
+
+
+    }
+
+    public void ResetSceneAgentPlaying()
+    {
+        // Deactivate the Agent Controlled Pusher
+        gameObject.transform.Find("PusherHumanSelfplay").GetComponent<MeshRenderer>().enabled = true;
+
+        // Then activate the Human Controlled Pusher
+        gameObject.transform.Find("PusherHuman").gameObject.SetActive(false);
+
+        // Furthermore modify the puck reset scenario
+        gameObject.transform.Find("Puck").GetComponent<PuckController>().resetPuckState = ResetPuckState.randomVelocity;
+
+        // Trigger der Start Function again for all important GameObjects
+        gameObject.transform.Find("Puck").GetComponent<PuckController>().SetupPuckController();
+        transform.GetComponent<AirHockeyAgent>().SetupAirHockeyAgent();
+        SetupSceneController();
+
+        // Set human playing bool to false
+        humanPlaying = false;
+
+        // Reset whole game score
+        ResetScene(true);
     }
 }
