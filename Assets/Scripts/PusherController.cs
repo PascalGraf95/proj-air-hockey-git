@@ -38,6 +38,7 @@ public class PusherController : MonoBehaviour
     private Vector2 accelaration;
     private ArriveSteeringBehavior arriveSteeringBehavior;
     private GameObject cursor;
+    private readonly Vector3 cursorOffset = new Vector3(0, 5, -10);
 
 
     // Accelaration calculation
@@ -71,7 +72,7 @@ public class PusherController : MonoBehaviour
         agentGoalPos = GameObject.Find("AgentPlayerGoal").GetComponent<Transform>().position;
         humanGoalPos = GameObject.Find("AgentPlayerGoal").GetComponent<Transform>().position;
         puckPos = GameObject.Find("AgentPlayerGoal").GetComponent<Transform>().position;
-        cursor = GameObject.Find("Cursor");
+        cursor = GameObject.Find("HandCursor");
 
         arriveSteeringBehavior = new ArriveSteeringBehavior();
         targetPosition = GetCurrentPosition();
@@ -130,7 +131,7 @@ public class PusherController : MonoBehaviour
         {
             mousePosTable = hitData.point;            
             targetPosition = new Vector2(mousePosTable.x, mousePosTable.z);
-            cursor.transform.position = transform.position;
+            cursor.transform.position = transform.position + cursorOffset;
         }
         else
         {
@@ -150,7 +151,7 @@ public class PusherController : MonoBehaviour
         if (collider.Raycast(ray, out RaycastHit hit, 1000f))
         {
             mousePosWorld = hit.point;
-            cursor.transform.position = mousePosWorld;
+            cursor.transform.position = mousePosWorld + cursorOffset;
         }
     }
 
