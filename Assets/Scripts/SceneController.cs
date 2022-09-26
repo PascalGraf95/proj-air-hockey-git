@@ -32,6 +32,7 @@ public class SceneController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SetupSceneController();
         cursor = GameObject.Find("HandCursor");
         pusherAgentController = GameObject.Find("PusherAgent").GetComponent<PusherController>();
         puckController = GameObject.Find("Puck").GetComponent<PuckController>();
@@ -52,6 +53,26 @@ public class SceneController : MonoBehaviour
         }
 
     }
+
+    public void SetupSceneController()
+    {
+        pusherAgentController = GameObject.Find("PusherAgent").GetComponent<PusherController>();
+        puckController = GameObject.Find("Puck").GetComponent<PuckController>();
+
+        if (GameObject.Find("PusherHuman") != null)
+        {
+            pusherHumanController = GameObject.Find("PusherHuman").GetComponent<PusherController>();
+        }
+        else if (GameObject.Find("PusherHumanSelfplay") != null)
+        {
+            pusherHumanController = GameObject.Find("PusherHumanSelfplay").GetComponent<PusherController>();
+        }
+        else
+        {
+            Debug.LogError("Pusher Human GameObject not found.");
+        }
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -151,47 +172,49 @@ public class SceneController : MonoBehaviour
     /// </summary>
     public void ResetSceneHumanPlaying()
     {
-        pusherHumanController.Reset("Human", false);
+        pusherHumanController.Reset("Human", true);
+        // Deactivate the Agent Controlled Pusher
+        gameObject.transform.Find("PusherHumanSelfplay").GetComponent<MeshRenderer>().enabled = false;
 
-        gameObject.transform.Find("PusherHumanSelfplay").GetComponent<PusherController>().ControlMode = ControlMode.Human;
-        gameObject.transform.Find("PusherHumanSelfplay").GetComponent<HumanAgentClone>().enabled = false;
-        gameObject.transform.Find("PusherHumanSelfplay").GetComponent <Agent>().enabled = false;
+        // Then activate the Human Controlled Pusher
+        gameObject.transform.Find("PusherHuman").gameObject.SetActive(true);
 
         // Furthermore modify the puck reset scenario
-        gameObject.transform.Find("Puck").GetComponent<PuckController>().resetPuckState = ResetPuckState.randomPosition;
+        gameObject.transform.Find("Puck").GetComponent<PuckController>().resetPuckState = ResetPuckState.randomVelocity;
 
         // Trigger der Start Function again for all important GameObjects
-        //gameObject.transform.Find("Puck").GetComponent<PuckController>().SetupPuckController();
+        gameObject.transform.Find("Puck").GetComponent<PuckController>().SetupPuckController();
         transform.GetComponent<AirHockeyAgent>().SetupAirHockeyAgent();
+        SetupSceneController();
 
         // Reset whole game score
         ResetScene(true);
 
         // Set human playing bool to true
         humanPlaying = true;
-
-
     }
 
     public void ResetSceneAgentPlaying()
     {
-        pusherHumanController.Reset("Agent", false);
+        // Deactivate the Agent Controlled Pusher
+        gameObject.transform.Find("PusherHumanSelfplay").GetComponent<MeshRenderer>().enabled = true;
 
-        gameObject.transform.Find("PusherHumanSelfplay").GetComponent<PusherController>().ControlMode = ControlMode.Selfplay;
-        gameObject.transform.Find("PusherHumanSelfplay").GetComponent<HumanAgentClone>().enabled = true;
-        gameObject.transform.Find("PusherHumanSelfplay").GetComponent<Agent>().enabled = true;
+        // Then activate the Human Controlled Pusher
+        gameObject.transform.Find("PusherHuman").gameObject.SetActive(false);
 
         // Furthermore modify the puck reset scenario
         gameObject.transform.Find("Puck").GetComponent<PuckController>().resetPuckState = ResetPuckState.randomVelocity;
 
         // Trigger der Start Function again for all important GameObjects
-        //gameObject.transform.Find("Puck").GetComponent<PuckController>().SetupPuckController();
+        gameObject.transform.Find("Puck").GetComponent<PuckController>().SetupPuckController();
         transform.GetComponent<AirHockeyAgent>().SetupAirHockeyAgent();
+        SetupSceneController();
 
         // Set human playing bool to false
         humanPlaying = false;
 
         // Reset whole game score
         ResetScene(true);
+
     }
 }

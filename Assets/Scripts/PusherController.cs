@@ -68,6 +68,7 @@ public class PusherController : MonoBehaviour
     private Collider colliderPlaneGoal;
     private Collider colliderPlaneAgentSide;
 
+    private GameObject hand;
     // Update is called once per frame
     private void Start()
     {
@@ -82,6 +83,7 @@ public class PusherController : MonoBehaviour
         humanGoalPos = GameObject.Find("AgentPlayerGoal").GetComponent<Transform>().position;
         puckPos = GameObject.Find("AgentPlayerGoal").GetComponent<Transform>().position;
         cursor = GameObject.Find("HandCursor");
+        hand = GameObject.Find("StylizedHand");
 
         arriveSteeringBehavior = new ArriveSteeringBehavior();
         targetPosition = GetCurrentPosition();
@@ -93,16 +95,10 @@ public class PusherController : MonoBehaviour
         switch (ControlMode)
         {
             case ControlMode.Selfplay:
-                //if (cursor.activeSelf is true)
-                //{
-                //    cursor.SetActive(false);
-                //}
+                hand.GetComponent<SkinnedMeshRenderer>().enabled = false;
                 break;
             case ControlMode.Human:
-                //if (cursor.activeSelf is false)
-                //{
-                //    cursor.SetActive(true);
-                //}
+                hand.GetComponent<SkinnedMeshRenderer>().enabled = true;
                 // get current mouse position on left mouse button click
                 if (Input.GetMouseButton(0))
                 {
