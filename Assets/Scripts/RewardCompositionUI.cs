@@ -44,6 +44,7 @@ public class RewardCompositionUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         Dictionary<string, float> episodeReward;
         Dictionary<string, float[]> episodeRewardShift;
         airHockeyAgent.GetRewardComposition(out episodeReward, out episodeRewardShift);
@@ -62,6 +63,7 @@ public class RewardCompositionUI : MonoBehaviour
         backwallRewardShiftText.text = episodeRewardShift["BackwallRewardShift"].Sum().ToString("0.00");
         stayInCenterRewardText.text = "Center: " + episodeReward["StayInCenterReward"].ToString("0.00");
         stayInCenterRewardShiftftText.text = episodeRewardShift["StayInCenterRewardShift"].Sum().ToString("0.00");
+
     }
 }
 

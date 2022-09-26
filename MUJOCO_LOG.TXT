@@ -31,3 +31,18 @@ WARNING: Nan, Inf or huge value in QACC at DOF 0. The simulation is unstable. Ti
 Tue Jun 21 18:14:17 2022
 WARNING: Nan, Inf or huge value in QACC at DOF 8. The simulation is unstable. Time = 16.7400.
 
+Wed Sep 21 16:14:57 2022
+ERROR: Broadphase buffer full
+
+Wed Sep 21 17:52:41 2022
+ERROR: Broadphase buffer full
+
+Wed Sep 21 19:02:39 2022
+ERROR: Broadphase buffer full
+
+Wed Sep 21 19:09:04 2022
+ERROR: Broadphase buffer full
+
+Wed Sep 21 19:13:59 2022
+ERROR: Broadphase buffer full
+

@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "com.unity.barracuda": {
-      "version": "3.0.0",
+      "version": "2.3.1-preview",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -12,8 +12,8 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.burst": {
-      "version": "1.6.0",
-      "depth": 2,
+      "version": "1.7.3",
+      "depth": 1,
       "source": "registry",
       "dependencies": {
         "com.unity.mathematics": "1.2.1"
@@ -21,11 +21,22 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.collab-proxy": {
-      "version": "1.15.13",
+      "version": "1.17.2",
       "depth": 0,
       "source": "registry",
       "dependencies": {
         "com.unity.services.core": "1.0.1"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.collections": {
+      "version": "1.4.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.burst": "1.6.6",
+        "com.unity.nuget.mono-cecil": "1.11.4",
+        "com.unity.test-framework": "1.1.31"
       },
       "url": "https://packages.unity.com"
     },
@@ -37,11 +48,11 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.rider": {
-      "version": "2.0.7",
+      "version": "3.0.15",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.unity.test-framework": "1.1.1"
+        "com.unity.ext.nunit": "1.0.6"
       },
       "url": "https://packages.unity.com"
     },
@@ -62,73 +73,87 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.mathematics": {
-      "version": "1.2.1",
-      "depth": 3,
+      "version": "1.2.6",
+      "depth": 1,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
     "com.unity.ml-agents": {
-      "version": "2.3.0-exp.2",
+      "version": "git+https://github.com/Unity-Technologies/ml-agents.git?path=com.unity.ml-agents#release_19",
       "depth": 0,
-      "source": "registry",
+      "source": "git",
       "dependencies": {
-        "com.unity.barracuda": "3.0.0",
+        "com.unity.barracuda": "2.3.1-preview",
         "com.unity.modules.imageconversion": "1.0.0",
         "com.unity.modules.jsonserialize": "1.0.0"
       },
+      "hash": "68474b92978ac4c6f26a4e170d257c6d8de72025"
+    },
+    "com.unity.nuget.mono-cecil": {
+      "version": "1.11.4",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.nuget.newtonsoft-json": {
+      "version": "3.0.2",
+      "depth": 2,
+      "source": "registry",
+      "dependencies": {},
       "url": "https://packages.unity.com"
     },
     "com.unity.render-pipelines.core": {
-      "version": "10.7.0",
+      "version": "12.1.7",
       "depth": 1,
-      "source": "registry",
+      "source": "builtin",
       "dependencies": {
         "com.unity.ugui": "1.0.0",
         "com.unity.modules.physics": "1.0.0",
         "com.unity.modules.jsonserialize": "1.0.0"
-      },
-      "url": "https://packages.unity.com"
+      }
     },
     "com.unity.render-pipelines.universal": {
-      "version": "10.7.0",
+      "version": "12.1.7",
       "depth": 0,
-      "source": "registry",
+      "source": "builtin",
       "dependencies": {
-        "com.unity.mathematics": "1.1.0",
-        "com.unity.render-pipelines.core": "10.7.0",
-        "com.unity.shadergraph": "10.7.0"
-      },
-      "url": "https://packages.unity.com"
+        "com.unity.mathematics": "1.2.1",
+        "com.unity.burst": "1.7.3",
+        "com.unity.render-pipelines.core": "12.1.7",
+        "com.unity.shadergraph": "12.1.7"
+      }
     },
     "com.unity.searcher": {
-      "version": "4.3.2",
+      "version": "4.9.1",
       "depth": 2,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
     "com.unity.services.core": {
-      "version": "1.0.1",
+      "version": "1.4.2",
       "depth": 1,
       "source": "registry",
       "dependencies": {
-        "com.unity.modules.unitywebrequest": "1.0.0"
+        "com.unity.modules.unitywebrequest": "1.0.0",
+        "com.unity.nuget.newtonsoft-json": "3.0.2",
+        "com.unity.modules.androidjni": "1.0.0"
       },
       "url": "https://packages.unity.com"
     },
     "com.unity.shadergraph": {
-      "version": "10.7.0",
+      "version": "12.1.7",
       "depth": 1,
-      "source": "registry",
+      "source": "builtin",
       "dependencies": {
-        "com.unity.render-pipelines.core": "10.7.0",
-        "com.unity.searcher": "4.3.2"
-      },
-      "url": "https://packages.unity.com"
+        "com.unity.render-pipelines.core": "12.1.7",
+        "com.unity.searcher": "4.9.1"
+      }
     },
     "com.unity.test-framework": {
-      "version": "1.1.29",
+      "version": "1.1.31",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -148,7 +173,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.timeline": {
-      "version": "1.4.8",
+      "version": "1.6.4",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -169,7 +194,7 @@
       }
     },
     "org.mujoco": {
-      "version": "file:C:/PGraf/Arbeit/RL/ZML_GitLab/mujoco/unity",
+      "version": "file:C:/PGraf/Arbeit/RL/ZML_GitLab/mujoco2/unity",
       "depth": 0,
       "source": "local",
       "dependencies": {}

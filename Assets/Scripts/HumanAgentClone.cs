@@ -37,12 +37,22 @@ public class HumanAgentClone : Agent
 
     public override void CollectObservations(VectorSensor sensor)
     {
+
         sensor.AddObservation(-pusherHumanController.GetCurrentPosition());
         sensor.AddObservation(-pusherHumanController.GetCurrentVelocity());
         sensor.AddObservation(-pusherAgentController.GetCurrentPosition());
         sensor.AddObservation(-pusherAgentController.GetCurrentVelocity());
         sensor.AddObservation(-puckController.GetCurrentPosition());
         sensor.AddObservation(-puckController.GetCurrentVelocity());
+
+        /*
+        sensor.AddObservation(Vector2.zero);
+        sensor.AddObservation(Vector2.zero);
+        sensor.AddObservation(Vector2.zero);
+        sensor.AddObservation(Vector2.zero);
+        sensor.AddObservation(Vector2.zero);
+        sensor.AddObservation(Vector2.zero);
+        */
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)

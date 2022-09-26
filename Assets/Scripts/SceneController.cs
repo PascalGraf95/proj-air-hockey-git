@@ -133,7 +133,7 @@ public class SceneController : MonoBehaviour
             }
 
         }
-
+        
         // Mujoco Scene Reset
         if (mjScene == null)
         {
@@ -141,6 +141,7 @@ public class SceneController : MonoBehaviour
         }
         mjScene.DestroyScene();
         mjScene.CreateScene();
+        //mjScene.RecreateScene();
 
         puckController.transform.GetComponent<MeshRenderer>().enabled = true;
     }
