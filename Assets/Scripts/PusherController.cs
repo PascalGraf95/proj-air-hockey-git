@@ -26,7 +26,7 @@ public class PusherController : MonoBehaviour
     public MjActuator pusherActuatorX;
     public MjSlideJoint slideJointX;
     public MjSlideJoint slideJointZ;
-
+    
     [Header("Steering Behavior")]
     [Tooltip("Maximum acceleration the Character is able to reach.")]
     public float MaxAcceleration;
@@ -44,6 +44,9 @@ public class PusherController : MonoBehaviour
     private Vector2 targetPosition;
     private Vector2 accelaration;
     private ArriveSteeringBehavior arriveSteeringBehavior;
+    private GameObject cursor;
+    private readonly Vector3 cursorOffset = new Vector3(0, 5, -10);
+
 
     // Accelaration calculation
     Vector2 lastVelocity;
@@ -57,21 +60,31 @@ public class PusherController : MonoBehaviour
     //Cameras
     private Camera playerViewCamera;
     private Camera agentViewCamera;
-    private Collider colliderPlane;
+    private Collider colliderPlaneTable;
+    private Collider colliderPlaneLeft;
+    private Collider colliderPlaneRight;
+    private Collider colliderPlaneGoal;
+    private Collider colliderPlaneAgentSide;
 
     // Update is called once per frame
     private void Start()
     {
         playerViewCamera = GameObject.Find("PlayerViewCamera").GetComponent<Camera>();
         agentViewCamera = GameObject.Find("AgentViewCamera").GetComponent<Camera>();
-        colliderPlane = GameObject.Find("AirHockeyTableTop").GetComponent<Collider>();
+        colliderPlaneTable = GameObject.Find("AirHockeyTableTop").GetComponent<Collider>();
+        colliderPlaneLeft = GameObject.Find("ColliderOutOfBoundsLeft").GetComponent<Collider>();
+        colliderPlaneRight = GameObject.Find("ColliderOutOfBoundsRight").GetComponent<Collider>();
+        colliderPlaneGoal = GameObject.Find("ColliderOutOfBoundsHumanGoal").GetComponent<Collider>();
+        colliderPlaneAgentSide = GameObject.Find("ColliderOutOfBoundsAgentSide").GetComponent<Collider>();
         agentGoalPos = GameObject.Find("AgentPlayerGoal").GetComponent<Transform>().position;
         humanGoalPos = GameObject.Find("AgentPlayerGoal").GetComponent<Transform>().position;
         puckPos = GameObject.Find("AgentPlayerGoal").GetComponent<Transform>().position;
+        cursor = GameObject.Find("HandCursor");
 
         arriveSteeringBehavior = new ArriveSteeringBehavior();
         targetPosition = GetCurrentPosition();
 
+        Cursor.visible = false;
     }
     void Update()
     {
@@ -79,13 +92,12 @@ public class PusherController : MonoBehaviour
         {
             case ControlMode.Selfplay:
                 break;
-            case ControlMode.Human:              
+            case ControlMode.Human:
                 // get current mouse position on left mouse button click
                 if (Input.GetMouseButton(0))
                 {
                     targetPosition = GetMousePosition();
                 }
-
                 // compute arrive steering behavior
                 accelaration = arriveSteeringBehavior.Arrive(targetPosition, GetCurrentPosition(), GetCurrentVelocity(), TargetRadius, SlowDownRadius, MaxSpeed, MaxAcceleration, TimeToTarget);
 
@@ -103,12 +115,12 @@ public class PusherController : MonoBehaviour
     /// <returns>The target position</returns>
     private Vector2 GetMousePosition()
     {
-        Vector3 mousePosWorld = new Vector3();
+        Vector3 mousePosTable;
+        Vector2 targetPosition = new Vector2();
         Ray ray = new Ray();
         // get current active display
         int display = 0;//Display.activeEditorGameViewTarget;
         // get other cameras
-
         if (display == 1)
         {
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -121,14 +133,34 @@ public class PusherController : MonoBehaviour
         {
             ray = agentViewCamera.ScreenPointToRay(Input.mousePosition);
         }
-        if (colliderPlane.Raycast(ray, out RaycastHit hitData, 1000f))
+        // Todo: maybe change order of if-condition to detect raycast with collider agent side first
+        if (colliderPlaneTable.Raycast(ray, out RaycastHit hitData, 1000f))
         {
-            mousePosWorld = hitData.point;
+            mousePosTable = hitData.point;            
+            targetPosition = new Vector2(mousePosTable.x, mousePosTable.z);
+            cursor.transform.position = transform.position + cursorOffset;
         }
-        Vector2 targetPosition = new Vector2(mousePosWorld.x, mousePosWorld.z);
+        else
+        {
+            DetermineColliderRaycast(ref colliderPlaneGoal, ray);
+            DetermineColliderRaycast(ref colliderPlaneLeft, ray);
+            DetermineColliderRaycast(ref colliderPlaneRight, ray);
+            DetermineColliderRaycast(ref colliderPlaneAgentSide, ray);
+
+            targetPosition = GetCurrentPosition();
+        }   
         return targetPosition;
     }
 
+    public void DetermineColliderRaycast(ref Collider collider, Ray ray)
+    {
+        Vector3 mousePosWorld;
+        if (collider.Raycast(ray, out RaycastHit hit, 1000f))
+        {
+            mousePosWorld = hit.point;
+            cursor.transform.position = mousePosWorld + cursorOffset;
+        }
+    }
 
     public void Reset(string pusherType, bool setToNirvana)
     {
