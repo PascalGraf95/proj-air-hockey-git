@@ -92,10 +92,11 @@ public class AirHockeyAgent : Agent
     [SerializeField] private float stayInCenterReward;
 
     // Used to track the influence of each reward component in each episode
-    public Dictionary<string, float> episodeReward;
-    public Dictionary<string, float[]> episodeRewardShift;
+    public Dictionary<string, float> episodeReward = new Dictionary<string, float>();
+    public Dictionary<string, float[]> episodeRewardShift = new Dictionary<string, float[]>();
 
-    
+
+
     #endregion
 
     #region Private Parameters
@@ -126,7 +127,7 @@ public class AirHockeyAgent : Agent
     private void ResetEpisodeRewards()
     {
         shiftIdx = 0;
-        episodeRewardShift = new Dictionary<string, float[]>();
+        episodeRewardShift.Clear();
         episodeRewardShift["DirectionRewardShift"] = new float[shiftLen];
         episodeRewardShift["BoundaryRewardShift"] = new float[shiftLen];
         episodeRewardShift["PuckVelocityRewardShift"] = new float[shiftLen];
@@ -135,7 +136,7 @@ public class AirHockeyAgent : Agent
         episodeRewardShift["BackwallRewardShift"] = new float[shiftLen];
         episodeRewardShift["StayInCenterRewardShift"] = new float[shiftLen];
 
-        episodeReward = new Dictionary<string, float>();
+        episodeReward.Clear();
         episodeReward["StepReward"] = 0f;
         episodeReward["DirectionReward"] = 0f;
         episodeReward["BoundaryReward"] = 0f;
@@ -166,7 +167,7 @@ public class AirHockeyAgent : Agent
         
 
         // Get Guidance Rods and UI
-        //guidanceRods = GameObject.Find("GuidanceRods").GetComponent<Rigidbody>();
+        guidanceRods = GameObject.Find("GuidanceRods").GetComponent<Rigidbody>();
     }
 
     public override void OnEpisodeBegin()
@@ -452,23 +453,7 @@ public class AirHockeyAgent : Agent
             {
                 currentJerkMag = 0;
             }
-            
-            /*
-            if (currentJerkMag > 10f)
-            {
-                var jerkMagClamped = Mathf.Clamp(currentJerkMag, 0f, 50f);
-                AddReward(jerkMagClamped * avoidDirectionChangesReward);
-                episodeReward["DirectionReward"] += jerkMagClamped * avoidDirectionChangesReward;
-            }
 
-
-            var currentVel = new Vector2(x, z);
-            currentVelMag = currentVel.magnitude;
-            var currentAcc = lastVel - currentVel;
-            currentAccMag = currentAcc.magnitude;
-            */
-            //var currentJerk = lastAcc - currentAcc;
-            //currentJerkMag = currentJerk.magnitude;
             AddReward(currentJerkMag * avoidDirectionChangesReward);
             episodeReward["DirectionReward"] += currentJerkMag * avoidDirectionChangesReward;
             episodeRewardShift["DirectionRewardShift"][shiftIdx] = currentJerkMag * avoidDirectionChangesReward;
@@ -512,25 +497,31 @@ public class AirHockeyAgent : Agent
         if (stayInCenterReward < 0f)
         {
             var puckPosition = puckController.GetCurrentPosition();
-            if(puckPosition.y < 0f)
+            var agentPosition = pusherAgentController.GetCurrentPosition();
+            // Hard boundaries: Left: -20f Right: 20f Top: 65f Bottom: 33f
+            // Soft boundaries: Left: -10f Right: 10f Top: 55f Bottom: 43f
+            if (agentPosition.y < 43f || agentPosition.y > 55f || agentPosition.x < -10f || agentPosition.x > 10f)
             {
-                var agentPosition = pusherAgentController.GetCurrentPosition();
-                // Hard boundaries: Left: -20f Right: 20f Top: 65f Bottom: 33f
-                // Soft boundaries: Left: -10f Right: 10f Top: 55f Bottom: 43f
-                if (agentPosition.y < 43f || agentPosition.y > 55f || agentPosition.x < -10f || agentPosition.x > 10f)
-                {
-                    float currentCenterRewardX = 0f;
-                    if (agentPosition.x < -10f || agentPosition.x > 10f) { currentCenterRewardX = Mathf.Clamp(Mathf.Abs(agentPosition.x * 0.1f) - 1f, 0f, 1f); }
-                    float currentCenterRewardY = 0f;
-                    if (agentPosition.y > 55f) { currentCenterRewardY = Mathf.Clamp(agentPosition.y * 0.1f - 5.5f, 0f, 1f); }
-                    else if (agentPosition.y < 43f) { currentCenterRewardY = Mathf.Clamp(-agentPosition.y * 0.1f + 4.3f, 0f, 1f); }
+                float currentCenterRewardX = 0f;
+                if (agentPosition.x < -10f || agentPosition.x > 10f) { currentCenterRewardX = Mathf.Clamp(Mathf.Abs(agentPosition.x * 0.1f) - 1f, 0f, 1f); }
+                float currentCenterRewardY = 0f;
+                if (agentPosition.y > 55f) { currentCenterRewardY = Mathf.Clamp(agentPosition.y * 0.1f - 5.5f, 0f, 1f); }
+                else if (agentPosition.y < 43f) { currentCenterRewardY = Mathf.Clamp(-agentPosition.y * 0.1f + 4.3f, 0f, 1f); }
 
-                    //print("CENTER: " + currentCenterRewardX.ToString("0.00") + " " + currentCenterRewardY.ToString("0.00"));
-                    var currentCenterReward = stayInCenterReward * 0.1f * Mathf.Sqrt(Mathf.Pow(currentCenterRewardX, 2) + Mathf.Pow(currentCenterRewardY, 2));
-                    AddReward(currentCenterReward);
-                    episodeReward["StayInCenterReward"] += currentCenterReward;
-                    episodeRewardShift["StayInCenterRewardShift"][shiftIdx] = currentCenterReward;
+                //print("CENTER: " + currentCenterRewardX.ToString("0.00") + " " + currentCenterRewardY.ToString("0.00"));
+                float currentCenterReward;
+
+                if (puckPosition.y < 0f)
+                {
+                    currentCenterReward = stayInCenterReward * 0.1f * Mathf.Sqrt(Mathf.Pow(currentCenterRewardX, 2) + Mathf.Pow(currentCenterRewardY, 2));
                 }
+                else
+                {
+                    currentCenterReward = stayInCenterReward * 0.1f * Mathf.Sqrt(Mathf.Pow(currentCenterRewardX, 2) + Mathf.Pow(currentCenterRewardY, 2)) * 0.2f;
+                }
+                AddReward(currentCenterReward);
+                episodeReward["StayInCenterReward"] += currentCenterReward;
+                episodeRewardShift["StayInCenterRewardShift"][shiftIdx] = currentCenterReward;
             }
         }
         // Reward high puck velocities
@@ -579,7 +570,7 @@ public class AirHockeyAgent : Agent
 
     void FixedUpdate()
     {
-        //guidanceRods.position = new Vector3(0, 0, pusherAgentController.transform.position.z);
+        guidanceRods.position = new Vector3(0, 0, pusherAgentController.transform.position.z);
         //guidanceRods.velocity = new Vector3(0, 0, agentRB.velocity.z);
     }
 
