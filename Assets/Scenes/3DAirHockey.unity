@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.31567377, g: 0.31567377, b: 0.31567377, a: 1}
+  m_IndirectSpecularColor: {r: 0.6207827, g: 0.606225, b: 0.5933746, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -706,7 +706,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24.15
+  m_fontSize: 22.5
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -997,14 +997,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 402abc773e34c4e49ab564d9bfd0c4fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  PlotTexture: {fileID: 0}
+  PlotImage: {fileID: 0}
+  TextureResolution: {x: 100, y: 100}
+  StartPosX: 0
+  StartPosY: 0
+  BackGroundColor:
+    r: 0
+    g: 0
+    b: 0
+    a: 0
   Ar: 0
-  TextColor: {r: 1, g: 1, b: 1, a: 1}
+  PrevBackGroundColor:
+    r: 0
+    g: 0
+    b: 0
+    a: 0
+  BackGroundArray: []
+  TextColor:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
   FontSize: 12
   MyPlotType: 0
   ShowWarnings: 1
   AxesVisible: 1
   SeriesPlotX: []
+  PlotYMaxText: {fileID: 0}
+  PlotYMinText: {fileID: 0}
+  PlotXMaxText: {fileID: 0}
+  PlotXMinText: {fileID: 0}
+  WarningText: {fileID: 0}
 --- !u!114 &128653012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1021,6 +1045,20 @@ MonoBehaviour:
   SimplestPlotScript: {fileID: 128653011}
   plotType: 0
   airHockeyAgent: {fileID: 919132147958298415}
+  counter: 0
+  MyColors:
+  - r: 0
+    g: 0
+    b: 0
+    a: 0
+  - r: 0
+    g: 0
+    b: 0
+    a: 0
+  xValues: []
+  y1Values: []
+  y2Values: []
+  Resolution: {x: 0, y: 0}
 --- !u!114 &128653013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1359,7 +1397,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24.15
+  m_fontSize: 22.5
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1727,7 +1765,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24.15
+  m_fontSize: 22.5
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1890,7 +1928,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &250115464
 Transform:
   m_ObjectHideFlags: 0
@@ -2016,6 +2054,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxVelocity: 30000
   controlMode: 0
+  resetMode: 0
   pusherActuatorZ: {fileID: 90411558}
   pusherActuatorX: {fileID: 822483694}
   slideJointX: {fileID: 1139967066}
@@ -2433,7 +2472,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24.15
+  m_fontSize: 22.5
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2567,7 +2606,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24.15
+  m_fontSize: 22.5
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2796,7 +2835,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24.15
+  m_fontSize: 22.5
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3154,7 +3193,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24.15
+  m_fontSize: 22.5
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3384,7 +3423,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 22.95
+  m_fontSize: 23.95
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4031,7 +4070,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24.15
+  m_fontSize: 22.5
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4330,7 +4369,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24.15
+  m_fontSize: 22.5
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4703,7 +4742,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &983042883
 Transform:
   m_ObjectHideFlags: 0
@@ -4751,6 +4790,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxVelocity: 30000
   controlMode: 1
+  resetMode: 0
   pusherActuatorZ: {fileID: 1083998992}
   pusherActuatorX: {fileID: 1640541202}
   slideJointX: {fileID: 1045829827}
@@ -5432,7 +5472,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24.15
+  m_fontSize: 22.5
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -6179,7 +6219,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24.15
+  m_fontSize: 22.5
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -6570,7 +6610,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24.15
+  m_fontSize: 22.5
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -7502,7 +7542,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24.15
+  m_fontSize: 22.5
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -8277,7 +8317,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 19.95
+  m_fontSize: 20.85
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -8611,7 +8651,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24.15
+  m_fontSize: 22.5
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -9219,7 +9259,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!54 &307408948820131714
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10879,6 +10919,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxVelocity: 30000
   controlMode: 0
+  resetMode: 0
   pusherActuatorZ: {fileID: 659402622}
   pusherActuatorX: {fileID: 240751364}
   slideJointX: {fileID: 833213835}

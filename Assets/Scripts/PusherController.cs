@@ -10,10 +10,18 @@ enum ControlMode
     Human
 }
 
+enum ResetPusherMode
+{
+    Standard,
+    Random
+}
+
+
 public class PusherController : MonoBehaviour
 {
     [SerializeField] private float maxVelocity;
     [SerializeField] private ControlMode controlMode;
+    [SerializeField] private ResetPusherMode resetMode;
 
     public MjActuator pusherActuatorZ;
     public MjActuator pusherActuatorX;
@@ -112,7 +120,7 @@ public class PusherController : MonoBehaviour
         Vector2 targetPosition = new Vector2();
         Ray ray = new Ray();
         // get current active display
-        int display = Display.activeEditorGameViewTarget;
+        int display = 0;
         // get other cameras
         if (display == 1)
         {
@@ -157,9 +165,22 @@ public class PusherController : MonoBehaviour
 
     public void Reset(string pusherType, bool setToNirvana)
     {
+        float xPos = 0f;
+        float zPos = 0f;
+
+
         if (pusherType == "Agent")
         {
-            transform.position = new Vector3(0, 0, 45.75f);
+            if (resetMode == ResetPusherMode.Standard)
+            {
+                transform.position = new Vector3(0, 0, 45.75f);
+            }
+            else if (resetMode == ResetPusherMode.Random)
+            {
+                xPos = Random.Range(-30f, 30f);
+                zPos = Random.Range(-40f, 23f);
+                transform.position = new Vector3(xPos, 0, 45.75f + zPos);
+            }
         }
         else if(pusherType == "Human")
         {
@@ -169,15 +190,25 @@ public class PusherController : MonoBehaviour
             }
             else
             {
-                transform.position = new Vector3(0, 0, -45.75f);
+                if (resetMode == ResetPusherMode.Standard)
+                {
+                    transform.position = new Vector3(0, 0, -45.75f);
+                }
+                else if (resetMode == ResetPusherMode.Random)
+                {
+                    xPos = Random.Range(-30f, 30f);
+                    zPos = Random.Range(-23f, 40f);
+                    transform.position = new Vector3(xPos, 0, -45.75f + zPos);
+                }
             }
         }
-        slideJointX.Configuration = 0f;
-        slideJointZ.Configuration = 0f;
+        slideJointX.Configuration = -xPos;
+        slideJointZ.Configuration = -zPos;
         slideJointX.Velocity = 0f;
         slideJointZ.Velocity = 0f;
         targetPosition = GetCurrentPosition();
     }
+
 
     public void Act(Vector2 targetVelocity)
     {
