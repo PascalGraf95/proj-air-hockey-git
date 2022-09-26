@@ -162,15 +162,8 @@ public class AirHockeyAgent : Agent
         sceneController = GetComponent<SceneController>();
         pusherAgentController = GameObject.Find("PusherAgent").GetComponent<PusherController>();
         puckController = GameObject.Find("Puck").GetComponent<PuckController>();
-        try
-        {
-            pusherHumanController = GameObject.Find("PusherHuman").GetComponent<PusherController>();
-        }
-        catch (NullReferenceException e)
-        {
-            pusherHumanController = GameObject.Find("PusherHumanSelfplay").GetComponent<PusherController>();
-        }
-
+        pusherHumanController = GameObject.Find("PusherHumanSelfplay").GetComponent<PusherController>();
+        
 
         // Get Guidance Rods and UI
         //guidanceRods = GameObject.Find("GuidanceRods").GetComponent<Rigidbody>();

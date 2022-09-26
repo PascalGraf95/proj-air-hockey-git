@@ -78,6 +78,8 @@ public class PuckController : MonoBehaviour
 
     public void Reset()
     {
+        Debug.Log("Puck reset.");
+
         slideJointX.Velocity = 0;
         slideJointZ.Velocity = 0;
         slideJointX.Configuration = 0;

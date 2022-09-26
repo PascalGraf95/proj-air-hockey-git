@@ -4,7 +4,7 @@ using UnityEngine;
 using Mujoco;
 using Assets.Scripts;
 
-enum ControlMode
+public enum ControlMode
 {
     Selfplay,
     Human
@@ -13,7 +13,7 @@ enum ControlMode
 public class PusherController : MonoBehaviour
 {
     [SerializeField] private float maxVelocity;
-    [SerializeField] private ControlMode controlMode;
+    public ControlMode ControlMode;
 
     public MjActuator pusherActuatorZ;
     public MjActuator pusherActuatorX;
@@ -81,11 +81,19 @@ public class PusherController : MonoBehaviour
     }
     void Update()
     {
-        switch (controlMode)
+        switch (ControlMode)
         {
             case ControlMode.Selfplay:
+                //if (cursor.activeSelf is true)
+                //{
+                //    cursor.SetActive(false);
+                //}
                 break;
             case ControlMode.Human:
+                //if (cursor.activeSelf is false)
+                //{
+                //    cursor.SetActive(true);
+                //}
                 // get current mouse position on left mouse button click
                 if (Input.GetMouseButton(0))
                 {

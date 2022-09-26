@@ -4,12 +4,14 @@ using UnityEngine;
 using Mujoco;
 using System;
 using UnityEngine.SceneManagement;
+using Unity.MLAgents;
 
 public class SceneController : MonoBehaviour
 {
     private PuckController puckController;
     private PusherController pusherHumanController;
     private PusherController pusherAgentController;
+    private GameObject cursor;
     [SerializeField] private GoalColliderScript agentGoalColliderScript;
     [SerializeField] private GoalColliderScript humanGoalColliderScript;
     [SerializeField] private BackwallColliderScript backwallColliderScriptLeft;
@@ -30,8 +32,11 @@ public class SceneController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SetupSceneController();
-
+        cursor = GameObject.Find("HandCursor");
+        pusherAgentController = GameObject.Find("PusherAgent").GetComponent<PusherController>();
+        puckController = GameObject.Find("Puck").GetComponent<PuckController>();
+        pusherHumanController = GameObject.Find("PusherHumanSelfplay").GetComponent<PusherController>();
+        
         // Subscribe to Goal Events
         agentGoalColliderScript.onGoalDetected += HumanPlayerScored;
         humanGoalColliderScript.onGoalDetected += AgentPlayerScored;
@@ -48,26 +53,20 @@ public class SceneController : MonoBehaviour
 
     }
 
-    public void SetupSceneController()
-    {
-        pusherAgentController = GameObject.Find("PusherAgent").GetComponent<PusherController>();
-        puckController = GameObject.Find("Puck").GetComponent<PuckController>();
-        try
-        {
-            pusherHumanController = GameObject.Find("PusherHuman").GetComponent<PusherController>();
-        }
-        catch (NullReferenceException e)
-        {
-            pusherHumanController = GameObject.Find("PusherHumanSelfplay").GetComponent<PusherController>();
-        }
-    }
-
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
             ResetScene(false);
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            ResetSceneAgentPlaying();
+        }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            ResetSceneHumanPlaying();
         }
     }
 
@@ -152,20 +151,18 @@ public class SceneController : MonoBehaviour
     /// </summary>
     public void ResetSceneHumanPlaying()
     {
-        pusherHumanController.Reset("Human", true);
-        // Deactivate the Agent Controlled Pusher
-        gameObject.transform.Find("PusherHumanSelfplay").GetComponent<MeshRenderer>().enabled = false;
+        pusherHumanController.Reset("Human", false);
 
-        // Then activate the Human Controlled Pusher
-        gameObject.transform.Find("PusherHuman").gameObject.SetActive(true);
+        gameObject.transform.Find("PusherHumanSelfplay").GetComponent<PusherController>().ControlMode = ControlMode.Human;
+        gameObject.transform.Find("PusherHumanSelfplay").GetComponent<HumanAgentClone>().enabled = false;
+        gameObject.transform.Find("PusherHumanSelfplay").GetComponent <Agent>().enabled = false;
 
         // Furthermore modify the puck reset scenario
-        gameObject.transform.Find("Puck").GetComponent<PuckController>().resetPuckState = ResetPuckState.normalPosition;
+        gameObject.transform.Find("Puck").GetComponent<PuckController>().resetPuckState = ResetPuckState.randomPosition;
 
         // Trigger der Start Function again for all important GameObjects
-        gameObject.transform.Find("Puck").GetComponent<PuckController>().SetupPuckController();
+        //gameObject.transform.Find("Puck").GetComponent<PuckController>().SetupPuckController();
         transform.GetComponent<AirHockeyAgent>().SetupAirHockeyAgent();
-        SetupSceneController();
 
         // Reset whole game score
         ResetScene(true);
@@ -178,19 +175,18 @@ public class SceneController : MonoBehaviour
 
     public void ResetSceneAgentPlaying()
     {
-        // Deactivate the Agent Controlled Pusher
-        gameObject.transform.Find("PusherHumanSelfplay").GetComponent<MeshRenderer>().enabled = true;
+        pusherHumanController.Reset("Agent", false);
 
-        // Then activate the Human Controlled Pusher
-        gameObject.transform.Find("PusherHuman").gameObject.SetActive(false);
+        gameObject.transform.Find("PusherHumanSelfplay").GetComponent<PusherController>().ControlMode = ControlMode.Selfplay;
+        gameObject.transform.Find("PusherHumanSelfplay").GetComponent<HumanAgentClone>().enabled = true;
+        gameObject.transform.Find("PusherHumanSelfplay").GetComponent<Agent>().enabled = true;
 
         // Furthermore modify the puck reset scenario
         gameObject.transform.Find("Puck").GetComponent<PuckController>().resetPuckState = ResetPuckState.randomVelocity;
 
         // Trigger der Start Function again for all important GameObjects
-        gameObject.transform.Find("Puck").GetComponent<PuckController>().SetupPuckController();
+        //gameObject.transform.Find("Puck").GetComponent<PuckController>().SetupPuckController();
         transform.GetComponent<AirHockeyAgent>().SetupAirHockeyAgent();
-        SetupSceneController();
 
         // Set human playing bool to false
         humanPlaying = false;
