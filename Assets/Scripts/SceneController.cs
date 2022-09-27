@@ -172,7 +172,13 @@ public class SceneController : MonoBehaviour
     /// </summary>
     public void ResetSceneHumanPlaying()
     {
-        pusherHumanController.Reset("Human", true);
+        // Set human playing bool to true
+        humanPlaying = false;
+
+        if (GameObject.Find("PusherHuman") == null)
+        {
+            pusherHumanController.Reset("Human", true);
+        }
         // Deactivate the Agent Controlled Pusher
         gameObject.transform.Find("PusherHumanSelfplay").GetComponent<MeshRenderer>().enabled = false;
 
