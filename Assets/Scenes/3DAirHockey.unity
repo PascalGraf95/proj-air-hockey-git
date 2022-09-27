@@ -399,9 +399,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Dr\xFCcken Sie 'P', um ein neues Spiel gegen die KI zu beginnen.\nDr\xFCcken
-    Sie 'S', um die KI gegen sich selbst spielen zu lassen.\nHalten Sie die linke
-    Maustaste gedr\xFCckt, um die Steuerung \xFCber den Pusher zu \xFCbernehmen."
+  m_text: "'P' dr\xFCcken, um ein neues Spiel gegen die KI zu beginnen.\n'S' dr\xFCcken,
+    um die KI gegen sich selbst spielen zu lassen.\nHalten Sie die linke Maustaste
+    gedr\xFCckt, um die Steuerung \xFCber den Pusher zu \xFCbernehmen."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -428,7 +428,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 6
+  m_fontSize: 11.85
   m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -464,7 +464,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 10.052246, y: 4.305847, z: 7.1760254, w: 8.618256}
+  m_margin: {x: 10.052246, y: 6.211731, z: 7.1760254, w: 4.811249}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -3935,7 +3935,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 5
+  m_fontSize: 11.45
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3971,7 +3971,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 4.3095703, y: 3.579895, z: 2.8719482, w: 341.6491}
+  m_margin: {x: 4.3095703, y: 3.579895, z: 2.8719482, w: 337.84326}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -5771,10 +5771,10 @@ RectTransform:
   m_Father: {fileID: 632479172}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.016, y: 0.4}
+  m_AnchorMin: {x: 0.016, y: 0.76154584}
   m_AnchorMax: {x: 0.2505467, y: 0.97081804}
-  m_AnchoredPosition: {x: 1.3294678, y: 141.35}
-  m_SizeDelta: {x: 1.3389628, y: -288.69998}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0.000023841858, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1195217407
 MonoBehaviour:
