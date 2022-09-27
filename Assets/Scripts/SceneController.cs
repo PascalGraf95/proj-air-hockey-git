@@ -139,7 +139,7 @@ public class SceneController : MonoBehaviour
         puckController.Reset();
 
         // Reset Game Score
-        if(humanPlayerScore >= 10 || agentPlayerScore >= 10 || forceScoreReset)
+        if(humanPlayerScore >= 7 || agentPlayerScore >= 7 || forceScoreReset)
         {
             if(!humanPlaying)
             {

@@ -169,7 +169,7 @@
       }
     },
     "org.mujoco": {
-      "version": "file:C:/repos/mujoco/unity",
+      "version": "file:C:/PGraf/Arbeit/RL/ZML_GitLab/mujoco/unity",
       "depth": 0,
       "source": "local",
       "dependencies": {}
