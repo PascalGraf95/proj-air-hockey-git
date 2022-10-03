@@ -10,6 +10,9 @@ using System.IO;
 using Mujoco;
 using Assets.Scripts;
 using System;
+using Unity.MLAgents.Demonstrations;
+using static System.Collections.Specialized.BitVector32;
+using UnityEngine.Profiling;
 
 public enum ActionType { Discrete, Continuous };
 public enum TaskType
@@ -100,6 +103,7 @@ public class AirHockeyAgent : Agent
     #endregion
 
     #region Private Parameters
+    private DemonstrationRecorder demonstrationRecorder;
     private SceneController sceneController;
     private PuckController puckController;
     private PusherController pusherAgentController;
@@ -159,6 +163,12 @@ public class AirHockeyAgent : Agent
         // Initialize Reward Dictionary
         ResetEpisodeRewards();
 
+        // Init demonstration recorder
+        demonstrationRecorder = gameObject.AddComponent<DemonstrationRecorder>();
+        demonstrationRecorder.DemonstrationDirectory = @"Demonstrations";
+        demonstrationRecorder.DemonstrationName = DateTime.Now + "_AirhockeyDemonstrationRecording";
+        demonstrationRecorder.NumStepsToRecord = 0; // If you set Num Steps To Record to 0 then recording will continue until you manually end the play session.
+
         // Get the controllers for scene, puck and the two pushers
         sceneController = GetComponent<SceneController>();
         pusherAgentController = GameObject.Find("PusherAgent").GetComponent<PusherController>();
@@ -167,10 +177,12 @@ public class AirHockeyAgent : Agent
         if (GameObject.Find("PusherHuman") != null)
         {
             pusherHumanController = GameObject.Find("PusherHuman").GetComponent<PusherController>();
+            demonstrationRecorder.Record = true;
         }
         else if (GameObject.Find("PusherHumanSelfplay") != null)
         {
             pusherHumanController = GameObject.Find("PusherHumanSelfplay").GetComponent<PusherController>();
+            demonstrationRecorder.Record = false;
         }
         else
         {
