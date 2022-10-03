@@ -13,6 +13,7 @@ public class SceneController : MonoBehaviour
     private PuckController puckController;
     private PusherController pusherHumanController;
     private PusherController pusherAgentController;
+    private GameObject cursor;
     [SerializeField] private GoalColliderScript agentGoalColliderScript;
     [SerializeField] private GoalColliderScript humanGoalColliderScript;
     [SerializeField] private BackwallColliderScript backwallColliderScriptLeft;
@@ -29,6 +30,7 @@ public class SceneController : MonoBehaviour
     private int agentPlayerScore = 0;
     private GameState currentGameState;
     private bool humanPlaying = false;
+    private int gamesPlayed = 0;
 
     AdditionalGameInformationsSideChannel gameResultsSideChannel;
 
@@ -36,7 +38,11 @@ public class SceneController : MonoBehaviour
     void Start()
     {
         SetupSceneController();
-
+        cursor = GameObject.Find("HandCursor");
+        pusherAgentController = GameObject.Find("PusherAgent").GetComponent<PusherController>();
+        puckController = GameObject.Find("Puck").GetComponent<PuckController>();
+        pusherHumanController = GameObject.Find("PusherHumanSelfplay").GetComponent<PusherController>();
+        
         // Subscribe to Goal Events
         agentGoalColliderScript.onGoalDetected += HumanPlayerScored;
         humanGoalColliderScript.onGoalDetected += AgentPlayerScored;
@@ -70,15 +76,21 @@ public class SceneController : MonoBehaviour
     {
         pusherAgentController = GameObject.Find("PusherAgent").GetComponent<PusherController>();
         puckController = GameObject.Find("Puck").GetComponent<PuckController>();
-        try
+
+        if (GameObject.Find("PusherHuman") != null)
         {
             pusherHumanController = GameObject.Find("PusherHuman").GetComponent<PusherController>();
         }
-        catch (NullReferenceException e)
+        else if (GameObject.Find("PusherHumanSelfplay") != null)
         {
             pusherHumanController = GameObject.Find("PusherHumanSelfplay").GetComponent<PusherController>();
         }
+        else
+        {
+            Debug.LogError("Pusher Human GameObject not found.");
+        }
     }
+
 
     // Update is called once per frame
     void Update()
@@ -86,6 +98,14 @@ public class SceneController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             ResetScene(false);
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            ResetSceneAgentPlaying();
+        }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            ResetSceneHumanPlaying();
         }
     }
 
@@ -137,16 +157,23 @@ public class SceneController : MonoBehaviour
         puckController.Reset();
 
         // Reset Game Score
-        if(humanPlayerScore >= 10 || agentPlayerScore >= 10 || forceScoreReset)
+        if(humanPlayerScore >= 2 || agentPlayerScore >= 2 || forceScoreReset)
         {
             if(!humanPlaying)
-            {
+            {                
                 uiController.ResetUI();
                 humanPlayerScore = 0;
                 agentPlayerScore = 0;
             }
             else
             {
+                // Game results to determine Elo-rating should only be send to modular-reinforcement-learning
+                // if selfplay is active and a full game has been played
+                if (!forceScoreReset)
+                {
+                    gamesPlayed++;
+                    gameResultsSideChannel.SendGameResultToModularRL(agentPlayerScore, humanPlayerScore, gamesPlayed);
+                }
                 ResetSceneAgentPlaying();
             }
 
@@ -170,7 +197,13 @@ public class SceneController : MonoBehaviour
     /// </summary>
     public void ResetSceneHumanPlaying()
     {
-        pusherHumanController.Reset("Human", true);
+        // Set human playing bool to true
+        humanPlaying = false;
+
+        if (GameObject.Find("PusherHuman") == null)
+        {
+            pusherHumanController.Reset("Human", true);
+        }
         // Deactivate the Agent Controlled Pusher
         gameObject.transform.Find("PusherHumanSelfplay").GetComponent<MeshRenderer>().enabled = false;
 
@@ -178,7 +211,7 @@ public class SceneController : MonoBehaviour
         gameObject.transform.Find("PusherHuman").gameObject.SetActive(true);
 
         // Furthermore modify the puck reset scenario
-        gameObject.transform.Find("Puck").GetComponent<PuckController>().resetPuckState = ResetPuckState.normalPosition;
+        gameObject.transform.Find("Puck").GetComponent<PuckController>().resetPuckState = ResetPuckState.randomVelocity;
 
         // Trigger der Start Function again for all important GameObjects
         gameObject.transform.Find("Puck").GetComponent<PuckController>().SetupPuckController();
@@ -190,8 +223,6 @@ public class SceneController : MonoBehaviour
 
         // Set human playing bool to true
         humanPlaying = true;
-
-
     }
 
     public void ResetSceneAgentPlaying()
@@ -215,5 +246,6 @@ public class SceneController : MonoBehaviour
 
         // Reset whole game score
         ResetScene(true);
+
     }
 }

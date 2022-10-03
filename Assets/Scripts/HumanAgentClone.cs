@@ -24,13 +24,17 @@ public class HumanAgentClone : Agent
     {
         pusherAgentController = GameObject.Find("PusherAgent").GetComponent<PusherController>();
         puckController = GameObject.Find("Puck").GetComponent<PuckController>();
-        try
+        if (GameObject.Find("PusherHuman") != null)
         {
             pusherHumanController = GameObject.Find("PusherHuman").GetComponent<PusherController>();
         }
-        catch(NullReferenceException e)
+        else if (GameObject.Find("PusherHumanSelfplay") != null)
         {
             pusherHumanController = GameObject.Find("PusherHumanSelfplay").GetComponent<PusherController>();
+        }
+        else
+        {
+            Debug.LogError("Pusher Human GameObject not found.");
         }
 
     }

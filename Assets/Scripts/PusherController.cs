@@ -4,16 +4,25 @@ using UnityEngine;
 using Mujoco;
 using Assets.Scripts;
 
-enum ControlMode
+public enum ControlMode
 {
     Selfplay,
     Human
 }
 
+enum ResetPusherMode
+{
+    Standard,
+    Random
+}
+
+
 public class PusherController : MonoBehaviour
 {
     [SerializeField] private float maxVelocity;
-    [SerializeField] private ControlMode controlMode;
+
+    public ControlMode ControlMode;
+    [SerializeField] private ResetPusherMode resetMode;
 
     public MjActuator pusherActuatorZ;
     public MjActuator pusherActuatorX;
@@ -59,6 +68,7 @@ public class PusherController : MonoBehaviour
     private Collider colliderPlaneGoal;
     private Collider colliderPlaneAgentSide;
 
+    private GameObject hand;
     // Update is called once per frame
     private void Start()
     {
@@ -73,6 +83,7 @@ public class PusherController : MonoBehaviour
         humanGoalPos = GameObject.Find("AgentPlayerGoal").GetComponent<Transform>().position;
         puckPos = GameObject.Find("AgentPlayerGoal").GetComponent<Transform>().position;
         cursor = GameObject.Find("HandCursor");
+        hand = GameObject.Find("StylizedHand");
 
         arriveSteeringBehavior = new ArriveSteeringBehavior();
         targetPosition = GetCurrentPosition();
@@ -81,11 +92,13 @@ public class PusherController : MonoBehaviour
     }
     void Update()
     {
-        switch (controlMode)
+        switch (ControlMode)
         {
             case ControlMode.Selfplay:
+                hand.GetComponent<SkinnedMeshRenderer>().enabled = false;
                 break;
             case ControlMode.Human:
+                hand.GetComponent<SkinnedMeshRenderer>().enabled = true;
                 // get current mouse position on left mouse button click
                 if (Input.GetMouseButton(0))
                 {
@@ -112,7 +125,7 @@ public class PusherController : MonoBehaviour
         Vector2 targetPosition = new Vector2();
         Ray ray = new Ray();
         // get current active display
-        int display = Display.activeEditorGameViewTarget;
+        int display = 0;
         // get other cameras
         if (display == 1)
         {
@@ -157,9 +170,22 @@ public class PusherController : MonoBehaviour
 
     public void Reset(string pusherType, bool setToNirvana)
     {
+        float xPos = 0f;
+        float zPos = 0f;
+
+
         if (pusherType == "Agent")
         {
-            transform.position = new Vector3(0, 0, 45.75f);
+            if (resetMode == ResetPusherMode.Standard)
+            {
+                transform.position = new Vector3(0, 0, 45.75f);
+            }
+            else if (resetMode == ResetPusherMode.Random)
+            {
+                xPos = Random.Range(-30f, 30f);
+                zPos = Random.Range(-40f, 23f);
+                transform.position = new Vector3(xPos, 0, 45.75f + zPos);
+            }
         }
         else if(pusherType == "Human")
         {
@@ -169,15 +195,25 @@ public class PusherController : MonoBehaviour
             }
             else
             {
-                transform.position = new Vector3(0, 0, -45.75f);
+                if (resetMode == ResetPusherMode.Standard)
+                {
+                    transform.position = new Vector3(0, 0, -45.75f);
+                }
+                else if (resetMode == ResetPusherMode.Random)
+                {
+                    xPos = Random.Range(-30f, 30f);
+                    zPos = Random.Range(-23f, 40f);
+                    transform.position = new Vector3(xPos, 0, -45.75f + zPos);
+                }
             }
         }
-        slideJointX.Configuration = 0f;
-        slideJointZ.Configuration = 0f;
+        slideJointX.Configuration = -xPos;
+        slideJointZ.Configuration = -zPos;
         slideJointX.Velocity = 0f;
         slideJointZ.Velocity = 0f;
         targetPosition = GetCurrentPosition();
     }
+
 
     public void Act(Vector2 targetVelocity)
     {
