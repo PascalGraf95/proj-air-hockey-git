@@ -9,6 +9,9 @@ public class BackwallColliderScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        onBackwallHitDetected();
+        if(other.gameObject.tag == "Puck")
+        {
+            onBackwallHitDetected();
+        }
     }
 }

@@ -2401,3 +2401,6 @@ WARNING: Unknown warning type Time = 2.8400.
 Mon Sep 26 12:55:25 2022
 WARNING: Unknown warning type Time = 2.8600.
 
+Tue Oct  4 12:22:09 2022
+ERROR: Broadphase buffer full
+
