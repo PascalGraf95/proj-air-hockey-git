@@ -16,6 +16,8 @@ public class SceneController : MonoBehaviour
     [SerializeField] private GoalColliderScript humanGoalColliderScript;
     [SerializeField] private BackwallColliderScript backwallColliderScriptLeft;
     [SerializeField] private BackwallColliderScript backwallColliderScriptRight;
+    [SerializeField] private Transform airhockeyTableBends;
+
     private UIController uiController;
     public GameState CurrentGameState 
     { 
@@ -28,6 +30,7 @@ public class SceneController : MonoBehaviour
     private int agentPlayerScore = 0;
     private GameState currentGameState;
     private bool humanPlaying = false;
+    private float lastBackwallHitDetected = Time.time;
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +46,17 @@ public class SceneController : MonoBehaviour
         humanGoalColliderScript.onGoalDetected += AgentPlayerScored;
         backwallColliderScriptLeft.onBackwallHitDetected += BackwallReached;
         backwallColliderScriptRight.onBackwallHitDetected += BackwallReached;
+        foreach(Transform bend in airhockeyTableBends)
+        {
+            foreach(Transform block in bend)
+            {
+                BackwallColliderScript script = block.GetComponent<BackwallColliderScript>();
+                if(script != null)
+                {
+                    script.onBackwallHitDetected += BackwallReached;
+                }
+            }
+        }
 
 
         // Initialize UI Controller
@@ -123,7 +137,12 @@ public class SceneController : MonoBehaviour
 
     private void BackwallReached()
     {
-        currentGameState = GameState.backWallReached;
+        if(Time.time - lastBackwallHitDetected > 1f)
+        {
+            currentGameState = GameState.backWallReached;
+            lastBackwallHitDetected = Time.time;
+        }
+
     }
 
     public void ResetScene(bool forceScoreReset)
