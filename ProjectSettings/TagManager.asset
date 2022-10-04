@@ -9,6 +9,10 @@ TagManager:
   - HumanGoal
   - AgentGoal
   - HumanBackWall
+  - PlayerBackWall
+  - AIGoal
+  - PlayerGoal
+  - Puck
   layers:
   - Default
   - TransparentFX
@@ -16,9 +20,9 @@ TagManager:
   - Boundaries
   - Water
   - UI
-  - 
-  - 
-  - 
+  - HumanPerspectiveUI
+  - AgentPerspectiveUI
+  - TopViewPerspectiveUI
   - 
   - 
   - 
