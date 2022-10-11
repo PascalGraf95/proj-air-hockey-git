@@ -30,7 +30,7 @@ public class SceneController : MonoBehaviour
     private int agentPlayerScore = 0;
     private GameState currentGameState;
     private bool humanPlaying = false;
-    private float lastBackwallHitDetected = Time.time;
+    private float lastBackwallHitDetected;
 
     // Start is called before the first frame update
     void Start()
