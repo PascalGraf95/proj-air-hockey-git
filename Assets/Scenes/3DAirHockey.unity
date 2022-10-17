@@ -496,7 +496,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 11.75
+  m_fontSize: 11.7
   m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3953,7 +3953,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 13.7
+  m_fontSize: 13.65
   m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5221,11 +5221,11 @@ MonoBehaviour:
   pusherActuatorX: {fileID: 1640541202}
   slideJointX: {fileID: 1045829827}
   slideJointZ: {fileID: 1216866140}
-  MaxAcceleration: 50000
-  MaxSpeed: 1500
-  TargetRadius: 0.005
+  MaxAcceleration: 85000
+  MaxSpeed: 2000
+  TargetRadius: 5
   SlowDownRadius: 25
-  TimeToTarget: 0.025
+  TimeToTarget: 0.032
 --- !u!114 &983042886
 MonoBehaviour:
   m_ObjectHideFlags: 0
