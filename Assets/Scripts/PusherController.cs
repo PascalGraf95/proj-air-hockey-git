@@ -68,6 +68,8 @@ public class PusherController : MonoBehaviour
     private Collider colliderPlaneGoal;
     private Collider colliderPlaneAgentSide;
 
+    private Material selfplayMaterial;
+    private Material humanplayMaterial;
     private GameObject hand;
     // Update is called once per frame
     private void Start()
@@ -84,6 +86,8 @@ public class PusherController : MonoBehaviour
         puckPos = GameObject.Find("AgentPlayerGoal").GetComponent<Transform>().position;
         cursor = GameObject.Find("HandCursor");
         hand = GameObject.Find("StylizedHand");
+        selfplayMaterial = Resources.Load("White-Hand-Selfplay") as Material;
+        humanplayMaterial = Resources.Load("White-Hand") as Material;
 
         arriveSteeringBehavior = new ArriveSteeringBehavior();
         targetPosition = GetCurrentPosition();
@@ -95,22 +99,31 @@ public class PusherController : MonoBehaviour
         switch (ControlMode)
         {
             case ControlMode.Selfplay:
-                hand.GetComponent<SkinnedMeshRenderer>().enabled = false;
+                hand.GetComponent<SkinnedMeshRenderer>().material = selfplayMaterial;
+                targetPosition = GetMousePosition();
+                cursor.transform.position = new Vector3(targetPosition.x, cursorOffset.y, targetPosition.y + cursorOffset.z);
                 break;
             case ControlMode.Human:
-                hand.GetComponent<SkinnedMeshRenderer>().enabled = true;
+                hand.GetComponent<SkinnedMeshRenderer>().material = humanplayMaterial;
                 // get current mouse position on left mouse button click
                 if (Input.GetMouseButton(0))
                 {
+                    // calculate mouse position relative to the airhockey table plane
                     targetPosition = GetMousePosition();
+
+                    // compute arrive steering behavior
+                    accelaration = arriveSteeringBehavior.Arrive(targetPosition, GetCurrentPosition(), GetCurrentVelocity(), TargetRadius, SlowDownRadius, MaxSpeed, MaxAcceleration, TimeToTarget);
+
+                    // set actuator acceleration
+                    pusherActuatorX.Control = -accelaration.x;
+                    pusherActuatorZ.Control = -accelaration.y;
                 }
-                // compute arrive steering behavior
-                accelaration = arriveSteeringBehavior.Arrive(targetPosition, GetCurrentPosition(), GetCurrentVelocity(), TargetRadius, SlowDownRadius, MaxSpeed, MaxAcceleration, TimeToTarget);
-
-                // set actuator acceleration
-                pusherActuatorX.Control = -accelaration.x;
-                pusherActuatorZ.Control = -accelaration.y;
-
+                else
+                {
+                    // calculate mouse position relative to the airhockey table plane
+                    targetPosition = GetMousePosition();
+                    cursor.transform.position = new Vector3(targetPosition.x, cursorOffset.y, targetPosition.y + cursorOffset.z);
+                }               
                 break;
         }
     }
@@ -122,7 +135,7 @@ public class PusherController : MonoBehaviour
     private Vector2 GetMousePosition()
     {
         Vector3 mousePosTable;
-        Vector2 targetPosition = new Vector2();
+        Vector2 targetPosition;
         Ray ray = new Ray();
         // get current active display
         int display = 0;
@@ -148,24 +161,26 @@ public class PusherController : MonoBehaviour
         }
         else
         {
-            DetermineColliderRaycast(ref colliderPlaneGoal, ray);
-            DetermineColliderRaycast(ref colliderPlaneLeft, ray);
-            DetermineColliderRaycast(ref colliderPlaneRight, ray);
-            DetermineColliderRaycast(ref colliderPlaneAgentSide, ray);
+            List<Collider> colliderList = new List<Collider>();
+            colliderList.Add(colliderPlaneGoal);
+            colliderList.Add(colliderPlaneLeft);
+            colliderList.Add(colliderPlaneRight);
+            colliderList.Add(colliderPlaneAgentSide);
 
-            targetPosition = GetCurrentPosition();
+            foreach (Collider collider in colliderList)
+            {
+                Vector3 mousePosWorld;
+                if (collider.Raycast(ray, out RaycastHit hit, 1000f))
+                {
+                    mousePosWorld = hit.point;
+                    targetPosition = new Vector2(mousePosWorld.x, mousePosWorld.z);
+                    cursor.transform.position = mousePosWorld;
+                }
+            }
+            targetPosition.x = cursor.transform.position.x;
+            targetPosition.y = cursor.transform.position.z;
         }   
         return targetPosition;
-    }
-
-    public void DetermineColliderRaycast(ref Collider collider, Ray ray)
-    {
-        Vector3 mousePosWorld;
-        if (collider.Raycast(ray, out RaycastHit hit, 1000f))
-        {
-            mousePosWorld = hit.point;
-            cursor.transform.position = mousePosWorld + cursorOffset;
-        }
     }
 
     public void Reset(string pusherType, bool setToNirvana)
@@ -214,40 +229,67 @@ public class PusherController : MonoBehaviour
         targetPosition = GetCurrentPosition();
     }
 
-
+    /// <summary>
+    /// Control pusher agents with maximum velocity. 
+    /// </summary>
+    /// <param name="targetVelocity"></param>
     public void Act(Vector2 targetVelocity)
     {
         pusherActuatorX.Control = targetVelocity.x * maxVelocity;
         pusherActuatorZ.Control = targetVelocity.y * maxVelocity;
     }
 
+    /// <summary>
+    /// Get current pusher position.
+    /// </summary>
+    /// <returns></returns>
     public Vector2 GetCurrentPosition()
     {
         return new Vector2(transform.position.x, transform.position.z);
     }
 
+    /// <summary>
+    /// Get current pusher velocity.
+    /// </summary>
+    /// <returns></returns>
     public Vector2 GetCurrentVelocity()
     {
         return new Vector2(pusherActuatorX.Velocity, pusherActuatorZ.Velocity);
     }
 
+    /// <summary>
+    /// Get current pusher accelaration.
+    /// </summary>
+    /// <returns></returns>
     public Vector2 GetCurrentAccelaration()
     {
         return currentAccelaration;
     }
 
+    /// <summary>
+    /// Get distance between current pusher to the goal on the agent side.
+    /// </summary>
+    /// <returns></returns>
     public Vector2 GetDistanceAgentGoal()
     {
         Vector2 goalPos = new Vector2(agentGoalPos.x, agentGoalPos.z);
         return goalPos - GetCurrentPosition();
     }
 
+    /// <summary>
+    /// Get distance between current pusher to the goal on the human side.
+    /// </summary>
+    /// <returns></returns>
     public Vector2 GetDistanceHumanGoal()
     {
         Vector2 goalPos = new Vector2(humanGoalPos.x, humanGoalPos.z);
         return goalPos - GetCurrentPosition();
     }
 
+    /// <summary>
+    /// Get distance between current pusher and puck.
+    /// </summary>
+    /// <returns></returns>
     public Vector2 GetDistancePuck()
     {
         Vector2 pos = new Vector2(puckPos.x, puckPos.z);
