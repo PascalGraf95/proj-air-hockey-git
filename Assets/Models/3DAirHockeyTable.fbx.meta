@@ -7,8 +7,18 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Aluminium
+    second: {fileID: 2100000, guid: f12890b7f745a724d819c23d15e56a93, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Aruco
     second: {fileID: 2100000, guid: 29ed0a62269317e4ca0cbad3bf08c0b0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: e54c056e820f4d940a0b8a80b8f25107, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
