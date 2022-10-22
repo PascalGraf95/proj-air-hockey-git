@@ -12,6 +12,8 @@ public class UIController : MonoBehaviour
     [SerializeField] private Transform humanScoreTextTopPerspective;
     [SerializeField] private Transform humanGoalLight;
     [SerializeField] private Transform agentGoalLight;
+    [SerializeField] private GameObject infoCanvas;
+    [SerializeField] private bool infoVisibleOnStart = true;
 
     public void ResetUI()
     {
@@ -42,5 +44,23 @@ public class UIController : MonoBehaviour
         humanScoreTextHumanPerspective.GetComponent<Animator>().SetTrigger("GoalScored");
         agentGoalLight.GetComponent<Animator>().SetTrigger("GoalScored");
 
+    }
+
+    /// <summary>
+    /// Method to change the visibility of the UI information like e.g. reward composition.
+    /// </summary>
+    public void ToggleUiIsVisible()
+    {
+        // toggle bool
+        infoVisibleOnStart = infoVisibleOnStart is true ? false : true;
+        // change visibility of info canvas by setting the gameobject active/unactive
+        if (infoVisibleOnStart is true)
+        {
+            infoCanvas.SetActive(true);
+        }
+        else
+        {
+            infoCanvas.SetActive(false);
+        }
     }
 }
