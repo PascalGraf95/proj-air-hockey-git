@@ -58,14 +58,12 @@ public class SceneController : MonoBehaviour
             }
         }
 
-
         // Initialize UI Controller
         uiController = GetComponent<UIController>();
         if (uiController != null)
         {
             uiController.ResetUI();
         }
-
     }
 
     public void SetupSceneController()
@@ -102,6 +100,10 @@ public class SceneController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P))
         {
             ResetSceneHumanPlaying();
+        }
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            uiController.ToggleUiIsVisible();
         }
     }
 
@@ -240,6 +242,5 @@ public class SceneController : MonoBehaviour
 
         // Reset whole game score
         ResetScene(true);
-
     }
 }
