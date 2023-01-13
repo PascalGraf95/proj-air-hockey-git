@@ -13,6 +13,8 @@ using System;
 using Unity.MLAgents.Demonstrations;
 using static System.Collections.Specialized.BitVector32;
 using UnityEngine.Profiling;
+using Unity.Barracuda;
+using Unity.MLAgents.Policies;
 
 public enum ActionType { Discrete, Continuous };
 public enum TaskType
@@ -257,6 +259,8 @@ public class AirHockeyAgent : Agent
 
                 sensor.AddObservation(pusherAgentController.GetDistanceAgentGoal());
                 sensor.AddObservation(pusherHumanController.GetDistanceHumanGoal());
+                sensor.AddObservation(pusherAgentController.GetDistanceHumanGoal());
+                sensor.AddObservation(pusherHumanController.GetDistanceAgentGoal());
                 sensor.AddObservation(pusherAgentController.GetDistancePuck());
                 sensor.AddObservation(pusherHumanController.GetDistancePuck());
                 break;
@@ -598,10 +602,92 @@ public class AirHockeyAgent : Agent
         //guidanceRods.velocity = new Vector3(0, 0, agentRB.velocity.z);
     }
 
-    public void GetRewardComposition(out Dictionary<string, float> dict1, out Dictionary<string, float[]> dict2)
+    public void GetEpisodeRewardComposition(out Dictionary<string, float> dict1, out Dictionary<string, float[]> dict2)
     {
         dict1 = episodeReward;
         dict2 = episodeRewardShift;      
+    }
+
+    /// <summary>
+    /// Get information about the reward composition in a serialization friendly foramt.
+    /// </summary>
+    /// <returns>A dictionary of string,string with the reward composition configured in the unity inspector of an agent.</returns>
+    public Dictionary<string, string> GetRewardComposition()
+    {
+        Dictionary<string, string> rewardComp = new Dictionary<string, string>
+        {
+            { "AgentScoredReward", agentScoredReward.ToString() },
+            { "HumanScoredReward", humanScoredReward.ToString() },
+            { "AvoidBoundariesReward", avoidBoundariesReward.ToString() },
+            { "AvoidDirectionChangesReward", avoidDirectionChangesReward.ToString() },
+            { "EncouragePuckMovementReward", encouragePuckMovementReward.ToString() },
+            { "PuckStopReward", puckStopReward.ToString() },
+            { "BackWallReward", backWallReward.ToString() },
+            { "DeflectOnlyReward", deflectOnlyReward.ToString() },
+            { "PuckInAgentsHalfReward", puckInAgentsHalfReward.ToString() },
+            { "MaxStepReward", maxStepReward.ToString() },
+            { "StepReward", stepReward.ToString() },
+            { "OutOfBoundsReward", outOfBoundsReward.ToString() },
+            { "StayInCenterReward", stayInCenterReward.ToString() }
+        };
+        return rewardComp;
+    }
+
+    /// <summary>
+    /// Get information about the observation space in a serialization friendly format.
+    /// </summary>
+    /// <returns>A list of key value pairs of string, string because in contrast to a dictionary keys are not exclusive.</returns>
+    public List<KeyValuePair<string, string>> GetBehaviorParameters()
+    {
+        List<KeyValuePair<string, string>> behaviorDict = new List<KeyValuePair<string, string>> 
+        {
+            new KeyValuePair<string, string>("ObservationSpaceType", observationSpace.ToString()),
+            new KeyValuePair<string, string>("SpaceSize", GetObservations().Count.ToString()),
+            new KeyValuePair<string, string>("ActionType", actionType.ToString()),
+            new KeyValuePair<string, string>("MaxStep", maxStepsPerGame.ToString()),
+        };
+        switch (observationSpace)
+        {
+            case ObservationSpace.KinematicNoAccel:
+                behaviorDict.Add(new KeyValuePair<string, string>("Agent", "Position"));
+                behaviorDict.Add(new KeyValuePair<string, string>("Agent", "Velocity"));
+                behaviorDict.Add(new KeyValuePair<string, string>("Human", "Position"));
+                behaviorDict.Add(new KeyValuePair<string, string>("Human", "Velocity"));
+                behaviorDict.Add(new KeyValuePair<string, string>("Puck", "Position"));
+                behaviorDict.Add(new KeyValuePair<string, string>("Puck", "Velocity"));
+                break;
+            case ObservationSpace.Kinematic:
+                behaviorDict.Add(new KeyValuePair<string, string>("Agent", "Position"));
+                behaviorDict.Add(new KeyValuePair<string, string>("Agent", "Velocity"));
+                behaviorDict.Add(new KeyValuePair<string, string>("Agent", "Acceleration"));
+                behaviorDict.Add(new KeyValuePair<string, string>("Human", "Position"));
+                behaviorDict.Add(new KeyValuePair<string, string>("Human", "Velocity"));
+                behaviorDict.Add(new KeyValuePair<string, string>("Human", "Acceleration"));
+                behaviorDict.Add(new KeyValuePair<string, string>("Puck", "Position"));
+                behaviorDict.Add(new KeyValuePair<string, string>("Puck", "Velocity"));
+                behaviorDict.Add(new KeyValuePair<string, string>("Puck", "Acceleration"));
+                break;
+            case ObservationSpace.Full:
+                behaviorDict.Add(new KeyValuePair<string, string>("Agent", "Position"));
+                behaviorDict.Add(new KeyValuePair<string, string>("Agent", "Velocity"));
+                behaviorDict.Add(new KeyValuePair<string, string>("Agent", "Acceleration"));
+                behaviorDict.Add(new KeyValuePair<string, string>("Human", "Position"));
+                behaviorDict.Add(new KeyValuePair<string, string>("Human", "Velocity"));
+                behaviorDict.Add(new KeyValuePair<string, string>("Human", "Acceleration"));
+                behaviorDict.Add(new KeyValuePair<string, string>("Puck", "Position"));
+                behaviorDict.Add(new KeyValuePair<string, string>("Puck", "Velocity"));
+                behaviorDict.Add(new KeyValuePair<string, string>("Puck", "Acceleration"));
+                behaviorDict.Add(new KeyValuePair<string, string>("Distance1", "AgentPusherToAgentSideGoal"));
+                behaviorDict.Add(new KeyValuePair<string, string>("Distance2", "AgentPusherToHumanSideGoal"));
+                behaviorDict.Add(new KeyValuePair<string, string>("Distance3", "HumanPusherToAgentSideGoal"));
+                behaviorDict.Add(new KeyValuePair<string, string>("Distance4", "HumanPusherToHumanSideGoal"));
+                behaviorDict.Add(new KeyValuePair<string, string>("Distance5", "AgentPusherToPuck"));
+                behaviorDict.Add(new KeyValuePair<string, string>("Distance6", "HumanPusherToPuck"));
+                break;
+            default:
+                break;
+        }
+        return behaviorDict;
     }
 
     private void OnApplicationQuit()
