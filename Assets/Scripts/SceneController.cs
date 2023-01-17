@@ -4,6 +4,8 @@ using UnityEngine;
 using Mujoco;
 using System;
 using UnityEngine.SceneManagement;
+using Assets.Scripts;
+using Unity.MLAgents.SideChannels;
 using Unity.MLAgents;
 
 public class SceneController : MonoBehaviour
@@ -30,7 +32,10 @@ public class SceneController : MonoBehaviour
     private int agentPlayerScore = 0;
     private GameState currentGameState;
     private bool humanPlaying = false;
+    private int gamesPlayed = 0;
     private float lastBackwallHitDetected;
+
+    AdditionalGameInformationsSideChannel gameResultsSideChannel;
 
     // Start is called before the first frame update
     void Start()
@@ -66,6 +71,19 @@ public class SceneController : MonoBehaviour
         }
     }
 
+    public void Awake()
+    {
+        gameResultsSideChannel = new AdditionalGameInformationsSideChannel();
+        SideChannelManager.RegisterSideChannel(gameResultsSideChannel);
+    }
+
+    public void OnDestroy()
+    {
+        if (Academy.IsInitialized)
+        {
+            SideChannelManager.UnregisterSideChannel(gameResultsSideChannel);
+        }
+    }
     public void SetupSceneController()
     {
         pusherAgentController = GameObject.Find("PusherAgent").GetComponent<PusherController>();
@@ -160,16 +178,23 @@ public class SceneController : MonoBehaviour
         puckController.Reset();
 
         // Reset Game Score
-        if(humanPlayerScore >= 7 || agentPlayerScore >= 7 || forceScoreReset)
+        if(humanPlayerScore >= 2 || agentPlayerScore >= 2 || forceScoreReset)
         {
             if(!humanPlaying)
-            {
+            {                
                 uiController.ResetUI();
                 humanPlayerScore = 0;
                 agentPlayerScore = 0;
             }
             else
             {
+                // Game results to determine Elo-rating should only be send to modular-reinforcement-learning
+                // if selfplay is active and a full game has been played
+                if (!forceScoreReset)
+                {
+                    gamesPlayed++;
+                    gameResultsSideChannel.SendGameResultToModularRL(agentPlayerScore, humanPlayerScore, gamesPlayed);
+                }
                 ResetSceneAgentPlaying();
             }
 
