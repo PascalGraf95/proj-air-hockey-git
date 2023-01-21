@@ -632,19 +632,19 @@ public class AirHockeyAgent : Agent
     {
         Dictionary<string, string> rewardComp = new Dictionary<string, string>
         {
-            { "AgentScoredReward", agentScoredReward.ToString() },
-            { "HumanScoredReward", humanScoredReward.ToString() },
-            { "AvoidBoundariesReward", avoidBoundariesReward.ToString() },
-            { "AvoidDirectionChangesReward", avoidDirectionChangesReward.ToString() },
-            { "EncouragePuckMovementReward", encouragePuckMovementReward.ToString() },
-            { "PuckStopReward", puckStopReward.ToString() },
-            { "BackWallReward", backWallReward.ToString() },
-            { "DeflectOnlyReward", deflectOnlyReward.ToString() },
-            { "PuckInAgentsHalfReward", puckInAgentsHalfReward.ToString() },
-            { "MaxStepReward", maxStepReward.ToString() },
-            { "StepReward", stepReward.ToString() },
-            { "OutOfBoundsReward", outOfBoundsReward.ToString() },
-            { "StayInCenterReward", stayInCenterReward.ToString() }
+            { "AgentScoredReward", agentScoredReward.ToString().Replace(",",".") },
+            { "HumanScoredReward", humanScoredReward.ToString().Replace(",",".") },
+            { "AvoidBoundariesReward", avoidBoundariesReward.ToString().Replace(",",".") },
+            { "AvoidDirectionChangesReward", avoidDirectionChangesReward.ToString().Replace(",",".") },
+            { "EncouragePuckMovementReward", encouragePuckMovementReward.ToString().Replace(",",".") },
+            { "PuckStopReward", puckStopReward.ToString().Replace(",",".") },
+            { "BackWallReward", backWallReward.ToString().Replace(",",".") },
+            { "DeflectOnlyReward", deflectOnlyReward.ToString().Replace(",",".") },
+            { "PuckInAgentsHalfReward", puckInAgentsHalfReward.ToString().Replace(",",".") },
+            { "MaxStepReward", maxStepReward.ToString().Replace(",",".") },
+            { "StepReward", stepReward.ToString().Replace(",",".") },
+            { "OutOfBoundsReward", outOfBoundsReward.ToString().Replace(",",".") },
+            { "StayInCenterReward", stayInCenterReward.ToString().Replace(",",".") }
         };
         return rewardComp;
     }
