@@ -5465,7 +5465,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: dc181b78980759945995f42e9f3854ea,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dc181b78980759945995f42e9f3854ea,
         type: 3}
@@ -12865,7 +12865,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: ddbc89a311059eb45af841a261c9c507,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ddbc89a311059eb45af841a261c9c507,
         type: 3}
@@ -13431,6 +13431,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 919132147958298421}
+  - component: {fileID: 919132147958298422}
   - component: {fileID: 919132147958298412}
   - component: {fileID: 919132147958298413}
   - component: {fileID: 919132147958298416}
@@ -13630,13 +13631,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 919132147958298411}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5f6640f3a8b273468846c132ecf802d, type: 3}
+  m_Script: {fileID: 11500000, guid: 88c145a07fc99774ea4754b54c56f722, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ExportPath: Screencapture/
-  FileName: Airhockey_Gameview
-  FileType: .png
-  IncreaseResolutionFactor: 4
+  airHockeyAgent: {fileID: 919132147958298415}
+  ExportPath: Builds/
 --- !u!33 &923504064602305110
 MeshFilter:
   m_ObjectHideFlags: 0
