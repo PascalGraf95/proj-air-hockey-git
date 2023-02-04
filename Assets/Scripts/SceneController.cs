@@ -30,6 +30,7 @@ public class SceneController : MonoBehaviour
     private MjScene mjScene;
     private int humanPlayerScore = 0;
     private int agentPlayerScore = 0;
+    [SerializeField] private int maxScore = 5;
     private GameState currentGameState;
     private bool humanPlaying = false;
     private int gamesPlayed = 0;
@@ -178,7 +179,7 @@ public class SceneController : MonoBehaviour
         puckController.Reset();
 
         // Reset Game Score
-        if(humanPlayerScore >= 2 || agentPlayerScore >= 2 || forceScoreReset)
+        if(humanPlayerScore >= maxScore || agentPlayerScore >= maxScore || forceScoreReset)
         {
             if(!humanPlaying)
             {                
