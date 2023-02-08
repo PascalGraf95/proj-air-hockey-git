@@ -19,6 +19,7 @@ public class SceneController : MonoBehaviour
     [SerializeField] private BackwallColliderScript backwallColliderScriptLeft;
     [SerializeField] private BackwallColliderScript backwallColliderScriptRight;
     [SerializeField] private Transform airhockeyTableBends;
+    [SerializeField] private PusherConfiguration pusherConfiguration;
 
     private UIController uiController;
     public GameState CurrentGameState 
@@ -42,10 +43,6 @@ public class SceneController : MonoBehaviour
     void Start()
     {
         SetupSceneController();
-        cursor = GameObject.Find("HandCursor");
-        pusherAgentController = GameObject.Find("PusherAgent").GetComponent<PusherController>();
-        puckController = GameObject.Find("Puck").GetComponent<PuckController>();
-        pusherHumanController = GameObject.Find("PusherHumanSelfplay").GetComponent<PusherController>();
         
         // Subscribe to Goal Events
         agentGoalColliderScript.onGoalDetected += HumanPlayerScored;
@@ -87,6 +84,7 @@ public class SceneController : MonoBehaviour
     }
     public void SetupSceneController()
     {
+        cursor = GameObject.Find("HandCursor");
         pusherAgentController = GameObject.Find("PusherAgent").GetComponent<PusherController>();
         puckController = GameObject.Find("Puck").GetComponent<PuckController>();
 
@@ -97,11 +95,13 @@ public class SceneController : MonoBehaviour
         else if (GameObject.Find("PusherHumanSelfplay") != null)
         {
             pusherHumanController = GameObject.Find("PusherHumanSelfplay").GetComponent<PusherController>();
+            pusherHumanController.SetPusherConfiguration(pusherConfiguration);
         }
         else
         {
             Debug.LogError("Pusher Human GameObject not found.");
         }
+        pusherAgentController.SetPusherConfiguration(pusherConfiguration);
     }
 
 

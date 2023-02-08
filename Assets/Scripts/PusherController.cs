@@ -19,11 +19,12 @@ enum ResetPusherMode
 
 public class PusherController : MonoBehaviour
 {
-    [SerializeField] private float maxVelocity;
+    private float maxVelocity;
 
     public ControlMode ControlMode;
     [SerializeField] private ResetPusherMode resetMode;
 
+    public MjGeom geom;
     public MjActuator pusherActuatorZ;
     public MjActuator pusherActuatorX;
     public MjSlideJoint slideJointX;
@@ -44,15 +45,15 @@ public class PusherController : MonoBehaviour
     // steering behavior fields
     public Character Character;
     private Vector2 targetPosition;
-    private Vector2 accelaration;
+    private Vector2 acceleration;
     private ArriveSteeringBehavior arriveSteeringBehavior;
     private GameObject cursor;
     private readonly Vector3 cursorOffset = new Vector3(0, 5, -10);
 
 
-    // Accelaration calculation
+    // Acceleration calculation
     Vector2 lastVelocity;
-    Vector2 currentAccelaration;
+    Vector2 currentAcceleration;
 
     // Additional observations calculations
     private Vector3 agentGoalPos;
@@ -94,13 +95,25 @@ public class PusherController : MonoBehaviour
 
         Cursor.visible = false;
     }
+
+    public void SetPusherConfiguration(PusherConfiguration pusherConfiguration)
+    {
+        maxVelocity = pusherConfiguration.maxVelocity;
+        slideJointX.Settings.Spring.Damping = pusherConfiguration.jointDamping;
+        slideJointZ.Settings.Spring.Damping = pusherConfiguration.jointDamping;
+        geom.Mass = pusherConfiguration.mass;
+        pusherActuatorX.CustomParams.Kv = pusherConfiguration.velocityControlFactor;
+        pusherActuatorZ.CustomParams.Kv = pusherConfiguration.velocityControlFactor;
+        MaxAcceleration = pusherConfiguration.maxVelocity;
+    }
+
     void Update()
     {
+        targetPosition = GetMousePosition();
         switch (ControlMode)
         {
             case ControlMode.Selfplay:
                 hand.GetComponent<SkinnedMeshRenderer>().material = selfplayMaterial;
-                targetPosition = GetMousePosition();
                 cursor.transform.position = new Vector3(targetPosition.x, cursorOffset.y, targetPosition.y + cursorOffset.z);
                 break;
             case ControlMode.Human:
@@ -108,20 +121,15 @@ public class PusherController : MonoBehaviour
                 // get current mouse position on left mouse button click
                 if (Input.GetMouseButton(0))
                 {
-                    // calculate mouse position relative to the airhockey table plane
-                    targetPosition = GetMousePosition();
-
                     // compute arrive steering behavior
-                    accelaration = arriveSteeringBehavior.Arrive(targetPosition, GetCurrentPosition(), GetCurrentVelocity(), TargetRadius, SlowDownRadius, MaxSpeed, MaxAcceleration, TimeToTarget);
+                    acceleration = arriveSteeringBehavior.Arrive(targetPosition, GetCurrentPosition(), GetCurrentVelocity(), TargetRadius, SlowDownRadius, MaxSpeed, MaxAcceleration, TimeToTarget);
 
                     // set actuator acceleration
-                    pusherActuatorX.Control = -accelaration.x;
-                    pusherActuatorZ.Control = -accelaration.y;
+                    pusherActuatorX.Control = -acceleration.x;
+                    pusherActuatorZ.Control = -acceleration.y;
                 }
                 else
                 {
-                    // calculate mouse position relative to the airhockey table plane
-                    targetPosition = GetMousePosition();
                     cursor.transform.position = new Vector3(targetPosition.x, cursorOffset.y, targetPosition.y + cursorOffset.z);
                 }               
                 break;
@@ -258,12 +266,12 @@ public class PusherController : MonoBehaviour
     }
 
     /// <summary>
-    /// Get current pusher accelaration.
+    /// Get current pusher acceleration.
     /// </summary>
     /// <returns></returns>
-    public Vector2 GetCurrentAccelaration()
+    public Vector2 GetCurrentAcceleration()
     {
-        return currentAccelaration;
+        return currentAcceleration;
     }
 
     /// <summary>
@@ -299,7 +307,7 @@ public class PusherController : MonoBehaviour
     private void FixedUpdate()
     {
         var currentVelocity = new Vector2(pusherActuatorX.Velocity, pusherActuatorZ.Velocity);
-        currentAccelaration = currentVelocity - lastVelocity;
+        currentAcceleration = currentVelocity - lastVelocity;
         lastVelocity = currentVelocity;
     }
 }

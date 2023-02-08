@@ -238,24 +238,24 @@ public class AirHockeyAgent : Agent
             case ObservationSpace.Kinematic:
                 sensor.AddObservation(pusherAgentController.GetCurrentPosition());
                 sensor.AddObservation(pusherAgentController.GetCurrentVelocity());
-                sensor.AddObservation(pusherAgentController.GetCurrentAccelaration());
+                sensor.AddObservation(pusherAgentController.GetCurrentAcceleration());
                 sensor.AddObservation(pusherHumanController.GetCurrentPosition());
                 sensor.AddObservation(pusherHumanController.GetCurrentVelocity());
-                sensor.AddObservation(pusherHumanController.GetCurrentAccelaration());
+                sensor.AddObservation(pusherHumanController.GetCurrentAcceleration());
                 sensor.AddObservation(puckController.GetCurrentPosition());
                 sensor.AddObservation(puckController.GetCurrentVelocity());
-                sensor.AddObservation(puckController.GetCurrentAccelaration());
+                sensor.AddObservation(puckController.GetCurrentAcceleration());
                 break;
             case ObservationSpace.Full:
                 sensor.AddObservation(pusherAgentController.GetCurrentPosition());
                 sensor.AddObservation(pusherAgentController.GetCurrentVelocity());
-                sensor.AddObservation(pusherAgentController.GetCurrentAccelaration());
+                sensor.AddObservation(pusherAgentController.GetCurrentAcceleration());
                 sensor.AddObservation(pusherHumanController.GetCurrentPosition());
                 sensor.AddObservation(pusherHumanController.GetCurrentVelocity());
-                sensor.AddObservation(pusherHumanController.GetCurrentAccelaration());
+                sensor.AddObservation(pusherHumanController.GetCurrentAcceleration());
                 sensor.AddObservation(puckController.GetCurrentPosition());
                 sensor.AddObservation(puckController.GetCurrentVelocity());
-                sensor.AddObservation(puckController.GetCurrentAccelaration());
+                sensor.AddObservation(puckController.GetCurrentAcceleration());
 
                 sensor.AddObservation(pusherAgentController.GetDistanceAgentGoal());
                 sensor.AddObservation(pusherHumanController.GetDistanceHumanGoal());
@@ -591,7 +591,6 @@ public class AirHockeyAgent : Agent
         #endregion
 
         #region Movement and Clipping
-        //print((puckController.GetCurrentPosition() - pusherAgentController.GetCurrentPosition()).magnitude);
         pusherAgentController.Act(new Vector2(x, z));
         #endregion
     }
