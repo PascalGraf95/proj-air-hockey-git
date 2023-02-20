@@ -87,6 +87,8 @@ public class SceneController : MonoBehaviour
         cursor = GameObject.Find("HandCursor");
         pusherAgentController = GameObject.Find("PusherAgent").GetComponent<PusherController>();
         puckController = GameObject.Find("Puck").GetComponent<PuckController>();
+        puckController.resetPuckState = gameObject.GetComponent<AirHockeyAgent>().resetPuckState;
+
 
         if (GameObject.Find("PusherHuman") != null)
         {
@@ -182,12 +184,6 @@ public class SceneController : MonoBehaviour
         if(humanPlayerScore >= maxScore || agentPlayerScore >= maxScore || forceScoreReset)
         {
             if(!humanPlaying)
-            {                
-                uiController.ResetUI();
-                humanPlayerScore = 0;
-                agentPlayerScore = 0;
-            }
-            else
             {
                 // Game results to determine Elo-rating should only be send to modular-reinforcement-learning
                 // if selfplay is active and a full game has been played
@@ -196,6 +192,13 @@ public class SceneController : MonoBehaviour
                     gamesPlayed++;
                     gameResultsSideChannel.SendGameResultToModularRL(agentPlayerScore, humanPlayerScore, gamesPlayed);
                 }
+
+                uiController.ResetUI();
+                humanPlayerScore = 0;
+                agentPlayerScore = 0;
+            }
+            else
+            {
                 ResetSceneAgentPlaying();
             }
 
@@ -233,7 +236,7 @@ public class SceneController : MonoBehaviour
         gameObject.transform.Find("PusherHuman").gameObject.SetActive(true);
 
         // Furthermore modify the puck reset scenario
-        gameObject.transform.Find("Puck").GetComponent<PuckController>().resetPuckState = ResetPuckState.randomVelocity;
+        gameObject.transform.Find("Puck").GetComponent<PuckController>().resetPuckState = gameObject.GetComponent<AirHockeyAgent>().resetPuckState;
 
         // Trigger der Start Function again for all important GameObjects
         gameObject.transform.Find("Puck").GetComponent<PuckController>().SetupPuckController();
@@ -256,7 +259,7 @@ public class SceneController : MonoBehaviour
         gameObject.transform.Find("PusherHuman").gameObject.SetActive(false);
 
         // Furthermore modify the puck reset scenario
-        gameObject.transform.Find("Puck").GetComponent<PuckController>().resetPuckState = ResetPuckState.randomVelocity;
+        gameObject.transform.Find("Puck").GetComponent<PuckController>().resetPuckState = gameObject.GetComponent<AirHockeyAgent>().resetPuckState;
 
         // Trigger der Start Function again for all important GameObjects
         gameObject.transform.Find("Puck").GetComponent<PuckController>().SetupPuckController();
