@@ -41,6 +41,12 @@ namespace Assets.Scripts
         public MjGeomSettings Settings;
     }
 
+    public class MjSlideJointClone
+    {
+        public int MujocoId;
+        public MjJointSettings Settings;
+    }
+
     public class DomainRandomization : MonoBehaviour
     {
         #region public variables
@@ -160,9 +166,29 @@ namespace Assets.Scripts
         [Range(-100f, 100f)]
         public float SolverRefLimitDampRationMax;
         [Range(-100f, 100f)]
-        public float SolverImpLimitFrictionLossMin;
+        public float SolverImpLimitDMinMin;
         [Range(-100f, 100f)]
-        public float SolverImpLimitFrictionLossMax;
+        public float SolverImpLimitDMinMax;
+        [Range(-100f, 100f)]
+        public float SolverImpLimitDMaxMin;
+        [Range(-100f, 100f)]
+        public float SolverImpLimitDMaxMax;
+        [Range(-100f, 100f)]
+        public float SolverImpLimitWidthMin;
+        [Range(-100f, 100f)]
+        public float SolverImpLimitWidthMax;
+        [Range(-100f, 100f)]
+        public float SolverImpLimitMidpointMin;
+        [Range(-100f, 100f)]
+        public float SolverImpLimitMidpointMax;
+        [Range(-100f, 100f)]
+        public float SolverImpLimitPowerMin;
+        [Range(-100f, 100f)]
+        public float SolverImpLimitPowerMax;
+        [Range(-100f, 100f)]
+        public float SolverFrictionLossMin;
+        [Range(-100f, 100f)]
+        public float SolverFrictionLossMax;
         [Range(-100f, 100f)]
         public float SolverImpFrictionDMinMin;
         [Range(-100f, 100f)]
@@ -197,13 +223,15 @@ namespace Assets.Scripts
         #region private variables
         private List<GameObject> mjScripts;
         private List<MjGeomClone> mjGeomClones;
+        private List<MjSlideJointClone> mjSlideJointClones;
         #endregion
         private void Start()
         {
             mjGeomClones = new List<MjGeomClone>();
+            mjSlideJointClones = new List<MjSlideJointClone>();
         }
 
-        private MjGeomClone SearchGameObjectTree(MjGeom mjGeom, int mjId)
+        private MjGeomClone GeomSearchGameObjectTree(MjGeom mjGeom, int mjId)
         {
             // if object not already in list add the mjGeom to the list
             if (!mjGeomClones.Any(x => x.MujocoId == mjGeom.MujocoId))
@@ -212,6 +240,19 @@ namespace Assets.Scripts
             }
             // search for the mjGeom in the list
             MjGeomClone clone = mjGeomClones.Find(x => x.MujocoId == mjId);
+
+            return clone;
+        }
+
+        private MjSlideJointClone SlideJointSearchGameObjectTree(MjSlideJoint mjSlideJoint, int mjId)
+        {
+            // if object not already in list add the mjGeom to the list
+            if (!mjSlideJointClones.Any(x => x.MujocoId == mjSlideJoint.MujocoId))
+            {
+                mjSlideJointClones.Add(new MjSlideJointClone() { MujocoId = mjSlideJoint.MujocoId, Settings = mjSlideJoint.Settings });
+            }
+            // search for the mjGeom in the list
+            MjSlideJointClone clone = mjSlideJointClones.Find(x => x.MujocoId == mjId);
 
             return clone;
         }
@@ -253,12 +294,63 @@ namespace Assets.Scripts
             }
         }
 
+        private void RandomizeMjSlideJoint(GameObject gameObject)
+        {
+            MjSlideJoint mjSlideJoint = gameObject.GetComponent<MjSlideJoint>();
+
+            if (mjSlideJoint != null)
+            {
+                switch (RangeSelection)
+                {
+                    case RangeSelection.Numerical:
+                        // set joint parameters to random values
+                        mjSlideJoint.Settings.Armature = RandomizeParameter(Precision, ArmatureMax, ArmatureMin);
+                        mjSlideJoint.Settings.Spring.TimeConstant = RandomizeParameter(Precision, SpringTimeConstMax, SpringTimeConstMin);
+                        mjSlideJoint.Settings.Spring.DampingRatio = RandomizeParameter(Precision, SpringDampingRatioMax, SpringDampingRatioMin);
+                        mjSlideJoint.Settings.Spring.Stiffness = RandomizeParameter(Precision, SpringStiffnessMax, SpringStiffnessMin);
+                        mjSlideJoint.Settings.Spring.Damping = RandomizeParameter(Precision, SpringDampingMax, SpringDampingMin);
+                        mjSlideJoint.Settings.Spring.EquilibriumPose = RandomizeParameter(Precision, SpringEquilibriumPoseMax, SpringEquilibriumPoseMin);
+                        mjSlideJoint.Settings.Solver.Margin = RandomizeParameter(Precision, JointSolverMarginMax, JointSolverMarginMin);
+                        mjSlideJoint.Settings.Solver.RefLimit.TimeConst = RandomizeParameter(Precision, SolverRefLimitTimeConstMax, SolverRefLimitTimeConstMin);
+                        mjSlideJoint.Settings.Solver.RefLimit.DampRatio = RandomizeParameter(Precision, SolverRefLimitDampRationMax, SolverRefLimitDampRationMin);
+                        mjSlideJoint.Settings.Solver.ImpLimit.DMin = RandomizeParameter(Precision, SolverImpLimitDMinMax, SolverImpLimitDMinMin);
+                        mjSlideJoint.Settings.Solver.ImpLimit.DMax = RandomizeParameter(Precision, SolverImpLimitDMaxMax, SolverImpLimitDMaxMin);
+                        mjSlideJoint.Settings.Solver.ImpLimit.Width = RandomizeParameter(Precision, SolverImpLimitWidthMax, SolverImpLimitWidthMin);
+                        mjSlideJoint.Settings.Solver.ImpLimit.Midpoint = RandomizeParameter(Precision, SolverImpLimitMidpointMax, SolverImpLimitMidpointMin);
+                        mjSlideJoint.Settings.Solver.ImpLimit.Power = RandomizeParameter(Precision, SolverImpLimitPowerMax, SolverImpLimitPowerMin);                        
+                        mjSlideJoint.Settings.Solver.FrictionLoss = RandomizeParameter(Precision, SolverFrictionLossMax, SolverFrictionLossMin);
+                        mjSlideJoint.Settings.Solver.ImpFriction.DMin = RandomizeParameter(Precision, SolverImpFrictionDMinMax, SolverImpFrictionDMinMin);
+                        mjSlideJoint.Settings.Solver.ImpFriction.DMax = RandomizeParameter(Precision, SolverImpFrictionDMaxMax, SolverImpFrictionDMaxMin);
+                        mjSlideJoint.Settings.Solver.ImpFriction.Width = RandomizeParameter(Precision, SolverImpFrictionWidthMax, SolverImpFrictionWidthMin);
+                        mjSlideJoint.Settings.Solver.ImpFriction.Midpoint = RandomizeParameter(Precision, SolverImpFrictionMidpointMax, SolverImpFrictionMidpointMin);
+                        mjSlideJoint.Settings.Solver.ImpFriction.Power = RandomizeParameter(Precision, SolverImpFrictionPowerMax, SolverImpFrictionPowerMin);
+                        mjSlideJoint.Settings.Solver.RefFriction.TimeConst = RandomizeParameter(Precision, SolverRefFrictionTimeConstMax, SolverRefFrictionTimeConstMin);
+                        mjSlideJoint.Settings.Solver.RefFriction.DampRatio = RandomizeParameter(Precision, SolverRefFrictionDampRatioMax, SolverRefFrictionDampRatioMin);
+                    break;
+                    case RangeSelection.Percentage:
+                        var tempSliderJoint = SlideJointSearchGameObjectTree(mjSlideJoint, mjSlideJoint.MujocoId);
+                        // Randomize all float parameters of the MuJoCo object
+                        foreach (FieldInfo field in tempSliderJoint.GetType().GetFields())
+                        {
+                            if (field.FieldType == typeof(float))
+                            {
+                                float value = (float)field.GetValue(tempSliderJoint);
+                                float result = RandomizeParameter(Precision, value, PercentageRange);
+                                // set the new value to the field in the original object
+                                SetFieldValue(tempSliderJoint, field.Name, result);
+                            }
+                        }
+                    break;
+                    default:
+                    break;
+                }
+            }
+        }
+
         private void RandomizeMjGeom(GameObject gameObject)
         {
             MjGeom mjGeom = gameObject.GetComponent<MjGeom>();
-            var parent = gameObject.transform.parent;
-            string parentName = parent.gameObject.name;
-
+            
             if (mjGeom != null)
             {
                 switch (RangeSelection)
@@ -279,12 +371,10 @@ namespace Assets.Scripts
                         mjGeom.Settings.Solver.Gap = RandomizeParameter(Precision, GeomSolverGapMax, GeomSolverGapMin);
                         mjGeom.Settings.Friction.Rolling = RandomizeParameter(Precision, MaxFrictionGeom, MinFrictionGeom);
                         mjGeom.Settings.Friction.Torsional = RandomizeParameter(Precision, MaxFrictionGeom, MinFrictionGeom);
-                        mjGeom.Settings.Friction.Sliding = RandomizeParameter(Precision, MaxFrictionGeom, MinFrictionGeom);
-                        // set joint parameters to random values
-
+                        mjGeom.Settings.Friction.Sliding = RandomizeParameter(Precision, MaxFrictionGeom, MinFrictionGeom);          
                         break;
                     case RangeSelection.Percentage:
-                        var tempGeom = SearchGameObjectTree(mjGeom, mjGeom.MujocoId);
+                        var tempGeom = GeomSearchGameObjectTree(mjGeom, mjGeom.MujocoId);
                         // Randomize all float parameters of the MuJoCo object
                         foreach (FieldInfo field in tempGeom.GetType().GetFields())
                         {
