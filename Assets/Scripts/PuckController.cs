@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mujoco;
 using System;
+using Assets.Scripts;
 
 public enum ResetPuckState
 {
@@ -24,12 +25,16 @@ public class PuckController : MonoBehaviour
     public ResetPuckState resetPuckState;
     public float VEL = 0f;
     public float ANG = 0f;
-    public Vector2 startPos = Vector2.zero;
+    public Vector2 startPos = Vector2.zero;    
     public Boundary agentPusherBoundary = new Boundary(68.8f, 0f, -30f, 30f);
     public Boundary humanPusherBoundary = new Boundary(0, -68.8f, -30f, 30f);
     public Boundary puckBoundary = new Boundary(50f, -50f, -30f, 30f);
     private PusherController pusherAgentController;
     private PusherController pusherHumanController;
+
+    // Domain Randomization
+    private DomainRandomizationController domainRandomizationController;
+    private static DomainRandomizationObservations domainRandomizationObservations;
 
     // Accelaration calculation
     Vector2 lastVelocity;
@@ -39,6 +44,8 @@ public class PuckController : MonoBehaviour
     void Start()
     {
         SetupPuckController();
+        // setup observation randomization
+        domainRandomizationController = FindObjectOfType<DomainRandomizationController>();
     }
 
     public void SetupPuckController()
@@ -67,17 +74,44 @@ public class PuckController : MonoBehaviour
 
     public Vector2 GetCurrentPosition()
     {
-        return new Vector2(transform.position.x, transform.position.z);
+        if (domainRandomizationController.ApplyObservationRandomization is true)
+        {
+            float x = domainRandomizationObservations.RandomizeParameter(transform.position.x);
+            float z = domainRandomizationObservations.RandomizeParameter(transform.position.z);
+            return new Vector2(x, z);
+        }
+        else
+        {
+            return new Vector2(transform.position.x, transform.position.z);
+        }        
     }
 
     public Vector2 GetCurrentVelocity()
     {
-        return new Vector2(actuatorX.Velocity, actuatorZ.Velocity);
+        if (domainRandomizationController.ApplyObservationRandomization is true)
+        {
+            float z = domainRandomizationObservations.RandomizeParameter(actuatorZ.Velocity);
+            float x = domainRandomizationObservations.RandomizeParameter(actuatorX.Velocity);
+            return new Vector2(x, z);
+        }
+        else
+        {
+            return new Vector2(actuatorX.Velocity, actuatorZ.Velocity);
+        }
     }
 
     public Vector2 GetCurrentAccelaration()
     {
-        return currentAccelaration;
+        if (domainRandomizationController.ApplyObservationRandomization is true)
+        {
+            float x = domainRandomizationObservations.RandomizeParameter(currentAccelaration.x);
+            float z = domainRandomizationObservations.RandomizeParameter(currentAccelaration.y);
+            return new Vector2(x, z);
+        }
+        else
+        {
+            return currentAccelaration;
+        }
     }
 
     public void Reset()

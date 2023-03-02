@@ -211,13 +211,6 @@ MonoBehaviour:
       Sliding: 0.001
       Torsional: 0.005
       Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!1 &18223420 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1141996033764778559, guid: fb10f2a6528510743812737350184bf5,
@@ -2594,8 +2587,9 @@ GameObject:
   - component: {fileID: 250115472}
   - component: {fileID: 250115471}
   - component: {fileID: 250115470}
-  - component: {fileID: 250115469}
+  - component: {fileID: 250115474}
   - component: {fileID: 250115468}
+  - component: {fileID: 250115469}
   - component: {fileID: 250115467}
   - component: {fileID: 250115466}
   - component: {fileID: 250115465}
@@ -2730,7 +2724,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f23aa31fef43e6a48a436d1c9e36732e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxVelocity: 30000
+  maxVelocity: 0
   ControlMode: 0
   resetMode: 0
   pusherActuatorZ: {fileID: 90411558}
@@ -2754,7 +2748,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ef51a360e7c24695800e2d06f70db49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GravityCompensation: 0
 --- !u!23 &250115472
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2806,6 +2799,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 250115463}
   m_Mesh: {fileID: -144970255706994628, guid: bf4f5f5cf8c52454fbabf295dc5c3fee, type: 3}
+--- !u!114 &250115474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 250115463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad9f4f5f59577244f95e4561432e6a6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Randomize: 1
+  ProbabilityDensityFunction: 0
+  Precision: 2
+  PercentageRange: 0
 --- !u!1 &253087612
 GameObject:
   m_ObjectHideFlags: 0
@@ -3149,13 +3158,6 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!1001 &351661106
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3573,7 +3575,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DebugFileName: 
   MouseSpringStiffness: 100
-  UseRawGameObjectNames: 0
   GlobalOptions:
     ImpRatio: 1
     Magnetic: {x: 0, y: 0, z: 0}
@@ -3620,8 +3621,9 @@ MonoBehaviour:
       SensorNoise: 1
       MultiCCD: 1
   GlobalSizes:
-    Memory: -1
-  CustomNumeric: []
+    Njmax: 0
+    Nconmax: 0
+    Nstack: 0
 --- !u!4 &374237416
 Transform:
   m_ObjectHideFlags: 0
@@ -4189,13 +4191,6 @@ MonoBehaviour:
       Sliding: 0.001
       Torsional: 0.005
       Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!1 &446030134
 GameObject:
   m_ObjectHideFlags: 0
@@ -5444,13 +5439,6 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!1 &715150780 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5678351524062016781, guid: fb10f2a6528510743812737350184bf5,
@@ -6368,13 +6356,6 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!1 &887771125
 GameObject:
   m_ObjectHideFlags: 0
@@ -6887,7 +6868,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f23aa31fef43e6a48a436d1c9e36732e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxVelocity: 30000
+  maxVelocity: 0
   ControlMode: 1
   resetMode: 0
   pusherActuatorZ: {fileID: 1083998992}
@@ -6911,7 +6892,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ef51a360e7c24695800e2d06f70db49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GravityCompensation: 0
 --- !u!23 &983042887
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8891,13 +8871,6 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!1 &1263459674
 GameObject:
   m_ObjectHideFlags: 0
@@ -9406,13 +9379,6 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!1 &1320039092
 GameObject:
   m_ObjectHideFlags: 0
@@ -9566,13 +9532,6 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!1 &1364935847
 GameObject:
   m_ObjectHideFlags: 0
@@ -10751,13 +10710,6 @@ MonoBehaviour:
       Sliding: 0
       Torsional: 0
       Rolling: 0
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!1 &1602625608 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2634293135352002841, guid: fb10f2a6528510743812737350184bf5,
@@ -11162,13 +11114,6 @@ MonoBehaviour:
       Sliding: 0.001
       Torsional: 0.005
       Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!1 &1693899615
 GameObject:
   m_ObjectHideFlags: 0
@@ -11391,13 +11336,6 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!1 &1768583134
 GameObject:
   m_ObjectHideFlags: 0
@@ -11653,13 +11591,6 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!1 &1810052254
 GameObject:
   m_ObjectHideFlags: 0
@@ -12622,13 +12553,6 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!1 &2089265700
 GameObject:
   m_ObjectHideFlags: 0
@@ -13612,19 +13536,19 @@ MonoBehaviour:
   maxStepsPerGame: 0
   humanBehavior: 0
   observationSpace: 2
-  agentScoredReward: 10
-  humanScoredReward: -5
+  agentScoredReward: 0
+  humanScoredReward: 0
   avoidBoundariesReward: 0
   avoidDirectionChangesReward: 0
-  encouragePuckMovementReward: 0.001
+  encouragePuckMovementReward: 0
   puckStopReward: 0
-  backWallReward: 1
+  backWallReward: 0
   endOnBackWall: 0
   deflectOnlyReward: 0
-  puckInAgentsHalfReward: -0.002
+  puckInAgentsHalfReward: 0
   maxStepReward: 0
   stepReward: 0
-  outOfBoundsReward: -3
+  outOfBoundsReward: 0
   stayInCenterReward: 0
   currentVelMag: 0
   currentAccMag: 0
@@ -13727,7 +13651,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8947bc8b9a9164bbf66d6966fb2302, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  applyRandomization: 1
+  ApplyEnvironmentRandomization: 0
+  ApplyObservationRandomization: 0
+  ApplyActionRandomization: 0
 --- !u!33 &923504064602305110
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -13950,6 +13876,7 @@ GameObject:
   - component: {fileID: 4880764153250825475}
   - component: {fileID: 1262576982509127528}
   - component: {fileID: 1262576982509127529}
+  - component: {fileID: 4880764153250825476}
   - component: {fileID: 1262576982509127530}
   m_Layer: 0
   m_Name: PusherAgent
@@ -13970,7 +13897,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ef51a360e7c24695800e2d06f70db49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GravityCompensation: 0
 --- !u!114 &1262576982509127529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13983,7 +13909,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f23aa31fef43e6a48a436d1c9e36732e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxVelocity: 30000
+  maxVelocity: 0
   ControlMode: 0
   resetMode: 0
   pusherActuatorZ: {fileID: 659402622}
@@ -14451,7 +14377,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ef51a360e7c24695800e2d06f70db49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GravityCompensation: 0
 --- !u!64 &2411169564138499894
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -14966,7 +14891,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ef51a360e7c24695800e2d06f70db49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GravityCompensation: 0
 --- !u!33 &3073918504185649519
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -15378,6 +15302,7 @@ GameObject:
   - component: {fileID: 462025065321274886}
   - component: {fileID: 3881779651548995389}
   - component: {fileID: 3881779651548995390}
+  - component: {fileID: 6061178468440314283}
   - component: {fileID: 3881779651548995391}
   - component: {fileID: 6061178468440314282}
   m_Layer: 0
@@ -15399,7 +15324,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ef51a360e7c24695800e2d06f70db49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GravityCompensation: 0
 --- !u!114 &3881779651548995390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15899,6 +15823,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4880764153250825476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262576982509127527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad9f4f5f59577244f95e4561432e6a6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Randomize: 1
+  ProbabilityDensityFunction: 0
+  Precision: 2
+  PercentageRange: 0
 --- !u!1 &4970739622598735029
 GameObject:
   m_ObjectHideFlags: 0
@@ -16257,7 +16197,7 @@ MonoBehaviour:
   applyRandomization: 0
   probabilityDensityFunction: 1
   Precision: 2
-  RangeSelection: 0
+  RangeSelection: 1
   PercentageRange: 10
   MaxMass: 1.05
   MinMass: 0.95
@@ -16305,8 +16245,18 @@ MonoBehaviour:
   SolverRefLimitTimeConstMax: 0.02
   SolverRefLimitDampRationMin: 0.5
   SolverRefLimitDampRationMax: 0.5
-  SolverImpLimitFrictionLossMin: 0
-  SolverImpLimitFrictionLossMax: 0
+  SolverImpLimitDMinMin: 0
+  SolverImpLimitDMinMax: 0
+  SolverImpLimitDMaxMin: 0
+  SolverImpLimitDMaxMax: 0
+  SolverImpLimitWidthMin: 0
+  SolverImpLimitWidthMax: 0
+  SolverImpLimitMidpointMin: 0
+  SolverImpLimitMidpointMax: 0
+  SolverImpLimitPowerMin: 0
+  SolverImpLimitPowerMax: 0
+  SolverFrictionLossMin: 0
+  SolverFrictionLossMax: 0
   SolverImpFrictionDMinMin: 0.99
   SolverImpFrictionDMinMax: 0.99
   SolverImpFrictionDMaxMin: 1
@@ -16321,6 +16271,23 @@ MonoBehaviour:
   SolverRefFrictionTimeConstMax: 0.02
   SolverRefFrictionDampRatioMin: 1
   SolverRefFrictionDampRatioMax: 1
+  mjScripts: []
+--- !u!114 &6061178468440314283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3881779651548995388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad9f4f5f59577244f95e4561432e6a6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Randomize: 1
+  ProbabilityDensityFunction: 1
+  Precision: 2
+  PercentageRange: 0
 --- !u!4 &6130393414969390481
 Transform:
   m_ObjectHideFlags: 0

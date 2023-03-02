@@ -71,7 +71,11 @@ public class PusherController : MonoBehaviour
     private Material selfplayMaterial;
     private Material humanplayMaterial;
     private GameObject hand;
-    // Update is called once per frame
+
+    // Domain Randomization
+    private DomainRandomizationController domainRandomizationController;
+    private static DomainRandomizationObservations domainRandomizationObservations;
+
     private void Start()
     {
         playerViewCamera = GameObject.Find("PlayerViewCamera").GetComponent<Camera>();
@@ -93,6 +97,8 @@ public class PusherController : MonoBehaviour
         targetPosition = GetCurrentPosition();
 
         Cursor.visible = false;
+
+        domainRandomizationController = FindObjectOfType<DomainRandomizationController>();
     }
     void Update()
     {
@@ -245,7 +251,16 @@ public class PusherController : MonoBehaviour
     /// <returns></returns>
     public Vector2 GetCurrentPosition()
     {
-        return new Vector2(transform.position.x, transform.position.z);
+        if (domainRandomizationController.ApplyObservationRandomization is true)
+        {
+            float x = domainRandomizationObservations.RandomizeParameter(transform.position.x);
+            float z = domainRandomizationObservations.RandomizeParameter(transform.position.z);
+            return new Vector2(x, z);
+        }
+        else
+        {
+            return new Vector2(transform.position.x, transform.position.z);
+        }
     }
 
     /// <summary>
@@ -254,7 +269,16 @@ public class PusherController : MonoBehaviour
     /// <returns></returns>
     public Vector2 GetCurrentVelocity()
     {
-        return new Vector2(pusherActuatorX.Velocity, pusherActuatorZ.Velocity);
+        if (domainRandomizationController.ApplyObservationRandomization is true)
+        {
+            float x = domainRandomizationObservations.RandomizeParameter(pusherActuatorX.Velocity);
+            float z = domainRandomizationObservations.RandomizeParameter(pusherActuatorZ.Velocity);
+            return new Vector2(x, z);
+        }
+        else
+        {
+            return new Vector2(pusherActuatorX.Velocity, pusherActuatorZ.Velocity);
+        }
     }
 
     /// <summary>
@@ -263,7 +287,16 @@ public class PusherController : MonoBehaviour
     /// <returns></returns>
     public Vector2 GetCurrentAccelaration()
     {
-        return currentAccelaration;
+        if (domainRandomizationController.ApplyObservationRandomization is true)
+        {
+            float x = domainRandomizationObservations.RandomizeParameter(currentAccelaration.x);
+            float z = domainRandomizationObservations.RandomizeParameter(currentAccelaration.y);
+            return new Vector2(x, z);
+        }
+        else
+        {
+            return currentAccelaration;
+        }
     }
 
     /// <summary>
@@ -274,6 +307,7 @@ public class PusherController : MonoBehaviour
     {
         Vector2 goalPos = new Vector2(agentGoalPos.x, agentGoalPos.z);
         return goalPos - GetCurrentPosition();
+        
     }
 
     /// <summary>

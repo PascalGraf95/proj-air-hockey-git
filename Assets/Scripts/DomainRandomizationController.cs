@@ -6,16 +6,21 @@ using Assets.Scripts;
 
 public class DomainRandomizationController : MonoBehaviour
 {
-    public bool applyRandomization = false;
-    
+    [Tooltip("Randomize the simulation enviromnet. E.g. parameters like friction and damping.")]
+    public bool ApplyEnvironmentRandomization = false;
+    [Tooltip("Randomize the observations e.g. adds random noise to the perceived puck position.")]
+    public bool ApplyObservationRandomization = false;
+    [Tooltip("Randomize the actions e.g. adds random delay to the pusher movement.")]
+    public bool ApplyActionRandomization = false;
+
 
     public void ApplyRandomization()
     {
-        if (applyRandomization == true)
+        if (ApplyEnvironmentRandomization == true)
         {
             // Get all objects with the DomainRandomization script attached.
-            DomainRandomization[] domainRandomizations = FindObjectsOfType<DomainRandomization>();
-            foreach (DomainRandomization domainRandomization in domainRandomizations)
+            DomainRandomizationEnvironment[] domainRandomizations = FindObjectsOfType<DomainRandomizationEnvironment>();
+            foreach (DomainRandomizationEnvironment domainRandomization in domainRandomizations)
             {
                 var gameObjects = domainRandomization.GameObjectsToRandomize;
                 domainRandomization.RandomizeGameObjectTree(gameObjects);

@@ -15,18 +15,20 @@ using System.Reflection;
 
 namespace Assets.Scripts
 {
+    // TODO: Move to Controller
     public enum ApplyRandomizationAfter
     {
         Episode,
         Steps
     }
 
+    // TODO: Move to some type of base randomization class
     public enum ProbabilityDensityFunction
     {
         EquallyDistributed,
         NormalDistributed
     }
-
+    // TODO: Move to some type of base randomization class
     public enum RangeSelection
     {
         Numerical,
@@ -47,7 +49,7 @@ namespace Assets.Scripts
         public MjJointSettings Settings;
     }
 
-    public class DomainRandomization : MonoBehaviour
+    public class DomainRandomizationEnvironment : MonoBehaviour
     {
         #region public variables
         // Allows the user to define a list of objects with similar randomization parameters to be applied.
@@ -55,6 +57,7 @@ namespace Assets.Scripts
         // Define how often the randomization will be applied.
         public ApplyRandomizationAfter applyRandomization;
         // Define the distribution of the randomization values.
+        [Tooltip("Define the distribution of the randomization values.")]
         public ProbabilityDensityFunction probabilityDensityFunction;
 
         // Define parameter range for MuJoCo objects
@@ -285,11 +288,7 @@ namespace Assets.Scripts
                 }
                 else if (gameObject.GetComponent<MjSlideJoint>() != null)
                 {
-
-                }
-                else if (gameObject.GetComponent<MjActuator>() != null)
-                {
-
+                    RandomizeMjSlideJoint(gameObject);
                 }
             }
         }
@@ -317,7 +316,7 @@ namespace Assets.Scripts
                         mjSlideJoint.Settings.Solver.ImpLimit.DMax = RandomizeParameter(Precision, SolverImpLimitDMaxMax, SolverImpLimitDMaxMin);
                         mjSlideJoint.Settings.Solver.ImpLimit.Width = RandomizeParameter(Precision, SolverImpLimitWidthMax, SolverImpLimitWidthMin);
                         mjSlideJoint.Settings.Solver.ImpLimit.Midpoint = RandomizeParameter(Precision, SolverImpLimitMidpointMax, SolverImpLimitMidpointMin);
-                        mjSlideJoint.Settings.Solver.ImpLimit.Power = RandomizeParameter(Precision, SolverImpLimitPowerMax, SolverImpLimitPowerMin);                        
+                        mjSlideJoint.Settings.Solver.ImpLimit.Power = RandomizeParameter(Precision, SolverImpLimitPowerMax, SolverImpLimitPowerMin);
                         mjSlideJoint.Settings.Solver.FrictionLoss = RandomizeParameter(Precision, SolverFrictionLossMax, SolverFrictionLossMin);
                         mjSlideJoint.Settings.Solver.ImpFriction.DMin = RandomizeParameter(Precision, SolverImpFrictionDMinMax, SolverImpFrictionDMinMin);
                         mjSlideJoint.Settings.Solver.ImpFriction.DMax = RandomizeParameter(Precision, SolverImpFrictionDMaxMax, SolverImpFrictionDMaxMin);
@@ -326,7 +325,7 @@ namespace Assets.Scripts
                         mjSlideJoint.Settings.Solver.ImpFriction.Power = RandomizeParameter(Precision, SolverImpFrictionPowerMax, SolverImpFrictionPowerMin);
                         mjSlideJoint.Settings.Solver.RefFriction.TimeConst = RandomizeParameter(Precision, SolverRefFrictionTimeConstMax, SolverRefFrictionTimeConstMin);
                         mjSlideJoint.Settings.Solver.RefFriction.DampRatio = RandomizeParameter(Precision, SolverRefFrictionDampRatioMax, SolverRefFrictionDampRatioMin);
-                    break;
+                        break;
                     case RangeSelection.Percentage:
                         var tempSliderJoint = SlideJointSearchGameObjectTree(mjSlideJoint, mjSlideJoint.MujocoId);
                         // Randomize all float parameters of the MuJoCo object
@@ -340,9 +339,9 @@ namespace Assets.Scripts
                                 SetFieldValue(tempSliderJoint, field.Name, result);
                             }
                         }
-                    break;
+                        break;
                     default:
-                    break;
+                        break;
                 }
             }
         }
@@ -350,7 +349,7 @@ namespace Assets.Scripts
         private void RandomizeMjGeom(GameObject gameObject)
         {
             MjGeom mjGeom = gameObject.GetComponent<MjGeom>();
-            
+
             if (mjGeom != null)
             {
                 switch (RangeSelection)
@@ -371,7 +370,7 @@ namespace Assets.Scripts
                         mjGeom.Settings.Solver.Gap = RandomizeParameter(Precision, GeomSolverGapMax, GeomSolverGapMin);
                         mjGeom.Settings.Friction.Rolling = RandomizeParameter(Precision, MaxFrictionGeom, MinFrictionGeom);
                         mjGeom.Settings.Friction.Torsional = RandomizeParameter(Precision, MaxFrictionGeom, MinFrictionGeom);
-                        mjGeom.Settings.Friction.Sliding = RandomizeParameter(Precision, MaxFrictionGeom, MinFrictionGeom);          
+                        mjGeom.Settings.Friction.Sliding = RandomizeParameter(Precision, MaxFrictionGeom, MinFrictionGeom);
                         break;
                     case RangeSelection.Percentage:
                         var tempGeom = GeomSearchGameObjectTree(mjGeom, mjGeom.MujocoId);
@@ -448,7 +447,7 @@ namespace Assets.Scripts
                     break;
             }
             return result;
-        }        
+        }
 
         /// <summary>
         /// Randomize a parameter based on a normal distribution.
@@ -468,11 +467,13 @@ namespace Assets.Scripts
         /// <param name="precision"></param>
         /// <param name="max"></param>
         /// <param name="min"></param>
-        private float NormalDistribution(int precision, float max, float min) 
+        private float NormalDistribution(int precision, float max, float min)
         {
             float result = RandomFromDistribution.RandomRangeNormalDistribution(min, max, RandomFromDistribution.ConfidenceLevel_e._999);
             return (float)Math.Round(result, precision);
         }
+
+        // TODO: Remove unnecessary pass of Precision value
     }
 
 
