@@ -211,6 +211,13 @@ MonoBehaviour:
       Sliding: 0.001
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!1 &18223420 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1141996033764778559, guid: fb10f2a6528510743812737350184bf5,
@@ -2747,6 +2754,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ef51a360e7c24695800e2d06f70db49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GravityCompensation: 0
 --- !u!23 &250115472
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3141,6 +3149,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!1001 &351661106
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4174,6 +4189,13 @@ MonoBehaviour:
       Sliding: 0.001
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!1 &446030134
 GameObject:
   m_ObjectHideFlags: 0
@@ -5422,6 +5444,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!1 &715150780 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5678351524062016781, guid: fb10f2a6528510743812737350184bf5,
@@ -6339,6 +6368,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!1 &887771125
 GameObject:
   m_ObjectHideFlags: 0
@@ -6875,6 +6911,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ef51a360e7c24695800e2d06f70db49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GravityCompensation: 0
 --- !u!23 &983042887
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8854,6 +8891,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!1 &1263459674
 GameObject:
   m_ObjectHideFlags: 0
@@ -9362,6 +9406,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!1 &1320039092
 GameObject:
   m_ObjectHideFlags: 0
@@ -9515,6 +9566,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!1 &1364935847
 GameObject:
   m_ObjectHideFlags: 0
@@ -10693,6 +10751,13 @@ MonoBehaviour:
       Sliding: 0
       Torsional: 0
       Rolling: 0
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!1 &1602625608 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2634293135352002841, guid: fb10f2a6528510743812737350184bf5,
@@ -11097,6 +11162,13 @@ MonoBehaviour:
       Sliding: 0.001
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!1 &1693899615
 GameObject:
   m_ObjectHideFlags: 0
@@ -11319,6 +11391,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!1 &1768583134
 GameObject:
   m_ObjectHideFlags: 0
@@ -11574,6 +11653,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!1 &1810052254
 GameObject:
   m_ObjectHideFlags: 0
@@ -12536,6 +12622,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!1 &2089265700
 GameObject:
   m_ObjectHideFlags: 0
@@ -13438,6 +13531,7 @@ GameObject:
   - component: {fileID: 919132147958298415}
   - component: {fileID: 919132147958298414}
   - component: {fileID: 919132147958298417}
+  - component: {fileID: 919132147958298422}
   m_Layer: 0
   m_Name: 3DAirHockeyTable
   m_TagString: Untagged
@@ -13621,6 +13715,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &919132147958298422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132147958298411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c8947bc8b9a9164bbf66d6966fb2302, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  applyRandomization: 1
 --- !u!33 &923504064602305110
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -13863,6 +13970,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ef51a360e7c24695800e2d06f70db49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GravityCompensation: 0
 --- !u!114 &1262576982509127529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14343,6 +14451,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ef51a360e7c24695800e2d06f70db49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GravityCompensation: 0
 --- !u!64 &2411169564138499894
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -14857,6 +14966,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ef51a360e7c24695800e2d06f70db49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GravityCompensation: 0
 --- !u!33 &3073918504185649519
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -15289,6 +15399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ef51a360e7c24695800e2d06f70db49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GravityCompensation: 0
 --- !u!114 &3881779651548995390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16146,12 +16257,70 @@ MonoBehaviour:
   applyRandomization: 0
   probabilityDensityFunction: 1
   Precision: 2
-  RangeSelection: 1
+  RangeSelection: 0
   PercentageRange: 10
-  MaxMass: 0
-  MinMass: 0
+  MaxMass: 1.05
+  MinMass: 0.95
   MaxFrictionGeom: 0
   MinFrictionGeom: 0
+  MaxDensity: 0
+  MinDensity: 0
+  SolverSolMixMin: 1
+  SolverSolMixMax: 1
+  SolRefTimeConstMin: -8
+  SolRefTimeConstMax: -8
+  SolRefDampingRatioMin: -100
+  SolRefDampingRatioMax: -100
+  SolRefMixMin: 0
+  SolRefMixMax: 0
+  SolImpDMinMin: 0.99
+  SolImpDMinMax: 0.99
+  SolImpDMaxMin: 1
+  SolImpDMaxMax: 1
+  SolImpWidthMin: 0.001
+  SolImpWidthMax: 0.001
+  SolImpMidpointMin: 0.1
+  SolImpMidpointMax: 0.1
+  SolImpPowerMin: 9
+  SolImpPowerMax: 9
+  GeomSolverMarginMin: 0
+  GeomSolverMarginMax: 0
+  GeomSolverGapMin: 0
+  GeomSolverGapMax: 0
+  ArmatureMin: 0
+  ArmatureMax: 0
+  SpringTimeConstMin: 0
+  SpringTimeConstMax: 0
+  SpringDampingRatioMin: 0
+  SpringDampingRatioMax: 0
+  SpringStiffnessMin: 0
+  SpringStiffnessMax: 0
+  SpringDampingMin: 0.23
+  SpringDampingMax: 0.23
+  SpringEquilibriumPoseMin: 0
+  SpringEquilibriumPoseMax: 0
+  JointSolverMarginMin: 0
+  JointSolverMarginMax: 0
+  SolverRefLimitTimeConstMin: 0.02
+  SolverRefLimitTimeConstMax: 0.02
+  SolverRefLimitDampRationMin: 0.5
+  SolverRefLimitDampRationMax: 0.5
+  SolverImpLimitFrictionLossMin: 0
+  SolverImpLimitFrictionLossMax: 0
+  SolverImpFrictionDMinMin: 0.99
+  SolverImpFrictionDMinMax: 0.99
+  SolverImpFrictionDMaxMin: 1
+  SolverImpFrictionDMaxMax: 1
+  SolverImpFrictionWidthMin: 0.001
+  SolverImpFrictionWidthMax: 0.001
+  SolverImpFrictionMidpointMin: 0.1
+  SolverImpFrictionMidpointMax: 0.1
+  SolverImpFrictionPowerMin: 9
+  SolverImpFrictionPowerMax: 9
+  SolverRefFrictionTimeConstMin: 0.02
+  SolverRefFrictionTimeConstMax: 0.02
+  SolverRefFrictionDampRatioMin: 1
+  SolverRefFrictionDampRatioMax: 1
 --- !u!4 &6130393414969390481
 Transform:
   m_ObjectHideFlags: 0

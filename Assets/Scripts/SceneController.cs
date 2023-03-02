@@ -13,6 +13,7 @@ public class SceneController : MonoBehaviour
     private PuckController puckController;
     private PusherController pusherHumanController;
     private PusherController pusherAgentController;
+    private DomainRandomizationController domainRandomizationController;
     private GameObject cursor;
     [SerializeField] private GoalColliderScript agentGoalColliderScript;
     [SerializeField] private GoalColliderScript humanGoalColliderScript;
@@ -69,6 +70,9 @@ public class SceneController : MonoBehaviour
         {
             uiController.ResetUI();
         }
+
+        // Initialize Domain Randomization Controller
+        domainRandomizationController = GetComponent<DomainRandomizationController>();
     }
 
     public void Awake()
@@ -176,6 +180,9 @@ public class SceneController : MonoBehaviour
 
         // Reset Puck
         puckController.Reset();
+
+        // Apply domain randomization
+        domainRandomizationController.ApplyRandomization();
 
         // Reset Game Score
         if(humanPlayerScore >= 2 || agentPlayerScore >= 2 || forceScoreReset)
