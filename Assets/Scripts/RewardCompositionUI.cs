@@ -50,7 +50,7 @@ public class RewardCompositionUI : MonoBehaviour
     {
         Dictionary<string, float> episodeReward;
         Dictionary<string, float[]> episodeRewardShift;
-        airHockeyAgent.GetRewardComposition(out episodeReward, out episodeRewardShift);
+        airHockeyAgent.GetEpisodeRewardComposition(out episodeReward, out episodeRewardShift);
 
         scoreRewardEpisodeText.text = episodeReward["ScoreReward"].ToString("0.00");
         scoreRewardShiftText.text = episodeRewardShift["ScoreRewardShift"].Sum().ToString("0.00");
