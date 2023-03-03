@@ -75,6 +75,7 @@ public class PusherController : MonoBehaviour
     // Domain Randomization
     private DomainRandomizationController domainRandomizationController;
     private static DomainRandomizationObservations domainRandomizationObservations;
+    private static DomainRandomizationActions domainRandomizationActions;
 
     private void Start()
     {
@@ -241,6 +242,7 @@ public class PusherController : MonoBehaviour
     /// <param name="targetVelocity"></param>
     public void Act(Vector2 targetVelocity)
     {
+        domainRandomizationActions.DelayAction();
         pusherActuatorX.Control = targetVelocity.x * maxVelocity;
         pusherActuatorZ.Control = targetVelocity.y * maxVelocity;
     }

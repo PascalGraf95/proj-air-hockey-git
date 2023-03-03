@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts
-{    
-    public class DomainRandomizationObservations : MonoBehaviour
+{
+    public class DomainRandomizationActions : MonoBehaviour
     {
         #region public variables
-        [Header("Randomize Observations")]
+        [Header("Randomize Actions")]
         public bool Randomize = true;
         // Define the distribution of the randomization values.
         [Tooltip("Define the distribution of the randomization values.")]
@@ -20,45 +21,59 @@ namespace Assets.Scripts
         [Tooltip(@"Percentage of the starting value defined in the MuJoCo scripts to randomize the parameter.
                    Example: If the starting value is 1 and the percentage range is 10, the randomization will be between 0.9 and 1.1.")]
         public int PercentageRange;
+        [Tooltip("Define the maximum amount of time an action can be delayed.")]
+        [Range(0, 1000f)]
+        public int MaxActionDelayInMs;
+        [Tooltip("Define the minimum amount of time an action can be delayed.")]
+        [Range(0, 1000f)]
+        public int MinActionDelayInMs;
+        [Tooltip("Define the probability that an action will be delayed.")]
+        [Range(0,1f)]
+        public double DelayProbability;
         #endregion
         #region private variables
 
         #endregion
         private void Start()
         {
-                
+
         }
 
         /// <summary>
-        /// Randomize a parameter based on the defined probability density function and percentage range.
+        /// Delay an action based on the defined probability density function, delay probability and defined delay time range.
         /// </summary>
-        /// <param name="value"></param>
-        public float RandomizeParameter(float value)
-        {
-            if (Randomize)
+        public void DelayAction() 
+        { 
+            if (Randomize) 
             {
-                // calculate the range based on the percentage
-                float range = value * PercentageRange / 100;
-                float max = value + range;
-                float min = value - range;
-                float result = 0;
-                switch (ProbabilityDensityFunction)
+                // decide if action will be delayed based on delay probability
+                System.Random random = new System.Random();
+                bool delay = random.NextDouble() < DelayProbability;
+                if (delay) 
                 {
-                    case ProbabilityDensityFunction.NormalDistributed:
-                        result = NormalDistribution(Precision, max, min);
-                        break;
-                    case ProbabilityDensityFunction.EquallyDistributed:
-                        result = EqualDistribution(Precision, max, min);
-                        break;
-                    default:
-                        break;
+                    Thread.Sleep((int)Math.Round(RandomizeParameter()));
                 }
-                return result;
             }
-            else
+        }
+
+        /// <summary>
+        /// Randomize a parameter based on the defined probability density function.
+        /// </summary>
+        public float RandomizeParameter()
+        {
+            float result = 0;
+            switch (ProbabilityDensityFunction)
             {
-                return value;
+                case ProbabilityDensityFunction.NormalDistributed:
+                    result = NormalDistribution(Precision, MaxActionDelayInMs, MinActionDelayInMs);
+                    break;
+                case ProbabilityDensityFunction.EquallyDistributed:
+                    result = EqualDistribution(Precision, MaxActionDelayInMs, MinActionDelayInMs);
+                    break;
+                default:
+                    break;
             }
+            return result;
         }
 
         /// <summary>
@@ -86,3 +101,4 @@ namespace Assets.Scripts
         }
     }
 }
+
