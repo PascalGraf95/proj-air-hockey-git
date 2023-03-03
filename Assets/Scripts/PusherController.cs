@@ -254,7 +254,7 @@ public class PusherController : MonoBehaviour
     {
         float x;
         float z;
-        if (domainRandomizationActions == null) 
+        if (domainRandomizationActions == null || domainRandomizationController.ApplyActionRandomization == false) 
         {
             x =targetVelocity.x;
             z = targetVelocity.y;
