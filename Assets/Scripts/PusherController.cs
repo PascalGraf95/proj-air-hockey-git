@@ -243,8 +243,10 @@ public class PusherController : MonoBehaviour
     public void Act(Vector2 targetVelocity)
     {
         domainRandomizationActions.DelayAction();
-        pusherActuatorX.Control = targetVelocity.x * maxVelocity;
-        pusherActuatorZ.Control = targetVelocity.y * maxVelocity;
+        float x = domainRandomizationActions.RandomizeParameter(targetVelocity.x);
+        float z = domainRandomizationActions.RandomizeParameter(targetVelocity.y);
+        pusherActuatorX.Control = x * maxVelocity;
+        pusherActuatorZ.Control = z * maxVelocity;
     }
 
     /// <summary>

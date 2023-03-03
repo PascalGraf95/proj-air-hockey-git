@@ -18,9 +18,11 @@ namespace Assets.Scripts
         public ProbabilityDensityFunction ProbabilityDensityFunction;
         [Tooltip("Amount of decimal places to randomize floats.")]
         public int Precision = 2;
-        [Tooltip(@"Percentage of the starting value defined in the MuJoCo scripts to randomize the parameter.
-                   Example: If the starting value is 1 and the percentage range is 10, the randomization will be between 0.9 and 1.1.")]
-        public int PercentageRange;
+        [Header("Perturb Actions")]
+        [Tooltip(@"Percentage range of the action vector to be randomly disturbed. 
+                    Example: If the starting value is 1 and the percentage range is 10, the randomization will be between 0.9 and 1.1.")]
+        public int PerturbationPercentageRange;
+        [Header("Delay Actions")]
         [Tooltip("Define the maximum amount of time an action can be delayed.")]
         [Range(0, 1000f)]
         public int MaxActionDelayInMs;
@@ -72,6 +74,35 @@ namespace Assets.Scripts
                     break;
                 default:
                     break;
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Randomize a parameter based on the defined probability density function and percentage range.
+        /// </summary>        
+        /// <param name="startingValue"></param>
+        public float RandomizeParameter(float startingValue)
+        {
+            float result = startingValue;
+            if (Randomize)
+            {
+                // calculate the range based on the percentage
+                float range = startingValue * PerturbationPercentageRange / 100;
+                float max = startingValue + range;
+                float min = startingValue - range;
+                
+                switch (ProbabilityDensityFunction)
+                {
+                    case ProbabilityDensityFunction.NormalDistributed:
+                        result = NormalDistribution(Precision, max, min);
+                        break;
+                    case ProbabilityDensityFunction.EquallyDistributed:
+                        result = EqualDistribution(Precision, max, min);
+                        break;
+                    default:
+                        break;
+                }                
             }
             return result;
         }
