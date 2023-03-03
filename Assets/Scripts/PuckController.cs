@@ -34,7 +34,7 @@ public class PuckController : MonoBehaviour
 
     // Domain Randomization
     private DomainRandomizationController domainRandomizationController;
-    private static DomainRandomizationObservations domainRandomizationObservations;
+    private DomainRandomizationObservations domainRandomizationObservations;
 
     // Accelaration calculation
     Vector2 lastVelocity;
@@ -46,6 +46,7 @@ public class PuckController : MonoBehaviour
         SetupPuckController();
         // setup observation randomization
         domainRandomizationController = FindObjectOfType<DomainRandomizationController>();
+        domainRandomizationObservations = FindObjectOfType<DomainRandomizationObservations>();
     }
 
     public void SetupPuckController()
@@ -74,30 +75,32 @@ public class PuckController : MonoBehaviour
 
     public Vector2 GetCurrentPosition()
     {
-        if (domainRandomizationController.ApplyObservationRandomization is true)
+        if (domainRandomizationController == null)
+        {
+            return new Vector2(transform.position.x, transform.position.z);
+        }
+        else if (domainRandomizationController.ApplyObservationRandomization is true)
         {
             float x = domainRandomizationObservations.RandomizeParameter(transform.position.x);
             float z = domainRandomizationObservations.RandomizeParameter(transform.position.z);
             return new Vector2(x, z);
         }
-        else
-        {
-            return new Vector2(transform.position.x, transform.position.z);
-        }        
+        return new Vector2(transform.position.x, transform.position.z);
     }
 
     public Vector2 GetCurrentVelocity()
     {
-        if (domainRandomizationController.ApplyObservationRandomization is true)
-        {
-            float z = domainRandomizationObservations.RandomizeParameter(actuatorZ.Velocity);
-            float x = domainRandomizationObservations.RandomizeParameter(actuatorX.Velocity);
-            return new Vector2(x, z);
-        }
-        else
+        if (domainRandomizationController == null)
         {
             return new Vector2(actuatorX.Velocity, actuatorZ.Velocity);
         }
+        else if (domainRandomizationController.ApplyObservationRandomization is true)
+        {
+            float x = domainRandomizationObservations.RandomizeParameter(actuatorX.Velocity);
+            float z = domainRandomizationObservations.RandomizeParameter(actuatorZ.Velocity);
+            return new Vector2(x, z);
+        }
+        return new Vector2(actuatorX.Velocity, actuatorZ.Velocity);
     }
 
     public Vector2 GetCurrentAccelaration()

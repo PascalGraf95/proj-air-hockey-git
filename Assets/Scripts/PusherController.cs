@@ -75,8 +75,8 @@ public class PusherController : MonoBehaviour
 
     // Domain Randomization
     private DomainRandomizationController domainRandomizationController;
-    private static DomainRandomizationObservations domainRandomizationObservations;
-    private static DomainRandomizationActions domainRandomizationActions;
+    private DomainRandomizationObservations domainRandomizationObservations;
+    private DomainRandomizationActions domainRandomizationActions;
 
     private void Start()
     {
@@ -100,7 +100,9 @@ public class PusherController : MonoBehaviour
 
         Cursor.visible = false;
 
-        domainRandomizationController = FindObjectOfType<DomainRandomizationController>();
+        domainRandomizationController = GameObject.Find("3DAirHockeyTable").GetComponent<DomainRandomizationController>();
+        domainRandomizationObservations = FindObjectOfType<DomainRandomizationObservations>();
+        domainRandomizationActions = FindObjectOfType<DomainRandomizationActions>();
     }
 
     public void SetPusherConfiguration(PusherConfiguration pusherConfiguration)
@@ -250,9 +252,19 @@ public class PusherController : MonoBehaviour
     /// <param name="targetVelocity"></param>
     public void Act(Vector2 targetVelocity)
     {
-        domainRandomizationActions.DelayAction();
-        float x = domainRandomizationActions.RandomizeParameter(targetVelocity.x);
-        float z = domainRandomizationActions.RandomizeParameter(targetVelocity.y);
+        float x;
+        float z;
+        if (domainRandomizationActions == null) 
+        {
+            x =targetVelocity.x;
+            z = targetVelocity.y;
+        }
+        else
+        {
+            domainRandomizationActions.DelayAction();
+            x = domainRandomizationActions.RandomizeParameter(targetVelocity.x);
+            z = domainRandomizationActions.RandomizeParameter(targetVelocity.y);
+        }        
         pusherActuatorX.Control = x * maxVelocity;
         pusherActuatorZ.Control = z * maxVelocity;
     }
@@ -263,16 +275,17 @@ public class PusherController : MonoBehaviour
     /// <returns></returns>
     public Vector2 GetCurrentPosition()
     {
-        if (domainRandomizationController.ApplyObservationRandomization is true)
+        if (domainRandomizationController == null) 
+        {
+            return new Vector2(transform.position.x, transform.position.z);
+        }
+        else if (domainRandomizationController.ApplyObservationRandomization is true)
         {
             float x = domainRandomizationObservations.RandomizeParameter(transform.position.x);
             float z = domainRandomizationObservations.RandomizeParameter(transform.position.z);
             return new Vector2(x, z);
         }
-        else
-        {
-            return new Vector2(transform.position.x, transform.position.z);
-        }
+        return new Vector2(transform.position.x, transform.position.z);
     }
 
     /// <summary>
@@ -281,16 +294,17 @@ public class PusherController : MonoBehaviour
     /// <returns></returns>
     public Vector2 GetCurrentVelocity()
     {
-        if (domainRandomizationController.ApplyObservationRandomization is true)
+        if (domainRandomizationController == null)
+        {
+            return new Vector2(pusherActuatorX.Velocity, pusherActuatorZ.Velocity);
+        }
+        else if(domainRandomizationController.ApplyObservationRandomization is true)
         {
             float x = domainRandomizationObservations.RandomizeParameter(pusherActuatorX.Velocity);
             float z = domainRandomizationObservations.RandomizeParameter(pusherActuatorZ.Velocity);
             return new Vector2(x, z);
         }
-        else
-        {
-            return new Vector2(pusherActuatorX.Velocity, pusherActuatorZ.Velocity);
-        }
+        return new Vector2(pusherActuatorX.Velocity, pusherActuatorZ.Velocity);
     }
 
     /// <summary>
@@ -299,16 +313,17 @@ public class PusherController : MonoBehaviour
     /// <returns></returns>
     public Vector2 GetCurrentAcceleration()
     {
-        if (domainRandomizationController.ApplyObservationRandomization is true)
+        if (domainRandomizationController == null)
         {
-            float x = domainRandomizationObservations.RandomizeParameter(currentAccelaration.x);
-            float z = domainRandomizationObservations.RandomizeParameter(currentAccelaration.y);
+            return currentAcceleration;
+        }
+        else if (domainRandomizationController.ApplyObservationRandomization is true)
+        {
+            float x = domainRandomizationObservations.RandomizeParameter(currentAcceleration.x);
+            float z = domainRandomizationObservations.RandomizeParameter(currentAcceleration.y);
             return new Vector2(x, z);
         }
-        else
-        {
-            return currentAccelaration;
-        }
+        return currentAcceleration;
     }
 
     /// <summary>

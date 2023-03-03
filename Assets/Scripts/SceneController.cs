@@ -185,7 +185,11 @@ public class SceneController : MonoBehaviour
         puckController.Reset();
 
         // Apply domain randomization
-        domainRandomizationController.ApplyRandomization();
+        if (domainRandomizationController != null)
+        {
+            domainRandomizationController.ApplyRandomization();
+        }
+        
 
         // Reset Game Score
         if(humanPlayerScore >= maxScore || agentPlayerScore >= maxScore || forceScoreReset)
