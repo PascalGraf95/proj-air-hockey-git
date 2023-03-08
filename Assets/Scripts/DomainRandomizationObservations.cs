@@ -69,7 +69,7 @@ namespace Assets.Scripts
         /// <param name="min"></param>
         private float EqualDistribution(int precision, float max, float min)
         {
-            float result = RandomFromDistribution.RandomRangeLinear(max, min, 0);
+            float result = RandomFromDistribution.RandomRangeLinear(min, max, 0);
             return (float)Math.Round(result, precision);
         }
 

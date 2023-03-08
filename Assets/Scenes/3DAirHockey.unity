@@ -2804,12 +2804,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57a2aa7e68ea6a74db975616ffef48b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Randomize: 1
+  Perturb: 1
   ProbabilityDensityFunction: 1
   Precision: 2
   PerturbationPercentageRange: 10
-  MaxActionDelayInMs: 103
-  MinActionDelayInMs: 0
+  Delay: 1
+  MinActionDelay: 0
+  MaxActionDelay: 3
   DelayProbability: 0.3799999952316284
 --- !u!1 &253087612
 GameObject:
@@ -12849,7 +12850,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ApplyEnvironmentRandomization: 0
   ApplyObservationRandomization: 0
-  ApplyActionRandomization: 0
+  ApplyActionRandomization: 1
 --- !u!33 &923504064602305110
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -26071,12 +26072,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57a2aa7e68ea6a74db975616ffef48b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Randomize: 1
+  Perturb: 1
   ProbabilityDensityFunction: 1
   Precision: 2
   PerturbationPercentageRange: 10
-  MaxActionDelayInMs: 100
-  MinActionDelayInMs: 0
+  Delay: 1
+  MinActionDelay: 0
+  MaxActionDelay: 3
   DelayProbability: 0.24500000476837158
 --- !u!114 &4880764153250825477
 MonoBehaviour:
