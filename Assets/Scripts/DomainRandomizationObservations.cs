@@ -40,27 +40,14 @@ namespace Assets.Scripts
                 float range = value * PercentageRange / 100;
                 float max = value + range;
                 float min = value - range;
-                float result = 0;
-                switch (ProbabilityDensityFunction)
-                {
-                    case ProbabilityDensityFunction.NormalDistributed:
-                        result = NormalDistribution(Precision, max, min);
-                        break;
-                    case ProbabilityDensityFunction.EquallyDistributed:
-                        result = EqualDistribution(Precision, max, min);
-                        break;
-                    default:
-                        break;
-                }
-                // if the value was negative, return the negative of the result
                 if (valueIsNegative)
                 {
-                    return -result;
+                    return -RandomizeParameter(Precision, max, min, ProbabilityDensityFunction);
                 }
                 else
                 {
-                    return result;
-                }                
+                    return RandomizeParameter(Precision, max, min, ProbabilityDensityFunction);
+                }
             }
             else
             {

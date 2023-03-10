@@ -47,7 +47,48 @@ namespace Assets.Scripts
         #endregion
         #region private variables
 
-        #endregion        
+        #endregion                
+
+        /// <summary>
+        /// Decide if action will be delayed based on delay probability.
+        /// </summary>
+        public bool DelayTrigger()
+        {            
+            System.Random random = new System.Random();
+            return random.NextDouble() < DelayProbability;            
+        }
+
+        /// <summary>
+        /// Return a random int between min and max which represents the amount of actions to be delayed.
+        /// </summary>
+        public void RandomActionDelayCount()
+        {
+            System.Random random = new System.Random();
+            ActionDelayCount = random.Next(MinActionDelay, MaxActionDelay);
+        }
+
+        /// <summary>
+        /// Randomize a parameter based on the defined probability density function and percentage range.
+        /// </summary>        
+        /// <param name="startingValue"></param>
+        public float RandomizeParameter(float startingValue)
+        {
+            bool valuesIsNegative = startingValue < 0;
+            // get absolute of value, so that the result from the probability density function is calculated correctly
+            startingValue = Math.Abs(startingValue);
+            // calculate the range based on the percentage
+            float range = startingValue * PerturbationPercentageRange / 100;
+            float max = startingValue + range;
+            float min = startingValue - range;
+            if (valuesIsNegative)
+            {
+                return -RandomizeParameter(Precision, max, min, ProbabilityDensityFunction);
+            }
+            else
+            {
+                return RandomizeParameter(Precision, max, min, ProbabilityDensityFunction);
+            }
+        }
 
         /// <summary>
         /// Delay an action based on the defined probability density function, delay probability and defined delay time range.
@@ -86,51 +127,6 @@ namespace Assets.Scripts
         //    }
         //    return result;
         //}
-
-        /// <summary>
-        /// Decide if action will be delayed based on delay probability.
-        /// </summary>
-        public bool DelayTrigger()
-        {            
-            System.Random random = new System.Random();
-            return random.NextDouble() < DelayProbability;            
-        }
-
-        /// <summary>
-        /// Return a random int between min and max which represents the amount of actions to be delayed.
-        /// </summary>
-        public void RandomActionDelayCount()
-        {
-            System.Random random = new System.Random();
-            ActionDelayCount = random.Next(MinActionDelay, MaxActionDelay);
-        }
-
-        /// <summary>
-        /// Randomize a parameter based on the defined probability density function and percentage range.
-        /// </summary>        
-        /// <param name="startingValue"></param>
-        public float RandomizeParameter(float startingValue)
-        {
-            float result = startingValue;            
-            // calculate the range based on the percentage
-            float range = startingValue * PerturbationPercentageRange / 100;
-            float max = startingValue + range;
-            float min = startingValue - range;
-                
-            switch (ProbabilityDensityFunction)
-            {
-                case ProbabilityDensityFunction.NormalDistributed:
-                    result = NormalDistribution(Precision, max, min);
-                    break;
-                case ProbabilityDensityFunction.EquallyDistributed:
-                    result = EqualDistribution(Precision, max, min);
-                    break;
-                default:
-                    break;
-            }                
-            
-            return result;
-        }
     }
 }
 

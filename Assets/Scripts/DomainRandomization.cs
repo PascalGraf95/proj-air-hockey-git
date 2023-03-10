@@ -7,8 +7,47 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
+    // TODO: Move to Controller
+    public enum ApplyRandomizationAfter
+    {
+        Episode,
+        Steps
+    }
+    public enum ProbabilityDensityFunction
+    {
+        EquallyDistributed,
+        NormalDistributed
+    }
+    public enum RangeSelection
+    {
+        Numerical,
+        Percentage
+    }
     public class DomainRandomization : MonoBehaviour
     {
+        /// <summary>
+        /// Randomize a parameter based on the defined probability density function and numerical value range.
+        /// </summary>
+        /// <param name="precision"></param>
+        /// <param name="max"></param>
+        /// <param name="min"></param>
+        public float RandomizeParameter(int precision, float max, float min, ProbabilityDensityFunction densityFunction)
+        {
+            float result = 0;
+            switch (densityFunction)
+            {
+                case ProbabilityDensityFunction.NormalDistributed:
+                    result = NormalDistribution(precision, max, min);
+                    break;
+                case ProbabilityDensityFunction.EquallyDistributed:
+                    result = EqualDistribution(precision, max, min);
+                    break;
+                default:
+                    break;
+            }
+            return result;
+        }
+
         /// <summary>
         /// Randomize a parameter based on a normal distribution.
         /// </summary>

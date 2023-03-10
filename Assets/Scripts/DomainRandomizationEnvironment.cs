@@ -15,26 +15,6 @@ using System.Reflection;
 
 namespace Assets.Scripts
 {
-    // TODO: Move to Controller
-    public enum ApplyRandomizationAfter
-    {
-        Episode,
-        Steps
-    }
-
-    // TODO: Move to some type of base randomization class
-    public enum ProbabilityDensityFunction
-    {
-        EquallyDistributed,
-        NormalDistributed
-    }
-    // TODO: Move to some type of base randomization class
-    public enum RangeSelection
-    {
-        Numerical,
-        Percentage
-    }
-
     public class MjGeomClone
     {
         public int MujocoId;
@@ -303,28 +283,28 @@ namespace Assets.Scripts
                 {
                     case RangeSelection.Numerical:
                         // set joint parameters to random values
-                        mjSlideJoint.Settings.Armature = RandomizeParameter(Precision, ArmatureMax, ArmatureMin);
-                        mjSlideJoint.Settings.Spring.TimeConstant = RandomizeParameter(Precision, SpringTimeConstMax, SpringTimeConstMin);
-                        mjSlideJoint.Settings.Spring.DampingRatio = RandomizeParameter(Precision, SpringDampingRatioMax, SpringDampingRatioMin);
-                        mjSlideJoint.Settings.Spring.Stiffness = RandomizeParameter(Precision, SpringStiffnessMax, SpringStiffnessMin);
-                        mjSlideJoint.Settings.Spring.Damping = RandomizeParameter(Precision, SpringDampingMax, SpringDampingMin);
-                        mjSlideJoint.Settings.Spring.EquilibriumPose = RandomizeParameter(Precision, SpringEquilibriumPoseMax, SpringEquilibriumPoseMin);
-                        mjSlideJoint.Settings.Solver.Margin = RandomizeParameter(Precision, JointSolverMarginMax, JointSolverMarginMin);
-                        mjSlideJoint.Settings.Solver.RefLimit.TimeConst = RandomizeParameter(Precision, SolverRefLimitTimeConstMax, SolverRefLimitTimeConstMin);
-                        mjSlideJoint.Settings.Solver.RefLimit.DampRatio = RandomizeParameter(Precision, SolverRefLimitDampRationMax, SolverRefLimitDampRationMin);
-                        mjSlideJoint.Settings.Solver.ImpLimit.DMin = RandomizeParameter(Precision, SolverImpLimitDMinMax, SolverImpLimitDMinMin);
-                        mjSlideJoint.Settings.Solver.ImpLimit.DMax = RandomizeParameter(Precision, SolverImpLimitDMaxMax, SolverImpLimitDMaxMin);
-                        mjSlideJoint.Settings.Solver.ImpLimit.Width = RandomizeParameter(Precision, SolverImpLimitWidthMax, SolverImpLimitWidthMin);
-                        mjSlideJoint.Settings.Solver.ImpLimit.Midpoint = RandomizeParameter(Precision, SolverImpLimitMidpointMax, SolverImpLimitMidpointMin);
-                        mjSlideJoint.Settings.Solver.ImpLimit.Power = RandomizeParameter(Precision, SolverImpLimitPowerMax, SolverImpLimitPowerMin);
-                        mjSlideJoint.Settings.Solver.FrictionLoss = RandomizeParameter(Precision, SolverFrictionLossMax, SolverFrictionLossMin);
-                        mjSlideJoint.Settings.Solver.ImpFriction.DMin = RandomizeParameter(Precision, SolverImpFrictionDMinMax, SolverImpFrictionDMinMin);
-                        mjSlideJoint.Settings.Solver.ImpFriction.DMax = RandomizeParameter(Precision, SolverImpFrictionDMaxMax, SolverImpFrictionDMaxMin);
-                        mjSlideJoint.Settings.Solver.ImpFriction.Width = RandomizeParameter(Precision, SolverImpFrictionWidthMax, SolverImpFrictionWidthMin);
-                        mjSlideJoint.Settings.Solver.ImpFriction.Midpoint = RandomizeParameter(Precision, SolverImpFrictionMidpointMax, SolverImpFrictionMidpointMin);
-                        mjSlideJoint.Settings.Solver.ImpFriction.Power = RandomizeParameter(Precision, SolverImpFrictionPowerMax, SolverImpFrictionPowerMin);
-                        mjSlideJoint.Settings.Solver.RefFriction.TimeConst = RandomizeParameter(Precision, SolverRefFrictionTimeConstMax, SolverRefFrictionTimeConstMin);
-                        mjSlideJoint.Settings.Solver.RefFriction.DampRatio = RandomizeParameter(Precision, SolverRefFrictionDampRatioMax, SolverRefFrictionDampRatioMin);
+                        mjSlideJoint.Settings.Armature = RandomizeParameter(Precision, ArmatureMax, ArmatureMin, probabilityDensityFunction);
+                        mjSlideJoint.Settings.Spring.TimeConstant = RandomizeParameter(Precision, SpringTimeConstMax, SpringTimeConstMin, probabilityDensityFunction);
+                        mjSlideJoint.Settings.Spring.DampingRatio = RandomizeParameter(Precision, SpringDampingRatioMax, SpringDampingRatioMin, probabilityDensityFunction);
+                        mjSlideJoint.Settings.Spring.Stiffness = RandomizeParameter(Precision, SpringStiffnessMax, SpringStiffnessMin, probabilityDensityFunction);
+                        mjSlideJoint.Settings.Spring.Damping = RandomizeParameter(Precision, SpringDampingMax, SpringDampingMin, probabilityDensityFunction);
+                        mjSlideJoint.Settings.Spring.EquilibriumPose = RandomizeParameter(Precision, SpringEquilibriumPoseMax, SpringEquilibriumPoseMin, probabilityDensityFunction);
+                        mjSlideJoint.Settings.Solver.Margin = RandomizeParameter(Precision, JointSolverMarginMax, JointSolverMarginMin, probabilityDensityFunction);
+                        mjSlideJoint.Settings.Solver.RefLimit.TimeConst = RandomizeParameter(Precision, SolverRefLimitTimeConstMax, SolverRefLimitTimeConstMin, probabilityDensityFunction);
+                        mjSlideJoint.Settings.Solver.RefLimit.DampRatio = RandomizeParameter(Precision, SolverRefLimitDampRationMax, SolverRefLimitDampRationMin, probabilityDensityFunction);
+                        mjSlideJoint.Settings.Solver.ImpLimit.DMin = RandomizeParameter(Precision, SolverImpLimitDMinMax, SolverImpLimitDMinMin, probabilityDensityFunction);
+                        mjSlideJoint.Settings.Solver.ImpLimit.DMax = RandomizeParameter(Precision, SolverImpLimitDMaxMax, SolverImpLimitDMaxMin, probabilityDensityFunction);
+                        mjSlideJoint.Settings.Solver.ImpLimit.Width = RandomizeParameter(Precision, SolverImpLimitWidthMax, SolverImpLimitWidthMin, probabilityDensityFunction);
+                        mjSlideJoint.Settings.Solver.ImpLimit.Midpoint = RandomizeParameter(Precision, SolverImpLimitMidpointMax, SolverImpLimitMidpointMin, probabilityDensityFunction);
+                        mjSlideJoint.Settings.Solver.ImpLimit.Power = RandomizeParameter(Precision, SolverImpLimitPowerMax, SolverImpLimitPowerMin, probabilityDensityFunction);
+                        mjSlideJoint.Settings.Solver.FrictionLoss = RandomizeParameter(Precision, SolverFrictionLossMax, SolverFrictionLossMin, probabilityDensityFunction);
+                        mjSlideJoint.Settings.Solver.ImpFriction.DMin = RandomizeParameter(Precision, SolverImpFrictionDMinMax, SolverImpFrictionDMinMin, probabilityDensityFunction);
+                        mjSlideJoint.Settings.Solver.ImpFriction.DMax = RandomizeParameter(Precision, SolverImpFrictionDMaxMax, SolverImpFrictionDMaxMin, probabilityDensityFunction);
+                        mjSlideJoint.Settings.Solver.ImpFriction.Width = RandomizeParameter(Precision, SolverImpFrictionWidthMax, SolverImpFrictionWidthMin, probabilityDensityFunction);
+                        mjSlideJoint.Settings.Solver.ImpFriction.Midpoint = RandomizeParameter(Precision, SolverImpFrictionMidpointMax, SolverImpFrictionMidpointMin, probabilityDensityFunction);
+                        mjSlideJoint.Settings.Solver.ImpFriction.Power = RandomizeParameter(Precision, SolverImpFrictionPowerMax, SolverImpFrictionPowerMin, probabilityDensityFunction);
+                        mjSlideJoint.Settings.Solver.RefFriction.TimeConst = RandomizeParameter(Precision, SolverRefFrictionTimeConstMax, SolverRefFrictionTimeConstMin, probabilityDensityFunction);
+                        mjSlideJoint.Settings.Solver.RefFriction.DampRatio = RandomizeParameter(Precision, SolverRefFrictionDampRatioMax, SolverRefFrictionDampRatioMin, probabilityDensityFunction);
                         break;
                     case RangeSelection.Percentage:
                         var tempSliderJoint = SlideJointSearchGameObjectTree(mjSlideJoint, mjSlideJoint.MujocoId);
@@ -334,7 +314,7 @@ namespace Assets.Scripts
                             if (field.FieldType == typeof(float))
                             {
                                 float value = (float)field.GetValue(tempSliderJoint);
-                                float result = RandomizeParameter(Precision, value, PercentageRange);
+                                float result = RandomizeParameterPercentageBased(Precision, value, PercentageRange);
                                 // set the new value to the field in the original object
                                 SetFieldValue(tempSliderJoint, field.Name, result);
                             }
@@ -356,21 +336,21 @@ namespace Assets.Scripts
                 {
                     case RangeSelection.Numerical:
                         // set geom parameters to random values
-                        mjGeom.Mass = RandomizeParameter(Precision, MaxMass, MinMass);
-                        mjGeom.Density = RandomizeParameter(Precision, MaxDensity, MinDensity);
-                        mjGeom.Settings.Solver.SolMix = RandomizeParameter(Precision, SolverSolMixMax, SolverSolMixMin);
-                        mjGeom.Settings.Solver.SolRef.TimeConst = RandomizeParameter(Precision, SolRefTimeConstMax, SolRefTimeConstMin);
-                        mjGeom.Settings.Solver.SolRef.DampRatio = RandomizeParameter(Precision, SolRefDampingRatioMax, SolRefDampingRatioMin);
-                        mjGeom.Settings.Solver.SolImp.DMin = RandomizeParameter(Precision, SolImpDMinMax, SolImpDMinMin);
-                        mjGeom.Settings.Solver.SolImp.DMax = RandomizeParameter(Precision, SolImpDMaxMax, SolImpDMaxMin);
-                        mjGeom.Settings.Solver.SolImp.Width = RandomizeParameter(Precision, SolImpWidthMax, SolImpWidthMin);
-                        mjGeom.Settings.Solver.SolImp.Midpoint = RandomizeParameter(Precision, SolImpMidpointMax, SolImpMidpointMin);
-                        mjGeom.Settings.Solver.SolImp.Power = RandomizeParameter(Precision, SolImpPowerMax, SolImpPowerMin);
-                        mjGeom.Settings.Solver.Margin = RandomizeParameter(Precision, GeomSolverMarginMax, GeomSolverMarginMin);
-                        mjGeom.Settings.Solver.Gap = RandomizeParameter(Precision, GeomSolverGapMax, GeomSolverGapMin);
-                        mjGeom.Settings.Friction.Rolling = RandomizeParameter(Precision, MaxFrictionGeom, MinFrictionGeom);
-                        mjGeom.Settings.Friction.Torsional = RandomizeParameter(Precision, MaxFrictionGeom, MinFrictionGeom);
-                        mjGeom.Settings.Friction.Sliding = RandomizeParameter(Precision, MaxFrictionGeom, MinFrictionGeom);
+                        mjGeom.Mass = RandomizeParameter(Precision, MaxMass, MinMass, probabilityDensityFunction);
+                        mjGeom.Density = RandomizeParameter(Precision, MaxDensity, MinDensity, probabilityDensityFunction);
+                        mjGeom.Settings.Solver.SolMix = RandomizeParameter(Precision, SolverSolMixMax, SolverSolMixMin, probabilityDensityFunction);
+                        mjGeom.Settings.Solver.SolRef.TimeConst = RandomizeParameter(Precision, SolRefTimeConstMax, SolRefTimeConstMin, probabilityDensityFunction);
+                        mjGeom.Settings.Solver.SolRef.DampRatio = RandomizeParameter(Precision, SolRefDampingRatioMax, SolRefDampingRatioMin, probabilityDensityFunction);
+                        mjGeom.Settings.Solver.SolImp.DMin = RandomizeParameter(Precision, SolImpDMinMax, SolImpDMinMin, probabilityDensityFunction);
+                        mjGeom.Settings.Solver.SolImp.DMax = RandomizeParameter(Precision, SolImpDMaxMax, SolImpDMaxMin, probabilityDensityFunction);
+                        mjGeom.Settings.Solver.SolImp.Width = RandomizeParameter(Precision, SolImpWidthMax, SolImpWidthMin, probabilityDensityFunction);
+                        mjGeom.Settings.Solver.SolImp.Midpoint = RandomizeParameter(Precision, SolImpMidpointMax, SolImpMidpointMin, probabilityDensityFunction);
+                        mjGeom.Settings.Solver.SolImp.Power = RandomizeParameter(Precision, SolImpPowerMax, SolImpPowerMin, probabilityDensityFunction);
+                        mjGeom.Settings.Solver.Margin = RandomizeParameter(Precision, GeomSolverMarginMax, GeomSolverMarginMin, probabilityDensityFunction);
+                        mjGeom.Settings.Solver.Gap = RandomizeParameter(Precision, GeomSolverGapMax, GeomSolverGapMin, probabilityDensityFunction);
+                        mjGeom.Settings.Friction.Rolling = RandomizeParameter(Precision, MaxFrictionGeom, MinFrictionGeom, probabilityDensityFunction);
+                        mjGeom.Settings.Friction.Torsional = RandomizeParameter(Precision, MaxFrictionGeom, MinFrictionGeom, probabilityDensityFunction);
+                        mjGeom.Settings.Friction.Sliding = RandomizeParameter(Precision, MaxFrictionGeom, MinFrictionGeom, probabilityDensityFunction);
                         break;
                     case RangeSelection.Percentage:
                         var tempGeom = GeomSearchGameObjectTree(mjGeom, mjGeom.MujocoId);
@@ -380,7 +360,7 @@ namespace Assets.Scripts
                             if (field.FieldType == typeof(float))
                             {
                                 float value = (float)field.GetValue(tempGeom);
-                                float result = RandomizeParameter(Precision, value, PercentageRange);
+                                float result = RandomizeParameterPercentageBased(Precision, value, PercentageRange);
                                 // set the new value to the field in the original object
                                 SetFieldValue(mjGeom, field.Name, result);
                             }
@@ -398,55 +378,30 @@ namespace Assets.Scripts
             FieldInfo field = type.GetField(fieldName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
             field?.SetValue(obj, value);
         }
-
-        /// <summary>
-        /// Randomize a parameter based on the defined probability density function and numerical value range.
-        /// </summary>
-        /// <param name="precision"></param>
-        /// <param name="max"></param>
-        /// <param name="min"></param>
-        public float RandomizeParameter(int precision, float max, float min)
-        {
-            float result = 0;
-            switch (probabilityDensityFunction)
-            {
-                case ProbabilityDensityFunction.NormalDistributed:
-                    result = NormalDistribution(precision, max, min);
-                    break;
-                case ProbabilityDensityFunction.EquallyDistributed:
-                    result = EqualDistribution(precision, max, min);
-                    break;
-                default:
-                    break;
-            }
-            return result;
-        }
-
+                 
         /// <summary>
         /// Randomize a parameter based on the defined probability density function and percentage range.
         /// </summary>
         /// <param name="precision"></param>
         /// <param name="startingValue"></param>
         /// <param name="percentage"></param>
-        public float RandomizeParameter(int precision, float startingValue, int percentage)
+        public float RandomizeParameterPercentageBased(int precision, float startingValue, int percentage)
         {
+            bool valueIsNegative = startingValue < 0;
+            // get absolute of value, so that the result from the probability density function is calculated correctly
+            startingValue = Math.Abs(startingValue);
             // calculate the range based on the percentage
             float range = startingValue * percentage / 100;
             float max = startingValue + range;
             float min = startingValue - range;
-            float result = 0;
-            switch (probabilityDensityFunction)
+            if (valueIsNegative)
             {
-                case ProbabilityDensityFunction.NormalDistributed:
-                    result = NormalDistribution(precision, max, min);
-                    break;
-                case ProbabilityDensityFunction.EquallyDistributed:
-                    result = EqualDistribution(precision, max, min);
-                    break;
-                default:
-                    break;
+                return -RandomizeParameter(precision, max, min, probabilityDensityFunction);
             }
-            return result;
+            else
+            {
+                return RandomizeParameter(precision, max, min, probabilityDensityFunction);
+            }
         }
     }
 }
