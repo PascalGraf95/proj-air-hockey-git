@@ -24,10 +24,6 @@ namespace Assets.Scripts
         #region private variables
 
         #endregion
-        private void Start()
-        {
-                
-        }
 
         /// <summary>
         /// Randomize a parameter based on the defined probability density function and percentage range.
@@ -35,8 +31,11 @@ namespace Assets.Scripts
         /// <param name="value"></param>
         public float RandomizeParameter(float value)
         {
+            bool valueIsNegative = value < 0;
             if (Randomize)
             {
+                // get absolute of value, so that the result from the probability density function is calculated correctly
+                value = Math.Abs(value);
                 // calculate the range based on the percentage
                 float range = value * PercentageRange / 100;
                 float max = value + range;
@@ -53,7 +52,15 @@ namespace Assets.Scripts
                     default:
                         break;
                 }
-                return result;
+                // if the value was negative, return the negative of the result
+                if (valueIsNegative)
+                {
+                    return -result;
+                }
+                else
+                {
+                    return result;
+                }                
             }
             else
             {
