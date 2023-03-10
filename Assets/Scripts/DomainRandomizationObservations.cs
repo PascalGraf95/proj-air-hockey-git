@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {    
-    public class DomainRandomizationObservations : MonoBehaviour
+    public class DomainRandomizationObservations : DomainRandomization
     {
         #region public variables
         [Header("Randomize Observations")]
@@ -66,30 +66,6 @@ namespace Assets.Scripts
             {
                 return value;
             }
-        }
-
-        /// <summary>
-        /// Randomize a parameter based on a normal distribution.
-        /// </summary>
-        /// <param name="precision"></param>
-        /// <param name="max"></param>
-        /// <param name="min"></param>
-        private float EqualDistribution(int precision, float max, float min)
-        {
-            float result = RandomFromDistribution.RandomRangeLinear(min, max, 0);
-            return (float)Math.Round(result, precision);
-        }
-
-        /// <summary>  
-        /// Randomize a parameter based on a normal distribution.
-        /// </summary>
-        /// <param name="precision"></param>
-        /// <param name="max"></param>
-        /// <param name="min"></param>
-        private float NormalDistribution(int precision, float max, float min)
-        {
-            float result = RandomFromDistribution.RandomRangeNormalDistribution(min, max, RandomFromDistribution.ConfidenceLevel_e._999);
-            return (float)Math.Round(result, precision);
         }
     }
 }

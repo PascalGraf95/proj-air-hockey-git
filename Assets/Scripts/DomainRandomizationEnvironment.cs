@@ -49,7 +49,7 @@ namespace Assets.Scripts
         public MjJointSettings Settings;
     }
 
-    public class DomainRandomizationEnvironment : MonoBehaviour
+    public class DomainRandomizationEnvironment : DomainRandomization
     {
         #region public variables
         // Allows the user to define a list of objects with similar randomization parameters to be applied.
@@ -448,35 +448,7 @@ namespace Assets.Scripts
             }
             return result;
         }
-
-        /// <summary>
-        /// Randomize a parameter based on a normal distribution.
-        /// </summary>
-        /// <param name="precision"></param>
-        /// <param name="max"></param>
-        /// <param name="min"></param>
-        private float EqualDistribution(int precision, float max, float min)
-        {
-            float result = RandomFromDistribution.RandomRangeLinear(min, max, 0);
-            return (float)Math.Round(result, precision);
-        }
-
-        /// <summary>  
-        /// Randomize a parameter based on a normal distribution.
-        /// </summary>
-        /// <param name="precision"></param>
-        /// <param name="max"></param>
-        /// <param name="min"></param>
-        private float NormalDistribution(int precision, float max, float min)
-        {
-            float result = RandomFromDistribution.RandomRangeNormalDistribution(min, max, RandomFromDistribution.ConfidenceLevel_e._999);
-            return (float)Math.Round(result, precision);
-        }
-
-        // TODO: Remove unnecessary pass of Precision value
     }
-
-
 }
 
 
