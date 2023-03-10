@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.103
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.036994208, g: 0.035108645, b: 0.03351897, a: 0.103}
+  m_IndirectSpecularColor: {r: 0.008449229, g: 0.008449229, b: 0.008449229, a: 0.103}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -488,7 +488,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 23.3
+  m_fontSize: 11.25
   m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -906,7 +906,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
+  m_fontSize: 19.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1043,7 +1043,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
+  m_fontSize: 19.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1422,7 +1422,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &136206757
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1591,7 +1591,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
+  m_fontSize: 19.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1843,7 +1843,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
+  m_fontSize: 19.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2104,7 +2104,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
+  m_fontSize: 19.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2382,7 +2382,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
+  m_fontSize: 19.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3284,7 +3284,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
+  m_fontSize: 19.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3447,7 +3447,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
+  m_fontSize: 19.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3574,8 +3574,9 @@ MonoBehaviour:
       SensorNoise: 1
       MultiCCD: 1
   GlobalSizes:
-    Memory: -1
-  CustomNumeric: []
+    Njmax: 0
+    Nconmax: 0
+    Nstack: 0
 --- !u!4 &374237416
 Transform:
   m_ObjectHideFlags: 0
@@ -3678,7 +3679,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
+  m_fontSize: 19.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3928,7 +3929,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
+  m_fontSize: 19.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4259,7 +4260,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
+  m_fontSize: 19.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4429,7 +4430,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
+  m_fontSize: 19.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4634,7 +4635,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
+  m_fontSize: 19.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4904,7 +4905,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42.55
+  m_fontSize: 21.8
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5242,7 +5243,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30.05
+  m_fontSize: 14.95
   m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5346,7 +5347,7 @@ MonoBehaviour:
     Radius: 0.5
     HalfHeight: 1
   Box:
-    Extents: {x: 0.005, y: 0.0632, z: 0.005}
+    Extents: {x: 0.005, y: 0.08, z: 0.005}
   Ellipsoid:
     Radiuses: {x: 0.5, y: 0.5, z: 0.5}
   Plane:
@@ -5572,7 +5573,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
+  m_fontSize: 19.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5707,7 +5708,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20.2
+  m_fontSize: 10.15
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5965,7 +5966,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
+  m_fontSize: 19.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -6222,7 +6223,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 868162823}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.01772, y: 0.08, z: -0.0035}
+  m_LocalPosition: {x: 0.02051, y: 0.08, z: -0.0035}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6251,7 +6252,7 @@ MonoBehaviour:
     Radius: 0.5
     HalfHeight: 1
   Box:
-    Extents: {x: 0.0072, y: 0.005, z: 0.005}
+    Extents: {x: 0.01, y: 0.005, z: 0.005}
   Ellipsoid:
     Radiuses: {x: 0.5, y: 0.5, z: 0.5}
   Plane:
@@ -6371,7 +6372,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
+  m_fontSize: 19.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -7554,7 +7555,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
+  m_fontSize: 19.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -7649,7 +7650,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1195217406
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7795,7 +7796,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 33.35
+  m_fontSize: 18.95
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -7948,7 +7949,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1240471842}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.01772, y: 0.08, z: -0.0035}
+  m_LocalPosition: {x: -0.02051, y: 0.08, z: -0.0035}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7977,7 +7978,7 @@ MonoBehaviour:
     Radius: 0.5
     HalfHeight: 1
   Box:
-    Extents: {x: 0.0072, y: 0.005, z: 0.005}
+    Extents: {x: 0.01, y: 0.005, z: 0.005}
   Ellipsoid:
     Radiuses: {x: 0.5, y: 0.5, z: 0.5}
   Plane:
@@ -8095,7 +8096,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 27.85
+  m_fontSize: 10.65
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -8260,7 +8261,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
+  m_fontSize: 19.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -8450,7 +8451,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1314927677}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.01772, y: -0.08, z: -0.0035}
+  m_LocalPosition: {x: -0.02051, y: -0.08, z: -0.0035}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8479,7 +8480,7 @@ MonoBehaviour:
     Radius: 0.5
     HalfHeight: 1
   Box:
-    Extents: {x: 0.0072, y: 0.005, z: 0.005}
+    Extents: {x: 0.01, y: 0.005, z: 0.005}
   Ellipsoid:
     Radiuses: {x: 0.5, y: 0.5, z: 0.5}
   Plane:
@@ -8603,7 +8604,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1357388995}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.01772, y: -0.08, z: -0.0035}
+  m_LocalPosition: {x: 0.02051, y: -0.08, z: -0.0035}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8632,7 +8633,7 @@ MonoBehaviour:
     Radius: 0.5
     HalfHeight: 1
   Box:
-    Extents: {x: 0.0072, y: 0.005, z: 0.005}
+    Extents: {x: 0.01, y: 0.005, z: 0.005}
   Ellipsoid:
     Radiuses: {x: 0.5, y: 0.5, z: 0.5}
   Plane:
@@ -8870,7 +8871,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
+  m_fontSize: 19.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -9119,7 +9120,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1446591832
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9298,7 +9299,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
+  m_fontSize: 19.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -9694,7 +9695,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
+  m_fontSize: 19.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -10314,7 +10315,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 27.85
+  m_fontSize: 10.65
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -10418,7 +10419,7 @@ MonoBehaviour:
     Radius: 0.5
     HalfHeight: 1
   Box:
-    Extents: {x: 0.005, y: 0.0632, z: 0.005}
+    Extents: {x: 0.005, y: 0.08, z: 0.005}
   Ellipsoid:
     Radiuses: {x: 0.5, y: 0.5, z: 0.5}
   Plane:
@@ -10569,7 +10570,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
+  m_fontSize: 19.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -11246,7 +11247,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
+  m_fontSize: 19.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -11499,7 +11500,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 37.75
+  m_fontSize: 21.2
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -11838,7 +11839,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
+  m_fontSize: 19.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -12626,6 +12627,7 @@ GameObject:
   - component: {fileID: 919132147958298416}
   - component: {fileID: 919132147958298415}
   - component: {fileID: 919132147958298414}
+  - component: {fileID: 919132147958298423}
   m_Layer: 0
   m_Name: 3DAirHockeyTable
   m_TagString: Untagged
@@ -12650,9 +12652,9 @@ MonoBehaviour:
   backwallColliderScriptLeft: {fileID: 9057002915301167260}
   backwallColliderScriptRight: {fileID: 952362841126143053}
   airhockeyTableBends: {fileID: 2634293135502564582}
-  pusherConfiguration: {fileID: 11400000, guid: 2c3593a0d2d75664ab1408233adbda74,
+  pusherConfiguration: {fileID: 11400000, guid: 80a0d18f8448f774c86ef9ff16b935f6,
     type: 2}
-  maxScore: 4
+  maxScore: 5
 --- !u!114 &919132147958298413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12709,7 +12711,7 @@ MonoBehaviour:
   maxStepsPerGame: 0
   humanBehavior: 0
   observationSpace: 0
-  rewardComposition: {fileID: 11400000, guid: 6d9f582f799e08f42add771f3e7d4a8b, type: 2}
+  rewardComposition: {fileID: 11400000, guid: d6613f79c0877624b8828dcecfa1145c, type: 2}
   currentVelMag: 0
   currentAccMag: 0
   currentJerkMag: 0
@@ -12796,6 +12798,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   airHockeyAgent: {fileID: 919132147958298415}
   ExportPath: Builds/
+--- !u!114 &919132147958298423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132147958298411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 600412d30c0a3114dbd2b090e2ffc935, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ApplyEnvironmentRandomization: 0
+  ApplyObservationRandomization: 1
+  ApplyActionRandomization: 0
 --- !u!33 &923504064602305110
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -13123,6 +13140,8 @@ GameObject:
   - component: {fileID: 4880764153250825475}
   - component: {fileID: 1262576982509127528}
   - component: {fileID: 1262576982509127529}
+  - component: {fileID: 4880764153250825477}
+  - component: {fileID: 4880764153250825476}
   - component: {fileID: 1262576982509127530}
   m_Layer: 0
   m_Name: PusherAgent
@@ -25147,6 +25166,8 @@ GameObject:
   - component: {fileID: 3881779651548995389}
   - component: {fileID: 3881779651548995390}
   - component: {fileID: 3881779651548995391}
+  - component: {fileID: 6061178468440314282}
+  - component: {fileID: 6061178468440314283}
   m_Layer: 0
   m_Name: Puck
   m_TagString: Puck
@@ -26002,6 +26023,42 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4880764153250825476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262576982509127527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 989cc38a6c2e2e644ae26fe893b8f921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Randomize: 1
+  ProbabilityDensityFunction: 1
+  Precision: 2
+  PercentageRange: 10
+--- !u!114 &4880764153250825477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262576982509127527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a15c51d4a778e3f45af17c257f4e2af6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Perturb: 1
+  ProbabilityDensityFunction: 0
+  Precision: 2
+  PerturbationPercentageRange: 10
+  Delay: 1
+  MinActionDelay: 0
+  MaxActionDelay: 5
+  DelayProbability: 0.4950000047683716
 --- !u!23 &4968040008852709495
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -26548,6 +26605,188 @@ Transform:
   m_Father: {fileID: 919132147958298421}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6061178468440314282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3881779651548995388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c44fa051e090a74ca83896df2d1b961, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameObjectsToRandomize:
+  - {fileID: 3881779651548995388}
+  applyRandomization: 0
+  probabilityDensityFunction: 1
+  Precision: 2
+  RangeSelection: 1
+  PercentageRange: 10
+  MaxMass: 0
+  MinMass: 0
+  MaxFrictionGeom: 0
+  MinFrictionGeom: 0
+  MaxDensity: 0
+  MinDensity: 0
+  SolverSolMixMin: 0
+  SolverSolMixMax: 0
+  SolRefTimeConstMin: 0
+  SolRefTimeConstMax: 0
+  SolRefDampingRatioMin: 0
+  SolRefDampingRatioMax: 0
+  SolRefMixMin: 0
+  SolRefMixMax: 0
+  SolImpDMinMin: 0
+  SolImpDMinMax: 0
+  SolImpDMaxMin: 0
+  SolImpDMaxMax: 0
+  SolImpWidthMin: 0
+  SolImpWidthMax: 0
+  SolImpMidpointMin: 0
+  SolImpMidpointMax: 0
+  SolImpPowerMin: 0
+  SolImpPowerMax: 0
+  GeomSolverMarginMin: 0
+  GeomSolverMarginMax: 0
+  GeomSolverGapMin: 0
+  GeomSolverGapMax: 0
+  ArmatureMin: 0
+  ArmatureMax: 0
+  SpringTimeConstMin: 0
+  SpringTimeConstMax: 0
+  SpringDampingRatioMin: 0
+  SpringDampingRatioMax: 0
+  SpringStiffnessMin: 0
+  SpringStiffnessMax: 0
+  SpringDampingMin: 0
+  SpringDampingMax: 0
+  SpringEquilibriumPoseMin: 0
+  SpringEquilibriumPoseMax: 0
+  JointSolverMarginMin: 0
+  JointSolverMarginMax: 0
+  SolverRefLimitTimeConstMin: 0
+  SolverRefLimitTimeConstMax: 0
+  SolverRefLimitDampRationMin: 0
+  SolverRefLimitDampRationMax: 0
+  SolverImpLimitDMinMin: 0
+  SolverImpLimitDMinMax: 0
+  SolverImpLimitDMaxMin: 0
+  SolverImpLimitDMaxMax: 0
+  SolverImpLimitWidthMin: 0
+  SolverImpLimitWidthMax: 0
+  SolverImpLimitMidpointMin: 0
+  SolverImpLimitMidpointMax: 0
+  SolverImpLimitPowerMin: 0
+  SolverImpLimitPowerMax: 0
+  SolverFrictionLossMin: 0
+  SolverFrictionLossMax: 0
+  SolverImpFrictionDMinMin: 0
+  SolverImpFrictionDMinMax: 0
+  SolverImpFrictionDMaxMin: 0
+  SolverImpFrictionDMaxMax: 0
+  SolverImpFrictionWidthMin: 0
+  SolverImpFrictionWidthMax: 0
+  SolverImpFrictionMidpointMin: 0
+  SolverImpFrictionMidpointMax: 0
+  SolverImpFrictionPowerMin: 0
+  SolverImpFrictionPowerMax: 0
+  SolverRefFrictionTimeConstMin: 0
+  SolverRefFrictionTimeConstMax: 0
+  SolverRefFrictionDampRatioMin: 0
+  SolverRefFrictionDampRatioMax: 0
+--- !u!114 &6061178468440314283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3881779651548995388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61f2cfde8138fc94f81d18847ff259ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameObjectsToRandomize:
+  - {fileID: 3881779651548995388}
+  applyRandomization: 0
+  probabilityDensityFunction: 0
+  Precision: 2
+  RangeSelection: 1
+  PercentageRange: 10
+  MaxMass: 0
+  MinMass: 0
+  MaxFrictionGeom: 0
+  MinFrictionGeom: 0
+  MaxDensity: 0
+  MinDensity: 0
+  SolverSolMixMin: 0
+  SolverSolMixMax: 0
+  SolRefTimeConstMin: 0
+  SolRefTimeConstMax: 0
+  SolRefDampingRatioMin: 0
+  SolRefDampingRatioMax: 0
+  SolRefMixMin: 0
+  SolRefMixMax: 0
+  SolImpDMinMin: 0
+  SolImpDMinMax: 0
+  SolImpDMaxMin: 0
+  SolImpDMaxMax: 0
+  SolImpWidthMin: 0
+  SolImpWidthMax: 0
+  SolImpMidpointMin: 0
+  SolImpMidpointMax: 0
+  SolImpPowerMin: 0
+  SolImpPowerMax: 0
+  GeomSolverMarginMin: 0
+  GeomSolverMarginMax: 0
+  GeomSolverGapMin: 0
+  GeomSolverGapMax: 0
+  ArmatureMin: 0
+  ArmatureMax: 0
+  SpringTimeConstMin: 0
+  SpringTimeConstMax: 0
+  SpringDampingRatioMin: 0
+  SpringDampingRatioMax: 0
+  SpringStiffnessMin: 0
+  SpringStiffnessMax: 0
+  SpringDampingMin: 0
+  SpringDampingMax: 0
+  SpringEquilibriumPoseMin: 0
+  SpringEquilibriumPoseMax: 0
+  JointSolverMarginMin: 0
+  JointSolverMarginMax: 0
+  SolverRefLimitTimeConstMin: 0
+  SolverRefLimitTimeConstMax: 0
+  SolverRefLimitDampRationMin: 0
+  SolverRefLimitDampRationMax: 0
+  SolverImpLimitDMinMin: 0
+  SolverImpLimitDMinMax: 0
+  SolverImpLimitDMaxMin: 0
+  SolverImpLimitDMaxMax: 0
+  SolverImpLimitWidthMin: 0
+  SolverImpLimitWidthMax: 0
+  SolverImpLimitMidpointMin: 0
+  SolverImpLimitMidpointMax: 0
+  SolverImpLimitPowerMin: 0
+  SolverImpLimitPowerMax: 0
+  SolverFrictionLossMin: 0
+  SolverFrictionLossMax: 0
+  SolverImpFrictionDMinMin: 0
+  SolverImpFrictionDMinMax: 0
+  SolverImpFrictionDMaxMin: 0
+  SolverImpFrictionDMaxMax: 0
+  SolverImpFrictionWidthMin: 0
+  SolverImpFrictionWidthMax: 0
+  SolverImpFrictionMidpointMin: 0
+  SolverImpFrictionMidpointMax: 0
+  SolverImpFrictionPowerMin: 0
+  SolverImpFrictionPowerMax: 0
+  SolverRefFrictionTimeConstMin: 0
+  SolverRefFrictionTimeConstMax: 0
+  SolverRefFrictionDampRatioMin: 0
+  SolverRefFrictionDampRatioMax: 0
 --- !u!4 &6130393414969390481
 Transform:
   m_ObjectHideFlags: 0

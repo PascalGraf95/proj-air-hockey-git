@@ -216,7 +216,7 @@ public class AirHockeyAgent : Agent
                 sensor.AddObservation(pusherHumanController.GetCurrentAcceleration());
                 sensor.AddObservation(puckController.GetCurrentPosition());
                 sensor.AddObservation(puckController.GetCurrentVelocity());
-                sensor.AddObservation(puckController.GetCurrentAcceleration());
+                sensor.AddObservation(puckController.GetCurrentAccelaration());
                 break;
             case ObservationSpace.Full:
                 sensor.AddObservation(pusherAgentController.GetCurrentPosition());
@@ -227,7 +227,7 @@ public class AirHockeyAgent : Agent
                 sensor.AddObservation(pusherHumanController.GetCurrentAcceleration());
                 sensor.AddObservation(puckController.GetCurrentPosition());
                 sensor.AddObservation(puckController.GetCurrentVelocity());
-                sensor.AddObservation(puckController.GetCurrentAcceleration());
+                sensor.AddObservation(puckController.GetCurrentAccelaration());
 
                 sensor.AddObservation(pusherAgentController.GetDistanceAgentGoal());
                 sensor.AddObservation(pusherHumanController.GetDistanceHumanGoal());

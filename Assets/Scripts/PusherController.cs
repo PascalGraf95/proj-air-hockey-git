@@ -72,7 +72,13 @@ public class PusherController : MonoBehaviour
     private Material selfplayMaterial;
     private Material humanplayMaterial;
     private GameObject hand;
-    // Update is called once per frame
+
+    // Domain Randomization
+    private DomainRandomizationController domainRandomizationController;
+    private DomainRandomizationObservations domainRandomizationObservations;
+    private DomainRandomizationActions domainRandomizationActions;
+    private Queue<Vector2> actionDelayBuffer;
+
     private void Start()
     {
         playerViewCamera = GameObject.Find("PlayerViewCamera").GetComponent<Camera>();
@@ -94,6 +100,11 @@ public class PusherController : MonoBehaviour
         targetPosition = GetCurrentPosition();
 
         Cursor.visible = false;
+
+        domainRandomizationController = GameObject.Find("3DAirHockeyTable").GetComponent<DomainRandomizationController>();
+        domainRandomizationObservations = FindObjectOfType<DomainRandomizationObservations>();
+        domainRandomizationActions = FindObjectOfType<DomainRandomizationActions>();
+        actionDelayBuffer = new Queue<Vector2>();        
     }
 
     public void SetPusherConfiguration(PusherConfiguration pusherConfiguration)
@@ -237,14 +248,90 @@ public class PusherController : MonoBehaviour
         targetPosition = GetCurrentPosition();
     }
 
+    bool emptyBuffer = false;
     /// <summary>
     /// Control pusher agents with maximum velocity. 
     /// </summary>
     /// <param name="targetVelocity"></param>
     public void Act(Vector2 targetVelocity)
     {
-        pusherActuatorX.Control = targetVelocity.x * maxVelocity;
-        pusherActuatorZ.Control = targetVelocity.y * maxVelocity;
+        float x = 0;
+        float z = 0;
+
+        // Start coroutine to delay action randomly
+        // if (domainRandomizationActions.Delay is true && domainRandomizationActions.IsDelayActive is false)
+        // {
+        //     // TODO: Timing a delay turns out to be difficult. This needs to be synchronized with how often this method is called
+        //     // StartCoroutine(domainRandomizationActions.DelayActionTrigger());
+
+        // }            
+
+        if (domainRandomizationActions == null || domainRandomizationController.ApplyActionRandomization is false || domainRandomizationActions.Delay is false && domainRandomizationActions.Perturb is false) // no domain randomizations are active
+        {
+            x = targetVelocity.x;
+            z = targetVelocity.y;
+        }
+        else
+        {
+            // Conditions to start delay and fill buffer
+            if (domainRandomizationActions.IsDelayActive is false && actionDelayBuffer.Count == 0 && domainRandomizationActions.Delay is true && domainRandomizationActions.DelayTrigger() is true)
+            {
+                // Get amount of actions to delay
+                domainRandomizationActions.RandomActionDelayCount();
+                // Set delay active
+                domainRandomizationActions.IsDelayActive = true;
+                emptyBuffer = false;
+            }
+
+            // Condition to end delay and empty buffer
+            if (domainRandomizationActions.ActionDelayCount == actionDelayBuffer.Count)
+            {
+                emptyBuffer = true;
+                domainRandomizationActions.IsDelayActive = false;
+            }
+
+            // If delay is active and action buffer contains less vectors than the action delay count, add action to FIFO buffer
+            if (actionDelayBuffer.Count < domainRandomizationActions.ActionDelayCount && domainRandomizationActions.IsDelayActive is true && domainRandomizationController.ApplyActionRandomization is true)
+            {
+                actionDelayBuffer.Enqueue(targetVelocity);
+            }
+
+
+            if (domainRandomizationActions.Delay is true && domainRandomizationActions.Perturb is true)
+            {
+                // If delay is active, get action from FIFO buffer
+                if (emptyBuffer is true && actionDelayBuffer.Count > 0)
+                {
+                    targetVelocity = actionDelayBuffer.Dequeue();
+                    x = domainRandomizationActions.RandomizeParameter(targetVelocity.x);
+                    z = domainRandomizationActions.RandomizeParameter(targetVelocity.y);
+                }
+            }
+            else if (domainRandomizationActions.Delay is true && domainRandomizationActions.Perturb is false)
+            {
+                // If delay is active, get action from FIFO buffer
+                if (emptyBuffer is true && actionDelayBuffer.Count > 0)
+                {
+                    targetVelocity = actionDelayBuffer.Dequeue();
+                    x = targetVelocity.x;
+                    z = targetVelocity.y;
+                }
+            }
+            else if (domainRandomizationActions.Delay is false && domainRandomizationActions.Perturb is true)
+            {
+                x = domainRandomizationActions.RandomizeParameter(targetVelocity.x);
+                z = domainRandomizationActions.RandomizeParameter(targetVelocity.y);
+            }
+
+            Debug.Log("x: " + x + " z: " + z);
+            Debug.Log("Action delay buffer count: " + actionDelayBuffer.Count);
+            Debug.Log("Is delay active: " + domainRandomizationActions.IsDelayActive);
+        }
+        
+
+        // Control pusher with maximum velocity
+        pusherActuatorX.Control = x * maxVelocity;
+        pusherActuatorZ.Control = z * maxVelocity;
     }
 
     /// <summary>
@@ -253,6 +340,16 @@ public class PusherController : MonoBehaviour
     /// <returns></returns>
     public Vector2 GetCurrentPosition()
     {
+        if (domainRandomizationController == null) 
+        {
+            return new Vector2(transform.position.x, transform.position.z);
+        }
+        else if (domainRandomizationController.ApplyObservationRandomization is true)
+        {
+            float x = domainRandomizationObservations.RandomizeParameter(transform.position.x);
+            float z = domainRandomizationObservations.RandomizeParameter(transform.position.z);
+            return new Vector2(x, z);
+        }
         return new Vector2(transform.position.x, transform.position.z);
     }
 
@@ -262,6 +359,16 @@ public class PusherController : MonoBehaviour
     /// <returns></returns>
     public Vector2 GetCurrentVelocity()
     {
+        if (domainRandomizationController == null)
+        {
+            return new Vector2(pusherActuatorX.Velocity, pusherActuatorZ.Velocity);
+        }
+        else if(domainRandomizationController.ApplyObservationRandomization is true)
+        {
+            float x = domainRandomizationObservations.RandomizeParameter(pusherActuatorX.Velocity);
+            float z = domainRandomizationObservations.RandomizeParameter(pusherActuatorZ.Velocity);
+            return new Vector2(x, z);
+        }
         return new Vector2(pusherActuatorX.Velocity, pusherActuatorZ.Velocity);
     }
 
@@ -271,6 +378,16 @@ public class PusherController : MonoBehaviour
     /// <returns></returns>
     public Vector2 GetCurrentAcceleration()
     {
+        if (domainRandomizationController == null)
+        {
+            return currentAcceleration;
+        }
+        else if (domainRandomizationController.ApplyObservationRandomization is true)
+        {
+            float x = domainRandomizationObservations.RandomizeParameter(currentAcceleration.x);
+            float z = domainRandomizationObservations.RandomizeParameter(currentAcceleration.y);
+            return new Vector2(x, z);
+        }
         return currentAcceleration;
     }
 
