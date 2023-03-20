@@ -8,6 +8,14 @@ using Assets.Scripts;
 using Unity.MLAgents.SideChannels;
 using Unity.MLAgents;
 
+public enum GameState
+{
+    normal,
+    agentScored,
+    playerScored,
+    backWallReached
+}
+
 public class SceneController : MonoBehaviour
 {
     private PuckController puckController;
@@ -20,6 +28,9 @@ public class SceneController : MonoBehaviour
     [SerializeField] private BackwallColliderScript backwallColliderScriptRight;
     [SerializeField] private Transform airhockeyTableBends;
     [SerializeField] private PusherConfiguration pusherConfiguration;
+
+    public delegate void OnEpisodeEnded();
+    public event OnEpisodeEnded onEpisodeEnded;
 
     private UIController uiController;
     public GameState CurrentGameState 
@@ -170,6 +181,7 @@ public class SceneController : MonoBehaviour
 
     public void ResetScene(bool forceScoreReset)
     {
+        onEpisodeEnded();
         currentGameState = GameState.normal;
         puckController.transform.GetComponent<MeshRenderer>().enabled = false;
 
