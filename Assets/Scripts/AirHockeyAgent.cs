@@ -102,6 +102,11 @@ public class AirHockeyAgent : Agent
     //StringBuilder csv = new StringBuilder();
     #endregion
 
+    #region Events
+    public delegate void OnNewActionReceived();
+    public event OnNewActionReceived onNewActionReceived;
+    #endregion
+
     private void ResetEpisodeRewards()
     {
         shiftIdx = 0;
@@ -140,7 +145,7 @@ public class AirHockeyAgent : Agent
         // Init demonstration recorder
         demonstrationRecorder = gameObject.AddComponent<DemonstrationRecorder>();
         demonstrationRecorder.DemonstrationDirectory = @"Demonstrations";
-        demonstrationRecorder.DemonstrationName = DateTime.Now + "_AirhockeyDemonstrationRecording";
+        demonstrationRecorder.DemonstrationName = DateTime.Now.ToString("'yy''MM''dd'_'HH''mm''ss'") + "_AirhockeyDemonstrationRecording";
         demonstrationRecorder.NumStepsToRecord = 0; // If you set Num Steps To Record to 0 then recording will continue until you manually end the play session.
 
         // Get the controllers for scene, puck and the two pushers
@@ -285,6 +290,9 @@ public class AirHockeyAgent : Agent
 
     public override void OnActionReceived(ActionBuffers actionsIn) 
     {
+        #region TriggerEvent
+        //onNewActionReceived();
+        #endregion
         #region Action Calculations
         float x = 0f;
         float z = 0f;
