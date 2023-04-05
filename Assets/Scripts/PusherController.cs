@@ -274,7 +274,7 @@ public class PusherController : MonoBehaviour
         else
         {
             // Conditions to start delay and fill buffer
-            if (domainRandomizationActions.IsDelayActive is false && actionDelayBuffer.Count == 0 && domainRandomizationActions.Delay is true && domainRandomizationActions.DelayTrigger() is true)
+            if (domainRandomizationActions.IsDelayActive is false && actionDelayBuffer.Count == 0 && domainRandomizationActions.Delay is true && domainRandomizationActions.ProbabilisticTrigger(domainRandomizationActions.DelayProbability) is true)
             {
                 // Get amount of actions to delay
                 domainRandomizationActions.RandomActionDelayCount();

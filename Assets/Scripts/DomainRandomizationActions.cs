@@ -20,6 +20,9 @@ namespace Assets.Scripts
         [Tooltip("Amount of decimal places to randomize floats.")]
         public int Precision = 2;
         [Header("Perturb Actions")]
+        [Tooltip("Define the probability that an action will be perturbed.")]
+        [Range(0, 1f)]
+        public double PerturbProbability;
         [Tooltip(@"Percentage range of the action vector to be randomly disturbed. 
                     Example: If the starting value is 1 and the percentage range is 10, the randomization will be between 0.9 and 1.1.")]
         public int PerturbationPercentageRange;       
@@ -50,12 +53,12 @@ namespace Assets.Scripts
         #endregion                
 
         /// <summary>
-        /// Decide if action will be delayed based on delay probability.
-        /// </summary>
-        public bool DelayTrigger()
+        /// Return true or false based on a given probability value.
+        /// </summary
+        public bool ProbabilisticTrigger(double probability)
         {            
             System.Random random = new System.Random();
-            return random.NextDouble() < DelayProbability;            
+            return random.NextDouble() < probability;            
         }
 
         /// <summary>
@@ -73,20 +76,27 @@ namespace Assets.Scripts
         /// <param name="startingValue"></param>
         public float RandomizeParameter(float startingValue)
         {
-            bool valuesIsNegative = startingValue < 0;
-            // get absolute of value, so that the result from the probability density function is calculated correctly
-            startingValue = Math.Abs(startingValue);
-            // calculate the range based on the percentage
-            float range = startingValue * PerturbationPercentageRange / 100;
-            float max = startingValue + range;
-            float min = startingValue - range;
-            if (valuesIsNegative)
+            if (ProbabilisticTrigger(PerturbProbability))
             {
-                return -RandomizeParameter(Precision, max, min, ProbabilityDensityFunction);
+                bool valuesIsNegative = startingValue < 0;
+                // get absolute of value, so that the result from the probability density function is calculated correctly
+                startingValue = Math.Abs(startingValue);
+                // calculate the range based on the percentage
+                float range = startingValue * PerturbationPercentageRange / 100;
+                float max = startingValue + range;
+                float min = startingValue - range;
+                if (valuesIsNegative)
+                {
+                    return -RandomizeParameter(Precision, max, min, ProbabilityDensityFunction);
+                }
+                else
+                {
+                    return RandomizeParameter(Precision, max, min, ProbabilityDensityFunction);
+                }
             }
             else
             {
-                return RandomizeParameter(Precision, max, min, ProbabilityDensityFunction);
+                return startingValue;
             }
         }
 
