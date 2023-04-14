@@ -102,11 +102,6 @@ public class AirHockeyAgent : Agent
     //StringBuilder csv = new StringBuilder();
     #endregion
 
-    #region Events
-    public delegate void OnNewActionReceived();
-    public event OnNewActionReceived onNewActionReceived;
-    #endregion
-
     private void ResetEpisodeRewards()
     {
         shiftIdx = 0;
@@ -290,9 +285,6 @@ public class AirHockeyAgent : Agent
 
     public override void OnActionReceived(ActionBuffers actionsIn) 
     {
-        #region TriggerEvent
-        //onNewActionReceived();
-        #endregion
         #region Action Calculations
         float x = 0f;
         float z = 0f;

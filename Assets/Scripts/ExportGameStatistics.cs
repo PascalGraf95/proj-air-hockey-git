@@ -15,14 +15,11 @@ public class ExportGameStatistics : MonoBehaviour
     [SerializeField] private string csvPath = "";
     [SerializeField] private bool stopCapturingOnEpisodeEnd = true;
     private bool captureEpisode = false;
-    private Camera cam;
 
     // Start is called before the first frame update
     void Start()
     {
         sceneController.onEpisodeEnded += EpisodeEnded;
-        cam = GameObject.Find("TopViewCameraRendering").GetComponent<Camera>();
-        //airHockeyAgentScript.onNewActionReceived += ExportData;
     }
 
     [Button]
@@ -43,7 +40,6 @@ public class ExportGameStatistics : MonoBehaviour
     {
         if (captureEpisode)
         {
-
             string filename = string.Format(imagePath + "/img_{0}.png", System.DateTime.Now.ToString("yy-MM-dd_HH-mm-ss-fff"));
             ScreenCapture.CaptureScreenshot(filename, 1);
         }
