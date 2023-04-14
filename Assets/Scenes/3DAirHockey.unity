@@ -1422,7 +1422,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &136206757
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5356,7 +5356,7 @@ MonoBehaviour:
     Radius: 0.5
     HalfHeight: 1
   Box:
-    Extents: {x: 0.005, y: 0.08, z: 0.005}
+    Extents: {x: 0.005, y: 0.0632, z: 0.005}
   Ellipsoid:
     Radiuses: {x: 0.5, y: 0.5, z: 0.5}
   Plane:
@@ -6237,7 +6237,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 868162823}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.02051, y: 0.08, z: -0.0035}
+  m_LocalPosition: {x: 0.01772, y: 0.08, z: -0.0035}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6266,7 +6266,7 @@ MonoBehaviour:
     Radius: 0.5
     HalfHeight: 1
   Box:
-    Extents: {x: 0.01, y: 0.005, z: 0.005}
+    Extents: {x: 0.0072, y: 0.005, z: 0.005}
   Ellipsoid:
     Radiuses: {x: 0.5, y: 0.5, z: 0.5}
   Plane:
@@ -7685,7 +7685,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1195217406
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8093,7 +8093,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1240471842}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.02051, y: 0.08, z: -0.0035}
+  m_LocalPosition: {x: -0.01772, y: 0.08, z: -0.0035}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8122,7 +8122,7 @@ MonoBehaviour:
     Radius: 0.5
     HalfHeight: 1
   Box:
-    Extents: {x: 0.01, y: 0.005, z: 0.005}
+    Extents: {x: 0.0072, y: 0.005, z: 0.005}
   Ellipsoid:
     Radiuses: {x: 0.5, y: 0.5, z: 0.5}
   Plane:
@@ -8595,7 +8595,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1314927677}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.02051, y: -0.08, z: -0.0035}
+  m_LocalPosition: {x: -0.01772, y: -0.08, z: -0.0035}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8624,7 +8624,7 @@ MonoBehaviour:
     Radius: 0.5
     HalfHeight: 1
   Box:
-    Extents: {x: 0.01, y: 0.005, z: 0.005}
+    Extents: {x: 0.0072, y: 0.005, z: 0.005}
   Ellipsoid:
     Radiuses: {x: 0.5, y: 0.5, z: 0.5}
   Plane:
@@ -8749,7 +8749,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1357388995}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.02051, y: -0.08, z: -0.0035}
+  m_LocalPosition: {x: 0.01772, y: -0.08, z: -0.0035}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8778,7 +8778,7 @@ MonoBehaviour:
     Radius: 0.5
     HalfHeight: 1
   Box:
-    Extents: {x: 0.01, y: 0.005, z: 0.005}
+    Extents: {x: 0.0072, y: 0.005, z: 0.005}
   Ellipsoid:
     Radiuses: {x: 0.5, y: 0.5, z: 0.5}
   Plane:
@@ -9265,7 +9265,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1446591832
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10564,7 +10564,7 @@ MonoBehaviour:
     Radius: 0.5
     HalfHeight: 1
   Box:
-    Extents: {x: 0.005, y: 0.08, z: 0.005}
+    Extents: {x: 0.005, y: 0.0632, z: 0.005}
   Ellipsoid:
     Radiuses: {x: 0.5, y: 0.5, z: 0.5}
   Plane:
@@ -12889,7 +12889,7 @@ MonoBehaviour:
   maxStepsPerGame: 0
   humanBehavior: 0
   observationSpace: 0
-  rewardComposition: {fileID: 11400000, guid: 5a4de0ecee82abe4a86e9aea56a92da6, type: 2}
+  rewardComposition: {fileID: 11400000, guid: 6d9f582f799e08f42add771f3e7d4a8b, type: 2}
   currentVelMag: 0
   currentAccMag: 0
   currentJerkMag: 0
