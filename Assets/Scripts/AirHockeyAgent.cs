@@ -140,7 +140,7 @@ public class AirHockeyAgent : Agent
         // Init demonstration recorder
         demonstrationRecorder = gameObject.AddComponent<DemonstrationRecorder>();
         demonstrationRecorder.DemonstrationDirectory = @"Demonstrations";
-        demonstrationRecorder.DemonstrationName = DateTime.Now + "_AirhockeyDemonstrationRecording";
+        demonstrationRecorder.DemonstrationName = DateTime.Now.ToString("'yy''MM''dd'_'HH''mm''ss'") + "_AirhockeyDemonstrationRecording";
         demonstrationRecorder.NumStepsToRecord = 0; // If you set Num Steps To Record to 0 then recording will continue until you manually end the play session.
 
         // Get the controllers for scene, puck and the two pushers

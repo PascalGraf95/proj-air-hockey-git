@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.103
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.036994208, g: 0.035108645, b: 0.03351897, a: 0.103}
+  m_IndirectSpecularColor: {r: 0.008449229, g: 0.008449229, b: 0.008449229, a: 0.103}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -134,7 +134,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7755270}
   - component: {fileID: 7755271}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Geom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -488,7 +488,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 23.3
+  m_fontSize: 18.85
   m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -548,7 +548,7 @@ GameObject:
   m_Component:
   - component: {fileID: 90411557}
   - component: {fileID: 90411558}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ActuatorZ
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -906,7 +906,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
+  m_fontSize: 34.45
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1043,7 +1043,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
+  m_fontSize: 34.45
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1359,7 +1359,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 119
+    m_Bits: 1655
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -1591,7 +1591,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
+  m_fontSize: 34.45
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1686,7 +1686,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.2
+  m_Intensity: 0.4
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -1843,7 +1843,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
+  m_fontSize: 34.45
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2104,7 +2104,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
+  m_fontSize: 34.45
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2382,7 +2382,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
+  m_fontSize: 34.45
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2442,7 +2442,7 @@ GameObject:
   m_Component:
   - component: {fileID: 240751363}
   - component: {fileID: 240751364}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ActuatorX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2568,7 +2568,7 @@ GameObject:
   - component: {fileID: 250115467}
   - component: {fileID: 250115466}
   - component: {fileID: 250115465}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PusherHumanSelfplay
   m_TagString: Agent
   m_Icon: {fileID: 0}
@@ -2787,7 +2787,7 @@ GameObject:
   - component: {fileID: 253087616}
   - component: {fileID: 253087615}
   - component: {fileID: 253087614}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: AudioSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3022,6 +3022,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GoalMarkerLineHuman
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: dc181b78980759945995f42e9f3854ea,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc181b78980759945995f42e9f3854ea, type: 3}
 --- !u!4 &287635730 stripped
@@ -3040,7 +3045,7 @@ GameObject:
   m_Component:
   - component: {fileID: 292724228}
   - component: {fileID: 292724229}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Geom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3189,6 +3194,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GoalMarkerFieldAI
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ddbc89a311059eb45af841a261c9c507,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ddbc89a311059eb45af841a261c9c507, type: 3}
 --- !u!4 &351661107 stripped
@@ -3284,7 +3294,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
+  m_fontSize: 34.45
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3447,7 +3457,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
+  m_fontSize: 34.45
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3678,7 +3688,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
+  m_fontSize: 34.45
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3773,7 +3783,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.81808233, b: 0.41037738, a: 1}
-  m_Intensity: 0.8
+  m_Intensity: 0.3
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -3928,7 +3938,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
+  m_fontSize: 34.45
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3988,7 +3998,7 @@ GameObject:
   m_Component:
   - component: {fileID: 421034701}
   - component: {fileID: 421034702}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: JointX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4259,7 +4269,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
+  m_fontSize: 34.45
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4429,7 +4439,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
+  m_fontSize: 34.45
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4634,7 +4644,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
+  m_fontSize: 34.45
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4904,7 +4914,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42.55
+  m_fontSize: 31.25
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5072,7 +5082,7 @@ GameObject:
   m_Component:
   - component: {fileID: 659402621}
   - component: {fileID: 659402622}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ActuatorZ
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5242,7 +5252,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30.05
+  m_fontSize: 22.6
   m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5302,7 +5312,7 @@ GameObject:
   m_Component:
   - component: {fileID: 689069801}
   - component: {fileID: 689069802}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Geom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5479,6 +5489,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GoalMarkerLineAI
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: dc181b78980759945995f42e9f3854ea,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc181b78980759945995f42e9f3854ea, type: 3}
 --- !u!4 &765420556 stripped
@@ -5572,7 +5587,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
+  m_fontSize: 34.45
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5707,7 +5722,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20.2
+  m_fontSize: 16.8
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5798,7 +5813,7 @@ GameObject:
   m_Component:
   - component: {fileID: 822483693}
   - component: {fileID: 822483694}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ActuatorX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5965,7 +5980,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
+  m_fontSize: 34.45
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -6025,7 +6040,7 @@ GameObject:
   m_Component:
   - component: {fileID: 833213836}
   - component: {fileID: 833213835}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: JointX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6207,7 +6222,7 @@ GameObject:
   m_Component:
   - component: {fileID: 868162824}
   - component: {fileID: 868162825}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Geom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6371,7 +6386,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
+  m_fontSize: 34.45
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -6432,6 +6447,7 @@ GameObject:
   - component: {fileID: 902308932}
   - component: {fileID: 902308933}
   - component: {fileID: 902308934}
+  - component: {fileID: 902308935}
   m_Layer: 0
   m_Name: HumanGoalLight
   m_TagString: Untagged
@@ -6536,6 +6552,26 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &902308935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 902308931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &974548872
 GameObject:
   m_ObjectHideFlags: 0
@@ -6803,10 +6839,10 @@ MonoBehaviour:
   pusherActuatorX: {fileID: 1640541202}
   slideJointX: {fileID: 1045829827}
   slideJointZ: {fileID: 1216866140}
-  MaxAcceleration: 90000
-  MaxSpeed: 2000
-  TargetRadius: 1
-  SlowDownRadius: 25
+  MaxAcceleration: 500000
+  MaxSpeed: 3000
+  TargetRadius: 2
+  SlowDownRadius: 35
   TimeToTarget: 0.032
 --- !u!114 &983042886
 MonoBehaviour:
@@ -7115,7 +7151,7 @@ GameObject:
   - component: {fileID: 1107190400}
   - component: {fileID: 1107190401}
   - component: {fileID: 1107190402}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HumanPlayerGoal
   m_TagString: HumanGoal
   m_Icon: {fileID: 0}
@@ -7286,7 +7322,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1138609283}
   - component: {fileID: 1138609282}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: JointZ
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7364,7 +7400,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1139967067}
   - component: {fileID: 1139967066}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: JointX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7554,7 +7590,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
+  m_fontSize: 34.45
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -7795,7 +7831,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 33.35
+  m_fontSize: 24.3
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -7923,6 +7959,115 @@ Transform:
   m_Father: {fileID: 983042883}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!1 &1218432164
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1218432165}
+  - component: {fileID: 1218432168}
+  - component: {fileID: 1218432166}
+  m_Layer: 0
+  m_Name: TopViewCameraRendering
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1218432165
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1218432164}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 3.2806401, y: 208.3067, z: 2.9713752}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1320039093}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &1218432166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1218432164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 2147483647
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+--- !u!20 &1218432168
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1218432164}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: -1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 512
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 3
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
 --- !u!1 &1240471842
 GameObject:
   m_ObjectHideFlags: 0
@@ -7933,7 +8078,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1240471843}
   - component: {fileID: 1240471844}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Geom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8095,7 +8240,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 27.85
+  m_fontSize: 21.2
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -8260,7 +8405,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
+  m_fontSize: 34.45
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -8355,7 +8500,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 0.43867922, g: 0.72484297, b: 1, a: 1}
-  m_Intensity: 0.2
+  m_Intensity: 0.04
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -8435,7 +8580,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1314927678}
   - component: {fileID: 1314927679}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Geom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8543,6 +8688,7 @@ Transform:
   - {fileID: 1432322613}
   - {fileID: 134198330}
   - {fileID: 1364935848}
+  - {fileID: 1218432165}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8588,7 +8734,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1357388996}
   - component: {fileID: 1357388997}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Geom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8771,7 +8917,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 119
+    m_Bits: 1655
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 2
@@ -8870,7 +9016,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
+  m_fontSize: 34.45
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -9014,7 +9160,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 311
+    m_Bits: 1847
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 1
@@ -9298,7 +9444,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
+  m_fontSize: 34.45
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -9435,7 +9581,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1538641097}
   - component: {fileID: 1538641096}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: JointZ
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9513,7 +9659,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1550746608}
   - component: {fileID: 1550746607}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: JointZ
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9694,7 +9840,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
+  m_fontSize: 34.45
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -9754,7 +9900,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1600147694}
   - component: {fileID: 1600147695}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Geom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10152,7 +10298,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1644552279}
   - component: {fileID: 1644552280}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Geom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10314,7 +10460,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 27.85
+  m_fontSize: 22.05
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -10374,7 +10520,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1721872215}
   - component: {fileID: 1721872216}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Geom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10569,7 +10715,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
+  m_fontSize: 34.45
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -10629,7 +10775,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1780552949}
   - component: {fileID: 1780552950}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Geom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10716,7 +10862,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1810052255}
   - component: {fileID: 1810052256}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ActuatorX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10972,7 +11118,7 @@ GameObject:
   - component: {fileID: 1838935179}
   - component: {fileID: 1838935180}
   - component: {fileID: 1838935181}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AgentPlayerGoal
   m_TagString: AgentGoal
   m_Icon: {fileID: 0}
@@ -11246,7 +11392,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
+  m_fontSize: 34.45
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -11334,7 +11480,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1934841236}
   - component: {fileID: 1934841237}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ActuatorZ
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11499,7 +11645,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 37.75
+  m_fontSize: 27.35
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -11559,7 +11705,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2014252196}
   - component: {fileID: 2014252197}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Geom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11647,6 +11793,7 @@ GameObject:
   - component: {fileID: 2089265701}
   - component: {fileID: 2089265703}
   - component: {fileID: 2089265702}
+  - component: {fileID: 2089265704}
   m_Layer: 0
   m_Name: AgentGoalLight
   m_TagString: Untagged
@@ -11751,6 +11898,26 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &2089265704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2089265700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &2092174776
 GameObject:
   m_ObjectHideFlags: 0
@@ -11838,7 +12005,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42
+  m_fontSize: 34.45
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -12015,6 +12182,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GoalMarkerFieldHuman
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ddbc89a311059eb45af841a261c9c507,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ddbc89a311059eb45af841a261c9c507, type: 3}
@@ -12263,7 +12435,7 @@ GameObject:
   - component: {fileID: 1323862110689231762}
   - component: {fileID: 2899940180420263673}
   - component: {fileID: 217488158096442124}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: 03_AgentBackwallLeft
   m_TagString: Boundary
   m_Icon: {fileID: 0}
@@ -12626,6 +12798,8 @@ GameObject:
   - component: {fileID: 919132147958298416}
   - component: {fileID: 919132147958298415}
   - component: {fileID: 919132147958298414}
+  - component: {fileID: 919132147958298423}
+  - component: {fileID: 919132147958298424}
   m_Layer: 0
   m_Name: 3DAirHockeyTable
   m_TagString: Untagged
@@ -12652,6 +12826,12 @@ MonoBehaviour:
   airhockeyTableBends: {fileID: 2634293135502564582}
   pusherConfiguration: {fileID: 11400000, guid: 2c3593a0d2d75664ab1408233adbda74,
     type: 2}
+  testScenarioList:
+  - testScenarioConfiguration: {fileID: 11400000, guid: 9ac86091f65e53c4abdbf7b8c8126901,
+      type: 2}
+    activated: 1
+  controlByScenario: 0
+  scenarioID: 0
   maxScore: 4
 --- !u!114 &919132147958298413
 MonoBehaviour:
@@ -12796,6 +12976,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   airHockeyAgent: {fileID: 919132147958298415}
   ExportPath: Builds/
+--- !u!114 &919132147958298423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132147958298411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88b6042bc9a5d4aa58d931eae49442e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 0
+  hasUpgradedFromAgentParameters: 1
+  MaxStep: 0
+--- !u!114 &919132147958298424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132147958298411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6253259fef5baa4a99316822624d316, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneController: {fileID: 919132147958298412}
+  airHockeyAgentScript: {fileID: 919132147958298415}
+  pusherController: {fileID: 1262576982509127529}
+  puckController: {fileID: 3881779651548995390}
+  imagePath: ImageExport
+  csvPath: CsvExport
+  stopCapturingOnEpisodeEnd: 1
 --- !u!33 &923504064602305110
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -12818,7 +13033,7 @@ GameObject:
   - component: {fileID: 952362841126143052}
   - component: {fileID: 952362841126143053}
   - component: {fileID: 952362841126143054}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: 07_HumanBackwallRight
   m_TagString: Boundary
   m_Icon: {fileID: 0}
@@ -12875,7 +13090,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1262576982509127527}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -45.750546}
+  m_LocalPosition: {x: 0, y: 0, z: -45.75055}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -13023,7 +13238,7 @@ GameObject:
   - component: {fileID: 1141996034979689306}
   - component: {fileID: 18223427}
   - component: {fileID: 18223426}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.308
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13124,7 +13339,7 @@ GameObject:
   - component: {fileID: 1262576982509127528}
   - component: {fileID: 1262576982509127529}
   - component: {fileID: 1262576982509127530}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PusherAgent
   m_TagString: Agent
   m_Icon: {fileID: 0}
@@ -13344,7 +13559,7 @@ GameObject:
   - component: {fileID: 3218238803808932975}
   - component: {fileID: 431101129822297577}
   - component: {fileID: 2429553208225346161}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: 13_HumanGoalMisc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13519,7 +13734,7 @@ GameObject:
   - component: {fileID: 6907795418463042482}
   - component: {fileID: 4255650745102929319}
   - component: {fileID: 5230114624117367129}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: 12_HumanGoal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13642,7 +13857,7 @@ GameObject:
   - component: {fileID: 6544043388887881623}
   - component: {fileID: 2038541982944700867}
   - component: {fileID: 2038541982944700864}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.299
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13785,7 +14000,7 @@ GameObject:
   - component: {fileID: 1544608623906055706}
   - component: {fileID: 6055793946711681875}
   - component: {fileID: 8347576115183994477}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: 08_HumanGoalMiscBottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13875,7 +14090,7 @@ GameObject:
   - component: {fileID: 2218183408536186478}
   - component: {fileID: 2098066710}
   - component: {fileID: 2098066709}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.311
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13977,7 +14192,7 @@ GameObject:
   - component: {fileID: 1626929007050260232}
   - component: {fileID: 2411169564138499893}
   - component: {fileID: 2411169564138499894}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTableTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14292,7 +14507,7 @@ GameObject:
   - component: {fileID: 287591887763930363}
   - component: {fileID: 2539591633251258189}
   - component: {fileID: 2539591633251258186}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.300
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14573,7 +14788,7 @@ GameObject:
   - component: {fileID: 2634293134165351943}
   - component: {fileID: 2634293134165351944}
   - component: {fileID: 2634293134165351945}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.233
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14726,7 +14941,7 @@ GameObject:
   - component: {fileID: 2634293134193463701}
   - component: {fileID: 2634293134193463702}
   - component: {fileID: 2634293134193463703}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.229
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14881,7 +15096,7 @@ GameObject:
   - component: {fileID: 2634293134209974790}
   - component: {fileID: 1179817074}
   - component: {fileID: 1179817073}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.218
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15034,7 +15249,7 @@ GameObject:
   - component: {fileID: 2634293134210255329}
   - component: {fileID: 2634293134210255330}
   - component: {fileID: 2634293134210255331}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.234
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15187,7 +15402,7 @@ GameObject:
   - component: {fileID: 2634293134289903178}
   - component: {fileID: 2634293134289903179}
   - component: {fileID: 2634293134289903180}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.236
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15340,7 +15555,7 @@ GameObject:
   - component: {fileID: 2634293134313964026}
   - component: {fileID: 2634293134313964027}
   - component: {fileID: 2634293134313964028}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.219
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15493,7 +15708,7 @@ GameObject:
   - component: {fileID: 2634293134360960237}
   - component: {fileID: 2634293134360960238}
   - component: {fileID: 2634293134360960239}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.312
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15646,7 +15861,7 @@ GameObject:
   - component: {fileID: 2634293134364864014}
   - component: {fileID: 2634293134364864015}
   - component: {fileID: 2634293134364864016}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.299
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15801,7 +16016,7 @@ GameObject:
   - component: {fileID: 2634293134402381947}
   - component: {fileID: 1602625615}
   - component: {fileID: 1602625614}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.223
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15954,7 +16169,7 @@ GameObject:
   - component: {fileID: 2634293134425392436}
   - component: {fileID: 2634293134425392437}
   - component: {fileID: 2634293134425392438}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.223
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16109,7 +16324,7 @@ GameObject:
   - component: {fileID: 2634293134484290333}
   - component: {fileID: 1563423213}
   - component: {fileID: 1563423212}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.227
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16262,7 +16477,7 @@ GameObject:
   - component: {fileID: 2634293134498272578}
   - component: {fileID: 2634293134498272579}
   - component: {fileID: 2634293134498272580}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.298
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16417,7 +16632,7 @@ GameObject:
   - component: {fileID: 2634293134498481389}
   - component: {fileID: 1442465132}
   - component: {fileID: 1442465131}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.219
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16570,7 +16785,7 @@ GameObject:
   - component: {fileID: 2634293134499667802}
   - component: {fileID: 2634293134499667803}
   - component: {fileID: 2634293134499667804}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.235
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16723,7 +16938,7 @@ GameObject:
   - component: {fileID: 2634293134579011233}
   - component: {fileID: 2634293134579011234}
   - component: {fileID: 2634293134579011235}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.218
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16878,7 +17093,7 @@ GameObject:
   - component: {fileID: 2634293134639467989}
   - component: {fileID: 647692044}
   - component: {fileID: 647692043}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.226
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17031,7 +17246,7 @@ GameObject:
   - component: {fileID: 2634293134649833113}
   - component: {fileID: 2634293134649833114}
   - component: {fileID: 2634293134649833115}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.237
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17184,7 +17399,7 @@ GameObject:
   - component: {fileID: 2634293134653248610}
   - component: {fileID: 2634293134653248611}
   - component: {fileID: 2634293134653248612}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.228
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17235,7 +17450,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2634293134684945505}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: OneArcAirhockey2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17390,7 +17605,7 @@ GameObject:
   - component: {fileID: 2634293134699878557}
   - component: {fileID: 860391028}
   - component: {fileID: 860391027}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.222
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17543,7 +17758,7 @@ GameObject:
   - component: {fileID: 2634293134726582196}
   - component: {fileID: 2634293134726582197}
   - component: {fileID: 2634293134726582198}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.232
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17696,7 +17911,7 @@ GameObject:
   - component: {fileID: 2634293134734782963}
   - component: {fileID: 2634293134734782964}
   - component: {fileID: 2634293134734782965}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.315
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17841,7 +18056,7 @@ GameObject:
   - component: {fileID: 2634293134765845568}
   - component: {fileID: 2634293134765845569}
   - component: {fileID: 2634293134765845570}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.222
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18002,7 +18217,7 @@ GameObject:
   - component: {fileID: 2634293134765905565}
   - component: {fileID: 2634293134765905566}
   - component: {fileID: 2634293134765905567}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.301
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18155,7 +18370,7 @@ GameObject:
   - component: {fileID: 2634293134878029819}
   - component: {fileID: 2634293134878029820}
   - component: {fileID: 2634293134878029821}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.234
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18308,7 +18523,7 @@ GameObject:
   - component: {fileID: 2634293135024333895}
   - component: {fileID: 2634293135024333896}
   - component: {fileID: 2634293135024333897}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.220
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18461,7 +18676,7 @@ GameObject:
   - component: {fileID: 2634293135067543866}
   - component: {fileID: 2634293135067543867}
   - component: {fileID: 2634293135067543868}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.224
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18614,7 +18829,7 @@ GameObject:
   - component: {fileID: 2634293135068223620}
   - component: {fileID: 2634293135068223621}
   - component: {fileID: 2634293135068223622}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.309
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18769,7 +18984,7 @@ GameObject:
   - component: {fileID: 2634293135074443333}
   - component: {fileID: 606320957}
   - component: {fileID: 606320956}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.225
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18922,7 +19137,7 @@ GameObject:
   - component: {fileID: 2634293135089556956}
   - component: {fileID: 2634293135089556957}
   - component: {fileID: 2634293135089556958}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.313
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19075,7 +19290,7 @@ GameObject:
   - component: {fileID: 2634293135175769884}
   - component: {fileID: 2634293135175769885}
   - component: {fileID: 2634293135175769886}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.304
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19228,7 +19443,7 @@ GameObject:
   - component: {fileID: 2634293135253805975}
   - component: {fileID: 2634293135253805976}
   - component: {fileID: 2634293135253805977}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.231
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19383,7 +19598,7 @@ GameObject:
   - component: {fileID: 2634293135280733481}
   - component: {fileID: 356676682}
   - component: {fileID: 356676681}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.221
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19536,7 +19751,7 @@ GameObject:
   - component: {fileID: 2634293135305183611}
   - component: {fileID: 2634293135305183612}
   - component: {fileID: 2634293135305183613}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.302
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19689,7 +19904,7 @@ GameObject:
   - component: {fileID: 2634293135318314873}
   - component: {fileID: 2634293135318314874}
   - component: {fileID: 2634293135318314875}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.300
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19740,7 +19955,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2634293135357804194}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: OneArcAirhockey4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19895,7 +20110,7 @@ GameObject:
   - component: {fileID: 2634293135409121029}
   - component: {fileID: 1827893581}
   - component: {fileID: 1827893580}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.220
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19931,7 +20146,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2634293135502564582}
   - component: {fileID: 2634293135502564584}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTableBends
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20096,7 +20311,7 @@ GameObject:
   - component: {fileID: 2634293135509927652}
   - component: {fileID: 2634293135509927653}
   - component: {fileID: 2634293135509927654}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.307
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20249,7 +20464,7 @@ GameObject:
   - component: {fileID: 2634293135519261856}
   - component: {fileID: 2634293135519261857}
   - component: {fileID: 2634293135519261858}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.310
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20402,7 +20617,7 @@ GameObject:
   - component: {fileID: 2634293135533377877}
   - component: {fileID: 2634293135533377878}
   - component: {fileID: 2634293135533377879}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.314
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20555,7 +20770,7 @@ GameObject:
   - component: {fileID: 2634293135560802657}
   - component: {fileID: 2634293135560802658}
   - component: {fileID: 2634293135560802659}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.235
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20708,7 +20923,7 @@ GameObject:
   - component: {fileID: 2634293135674129031}
   - component: {fileID: 2634293135674129032}
   - component: {fileID: 2634293135674129033}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.236
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20861,7 +21076,7 @@ GameObject:
   - component: {fileID: 2634293135683775904}
   - component: {fileID: 2634293135683775905}
   - component: {fileID: 2634293135683775906}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.227
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21014,7 +21229,7 @@ GameObject:
   - component: {fileID: 2634293135719159583}
   - component: {fileID: 2634293135719159584}
   - component: {fileID: 2634293135719159585}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.230
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21167,7 +21382,7 @@ GameObject:
   - component: {fileID: 2634293135758258011}
   - component: {fileID: 2634293135758258012}
   - component: {fileID: 2634293135758258013}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.229
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21320,7 +21535,7 @@ GameObject:
   - component: {fileID: 2634293135760973178}
   - component: {fileID: 2634293135760973179}
   - component: {fileID: 2634293135760973180}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.237
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21473,7 +21688,7 @@ GameObject:
   - component: {fileID: 2634293135787904802}
   - component: {fileID: 2634293135787904803}
   - component: {fileID: 2634293135787904804}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.306
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21626,7 +21841,7 @@ GameObject:
   - component: {fileID: 2634293135926980973}
   - component: {fileID: 2634293135926980974}
   - component: {fileID: 2634293135926980975}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.305
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21779,7 +21994,7 @@ GameObject:
   - component: {fileID: 2634293135934123239}
   - component: {fileID: 2634293135934123240}
   - component: {fileID: 2634293135934123241}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.228
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21934,7 +22149,7 @@ GameObject:
   - component: {fileID: 2634293135947876250}
   - component: {fileID: 1857738086}
   - component: {fileID: 1857738085}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.224
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22087,7 +22302,7 @@ GameObject:
   - component: {fileID: 2634293135972018572}
   - component: {fileID: 2634293135972018573}
   - component: {fileID: 2634293135972018574}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.316
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22240,7 +22455,7 @@ GameObject:
   - component: {fileID: 2634293135979969415}
   - component: {fileID: 2634293135979969416}
   - component: {fileID: 2634293135979969417}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.308
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22291,7 +22506,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2634293136082890194}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: OneArcAirhockey1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22444,7 +22659,7 @@ GameObject:
   - component: {fileID: 2634293136083240232}
   - component: {fileID: 2634293136083240233}
   - component: {fileID: 2634293136083240234}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.232
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22464,7 +22679,7 @@ GameObject:
   - component: {fileID: 2634293136085440956}
   - component: {fileID: 2634293136085440957}
   - component: {fileID: 2634293136085440958}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.297
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22750,7 +22965,7 @@ GameObject:
   - component: {fileID: 2634293136146464442}
   - component: {fileID: 2634293136146464443}
   - component: {fileID: 2634293136146464444}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.231
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22903,7 +23118,7 @@ GameObject:
   - component: {fileID: 2634293136156777138}
   - component: {fileID: 2634293136156777139}
   - component: {fileID: 2634293136156777140}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.225
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23056,7 +23271,7 @@ GameObject:
   - component: {fileID: 2634293136197710233}
   - component: {fileID: 2634293136197710234}
   - component: {fileID: 2634293136197710235}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.230
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23209,7 +23424,7 @@ GameObject:
   - component: {fileID: 2634293136219159545}
   - component: {fileID: 2634293136219159546}
   - component: {fileID: 2634293136219159547}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.233
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23362,7 +23577,7 @@ GameObject:
   - component: {fileID: 2634293136222974696}
   - component: {fileID: 2634293136222974697}
   - component: {fileID: 2634293136222974698}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.226
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23515,7 +23730,7 @@ GameObject:
   - component: {fileID: 2634293136285592440}
   - component: {fileID: 2634293136285592441}
   - component: {fileID: 2634293136285592442}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.303
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23668,7 +23883,7 @@ GameObject:
   - component: {fileID: 2634293136294057349}
   - component: {fileID: 2634293136294057350}
   - component: {fileID: 2634293136294057351}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.221
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23821,7 +24036,7 @@ GameObject:
   - component: {fileID: 2634293136309835446}
   - component: {fileID: 2634293136309835447}
   - component: {fileID: 2634293136309835448}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.311
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24095,7 +24310,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2445190500135963134}
   - component: {fileID: 3072826460364591941}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTableSeparated
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24157,7 +24372,7 @@ GameObject:
   - component: {fileID: 4214306437009449413}
   - component: {fileID: 5151748063326024125}
   - component: {fileID: 3110438618568178097}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: 04_AgentBackwallRight
   m_TagString: Boundary
   m_Icon: {fileID: 0}
@@ -24191,7 +24406,7 @@ GameObject:
   - component: {fileID: 2485385339753910923}
   - component: {fileID: 3144088847877103068}
   - component: {fileID: 3144088847877103069}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.306
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24359,7 +24574,7 @@ GameObject:
   - component: {fileID: 7859316730090890976}
   - component: {fileID: 3186603073601236770}
   - component: {fileID: 3186603073601236771}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.297
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24548,7 +24763,7 @@ GameObject:
   - component: {fileID: 3233031644975076686}
   - component: {fileID: 1926073109}
   - component: {fileID: 1926073108}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.316
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24682,7 +24897,7 @@ GameObject:
   - component: {fileID: 8754034931689699096}
   - component: {fileID: 3514633133727964450}
   - component: {fileID: 3514633133727964451}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.304
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24769,7 +24984,7 @@ GameObject:
   - component: {fileID: 5400422453018951570}
   - component: {fileID: 3670322856253324270}
   - component: {fileID: 3556644797258612420}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: 17_AgentGoalMiscRight
   m_TagString: Boundary
   m_Icon: {fileID: 0}
@@ -24942,7 +25157,7 @@ GameObject:
   - component: {fileID: 1837707092306721146}
   - component: {fileID: 3697846331477565305}
   - component: {fileID: 3697846331477565286}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.303
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25005,7 +25220,7 @@ GameObject:
   - component: {fileID: 9059554184429927961}
   - component: {fileID: 3720839845388481228}
   - component: {fileID: 3720839845388481229}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.298
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25147,7 +25362,7 @@ GameObject:
   - component: {fileID: 3881779651548995389}
   - component: {fileID: 3881779651548995390}
   - component: {fileID: 3881779651548995391}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Puck
   m_TagString: Puck
   m_Icon: {fileID: 0}
@@ -25442,7 +25657,7 @@ GameObject:
   - component: {fileID: 4968040008852709495}
   - component: {fileID: 4209992819671951567}
   - component: {fileID: 4209992819671951564}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.302
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25563,7 +25778,7 @@ GameObject:
   - component: {fileID: 4256889358501812124}
   - component: {fileID: 48677577}
   - component: {fileID: 48677576}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.310
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25707,7 +25922,7 @@ GameObject:
   - component: {fileID: 4383159031660633588}
   - component: {fileID: 1263752944}
   - component: {fileID: 1263752943}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.313
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26080,7 +26295,7 @@ GameObject:
   - component: {fileID: 1711626931273481416}
   - component: {fileID: 109370443558655330}
   - component: {fileID: 5072093601580253010}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: 16_AgentGoalMiscLeft
   m_TagString: Boundary
   m_Icon: {fileID: 0}
@@ -26352,7 +26567,7 @@ GameObject:
   - component: {fileID: 5678351524995638376}
   - component: {fileID: 715150787}
   - component: {fileID: 715150786}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.307
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26691,7 +26906,7 @@ GameObject:
   - component: {fileID: 6251418594908393960}
   - component: {fileID: 2094460628}
   - component: {fileID: 2094460627}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.309
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26772,7 +26987,7 @@ GameObject:
   - component: {fileID: 6693553243965471854}
   - component: {fileID: 6302324686422194068}
   - component: {fileID: 6302324686422194069}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.305
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26925,7 +27140,7 @@ GameObject:
   - component: {fileID: 718106712225529876}
   - component: {fileID: 4184161266948447299}
   - component: {fileID: 6406228750736823084}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: 09_HumanGoalMiscRight
   m_TagString: Boundary
   m_Icon: {fileID: 0}
@@ -27109,7 +27324,7 @@ GameObject:
   - component: {fileID: 6647929937900425102}
   - component: {fileID: 1085952145}
   - component: {fileID: 1085952144}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.315
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27355,7 +27570,7 @@ GameObject:
   - component: {fileID: 105793091151730230}
   - component: {fileID: 6398372598466964505}
   - component: {fileID: 6979435507620617381}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: 02_WallRight
   m_TagString: Boundary
   m_Icon: {fileID: 0}
@@ -27404,7 +27619,7 @@ GameObject:
   - component: {fileID: 6668478219287263988}
   - component: {fileID: 6997775384070578954}
   - component: {fileID: 6997775384070578955}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.301
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27804,7 +28019,7 @@ GameObject:
   - component: {fileID: 7451911531970511351}
   - component: {fileID: 243269126}
   - component: {fileID: 243269125}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.312
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27933,7 +28148,7 @@ GameObject:
   - component: {fileID: 3148892724007615538}
   - component: {fileID: 4318368465579874235}
   - component: {fileID: 7034193222066134235}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PusherAgentCarriage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27967,7 +28182,7 @@ GameObject:
   - component: {fileID: 3848096227759480301}
   - component: {fileID: 2861258710293529069}
   - component: {fileID: 4528554746482961559}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: 14_AgentGoalMiscCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27983,7 +28198,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7042898486720455296}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: OneArcAirhockey3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28001,7 +28216,7 @@ GameObject:
   - component: {fileID: 4862477515229228242}
   - component: {fileID: 3073918504185649519}
   - component: {fileID: 6951070484159965167}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: 05_AgentGoalMiscBottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28127,7 +28342,7 @@ GameObject:
   - component: {fileID: 4197400669735741587}
   - component: {fileID: 1042437426883530980}
   - component: {fileID: 7903613563545013136}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: 01_WallLeft
   m_TagString: Boundary
   m_Icon: {fileID: 0}
@@ -28400,7 +28615,7 @@ GameObject:
   - component: {fileID: 1210271005917332788}
   - component: {fileID: 7400384807432978953}
   - component: {fileID: 8263606339792183874}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: 10_HumanGoalMiscLeft
   m_TagString: Boundary
   m_Icon: {fileID: 0}
@@ -28432,7 +28647,7 @@ GameObject:
   - component: {fileID: 1968750462978680308}
   - component: {fileID: 7791143712966365898}
   - component: {fileID: 2600343899214048109}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: 15_AgentGoal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28631,7 +28846,7 @@ GameObject:
   - component: {fileID: 3501975190377031608}
   - component: {fileID: 5031739586484724851}
   - component: {fileID: 5287724547706587304}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: 11_HumanGoalMiscCenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28735,7 +28950,7 @@ GameObject:
   - component: {fileID: 8060764511144136526}
   - component: {fileID: 9193889346057315798}
   - component: {fileID: 5976367296917836883}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: 18_AgentGoalMisc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28854,7 +29069,7 @@ GameObject:
   - component: {fileID: 8771826343010159132}
   - component: {fileID: 194993667}
   - component: {fileID: 194993666}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AirHockeyTable.314
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28953,7 +29168,7 @@ GameObject:
   - component: {fileID: 9057002915301167259}
   - component: {fileID: 9057002915301167260}
   - component: {fileID: 9057002915301167261}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: 06_HumanBackwallLeft
   m_TagString: Boundary
   m_Icon: {fileID: 0}
