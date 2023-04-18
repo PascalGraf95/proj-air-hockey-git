@@ -282,7 +282,6 @@ public class AirHockeyAgent : Agent
 
     }
     
-
     public override void OnActionReceived(ActionBuffers actionsIn) 
     {
         #region Action Calculations
