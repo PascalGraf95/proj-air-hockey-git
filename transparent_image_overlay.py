@@ -26,6 +26,7 @@ def main(save_images=False):
     file_names = os.listdir(image_path)
     file_names = [f for f in file_names if f.endswith(".png")]
     background_image = cv2.imread(os.path.join("background_image.png"))
+    background_image_original_shape = background_image.shape
     background_image = background_image[:, 450:950]
 
     for idx, n in enumerate(file_names[:-sequence_length]):
@@ -35,11 +36,15 @@ def main(save_images=False):
         # print(alpha, beta, gamma)
 
         image = cv2.imread(os.path.join(image_path, n))
+        # convert screenshot to background image shape
+        image = cv2.resize(image, (background_image_original_shape[1], background_image_original_shape[0]))
         image = image[:, 450:950]
         for seq_idx in range(1, sequence_length+1):
             image_add = cv2.imread(os.path.join(image_path, file_names[idx+seq_idx]))
+            image_add = cv2.resize(image_add, (background_image_original_shape[1], background_image_original_shape[0]))
             image_add = image_add[:, 450:950]
             image = cv2.addWeighted(image, alpha, image_add, beta, gamma)
+            
         image = cv2.addWeighted(background_image, 0.3, image, 1, 0)
         if save_images:
             if not os.path.isdir(os.path.join(image_path, "output")):
@@ -53,4 +58,4 @@ def main(save_images=False):
 
 
 if __name__ == '__main__':
-    main(True)
+    main(False)
