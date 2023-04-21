@@ -544,9 +544,10 @@ public class AirHockeyAgent : Agent
                 {
                     currentCenterReward = rewardComposition.stayInCenterReward * 0.1f * Mathf.Sqrt(Mathf.Pow(currentCenterRewardX, 2) + Mathf.Pow(currentCenterRewardY, 2)) * 0.2f;
                 }
-                AddReward(currentCenterReward);
-                episodeReward["StayInCenterReward"] += currentCenterReward;
-                episodeRewardShift["StayInCenterRewardShift"][shiftIdx] = currentCenterReward;
+                var scaledStepReward = currentCenterReward / 100f;
+                AddReward(scaledStepReward);
+                episodeReward["StayInCenterReward"] += scaledStepReward;
+                episodeRewardShift["StayInCenterRewardShift"][shiftIdx] = scaledStepReward;
             }
         }
         // Reward high puck velocities
