@@ -32,7 +32,6 @@ public enum HumanBehavior
     TrainingScenario,
 }
 
-
 public enum ObservationSpace
 {
     KinematicNoAccel,
