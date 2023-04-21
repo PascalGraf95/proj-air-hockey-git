@@ -16,6 +16,7 @@ public class ExportGameStatistics : MonoBehaviour
     [SerializeField] private string imagePath = "";
     [SerializeField] private string csvPath = "";
     [SerializeField] private bool stopCapturingOnEpisodeEnd = true;
+    [SerializeField] private int screenshotSuperSize = 1;
     [SerializeField] private List<GameObject> GameObjectsToTrack;
     [SerializeField] private int Step;
     private int stepCounter;
@@ -64,7 +65,7 @@ public class ExportGameStatistics : MonoBehaviour
         if (captureEpisode)
         {
             string filename = string.Format(imagePath + "/img_{0}.png", System.DateTime.Now.ToString("yy-MM-dd_HH-mm-ss-fff"));
-            ScreenCapture.CaptureScreenshot(filename, 1);
+            ScreenCapture.CaptureScreenshot(filename, screenshotSuperSize);
         }
     }
 
