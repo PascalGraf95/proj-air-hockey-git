@@ -205,7 +205,7 @@
       "url": "https://packages.unity.com"
     },
     "org.mujoco": {
-      "version": "file:C:/Users/Drumm/Downloads/mujoco-main/mujoco-main/unity",
+      "version": "file:C:/Users/AI-Admin/Downloads/mujoco-main/mujoco-main/unity",
       "depth": 0,
       "source": "local",
       "dependencies": {}
