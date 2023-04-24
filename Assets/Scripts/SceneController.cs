@@ -43,10 +43,12 @@ public class SceneController : MonoBehaviour
     private int humanPlayerScore = 0;
     private int agentPlayerScore = 0;
     [SerializeField] private int maxScore = 5;
+    [SerializeField] private int maxEpisodesWithoutScore = 5;
     private GameState currentGameState;
     private bool humanPlaying = false;
     private int gamesPlayed = 0;
     private float lastBackwallHitDetected;
+    private int episodesWithoutScore = 0;
 
     AdditionalGameInformationsSideChannel gameResultsSideChannel;
 
@@ -141,6 +143,7 @@ public class SceneController : MonoBehaviour
 
     public void AgentPlayerScored()
     {
+        episodesWithoutScore = 0;
         agentPlayerScore++;
         currentGameState = GameState.agentScored;
         if (uiController != null)
@@ -151,6 +154,7 @@ public class SceneController : MonoBehaviour
 
     private void HumanPlayerScored()
     {
+        episodesWithoutScore = 0;
         humanPlayerScore++;
         currentGameState = GameState.playerScored;
         if (uiController != null)
@@ -193,9 +197,10 @@ public class SceneController : MonoBehaviour
         puckController.Reset();
 
         // Reset Game Score
-        if(humanPlayerScore >= maxScore || agentPlayerScore >= maxScore || forceScoreReset)
+        if(humanPlayerScore >= maxScore || agentPlayerScore >= maxScore || forceScoreReset || episodesWithoutScore >= maxEpisodesWithoutScore)
         {
-            if(!humanPlaying)
+            episodesWithoutScore = 0;
+            if (!humanPlaying)
             {
                 // Game results to determine Elo-rating should only be send to modular-reinforcement-learning
                 // if selfplay is active and a full game has been played
@@ -213,7 +218,6 @@ public class SceneController : MonoBehaviour
             {
                 ResetSceneAgentPlaying();
             }
-
         }
 
         // Mujoco Scene Reset
@@ -225,6 +229,7 @@ public class SceneController : MonoBehaviour
         mjScene.CreateScene();
 
         puckController.transform.GetComponent<MeshRenderer>().enabled = true;
+        episodesWithoutScore++;
     }
 
     /// <summary>
