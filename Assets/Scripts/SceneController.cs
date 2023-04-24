@@ -32,6 +32,7 @@ public class SceneController : MonoBehaviour
     private int humanPlayerScore = 0;
     private int agentPlayerScore = 0;
     [SerializeField] private int maxScore = 5;
+    [SerializeField] private int maxEpisodesWithoutScore = 5;
     private GameState currentGameState;
     private bool humanPlaying = false;
     private int gamesPlayed = 0;
@@ -184,7 +185,7 @@ public class SceneController : MonoBehaviour
         puckController.Reset();
 
         // Reset Game Score
-        if(humanPlayerScore >= maxScore || agentPlayerScore >= maxScore || forceScoreReset || episodesWithoutScore >= 5)
+        if(humanPlayerScore >= maxScore || agentPlayerScore >= maxScore || forceScoreReset || episodesWithoutScore >= maxEpisodesWithoutScore)
         {
             episodesWithoutScore = 0;
             if (!humanPlaying)
