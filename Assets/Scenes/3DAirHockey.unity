@@ -4049,12 +4049,12 @@ MonoBehaviour:
       Margin: 0
       RefLimit:
         TimeConst: 0.02
-        DampRatio: 0.5
+        DampRatio: 0.55
       ImpLimit:
         DMin: 0.99
         DMax: 1
-        Width: 0.001
-        Midpoint: 0.1
+        Width: 0.1
+        Midpoint: 0.01
         Power: 9
       FrictionLoss: 0
       ImpFriction:
@@ -9695,12 +9695,12 @@ MonoBehaviour:
       Margin: 0
       RefLimit:
         TimeConst: 0.02
-        DampRatio: 0.5
+        DampRatio: 0.55
       ImpLimit:
         DMin: 0.99
         DMax: 1
-        Width: 0.001
-        Midpoint: 0.1
+        Width: 0.1
+        Midpoint: 0.01
         Power: 9
       FrictionLoss: 0
       ImpFriction:
@@ -9959,13 +9959,13 @@ MonoBehaviour:
       ConDim: 3
       SolMix: 1
       SolRef:
-        TimeConst: -8
-        DampRatio: -165
+        TimeConst: -50
+        DampRatio: -190
       SolImp:
         DMin: 0.99
         DMax: 1
         Width: 0.001
-        Midpoint: 0.1
+        Midpoint: 0.01
         Power: 9
       Margin: 0
       Gap: 0
@@ -10349,7 +10349,7 @@ MonoBehaviour:
     Extents: {x: 1, y: 1}
   Mesh:
     Mesh: {fileID: 0}
-  Mass: 10000
+  Mass: 10
   Density: 0
   Settings:
     Priority: 5
@@ -30263,8 +30263,8 @@ MonoBehaviour:
   actuatorX: {fileID: 1810052256}
   actuatorZ: {fileID: 1934841237}
   resetPuckState: 6
-  VEL: 150
-  ANG: 0
+  VEL: 200
+  ANG: 32
   startPos: {x: 0, y: 0}
 --- !u!135 &3881779651548995391
 SphereCollider:
