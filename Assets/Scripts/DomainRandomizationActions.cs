@@ -34,12 +34,9 @@ namespace Assets.Scripts
         [Tooltip("Define the maximum amount of actions to be delayed.")]
         [Range(0, 1000)]
         public int MaxActionDelay = 0;
-        //[Tooltip("Define the maximum amount of time an action can be delayed.")]
-        //[Range(0, 1000f)]
-        //public int MaxActionDelayInMs;
-        //[Tooltip("Define the minimum amount of time an action can be delayed.")]
-        //[Range(0, 1000f)]
-        //public int MinActionDelayInMs;
+        [Tooltip("Min amount of steps between a delay.")]
+        [Range(0, 1000)]
+        public int Step = 100;
         [Tooltip("Define the probability that an action will be delayed.")]
         [Range(0,1f)]
         public double DelayProbability;

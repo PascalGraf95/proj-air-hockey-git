@@ -77,6 +77,8 @@ public class PusherController : MonoBehaviour
     private DomainRandomizationObservations domainRandomizationObservations;
     private DomainRandomizationActions domainRandomizationActions;
     private Queue<Vector2> actionDelayBuffer;
+    bool emptyBuffer = false;
+    private int step = 0;
 
     private void Start()
     {
@@ -247,26 +249,17 @@ public class PusherController : MonoBehaviour
         targetPosition = GetCurrentPosition();
     }
 
-    bool emptyBuffer = false;
-    private int step = 0;
-    public int delay = 10;
+    
+    private int delay = 100;
     /// <summary>
     /// Control pusher agents with maximum velocity. 
     /// </summary>
     /// <param name="targetVelocity"></param>
     public void Act(Vector2 targetVelocity)
     {
-        step++;
-
-        // Start coroutine to delay action randomly
-        // if (domainRandomizationActions.Delay is true && domainRandomizationActions.IsDelayActive is false)
-        // {
-        //     // TODO: Timing a delay turns out to be difficult. This needs to be synchronized with how often this method is called
-        //     // StartCoroutine(domainRandomizationActions.DelayActionTrigger());
-
-        // }            
+        step++;        
         float x = targetVelocity.x;
-        float z = targetVelocity.y;
+        float y = targetVelocity.y;
 
         if(domainRandomizationActions != null && domainRandomizationController.ApplyActionRandomization is true) // Action Randomization is active in general
         {              
@@ -283,6 +276,8 @@ public class PusherController : MonoBehaviour
             if (actionDelayBuffer.Count < domainRandomizationActions.ActionDelayCount && domainRandomizationActions.IsDelayActive is true)
             {
                 actionDelayBuffer.Enqueue(targetVelocity);
+                x = 0; 
+                y = 0;
             }
             // Condition to end delay and empty buffer
             if (domainRandomizationActions.ActionDelayCount == actionDelayBuffer.Count)
@@ -291,7 +286,7 @@ public class PusherController : MonoBehaviour
                 domainRandomizationActions.IsDelayActive = false;
             }
             // If delay is active, get action from FIFO buffer
-            if (emptyBuffer is true && actionDelayBuffer.Count > 0)
+            if (emptyBuffer is true && actionDelayBuffer.Count > 0 && domainRandomizationActions.IsDelayActive is false)
             {
                 targetVelocity = actionDelayBuffer.Dequeue();
             }
@@ -299,16 +294,16 @@ public class PusherController : MonoBehaviour
             if (domainRandomizationActions.Perturb is true && domainRandomizationActions.ProbabilisticTrigger(domainRandomizationActions.PerturbProbability))
             {
                 x = domainRandomizationActions.RandomizeParameter(targetVelocity.x);
-                z = domainRandomizationActions.RandomizeParameter(targetVelocity.y);
+                y = domainRandomizationActions.RandomizeParameter(targetVelocity.y);
             }
-            Debug.Log("x: " + x + " z: " + z);
+            Debug.Log("x: " + x + " z: " + y);
             Debug.Log("Action delay buffer count: " + actionDelayBuffer.Count);
             Debug.Log("Is delay active: " + domainRandomizationActions.IsDelayActive);
         }    
 
         // Control pusher with maximum velocity
         pusherActuatorX.Control = x * maxVelocity;
-        pusherActuatorZ.Control = z * maxVelocity;
+        pusherActuatorZ.Control = y * maxVelocity;
     }
 
     /// <summary>
