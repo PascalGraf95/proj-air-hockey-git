@@ -43,7 +43,6 @@ public class PusherController : MonoBehaviour
     public float TimeToTarget;
 
     // steering behavior fields
-    public Character Character;
     private Vector2 targetPosition;
     private Vector2 acceleration;
     private ArriveSteeringBehavior arriveSteeringBehavior;

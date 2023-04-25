@@ -23,8 +23,8 @@ TagManager:
   - HumanPerspectiveUI
   - AgentPerspectiveUI
   - TopViewPerspectiveUI
-  - 
-  - 
+  - RenderPerspective
+  - RenderTable
   - 
   - 
   - 

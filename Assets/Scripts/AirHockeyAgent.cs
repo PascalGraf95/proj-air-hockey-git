@@ -3,6 +3,7 @@ using System.Collections;
 using Unity.MLAgents;
 using Unity.MLAgents.Sensors;
 using Unity.MLAgents.Actuators;
+using Unity.MLAgents.SideChannels;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using System.Text;
@@ -15,6 +16,7 @@ using static System.Collections.Specialized.BitVector32;
 using UnityEngine.Profiling;
 using Unity.Barracuda;
 using Unity.MLAgents.Policies;
+using System.Linq;
 
 public enum ActionType { Discrete, Continuous };
 public enum TaskType
@@ -72,6 +74,7 @@ public class AirHockeyAgent : Agent
     // Used to track the influence of each reward component in each episode
     public Dictionary<string, float> episodeReward = new Dictionary<string, float>();
     public Dictionary<string, float[]> episodeRewardShift = new Dictionary<string, float[]>();
+
     #endregion
 
     #region Private Parameters
@@ -81,10 +84,11 @@ public class AirHockeyAgent : Agent
     private PusherController pusherAgentController;
     private PusherController pusherHumanController;
     private Rigidbody guidanceRods;
+    private const float PusherOffsetY = 0.01f;
 
     private Vector2 lastVel;
+    private Vector2 lastDirection;
     private Vector2 lastAcc;
-
     [HideInInspector]
     public float currentVelMag;
     [HideInInspector]
@@ -98,6 +102,8 @@ public class AirHockeyAgent : Agent
     private int shiftLen = 100;
 
     private int episodesPlayed = 0;
+
+    private EnvironmentInformationSideChannel environmentInformationSideChannel;
 
     //StringBuilder csv = new StringBuilder();
     #endregion
@@ -132,16 +138,45 @@ public class AirHockeyAgent : Agent
         SetupAirHockeyAgent();
     }
 
-    public void SetupAirHockeyAgent()
+    protected override void Awake()
     {
-        // Initialize Reward Dictionary
-        ResetEpisodeRewards();
+        // It is always necessary to call the base Awake class from the Agent
+        base.Awake();
+        // Register Sidechanell for environment informations like reward composition
+        environmentInformationSideChannel = new EnvironmentInformationSideChannel();
+        SideChannelManager.RegisterSideChannel(environmentInformationSideChannel);
 
         // Init demonstration recorder
         demonstrationRecorder = gameObject.AddComponent<DemonstrationRecorder>();
         demonstrationRecorder.DemonstrationDirectory = @"Demonstrations";
-        demonstrationRecorder.DemonstrationName = DateTime.Now + "_AirhockeyDemonstrationRecording";
+        demonstrationRecorder.DemonstrationName = DateTime.Now.ToString("'yy''MM''dd'_'HH''mm''ss'") + "_AirhockeyDemonstrationRecording";
         demonstrationRecorder.NumStepsToRecord = 0; // If you set Num Steps To Record to 0 then recording will continue until you manually end the play session.
+
+    }
+
+    public void OnDestroy()
+    {
+        if (Academy.IsInitialized)
+        {
+            SideChannelManager.UnregisterSideChannel(environmentInformationSideChannel);
+        }
+    }
+
+    public void SetupAirHockeyAgent()
+    {
+        // Get environment information to list of key value pairs format to send it via side channel
+        var rewardComposition = new Dictionary<string, string>();
+        rewardComposition = GetRewardComposition();
+        var behaviorParametersList = GetBehaviorParameters();
+        // convert dictionary to list of key value pairs
+        var rewardCompositionList = rewardComposition.ToList();
+        // merge lists
+        var environmentInformation = rewardCompositionList.Concat(behaviorParametersList).ToList();
+        // Send environment information
+        environmentInformationSideChannel.SendEnvironmentInformation(environmentInformation);
+
+        // Initialize Reward Dictionary
+        ResetEpisodeRewards();
 
         // Get the controllers for scene, puck and the two pushers
         sceneController = GetComponent<SceneController>();
@@ -231,8 +266,6 @@ public class AirHockeyAgent : Agent
 
                 sensor.AddObservation(pusherAgentController.GetDistanceAgentGoal());
                 sensor.AddObservation(pusherHumanController.GetDistanceHumanGoal());
-                sensor.AddObservation(pusherAgentController.GetDistanceHumanGoal());
-                sensor.AddObservation(pusherHumanController.GetDistanceAgentGoal());
                 sensor.AddObservation(pusherAgentController.GetDistancePuck());
                 sensor.AddObservation(pusherHumanController.GetDistancePuck());
                 break;
@@ -453,12 +486,12 @@ public class AirHockeyAgent : Agent
             {
                 currentJerkMag = 0;
             }
+
             var scaledDirectionReward = rewardComposition.avoidDirectionChangesReward / 100f;
             AddReward(currentJerkMag * scaledDirectionReward);
             episodeReward["DirectionReward"] += currentJerkMag * scaledDirectionReward;
             episodeRewardShift["DirectionRewardShift"][shiftIdx] = currentJerkMag * scaledDirectionReward;
             //csv.AppendLine(currentJerkMag.ToString());
-
 
             lastVel = currentVel;
             lastAcc = currentAcc;
@@ -499,6 +532,7 @@ public class AirHockeyAgent : Agent
                 if (agentPosition.y > 55f) { currentCenterRewardY = Mathf.Clamp(agentPosition.y * 0.1f - 5.5f, 0f, 1f); }
                 else if (agentPosition.y < 43f) { currentCenterRewardY = Mathf.Clamp(-agentPosition.y * 0.1f + 4.3f, 0f, 1f); }
 
+                //print("CENTER: " + currentCenterRewardX.ToString("0.00") + " " + currentCenterRewardY.ToString("0.00"));
                 float currentCenterReward;
 
                 if (puckPosition.y < 0f)
@@ -518,7 +552,7 @@ public class AirHockeyAgent : Agent
         // Reward high puck velocities
         if (rewardComposition.encouragePuckMovementReward > 0f)
         {
-            var puckVelocity = puckController.GetCurrentVelocity()/10000;
+            var puckVelocity = puckController.GetCurrentVelocity() / 10000;
             AddReward(Mathf.Clamp(puckVelocity.magnitude * rewardComposition.encouragePuckMovementReward, 0f, 1f));
             episodeReward["PuckVelocityReward"] += Mathf.Clamp(puckVelocity.magnitude * rewardComposition.encouragePuckMovementReward, 0f, 1f);
             episodeRewardShift["PuckVelocityRewardShift"][shiftIdx] = Mathf.Clamp(puckVelocity.magnitude * rewardComposition.encouragePuckMovementReward, 0f, 1f);
@@ -528,10 +562,10 @@ public class AirHockeyAgent : Agent
         AddReward(scaledReward);
         episodeReward["StepReward"] += scaledReward;
         #endregion
-        
+
         #region TaskSpecificRewards
         // Task specific Rewards
-        if(taskType == TaskType.FullGameUntilGoal)
+        if (taskType == TaskType.FullGameUntilGoal)
         {
             if (StepCount == MaxStep)
             {
@@ -555,6 +589,7 @@ public class AirHockeyAgent : Agent
         #endregion
 
         #region Movement and Clipping
+        //print((puckController.GetCurrentPosition() - pusherAgentController.GetCurrentPosition()).magnitude);
         pusherAgentController.Act(new Vector2(x, z));
         #endregion
     }
@@ -579,17 +614,17 @@ public class AirHockeyAgent : Agent
     {
         Dictionary<string, string> rewardComp = new Dictionary<string, string>
         {
-            { "AgentScoredReward", rewardComposition.agentScoredReward.ToString() },
-            { "HumanScoredReward", rewardComposition.humanScoredReward.ToString() },
-            { "AvoidBoundariesReward", rewardComposition.avoidBoundariesReward.ToString() },
-            { "AvoidDirectionChangesReward", rewardComposition.avoidDirectionChangesReward.ToString() },
-            { "EncouragePuckMovementReward", rewardComposition.encouragePuckMovementReward.ToString() },
-            { "BackWallReward", rewardComposition.backWallReward.ToString() },
-            { "PuckInAgentsHalfReward", rewardComposition.puckInAgentsHalfReward.ToString() },
-            { "MaxStepReward", rewardComposition.maxStepReward.ToString() },
-            { "StepReward", rewardComposition.stepReward.ToString() },
-            { "OutOfBoundsReward", rewardComposition.outOfBoundsReward.ToString() },
-            { "StayInCenterReward", rewardComposition.stayInCenterReward.ToString() }
+            { "AgentScoredReward", rewardComposition.agentScoredReward.ToString().Replace(",",".") },
+            { "HumanScoredReward", rewardComposition.humanScoredReward.ToString().Replace(",",".") },
+            { "AvoidBoundariesReward", rewardComposition.avoidBoundariesReward.ToString().Replace(",",".") },
+            { "AvoidDirectionChangesReward", rewardComposition.avoidDirectionChangesReward.ToString().Replace(",",".") },
+            { "EncouragePuckMovementReward", rewardComposition.encouragePuckMovementReward.ToString().Replace(",",".") },
+            { "BackWallReward", rewardComposition.backWallReward.ToString().Replace(",",".") },
+            { "PuckInAgentsHalfReward", rewardComposition.puckInAgentsHalfReward.ToString().Replace(",",".") },
+            { "MaxStepReward", rewardComposition.maxStepReward.ToString().Replace(",",".") },
+            { "StepReward", rewardComposition.stepReward.ToString().Replace(",",".") },
+            { "OutOfBoundsReward", rewardComposition.outOfBoundsReward.ToString().Replace(",",".") },
+            { "StayInCenterReward", rewardComposition.stayInCenterReward.ToString().Replace(",",".") }
         };
         return rewardComp;
     }
@@ -600,7 +635,7 @@ public class AirHockeyAgent : Agent
     /// <returns>A list of key value pairs of string, string because in contrast to a dictionary keys are not exclusive.</returns>
     public List<KeyValuePair<string, string>> GetBehaviorParameters()
     {
-        List<KeyValuePair<string, string>> behaviorDict = new List<KeyValuePair<string, string>> 
+        List<KeyValuePair<string, string>> behaviorDict = new List<KeyValuePair<string, string>>
         {
             new KeyValuePair<string, string>("ObservationSpaceType", observationSpace.ToString()),
             new KeyValuePair<string, string>("SpaceSize", GetObservations().Count.ToString()),
@@ -650,6 +685,7 @@ public class AirHockeyAgent : Agent
         }
         return behaviorDict;
     }
+
 
     private void OnApplicationQuit()
     {
