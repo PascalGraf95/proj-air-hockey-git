@@ -250,7 +250,6 @@ public class PusherController : MonoBehaviour
     }
 
     
-    private int delay = 100;
     /// <summary>
     /// Control pusher agents with maximum velocity. 
     /// </summary>
@@ -264,7 +263,7 @@ public class PusherController : MonoBehaviour
         if(domainRandomizationActions != null && domainRandomizationController.ApplyActionRandomization is true) // Action Randomization is active in general
         {              
             // Conditions to start delay and fill buffer
-            if (step % delay == 0 && domainRandomizationActions.IsDelayActive is false && actionDelayBuffer.Count == 0 && domainRandomizationActions.Delay is true && domainRandomizationActions.ProbabilisticTrigger(domainRandomizationActions.DelayProbability) is true)
+            if (step % domainRandomizationActions.Step == 0 && domainRandomizationActions.IsDelayActive is false && actionDelayBuffer.Count == 0 && domainRandomizationActions.Delay is true && domainRandomizationActions.ProbabilisticTrigger(domainRandomizationActions.DelayProbability) is true)
             {
                 // Get amount of actions to delay
                 domainRandomizationActions.RandomActionDelayCount();

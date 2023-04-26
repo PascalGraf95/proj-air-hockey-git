@@ -26061,6 +26061,7 @@ MonoBehaviour:
   Delay: 1
   MinActionDelay: 0
   MaxActionDelay: 25
+  Step: 100
   DelayProbability: 1
 --- !u!23 &4968040008852709495
 MeshRenderer:
