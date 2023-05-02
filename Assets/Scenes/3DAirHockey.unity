@@ -4042,7 +4042,7 @@ MonoBehaviour:
       TimeConstant: 0
       DampingRatio: 0
       Stiffness: 0
-      Damping: 0.23
+      Damping: 0.6
       EquilibriumPose: 0
     Solver:
       Limited: 0
@@ -9688,7 +9688,7 @@ MonoBehaviour:
       TimeConstant: 0
       DampingRatio: 0
       Stiffness: 0
-      Damping: 0.23
+      Damping: 0.6
       EquilibriumPose: 0
     Solver:
       Limited: 0
@@ -13976,7 +13976,7 @@ MonoBehaviour:
   MaxStep: 3000
   actionType: 1
   taskType: 0
-  resetPuckState: 6
+  resetPuckState: 4
   maxStepsPerGame: 0
   humanBehavior: 0
   observationSpace: 0
@@ -30262,7 +30262,7 @@ MonoBehaviour:
   slideJointZ: {fileID: 1550746607}
   actuatorX: {fileID: 1810052256}
   actuatorZ: {fileID: 1934841237}
-  resetPuckState: 6
+  resetPuckState: 4
   VEL: 200
   ANG: 32
   startPos: {x: 0, y: 0}
