@@ -16,6 +16,7 @@ public class ExportGameStatistics : MonoBehaviour
     [SerializeField] private string imagePath = "";
     [SerializeField] private string csvPath = "";
     [SerializeField] private bool stopCapturingOnEpisodeEnd = true;
+    [SerializeField] private bool clearDirectories = true;
     [SerializeField] private int screenshotSuperSize = 1;
     [SerializeField] private List<GameObject> GameObjectsToTrack;
     [SerializeField] private int Step;
@@ -50,14 +51,36 @@ public class ExportGameStatistics : MonoBehaviour
     public void CaptureNextEpisode()
     {
         captureEpisode = true;
+        if (!Directory.Exists(imagePath))
+        {
+            Directory.CreateDirectory(imagePath);
+        }
+        if (!Directory.Exists(csvPath))
+        {
+            Directory.CreateDirectory(csvPath);
+        }
+        if (clearDirectories is true)
+        {
+            string[] images = Directory.GetFiles(imagePath);
+            string[] csv = Directory.GetFiles(csvPath);
+            foreach (string image in images)
+            {
+                File.Delete(image);
+            }
+            foreach (string csvFile in csv)
+            {
+                File.Delete(csvFile);
+            }
+        }
     }
 
     public void EpisodeEnded()
     {
-        if(stopCapturingOnEpisodeEnd)
+        ExportPositionData();
+        if (stopCapturingOnEpisodeEnd)
         {
             captureEpisode = false;
-        }
+        }        
     }
 
     public void ExportScreenshotData()
@@ -71,15 +94,18 @@ public class ExportGameStatistics : MonoBehaviour
 
     private void ExportPositionData()
     {
-        foreach (GameObject go in GameObjectsToTrack)
+        if (captureEpisode)
         {
-            string fileName = $"{go.name}_position_data.csv";
-            string filePath = Path.Combine(csvPath, fileName);
-            string csvContent = csvData[go].ToString();
+            foreach (GameObject go in GameObjectsToTrack)
+            {
+                string fileName = $"{go.name}_position_data.csv";
+                string filePath = Path.Combine(csvPath, fileName);
+                string csvContent = csvData[go].ToString();
 
-            Directory.CreateDirectory(Path.GetDirectoryName(filePath));
-            File.WriteAllText(filePath, csvContent);
-        }
+                Directory.CreateDirectory(Path.GetDirectoryName(filePath));
+                File.WriteAllText(filePath, csvContent);
+            }
+        }        
     }
 
     private void LogPositions()
@@ -100,10 +126,5 @@ public class ExportGameStatistics : MonoBehaviour
     {
         ExportScreenshotData();
         LogPositions();
-    }
-
-    private void OnDestroy()
-    {
-        ExportPositionData();
     }
 }
