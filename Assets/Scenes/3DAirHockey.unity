@@ -4042,7 +4042,7 @@ MonoBehaviour:
       TimeConstant: 0
       DampingRatio: 0
       Stiffness: 0
-      Damping: 0.6
+      Damping: 0.48
       EquilibriumPose: 0
     Solver:
       Limited: 0
@@ -9688,7 +9688,7 @@ MonoBehaviour:
       TimeConstant: 0
       DampingRatio: 0
       Stiffness: 0
-      Damping: 0.6
+      Damping: 0.48
       EquilibriumPose: 0
     Solver:
       Limited: 0
@@ -9959,8 +9959,8 @@ MonoBehaviour:
       ConDim: 3
       SolMix: 1
       SolRef:
-        TimeConst: -50
-        DampRatio: -190
+        TimeConst: -5000
+        DampRatio: -160
       SolImp:
         DMin: 0.99
         DMax: 1
@@ -13976,7 +13976,7 @@ MonoBehaviour:
   MaxStep: 3000
   actionType: 1
   taskType: 0
-  resetPuckState: 4
+  resetPuckState: 6
   maxStepsPerGame: 0
   humanBehavior: 0
   observationSpace: 0
