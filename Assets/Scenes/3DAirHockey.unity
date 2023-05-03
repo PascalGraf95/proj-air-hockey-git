@@ -9959,8 +9959,8 @@ MonoBehaviour:
       ConDim: 3
       SolMix: 1
       SolRef:
-        TimeConst: -5000
-        DampRatio: -160
+        TimeConst: -600
+        DampRatio: -173
       SolImp:
         DMin: 0.99
         DMax: 1
@@ -13976,7 +13976,7 @@ MonoBehaviour:
   MaxStep: 3000
   actionType: 1
   taskType: 0
-  resetPuckState: 6
+  resetPuckState: 4
   maxStepsPerGame: 0
   humanBehavior: 0
   observationSpace: 0
