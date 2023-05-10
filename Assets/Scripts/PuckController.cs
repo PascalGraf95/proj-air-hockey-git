@@ -21,7 +21,7 @@ public class PuckController : MonoBehaviour
     [SerializeField] private MjSlideJoint slideJointZ;
     [SerializeField] private MjActuator actuatorX;
     [SerializeField] private MjActuator actuatorZ;
-    public ResetPuckState resetPuckState;
+    [HideInInspector] public ResetPuckState resetPuckState;
     public float VEL = 0f;
     public float ANG = 0f;
     public Vector2 startPos = Vector2.zero;

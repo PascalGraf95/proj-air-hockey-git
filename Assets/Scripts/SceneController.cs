@@ -18,6 +18,7 @@ public enum GameState
 
 public class SceneController : MonoBehaviour
 {
+    #region Variables
     private PuckController puckController;
     private PusherController pusherHumanController;
     private PusherController pusherAgentController;
@@ -51,6 +52,7 @@ public class SceneController : MonoBehaviour
     private int episodesWithoutScore = 0;
 
     AdditionalGameInformationsSideChannel gameResultsSideChannel;
+    #endregion
 
     // Start is called before the first frame update
     void Start()
