@@ -120,12 +120,9 @@ public class PusherController : MonoBehaviour
                 // get current mouse position on left mouse button click
                 if (Input.GetMouseButton(0))
                 {
-                    // compute arrive steering behavior
-                    acceleration = arriveSteeringBehavior.Arrive(targetPosition, GetCurrentPosition(), GetCurrentVelocity(), TargetRadius, SlowDownRadius, MaxSpeed, MaxAcceleration, TimeToTarget);
-
-                    // set actuator acceleration
-                    pusherActuatorX.Control = -acceleration.x;
-                    pusherActuatorZ.Control = -acceleration.y;
+                    // set target position
+                    pusherActuatorX.Control = -targetPosition.x;
+                    pusherActuatorZ.Control = -targetPosition.y;
                 }
                 else
                 {
