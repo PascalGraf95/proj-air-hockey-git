@@ -122,7 +122,7 @@ public class PusherController : MonoBehaviour
                 {
                     // set target position
                     pusherActuatorX.Control = -targetPosition.x;
-                    pusherActuatorZ.Control = -targetPosition.y;
+                    pusherActuatorZ.Control = -targetPosition.y - 42; // offset between AirHockeyTable and Pusher coordinate system
                 }
                 else
                 {
