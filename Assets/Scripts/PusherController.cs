@@ -29,23 +29,9 @@ public class PusherController : MonoBehaviour
     public MjActuator pusherActuatorX;
     public MjSlideJoint slideJointX;
     public MjSlideJoint slideJointZ;
-    
-    [Header("Steering Behavior")]
-    [Tooltip("Maximum acceleration the Character is able to reach.")]
-    public float MaxAcceleration;
-    [Tooltip("Maximum speed the Character is able to reach.")]
-    public float MaxSpeed;
-    [Tooltip("Radius for arriving at the target.")]
-    public float TargetRadius;
-    [Tooltip("Radius for beginning to slow down.")]
-    public float SlowDownRadius;
-    [Tooltip("Time over which to achieve the target speed.")]
-    public float TimeToTarget;
 
     // steering behavior fields
     private Vector2 targetPosition;
-    private Vector2 acceleration;
-    private ArriveSteeringBehavior arriveSteeringBehavior;
     private GameObject cursor;
     private readonly Vector3 cursorOffset = new Vector3(0, 5, -10);
 
@@ -88,8 +74,6 @@ public class PusherController : MonoBehaviour
         hand = GameObject.Find("StylizedHand");
         selfplayMaterial = Resources.Load("White-Hand-Selfplay") as Material;
         humanplayMaterial = Resources.Load("White-Hand") as Material;
-
-        arriveSteeringBehavior = new ArriveSteeringBehavior();
         targetPosition = GetCurrentPosition();
 
         Cursor.visible = false;
@@ -103,7 +87,6 @@ public class PusherController : MonoBehaviour
         geom.Mass = pusherConfiguration.mass;
         pusherActuatorX.CustomParams.Kv = pusherConfiguration.velocityControlFactor;
         pusherActuatorZ.CustomParams.Kv = pusherConfiguration.velocityControlFactor;
-        MaxAcceleration = pusherConfiguration.maxVelocity;
     }
 
     void Update()
@@ -120,12 +103,9 @@ public class PusherController : MonoBehaviour
                 // get current mouse position on left mouse button click
                 if (Input.GetMouseButton(0))
                 {
-                    // compute arrive steering behavior
-                    acceleration = arriveSteeringBehavior.Arrive(targetPosition, GetCurrentPosition(), GetCurrentVelocity(), TargetRadius, SlowDownRadius, MaxSpeed, MaxAcceleration, TimeToTarget);
-
-                    // set actuator acceleration
-                    pusherActuatorX.Control = -acceleration.x;
-                    pusherActuatorZ.Control = -acceleration.y;
+                    // set target position
+                    pusherActuatorX.Control = -targetPosition.x;
+                    pusherActuatorZ.Control = -targetPosition.y - 43; // offset between AirHockeyTable and Pusher coordinate system
                 }
                 else
                 {

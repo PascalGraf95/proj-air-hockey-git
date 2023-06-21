@@ -105,6 +105,15 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
+    "com.unity.recorder": {
+      "version": "3.0.3",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.timeline": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.render-pipelines.core": {
       "version": "12.1.8",
       "depth": 1,
@@ -205,7 +214,7 @@
       "url": "https://packages.unity.com"
     },
     "org.mujoco": {
-      "version": "file:C:/Users/Drumm/Downloads/Mujoco2.3.5_Unity/mujoco-main/unity",
+      "version": "file:C:/Users/AI-Admin/Downloads/mujoco-main2.3.5/mujoco-main/unity",
       "depth": 0,
       "source": "local",
       "dependencies": {}

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.103
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.008449229, g: 0.008449229, b: 0.008449229, a: 0.103}
+  m_IndirectSpecularColor: {r: 0.036994208, g: 0.035108645, b: 0.03351897, a: 0.103}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -211,6 +211,13 @@ MonoBehaviour:
       Sliding: 0.001
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!114 &18223426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -488,7 +495,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 19.05
+  m_fontSize: 13.75
   m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2583,7 +2590,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 250115463}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 45.75055}
+  m_LocalPosition: {x: 0, y: 0, z: 46}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2706,11 +2713,6 @@ MonoBehaviour:
   pusherActuatorX: {fileID: 822483694}
   slideJointX: {fileID: 1139967066}
   slideJointZ: {fileID: 1138609282}
-  MaxAcceleration: 50000
-  MaxSpeed: 1500
-  TargetRadius: 0.005
-  SlowDownRadius: 25
-  TimeToTarget: 0.025
 --- !u!114 &250115471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2723,6 +2725,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ef51a360e7c24695800e2d06f70db49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GravityCompensation: 0
 --- !u!23 &250115472
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3122,6 +3125,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!1001 &351661106
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3538,6 +3548,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DebugFileName: 
   MouseSpringStiffness: 100
+  UseRawGameObjectNames: 0
   GlobalOptions:
     ImpRatio: 1
     Magnetic: {x: 0, y: 0, z: 0}
@@ -4153,6 +4164,13 @@ MonoBehaviour:
       Sliding: 0.001
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!1 &446030134
 GameObject:
   m_ObjectHideFlags: 0
@@ -5252,7 +5270,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25.4
+  m_fontSize: 18.3
   m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5389,6 +5407,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!114 &715150786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5722,7 +5747,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 16.95
+  m_fontSize: 12.9
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -6299,6 +6324,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!1 &887771125
 GameObject:
   m_ObjectHideFlags: 0
@@ -6794,7 +6826,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 983042882}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 45}
+  m_LocalPosition: {x: 0, y: 0, z: 46}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6839,11 +6871,6 @@ MonoBehaviour:
   pusherActuatorX: {fileID: 1640541202}
   slideJointX: {fileID: 1045829827}
   slideJointZ: {fileID: 1216866140}
-  MaxAcceleration: 500000
-  MaxSpeed: 3000
-  TargetRadius: 2
-  SlowDownRadius: 35
-  TimeToTarget: 0.032
 --- !u!114 &983042886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6856,6 +6883,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ef51a360e7c24695800e2d06f70db49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GravityCompensation: 0
 --- !u!23 &983042887
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7064,7 +7092,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3f3a0cb6a6d64327b27c7d5bdd8d430, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 3
+  Type: 2
   Joint: {fileID: 1216866140}
   Tendon: {fileID: 0}
   CustomParams:
@@ -7083,7 +7111,7 @@ MonoBehaviour:
     - 0
     - 0
     - 0
-    Kp: 1
+    Kp: 2000
     Kv: 1
     CylinderTimeConst: 1
     Area: 1
@@ -8155,6 +8183,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!1 &1263459674
 GameObject:
   m_ObjectHideFlags: 0
@@ -8657,6 +8692,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!1 &1320039092
 GameObject:
   m_ObjectHideFlags: 0
@@ -8811,6 +8853,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!1 &1364935847
 GameObject:
   m_ObjectHideFlags: 0
@@ -9977,6 +10026,13 @@ MonoBehaviour:
       Sliding: 0
       Torsional: 0
       Rolling: 0
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!114 &1602625614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10242,7 +10298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3f3a0cb6a6d64327b27c7d5bdd8d430, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 3
+  Type: 2
   Joint: {fileID: 1045829827}
   Tendon: {fileID: 0}
   CustomParams:
@@ -10261,7 +10317,7 @@ MonoBehaviour:
     - 0
     - 0
     - 0
-    Kp: 1
+    Kp: 2000
     Kv: 1
     CylinderTimeConst: 1
     Area: 1
@@ -10375,6 +10431,13 @@ MonoBehaviour:
       Sliding: 0.001
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!1 &1693899615
 GameObject:
   m_ObjectHideFlags: 0
@@ -10597,6 +10660,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!1 &1768583134
 GameObject:
   m_ObjectHideFlags: 0
@@ -10852,6 +10922,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!1 &1810052254
 GameObject:
   m_ObjectHideFlags: 0
@@ -11645,7 +11722,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
+  m_fontSize: 23.35
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -11782,6 +11859,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!1 &2089265700
 GameObject:
   m_ObjectHideFlags: 0
@@ -12927,15 +13011,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1821176980814453657}
-  m_LocalRotation: {x: 1, y: 0, z: -0, w: 0.0000000754979}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -1, y: 0, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: -0, z: -0.3}
   m_LocalScale: {x: 0.16678476, y: 0.16678476, z: 0.16678476}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2575397357386609343}
   m_Father: {fileID: 9180871312150413645}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
 --- !u!23 &287591887763930363
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14294,7 +14378,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1262576982509127527}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -45.75055}
+  m_LocalPosition: {x: 0, y: 0, z: -46}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -14460,6 +14544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ef51a360e7c24695800e2d06f70db49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GravityCompensation: 0
 --- !u!4 &1022570291395420013
 Transform:
   m_ObjectHideFlags: 0
@@ -14889,6 +14974,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!1 &1141996034979689307
 GameObject:
   m_ObjectHideFlags: 0
@@ -15192,6 +15284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ef51a360e7c24695800e2d06f70db49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GravityCompensation: 0
 --- !u!114 &1262576982509127529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15211,11 +15304,6 @@ MonoBehaviour:
   pusherActuatorX: {fileID: 240751364}
   slideJointX: {fileID: 833213835}
   slideJointZ: {fileID: 1538641096}
-  MaxAcceleration: 0
-  MaxSpeed: 0
-  TargetRadius: 0
-  SlowDownRadius: 0
-  TimeToTarget: 0
 --- !u!136 &1262576982509127530
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -15895,7 +15983,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7219776015035796183}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0.55, y: 0, z: 0.25}
+  m_LocalPosition: {x: -0.596, y: 0, z: 0.321}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16750,6 +16838,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!1 &2038541982944700865
 GameObject:
   m_ObjectHideFlags: 0
@@ -17207,6 +17302,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!1 &2218183408536186479
 GameObject:
   m_ObjectHideFlags: 0
@@ -17413,6 +17515,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ef51a360e7c24695800e2d06f70db49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GravityCompensation: 0
 --- !u!64 &2411169564138499894
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -17797,6 +17900,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!1 &2539591633251258187
 GameObject:
   m_ObjectHideFlags: 0
@@ -18162,6 +18272,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293134165351946
 Transform:
   m_ObjectHideFlags: 0
@@ -18315,6 +18432,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293134193463704
 Transform:
   m_ObjectHideFlags: 0
@@ -18468,6 +18592,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293134209974791
 Transform:
   m_ObjectHideFlags: 0
@@ -18623,6 +18754,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293134210255332
 Transform:
   m_ObjectHideFlags: 0
@@ -18776,6 +18914,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293134289903181
 Transform:
   m_ObjectHideFlags: 0
@@ -18929,6 +19074,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293134313964029
 Transform:
   m_ObjectHideFlags: 0
@@ -19082,6 +19234,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293134360960240
 Transform:
   m_ObjectHideFlags: 0
@@ -19235,6 +19394,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293134364864017
 Transform:
   m_ObjectHideFlags: 0
@@ -19388,6 +19554,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293134402381948
 Transform:
   m_ObjectHideFlags: 0
@@ -19543,6 +19716,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293134425392439
 Transform:
   m_ObjectHideFlags: 0
@@ -19696,6 +19876,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293134484290334
 Transform:
   m_ObjectHideFlags: 0
@@ -19851,6 +20038,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293134498272581
 Transform:
   m_ObjectHideFlags: 0
@@ -20004,6 +20198,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293134498481390
 Transform:
   m_ObjectHideFlags: 0
@@ -20159,6 +20360,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293134499667805
 Transform:
   m_ObjectHideFlags: 0
@@ -20312,6 +20520,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293134579011236
 Transform:
   m_ObjectHideFlags: 0
@@ -20465,6 +20680,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293134639467990
 Transform:
   m_ObjectHideFlags: 0
@@ -20620,6 +20842,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293134649833116
 Transform:
   m_ObjectHideFlags: 0
@@ -20773,6 +21002,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293134653248613
 Transform:
   m_ObjectHideFlags: 0
@@ -20977,6 +21213,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293134699878558
 Transform:
   m_ObjectHideFlags: 0
@@ -21132,6 +21375,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293134726582199
 Transform:
   m_ObjectHideFlags: 0
@@ -21285,6 +21535,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293134734782966
 Transform:
   m_ObjectHideFlags: 0
@@ -21430,6 +21687,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293134765845571
 Transform:
   m_ObjectHideFlags: 0
@@ -21591,6 +21855,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293134765905568
 Transform:
   m_ObjectHideFlags: 0
@@ -21744,6 +22015,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293134878029822
 Transform:
   m_ObjectHideFlags: 0
@@ -21897,6 +22175,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293135024333898
 Transform:
   m_ObjectHideFlags: 0
@@ -22050,6 +22335,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293135067543869
 Transform:
   m_ObjectHideFlags: 0
@@ -22203,6 +22495,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293135068223623
 Transform:
   m_ObjectHideFlags: 0
@@ -22356,6 +22655,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293135074443334
 Transform:
   m_ObjectHideFlags: 0
@@ -22511,6 +22817,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293135089556959
 Transform:
   m_ObjectHideFlags: 0
@@ -22664,6 +22977,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293135175769887
 Transform:
   m_ObjectHideFlags: 0
@@ -22817,6 +23137,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293135253805978
 Transform:
   m_ObjectHideFlags: 0
@@ -22970,6 +23297,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293135280733482
 Transform:
   m_ObjectHideFlags: 0
@@ -23125,6 +23459,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293135305183614
 Transform:
   m_ObjectHideFlags: 0
@@ -23278,6 +23619,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293135318314876
 Transform:
   m_ObjectHideFlags: 0
@@ -23482,6 +23830,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293135409121030
 Transform:
   m_ObjectHideFlags: 0
@@ -23567,6 +23922,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ef51a360e7c24695800e2d06f70db49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GravityCompensation: 0
 --- !u!33 &2634293135509927651
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -23685,6 +24041,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293135509927655
 Transform:
   m_ObjectHideFlags: 0
@@ -23838,6 +24201,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293135519261859
 Transform:
   m_ObjectHideFlags: 0
@@ -23991,6 +24361,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293135533377880
 Transform:
   m_ObjectHideFlags: 0
@@ -24144,6 +24521,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293135560802660
 Transform:
   m_ObjectHideFlags: 0
@@ -24297,6 +24681,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293135674129034
 Transform:
   m_ObjectHideFlags: 0
@@ -24450,6 +24841,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293135683775907
 Transform:
   m_ObjectHideFlags: 0
@@ -24603,6 +25001,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293135719159586
 Transform:
   m_ObjectHideFlags: 0
@@ -24756,6 +25161,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293135758258014
 Transform:
   m_ObjectHideFlags: 0
@@ -24909,6 +25321,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293135760973181
 Transform:
   m_ObjectHideFlags: 0
@@ -25062,6 +25481,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293135787904805
 Transform:
   m_ObjectHideFlags: 0
@@ -25215,6 +25641,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293135926980976
 Transform:
   m_ObjectHideFlags: 0
@@ -25368,6 +25801,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293135934123242
 Transform:
   m_ObjectHideFlags: 0
@@ -25521,6 +25961,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293135947876251
 Transform:
   m_ObjectHideFlags: 0
@@ -25676,6 +26123,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293135972018575
 Transform:
   m_ObjectHideFlags: 0
@@ -25829,6 +26283,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293135979969418
 Transform:
   m_ObjectHideFlags: 0
@@ -26033,6 +26494,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293136083240235
 Transform:
   m_ObjectHideFlags: 0
@@ -26206,6 +26674,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293136085440959
 Transform:
   m_ObjectHideFlags: 0
@@ -26339,6 +26814,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293136146464445
 Transform:
   m_ObjectHideFlags: 0
@@ -26492,6 +26974,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293136156777141
 Transform:
   m_ObjectHideFlags: 0
@@ -26645,6 +27134,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293136197710236
 Transform:
   m_ObjectHideFlags: 0
@@ -26798,6 +27294,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293136219159548
 Transform:
   m_ObjectHideFlags: 0
@@ -26951,6 +27454,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293136222974699
 Transform:
   m_ObjectHideFlags: 0
@@ -27104,6 +27614,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293136285592443
 Transform:
   m_ObjectHideFlags: 0
@@ -27257,6 +27774,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293136294057352
 Transform:
   m_ObjectHideFlags: 0
@@ -27410,6 +27934,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &2634293136309835449
 Transform:
   m_ObjectHideFlags: 0
@@ -28005,6 +28536,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &2867274630576192490
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -28419,6 +28957,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ef51a360e7c24695800e2d06f70db49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GravityCompensation: 0
 --- !u!33 &3073918504185649519
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -28670,6 +29209,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &3148892724007615538
 Transform:
   m_ObjectHideFlags: 0
@@ -28881,6 +29427,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!1 &3194972116204384586
 GameObject:
   m_ObjectHideFlags: 0
@@ -29087,6 +29640,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!1 &3233031644975076687
 GameObject:
   m_ObjectHideFlags: 0
@@ -29524,6 +30084,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!1 &3520384959393532443
 GameObject:
   m_ObjectHideFlags: 0
@@ -29865,6 +30432,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!1 &3697846331477565287
 GameObject:
   m_ObjectHideFlags: 0
@@ -30031,6 +30605,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &3746905269500721775
 Transform:
   m_ObjectHideFlags: 0
@@ -30246,6 +30827,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ef51a360e7c24695800e2d06f70db49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GravityCompensation: 0
 --- !u!114 &3881779651548995390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30893,6 +31475,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &4166437871388973290
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -31044,6 +31633,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!1 &4209992819671951565
 GameObject:
   m_ObjectHideFlags: 0
@@ -31194,6 +31790,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!1 &4256889358501812125
 GameObject:
   m_ObjectHideFlags: 0
@@ -31334,6 +31937,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &4269932921149989934
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -31666,6 +32276,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!1 &4383159031660633589
 GameObject:
   m_ObjectHideFlags: 0
@@ -31834,6 +32451,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &4439533032451407224
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -32466,6 +33090,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &4772820473811998365
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -32814,6 +33445,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &4931610656065550535
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -33018,6 +33656,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &5018858719382286837
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -33360,6 +34005,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &5227981462440594170
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -33571,6 +34223,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &5347753527588302702
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -33692,6 +34351,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &5418247235408115963
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -33954,6 +34620,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &5612979233986423944
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -34066,6 +34739,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &5639570440682364183
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -34170,6 +34850,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!1 &5678351524995638377
 GameObject:
   m_ObjectHideFlags: 0
@@ -34317,6 +35004,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &5724039360784374735
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -34484,6 +35178,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &5750496199450414190
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -34630,6 +35331,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &5822110116696291087
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -34791,6 +35499,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &5882548064342440269
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -34883,6 +35598,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &5903911819570253885
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -34958,7 +35680,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 307408948820131713}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -45.750546}
+  m_LocalPosition: {x: 0, y: 0, z: -46}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -35036,6 +35758,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &5946884285212448212
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -35310,6 +36039,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &6011299863470434307
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -35421,6 +36157,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &6016611192475864071
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -35618,6 +36361,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &6066661939163821019
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -35715,6 +36465,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &6109592135555766699
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -35808,6 +36565,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &6148891435040967273
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -35897,6 +36661,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &6152391130828848952
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -36085,6 +36856,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!1 &6251418594908393961
 GameObject:
   m_ObjectHideFlags: 0
@@ -36321,6 +37099,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!33 &6309873001331563067
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -36426,6 +37211,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &6338740663338058832
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -36693,6 +37485,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &6407802745976753255
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -36782,6 +37581,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &6446684710449290672
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -36871,6 +37677,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &6454339364862290889
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -36955,6 +37768,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &6454552539983065740
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -37222,6 +38042,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &6620521483214060247
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -37304,6 +38131,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!1 &6647929937900425103
 GameObject:
   m_ObjectHideFlags: 0
@@ -37466,6 +38300,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &6688230139611239148
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -37726,6 +38567,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &6740165544466073701
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -38150,6 +38998,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &6997411967447900998
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -38252,6 +39107,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &7001104810071316854
 Transform:
   m_ObjectHideFlags: 0
@@ -38520,6 +39382,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &7052294803785093205
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -38605,6 +39474,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &7067712611188916553
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -38780,6 +39656,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &7157377394731286281
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -38869,6 +39752,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &7181208596493010887
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -38966,6 +39856,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &7207649596076686543
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -39092,6 +39989,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &7230863281383884472
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -39262,6 +40166,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &7303775022127396417
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -39346,6 +40257,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &7307215565475607217
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -39451,6 +40369,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &7317717693910557315
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -39559,6 +40484,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &7323595982682450491
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -39664,6 +40596,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &7329308069518901109
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -39799,6 +40738,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &7352019390738797513
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -40003,6 +40949,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &7407470177817484730
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -40107,6 +41060,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!4 &7474292117195337978
 Transform:
   m_ObjectHideFlags: 0
@@ -40177,6 +41137,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &7474292117195337980
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -40288,6 +41255,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &7485572431521776398
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -40420,6 +41394,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &7544264631297238653
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -40603,6 +41584,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &7659229822151326540
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -40687,6 +41675,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &7667683410968788600
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -40856,6 +41851,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &7716768011006241362
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -40993,6 +41995,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &7757626307511728721
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -41105,6 +42114,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &7816417446690333617
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -41231,6 +42247,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &7833418576593895595
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -41372,6 +42395,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &7863049331803052800
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -41461,6 +42491,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &7877955540492642912
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -41558,6 +42595,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &7894891831630227002
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -41642,6 +42686,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &7900068673020209748
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -41752,6 +42803,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &7915468813508940888
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -41844,6 +42902,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &7920004606668016443
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -42020,6 +43085,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &7993373290413993737
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -42164,6 +43236,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &8019638801939312334
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -42263,6 +43342,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &8041321081610798967
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -42363,6 +43449,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &8055564691148581007
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -42475,6 +43568,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &8074163316824858682
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -42663,6 +43763,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &8110774988065665332
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -42752,6 +43859,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &8126380482479610210
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -42836,6 +43950,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &8151227414694432882
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -42913,6 +44034,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &8153830190833833011
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -43024,6 +44152,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &8154042981302262790
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -43162,6 +44297,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &8169511995747222173
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -43273,6 +44415,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &8170885514060885015
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -43358,6 +44507,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &8175884881912290343
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -43484,6 +44640,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &8191301954162695279
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -43576,6 +44739,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &8232514365700011200
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -43720,6 +44890,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &8282136238608645580
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -43831,6 +45008,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &8283270747490722090
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -43908,6 +45092,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &8286094802045750319
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -44019,6 +45210,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &8290915220023621027
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -44108,6 +45306,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &8321537868023573086
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -44277,6 +45482,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &8391853232717815637
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -44361,6 +45573,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &8400625386844520817
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -44450,6 +45669,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &8407708909345897658
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -44547,6 +45773,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &8434983354456194098
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -44750,6 +45983,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &8523427600740755605
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -44834,6 +46074,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &8528467066780126720
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -44938,6 +46185,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &8541146922955295360
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -45027,6 +46281,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &8559851552441879879
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -45153,6 +46414,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &8605051856503134902
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -45264,6 +46532,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &8610615951000474193
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -45349,6 +46624,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &8622746631857841390
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -45475,6 +46757,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &8636953220496702672
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -45689,6 +46978,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &8698878662215935959
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -45800,6 +47096,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &8734307232386898425
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -45877,6 +47180,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &8749441190156339197
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -45961,6 +47271,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &8749946341572812979
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -46038,6 +47355,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &8751865472271262221
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -46164,6 +47488,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!1 &8771826343010159133
 GameObject:
   m_ObjectHideFlags: 0
@@ -46278,6 +47609,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &8799491556590827315
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -46362,6 +47700,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &8812312256721953101
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -46451,6 +47796,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &8820644678353806033
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -46543,6 +47895,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &8849042672586499622
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -46627,6 +47986,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &8869522333714077787
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -46736,6 +48102,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &8913438734390668254
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -46862,6 +48235,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &8926080696364995992
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -46951,6 +48331,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &8945863309953077739
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -47035,6 +48422,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &8947138902755240985
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -47120,6 +48514,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &8985776982125660817
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -47217,6 +48618,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &8993013508039154409
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -47301,6 +48709,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &8999713175247268851
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -47390,6 +48805,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &9002158326230541210
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -47467,6 +48889,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &9016314998757379608
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -47544,6 +48973,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &9033272080701388126
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -47726,6 +49162,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &9062728133166226899
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -47819,6 +49262,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &9106567191392938553
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -47930,6 +49380,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &9141177773673635946
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -48007,6 +49464,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &9143757068880268089
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -48160,6 +49624,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &9145987453805194279
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -48249,6 +49720,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &9149645123966226887
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -48338,6 +49816,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &9160128878339489925
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -48449,6 +49934,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &9165859151805155664
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -48526,6 +50018,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &9171143552118048926
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -48620,6 +50119,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &9181714726544628156
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -48755,6 +50261,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &9199284702032726168
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -48832,6 +50345,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &9204286205805688831
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -48909,6 +50429,13 @@ MonoBehaviour:
       Sliding: 1
       Torsional: 0.005
       Rolling: 0.0001
+    FluidShapeType: 0
+    FluidCoefficients:
+      BluntDrag: 5
+      SlenderDrag: 0.25
+      AngularDrag: 1.5
+      KuttaLift: 1
+      MagnusLift: 1
 --- !u!64 &9207325134161399904
 MeshCollider:
   m_ObjectHideFlags: 0
