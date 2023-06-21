@@ -495,7 +495,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 13.8
+  m_fontSize: 13.75
   m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2713,11 +2713,6 @@ MonoBehaviour:
   pusherActuatorX: {fileID: 822483694}
   slideJointX: {fileID: 1139967066}
   slideJointZ: {fileID: 1138609282}
-  MaxAcceleration: 50000
-  MaxSpeed: 1500
-  TargetRadius: 0.005
-  SlowDownRadius: 25
-  TimeToTarget: 0.025
 --- !u!114 &250115471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5752,7 +5747,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12.95
+  m_fontSize: 12.9
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -6876,11 +6871,6 @@ MonoBehaviour:
   pusherActuatorX: {fileID: 1640541202}
   slideJointX: {fileID: 1045829827}
   slideJointZ: {fileID: 1216866140}
-  MaxAcceleration: 500000
-  MaxSpeed: 3000
-  TargetRadius: 2
-  SlowDownRadius: 35
-  TimeToTarget: 0.032
 --- !u!114 &983042886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7121,7 +7111,7 @@ MonoBehaviour:
     - 0
     - 0
     - 0
-    Kp: 1500
+    Kp: 2000
     Kv: 1
     CylinderTimeConst: 1
     Area: 1
@@ -10327,7 +10317,7 @@ MonoBehaviour:
     - 0
     - 0
     - 0
-    Kp: 1500
+    Kp: 2000
     Kv: 1
     CylinderTimeConst: 1
     Area: 1
@@ -15314,11 +15304,6 @@ MonoBehaviour:
   pusherActuatorX: {fileID: 240751364}
   slideJointX: {fileID: 833213835}
   slideJointZ: {fileID: 1538641096}
-  MaxAcceleration: 0
-  MaxSpeed: 0
-  TargetRadius: 0
-  SlowDownRadius: 0
-  TimeToTarget: 0
 --- !u!136 &1262576982509127530
 CapsuleCollider:
   m_ObjectHideFlags: 0
