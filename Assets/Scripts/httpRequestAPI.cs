@@ -1,34 +1,28 @@
 using UnityEngine;
 using UnityEngine.Networking;
 using System.Collections;
-using Newtonsoft.Json;
+//using Newtonsoft.Json;
+using SimpleJSON;
 
 public class httpRequestAPI : MonoBehaviour
 {
 	public const string puckPositionX = "positionX";
-    public const string puckPositionZ = "positionX";
+    public const string puckPositionZ = "positionZ";
     public const string puckVelocityX = "velocityX";
     public const string puckVelocityZ = "velocityZ";
-    public const string puckAccelerationX = "accelerationZ";
+    public const string puckAccelerationX = "accelerationX";
     public const string puckAccelerationZ = "accelerationZ";
 
     public const string pusherPositionX = "pusherpositionX";
     public const string pusherPositionZ = "pusherpositionZ";
     public const string pusherVelocityX = "pushervelX";
-    public const string pusherVelocityZ = "pushervelX";
+    public const string pusherVelocityZ = "pushervelZ";
 
     public const string distance = "distance";
     public const string framerate = "framerate";
 
 	private const string address = "127.0.0.1";
 	private const string port = "8000";
-
-    public class httpImgData
-	{
-		public string label { get; set; }
-
-		public int value { get; set; }
-	}
 
 	void Start()
 	{
@@ -59,10 +53,12 @@ public class httpRequestAPI : MonoBehaviour
 					Debug.LogError(pages[page] + ": HTTP Error: " + webRequest.error);
 					break;
 				case UnityWebRequest.Result.Success:
-					// Debug.Log(pages[page] + ":\nReceived: " + webRequest.downloadHandler.text);
-					httpImgData imgData = JsonConvert.DeserializeObject<httpImgData>(webRequest.downloadHandler.text);
-					Debug.Log(imgData.value);
-					// Do something with the data!
+					//Debug.Log(pages[page] + ":\nReceived: " + webRequest.downloadHandler.text);
+					JSONNode data = JSON.Parse(webRequest.downloadHandler.text);
+					Debug.Log($"Received: {data}");
+					Debug.Log($"Value: {data[uriParam]}");
+					Debug.Log($"Valuetype: {data[uriParam].GetType()}");
+					// Do something with the data! (return)
                     break;
 			}
 		}
