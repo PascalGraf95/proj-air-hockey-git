@@ -77,6 +77,7 @@ public class PusherController : MonoBehaviour
         targetPosition = GetCurrentPosition();
 
         Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     public void SetPusherConfiguration(PusherConfiguration pusherConfiguration)

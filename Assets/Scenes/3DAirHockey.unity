@@ -495,7 +495,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20.05
+  m_fontSize: 21.45
   m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2864,7 +2864,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 253087612}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
@@ -5270,7 +5270,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25.9
+  m_fontSize: 29.35
   m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5320,100 +5320,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661196582}
   m_CullTransparentMesh: 1
---- !u!1 &689069800
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 689069801}
-  - component: {fileID: 689069802}
-  m_Layer: 10
-  m_Name: Geom
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &689069801
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 689069800}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.041748, y: -0, z: -0.0035}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8169447618467960154}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &689069802
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 689069800}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.005, y: 0.0632, z: 0.005}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!114 &715150786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5747,7 +5653,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 15.8
+  m_fontSize: 18.75
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -6237,100 +6143,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!1 &868162823
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 868162824}
-  - component: {fileID: 868162825}
-  m_Layer: 10
-  m_Name: Geom
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &868162824
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 868162823}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.01772, y: 0.08, z: -0.0035}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 9181722244356235247}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &868162825
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 868162823}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.0072, y: 0.005, z: 0.005}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!1 &887771125
 GameObject:
   m_ObjectHideFlags: 0
@@ -7251,7 +7063,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1107190397}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0c008ee3ee72a4362a35be25fa5de043, type: 3}
@@ -8096,100 +7908,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!1 &1240471842
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1240471843}
-  - component: {fileID: 1240471844}
-  m_Layer: 10
-  m_Name: Geom
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1240471843
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1240471842}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.01772, y: 0.08, z: -0.0035}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5555880406148775065}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1240471844
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1240471842}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.0072, y: 0.005, z: 0.005}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!1 &1263459674
 GameObject:
   m_ObjectHideFlags: 0
@@ -8605,100 +8323,6 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
---- !u!1 &1314927677
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1314927678}
-  - component: {fileID: 1314927679}
-  m_Layer: 10
-  m_Name: Geom
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1314927678
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1314927677}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.01772, y: -0.08, z: -0.0035}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 9085947800068641078}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1314927679
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1314927677}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.0072, y: 0.005, z: 0.005}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!1 &1320039092
 GameObject:
   m_ObjectHideFlags: 0
@@ -8766,100 +8390,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1357388995
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1357388996}
-  - component: {fileID: 1357388997}
-  m_Layer: 10
-  m_Name: Geom
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1357388996
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1357388995}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.01772, y: -0.08, z: -0.0035}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1557496192228610715}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1357388997
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1357388995}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.0072, y: 0.005, z: 0.005}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!1 &1364935847
 GameObject:
   m_ObjectHideFlags: 0
@@ -9177,7 +8707,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1432322610}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!20 &1432322612
 Camera:
   m_ObjectHideFlags: 0
@@ -10008,12 +9538,12 @@ MonoBehaviour:
       ConDim: 3
       SolMix: 1
       SolRef:
-        TimeConst: -8
-        DampRatio: -165
+        TimeConst: -6000
+        DampRatio: -45
       SolImp:
         DMin: 0.999
         DMax: 1
-        Width: 0.01
+        Width: 0.1
         Midpoint: 0.01
         Power: 9
       Margin: 0
@@ -10573,100 +10103,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1693899615}
   m_CullTransparentMesh: 1
---- !u!1 &1721872214
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1721872215}
-  - component: {fileID: 1721872216}
-  m_Layer: 10
-  m_Name: Geom
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1721872215
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1721872214}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.041748, y: 0, z: -0.0034999996}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6401518211652243404}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1721872216
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1721872214}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.005, y: 0.0632, z: 0.005}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!1 &1768583134
 GameObject:
   m_ObjectHideFlags: 0
@@ -11267,7 +10703,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1838935176}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0c008ee3ee72a4362a35be25fa5de043, type: 3}
@@ -14040,7 +13476,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DecisionPeriod: 10
+  DecisionPeriod: 20
   TakeActionsBetweenDecisions: 1
 --- !u!114 &919132147958298415
 MonoBehaviour:
@@ -14919,68 +14355,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1141996034979689306
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1141996034979689307}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.64835, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!1 &1141996034979689307
 GameObject:
   m_ObjectHideFlags: 0
@@ -14993,7 +14367,6 @@ GameObject:
   - component: {fileID: 2135356153595660017}
   - component: {fileID: 7044775112819487117}
   - component: {fileID: 1141996034979689309}
-  - component: {fileID: 1141996034979689306}
   - component: {fileID: 18223427}
   - component: {fileID: 18223426}
   m_Layer: 10
@@ -15870,8 +15243,7 @@ Transform:
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1000, y: 1000, z: 1000}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1357388996}
+  m_Children: []
   m_Father: {fileID: 2445190500135963134}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -16783,68 +16155,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2038541982944700864
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2038541982944700865}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.634, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!1 &2038541982944700865
 GameObject:
   m_ObjectHideFlags: 0
@@ -16857,7 +16167,6 @@ GameObject:
   - component: {fileID: 8986436221570894220}
   - component: {fileID: 6544043388887881623}
   - component: {fileID: 2038541982944700867}
-  - component: {fileID: 2038541982944700864}
   m_Layer: 10
   m_Name: AirHockeyTable.299
   m_TagString: Untagged
@@ -17247,68 +16556,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0244235, y: 1.2490371, z: 12.100003}
   m_Center: {x: -0.015933454, y: -0.01865852, z: 6.9684404e-11}
---- !u!114 &2218183408536186478
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2218183408536186479}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.6432, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!1 &2218183408536186479
 GameObject:
   m_ObjectHideFlags: 0
@@ -17321,7 +16568,6 @@ GameObject:
   - component: {fileID: 1510873190388846572}
   - component: {fileID: 8081193629272100868}
   - component: {fileID: 2218183408536186465}
-  - component: {fileID: 2218183408536186478}
   - component: {fileID: 2098066710}
   - component: {fileID: 2098066709}
   m_Layer: 10
@@ -17831,68 +17077,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8407708909345897656}
   m_Mesh: {fileID: -8226191694342462408, guid: 9e210bec44fe81649ab0a83927238f55, type: 3}
---- !u!114 &2539591633251258186
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2539591633251258187}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.637, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!1 &2539591633251258187
 GameObject:
   m_ObjectHideFlags: 0
@@ -17905,7 +17089,6 @@ GameObject:
   - component: {fileID: 8971274489885299543}
   - component: {fileID: 287591887763930363}
   - component: {fileID: 2539591633251258189}
-  - component: {fileID: 2539591633251258186}
   m_Layer: 10
   m_Name: AirHockeyTable.300
   m_TagString: Untagged
@@ -18190,81 +17373,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2634293134165351944
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293134165351947}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1.0244277, y: 1.2490386, z: 12.1}
-  m_Center: {x: -0.018657342, y: -0.01593554, z: -8.0916085e-10}
---- !u!114 &2634293134165351945
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293134165351947}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.64046, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293134165351946
 Transform:
   m_ObjectHideFlags: 0
@@ -18291,8 +17399,6 @@ GameObject:
   - component: {fileID: 2634293134165351946}
   - component: {fileID: 2634293134165351942}
   - component: {fileID: 2634293134165351943}
-  - component: {fileID: 2634293134165351944}
-  - component: {fileID: 2634293134165351945}
   m_Layer: 10
   m_Name: AirHockeyTable.233
   m_TagString: Untagged
@@ -18363,68 +17469,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0244277, y: 1.2490379, z: 12.1}
   m_Center: {x: -0.0057278583, y: -0.023856401, z: 5.7225635e-10}
---- !u!114 &2634293134193463703
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293134193463705}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.64835, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293134193463704
 Transform:
   m_ObjectHideFlags: 0
@@ -18452,7 +17496,6 @@ GameObject:
   - component: {fileID: 2634293134193463700}
   - component: {fileID: 2634293134193463701}
   - component: {fileID: 2634293134193463702}
-  - component: {fileID: 2634293134193463703}
   m_Layer: 10
   m_Name: AirHockeyTable.229
   m_TagString: Untagged
@@ -18523,68 +17566,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.9998923, y: 1.249757, z: 12.100003}
   m_Center: {x: -0.011675477, y: -0.00008395325, z: 0.00000047677136}
---- !u!114 &2634293134209974790
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293134209974792}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.485, y: 0.625, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293134209974791
 Transform:
   m_ObjectHideFlags: 0
@@ -18612,7 +17593,6 @@ GameObject:
   - component: {fileID: 2634293134209974787}
   - component: {fileID: 2634293134209974788}
   - component: {fileID: 2634293134209974789}
-  - component: {fileID: 2634293134209974790}
   - component: {fileID: 1179817074}
   - component: {fileID: 1179817073}
   m_Layer: 10
@@ -18685,68 +17665,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0244224, y: 1.2490382, z: 12.1}
   m_Center: {x: -0.020929424, y: -0.012820958, z: 8.334602e-10}
---- !u!114 &2634293134210255331
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293134210255333}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.63734, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293134210255332
 Transform:
   m_ObjectHideFlags: 0
@@ -18774,7 +17692,6 @@ GameObject:
   - component: {fileID: 2634293134210255328}
   - component: {fileID: 2634293134210255329}
   - component: {fileID: 2634293134210255330}
-  - component: {fileID: 2634293134210255331}
   m_Layer: 10
   m_Name: AirHockeyTable.234
   m_TagString: Untagged
@@ -18845,68 +17762,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0244237, y: 1.2490374, z: 12.1}
   m_Center: {x: -0.02385363, y: -0.0057245195, z: -8.299796e-10}
---- !u!114 &2634293134289903180
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293134289903182}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.6302, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293134289903181
 Transform:
   m_ObjectHideFlags: 0
@@ -18934,7 +17789,6 @@ GameObject:
   - component: {fileID: 2634293134289903177}
   - component: {fileID: 2634293134289903178}
   - component: {fileID: 2634293134289903179}
-  - component: {fileID: 2634293134289903180}
   m_Layer: 10
   m_Name: AirHockeyTable.236
   m_TagString: Untagged
@@ -18992,81 +17846,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2634293134313964027
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293134313964030}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1.0244285, y: 1.249037, z: 12.1}
-  m_Center: {x: 0.023859814, y: -0.0057262783, z: 0}
---- !u!114 &2634293134313964028
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293134313964030}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.63, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293134313964029
 Transform:
   m_ObjectHideFlags: 0
@@ -19093,8 +17872,6 @@ GameObject:
   - component: {fileID: 2634293134313964029}
   - component: {fileID: 2634293134313964025}
   - component: {fileID: 2634293134313964026}
-  - component: {fileID: 2634293134313964027}
-  - component: {fileID: 2634293134313964028}
   m_Layer: 10
   m_Name: AirHockeyTable.219
   m_TagString: Untagged
@@ -19152,81 +17929,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2634293134360960238
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293134360960241}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1.0244278, y: 1.2490388, z: 12.100003}
-  m_Center: {x: -0.018658292, y: -0.015935544, z: 4.6739623e-10}
---- !u!114 &2634293134360960239
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293134360960241}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.64046, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293134360960240
 Transform:
   m_ObjectHideFlags: 0
@@ -19253,8 +17955,6 @@ GameObject:
   - component: {fileID: 2634293134360960240}
   - component: {fileID: 2634293134360960236}
   - component: {fileID: 2634293134360960237}
-  - component: {fileID: 2634293134360960238}
-  - component: {fileID: 2634293134360960239}
   m_Layer: 10
   m_Name: AirHockeyTable.312
   m_TagString: Untagged
@@ -19312,81 +18012,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2634293134364864015
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293134364864018}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1.0244254, y: 1.2490404, z: 12.100006}
-  m_Center: {x: 0.022671334, y: -0.0093885735, z: -0.0000000017247694}
---- !u!114 &2634293134364864016
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293134364864018}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.634, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293134364864017
 Transform:
   m_ObjectHideFlags: 0
@@ -19413,8 +18038,6 @@ GameObject:
   - component: {fileID: 2634293134364864017}
   - component: {fileID: 2634293134364864013}
   - component: {fileID: 2634293134364864014}
-  - component: {fileID: 2634293134364864015}
-  - component: {fileID: 2634293134364864016}
   m_Layer: 10
   m_Name: AirHockeyTable.299
   m_TagString: Untagged
@@ -19485,68 +18108,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0244253, y: 1.2490367, z: 12.100003}
   m_Center: {x: 0.01593496, y: -0.01865286, z: 0.0000004776973}
---- !u!114 &2634293134402381947
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293134402381949}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.6433, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293134402381948
 Transform:
   m_ObjectHideFlags: 0
@@ -19574,7 +18135,6 @@ GameObject:
   - component: {fileID: 2634293134402381944}
   - component: {fileID: 2634293134402381945}
   - component: {fileID: 2634293134402381946}
-  - component: {fileID: 2634293134402381947}
   - component: {fileID: 1602625615}
   - component: {fileID: 1602625614}
   m_Layer: 10
@@ -19634,81 +18194,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2634293134425392437
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293134425392440}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1.0244253, y: 1.2490367, z: 12.100003}
-  m_Center: {x: 0.01593496, y: -0.01865286, z: 0.0000004776973}
---- !u!114 &2634293134425392438
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293134425392440}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.6433, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293134425392439
 Transform:
   m_ObjectHideFlags: 0
@@ -19735,8 +18220,6 @@ GameObject:
   - component: {fileID: 2634293134425392439}
   - component: {fileID: 2634293134425392435}
   - component: {fileID: 2634293134425392436}
-  - component: {fileID: 2634293134425392437}
-  - component: {fileID: 2634293134425392438}
   m_Layer: 10
   m_Name: AirHockeyTable.223
   m_TagString: Untagged
@@ -19807,68 +18290,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0244278, y: 1.2490387, z: 12.1}
   m_Center: {x: 0.0019291654, y: -0.024461623, z: -0.0000000010740654}
---- !u!114 &2634293134484290333
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293134484290335}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.649, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293134484290334
 Transform:
   m_ObjectHideFlags: 0
@@ -19896,7 +18317,6 @@ GameObject:
   - component: {fileID: 2634293134484290330}
   - component: {fileID: 2634293134484290331}
   - component: {fileID: 2634293134484290332}
-  - component: {fileID: 2634293134484290333}
   - component: {fileID: 1563423213}
   - component: {fileID: 1563423212}
   m_Layer: 10
@@ -19956,81 +18376,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2634293134498272579
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293134498272582}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1.0244285, y: 1.2490369, z: 12.1}
-  m_Center: {x: 0.023857905, y: -0.0057281847, z: -1.3923554e-10}
---- !u!114 &2634293134498272580
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293134498272582}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.63, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293134498272581
 Transform:
   m_ObjectHideFlags: 0
@@ -20057,8 +18402,6 @@ GameObject:
   - component: {fileID: 2634293134498272581}
   - component: {fileID: 2634293134498272577}
   - component: {fileID: 2634293134498272578}
-  - component: {fileID: 2634293134498272579}
-  - component: {fileID: 2634293134498272580}
   m_Layer: 10
   m_Name: AirHockeyTable.298
   m_TagString: Untagged
@@ -20129,68 +18472,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0244285, y: 1.249037, z: 12.1}
   m_Center: {x: 0.023859814, y: -0.0057262783, z: 0}
---- !u!114 &2634293134498481389
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293134498481391}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.63, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293134498481390
 Transform:
   m_ObjectHideFlags: 0
@@ -20218,7 +18499,6 @@ GameObject:
   - component: {fileID: 2634293134498481386}
   - component: {fileID: 2634293134498481387}
   - component: {fileID: 2634293134498481388}
-  - component: {fileID: 2634293134498481389}
   - component: {fileID: 1442465132}
   - component: {fileID: 1442465131}
   m_Layer: 10
@@ -20291,68 +18571,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0244291, y: 1.2490385, z: 12.100006}
   m_Center: {x: -0.022669576, y: -0.00939355, z: -0.0000004770913}
---- !u!114 &2634293134499667804
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293134499667806}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.63391, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293134499667805
 Transform:
   m_ObjectHideFlags: 0
@@ -20380,7 +18598,6 @@ GameObject:
   - component: {fileID: 2634293134499667801}
   - component: {fileID: 2634293134499667802}
   - component: {fileID: 2634293134499667803}
-  - component: {fileID: 2634293134499667804}
   m_Layer: 10
   m_Name: AirHockeyTable.235
   m_TagString: Untagged
@@ -20438,81 +18655,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2634293134579011234
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293134579011237}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 0.9998923, y: 1.249757, z: 12.100003}
-  m_Center: {x: -0.011675477, y: -0.00008395325, z: 0.00000047677136}
---- !u!114 &2634293134579011235
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293134579011237}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.485, y: 0.625, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293134579011236
 Transform:
   m_ObjectHideFlags: 0
@@ -20539,8 +18681,6 @@ GameObject:
   - component: {fileID: 2634293134579011236}
   - component: {fileID: 2634293134579011232}
   - component: {fileID: 2634293134579011233}
-  - component: {fileID: 2634293134579011234}
-  - component: {fileID: 2634293134579011235}
   m_Layer: 10
   m_Name: AirHockeyTable.218
   m_TagString: Untagged
@@ -20611,68 +18751,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0244256, y: 1.2490366, z: 12.1}
   m_Center: {x: 0.005725026, y: -0.023863107, z: 0.0000000016957543}
---- !u!114 &2634293134639467989
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293134639467991}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.6484, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293134639467990
 Transform:
   m_ObjectHideFlags: 0
@@ -20700,7 +18778,6 @@ GameObject:
   - component: {fileID: 2634293134639467986}
   - component: {fileID: 2634293134639467987}
   - component: {fileID: 2634293134639467988}
-  - component: {fileID: 2634293134639467989}
   - component: {fileID: 647692044}
   - component: {fileID: 647692043}
   m_Layer: 10
@@ -20773,68 +18850,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.99989283, y: 1.2497593, z: 12.1}
   m_Center: {x: -0.012202218, y: -0.0014448763, z: 3.805338e-10}
---- !u!114 &2634293134649833115
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293134649833117}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.62633, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293134649833116
 Transform:
   m_ObjectHideFlags: 0
@@ -20862,7 +18877,6 @@ GameObject:
   - component: {fileID: 2634293134649833112}
   - component: {fileID: 2634293134649833113}
   - component: {fileID: 2634293134649833114}
-  - component: {fileID: 2634293134649833115}
   m_Layer: 10
   m_Name: AirHockeyTable.237
   m_TagString: Untagged
@@ -20933,68 +18947,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0244257, y: 1.2490387, z: 12.099998}
   m_Center: {x: -0.0019246631, y: -0.024459986, z: -0.0000000011599878}
---- !u!114 &2634293134653248612
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293134653248614}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.649, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293134653248613
 Transform:
   m_ObjectHideFlags: 0
@@ -21022,7 +18974,6 @@ GameObject:
   - component: {fileID: 2634293134653248609}
   - component: {fileID: 2634293134653248610}
   - component: {fileID: 2634293134653248611}
-  - component: {fileID: 2634293134653248612}
   m_Layer: 10
   m_Name: AirHockeyTable.228
   m_TagString: Untagged
@@ -21144,68 +19095,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0244262, y: 1.2490374, z: 12.099998}
   m_Center: {x: 0.018660426, y: -0.015940128, z: -4.849344e-10}
---- !u!114 &2634293134699878557
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293134699878559}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.6405, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293134699878558
 Transform:
   m_ObjectHideFlags: 0
@@ -21233,7 +19122,6 @@ GameObject:
   - component: {fileID: 2634293134699878554}
   - component: {fileID: 2634293134699878555}
   - component: {fileID: 2634293134699878556}
-  - component: {fileID: 2634293134699878557}
   - component: {fileID: 860391028}
   - component: {fileID: 860391027}
   m_Layer: 10
@@ -21293,81 +19181,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2634293134726582197
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293134726582200}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1.024424, y: 1.2490377, z: 12.1}
-  m_Center: {x: -0.015932504, y: -0.01865471, z: -7.810404e-10}
---- !u!114 &2634293134726582198
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293134726582200}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.6432, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293134726582199
 Transform:
   m_ObjectHideFlags: 0
@@ -21394,8 +19207,6 @@ GameObject:
   - component: {fileID: 2634293134726582199}
   - component: {fileID: 2634293134726582195}
   - component: {fileID: 2634293134726582196}
-  - component: {fileID: 2634293134726582197}
-  - component: {fileID: 2634293134726582198}
   m_Layer: 10
   m_Name: AirHockeyTable.232
   m_TagString: Untagged
@@ -21453,81 +19264,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2634293134734782964
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293134734782967}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1.0244234, y: 1.249037, z: 12.1}
-  m_Center: {x: -0.023858398, y: -0.005728334, z: 2.0275509e-11}
---- !u!114 &2634293134734782965
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293134734782967}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.6302, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293134734782966
 Transform:
   m_ObjectHideFlags: 0
@@ -21554,8 +19290,6 @@ GameObject:
   - component: {fileID: 2634293134734782966}
   - component: {fileID: 2634293134734782962}
   - component: {fileID: 2634293134734782963}
-  - component: {fileID: 2634293134734782964}
-  - component: {fileID: 2634293134734782965}
   m_Layer: 10
   m_Name: AirHockeyTable.315
   m_TagString: Untagged
@@ -21605,81 +19339,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2634293134765845569
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293134765845572}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1.0244262, y: 1.2490374, z: 12.099998}
-  m_Center: {x: 0.018660426, y: -0.015940128, z: -4.849344e-10}
---- !u!114 &2634293134765845570
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293134765845572}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.6405, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293134765845571
 Transform:
   m_ObjectHideFlags: 0
@@ -21706,8 +19365,6 @@ GameObject:
   - component: {fileID: 2634293134765845571}
   - component: {fileID: 2634293134765845951}
   - component: {fileID: 2634293134765845568}
-  - component: {fileID: 2634293134765845569}
-  - component: {fileID: 2634293134765845570}
   m_Layer: 10
   m_Name: AirHockeyTable.222
   m_TagString: Untagged
@@ -21773,81 +19430,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2634293134765905566
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293134765905569}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1.0244267, y: 1.2490375, z: 12.1}
-  m_Center: {x: 0.018660426, y: -0.015938222, z: 0.0000000012186283}
---- !u!114 &2634293134765905567
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293134765905569}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.6405, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293134765905568
 Transform:
   m_ObjectHideFlags: 0
@@ -21874,8 +19456,6 @@ GameObject:
   - component: {fileID: 2634293134765905568}
   - component: {fileID: 2634293134765905564}
   - component: {fileID: 2634293134765905565}
-  - component: {fileID: 2634293134765905566}
-  - component: {fileID: 2634293134765905567}
   m_Layer: 10
   m_Name: AirHockeyTable.301
   m_TagString: Untagged
@@ -21933,81 +19513,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2634293134878029820
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293134878029823}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1.0244224, y: 1.2490382, z: 12.1}
-  m_Center: {x: -0.020929424, y: -0.012820958, z: 8.334602e-10}
---- !u!114 &2634293134878029821
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293134878029823}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.63734, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293134878029822
 Transform:
   m_ObjectHideFlags: 0
@@ -22034,8 +19539,6 @@ GameObject:
   - component: {fileID: 2634293134878029822}
   - component: {fileID: 2634293134878029818}
   - component: {fileID: 2634293134878029819}
-  - component: {fileID: 2634293134878029820}
-  - component: {fileID: 2634293134878029821}
   m_Layer: 10
   m_Name: AirHockeyTable.234
   m_TagString: Untagged
@@ -22093,81 +19596,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2634293135024333896
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293135024333899}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1.0244235, y: 1.249038, z: 12.100003}
-  m_Center: {x: 0.02266942, y: -0.009386661, z: 0.0000004775973}
---- !u!114 &2634293135024333897
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293135024333899}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.634, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293135024333898
 Transform:
   m_ObjectHideFlags: 0
@@ -22194,8 +19622,6 @@ GameObject:
   - component: {fileID: 2634293135024333898}
   - component: {fileID: 2634293135024333894}
   - component: {fileID: 2634293135024333895}
-  - component: {fileID: 2634293135024333896}
-  - component: {fileID: 2634293135024333897}
   m_Layer: 10
   m_Name: AirHockeyTable.220
   m_TagString: Untagged
@@ -22253,81 +19679,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2634293135067543867
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293135067543870}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1.0244275, y: 1.2490366, z: 12.1}
-  m_Center: {x: 0.012820244, y: -0.02091983, z: -2.2336476e-11}
---- !u!114 &2634293135067543868
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293135067543870}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.6454, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293135067543869
 Transform:
   m_ObjectHideFlags: 0
@@ -22354,8 +19705,6 @@ GameObject:
   - component: {fileID: 2634293135067543869}
   - component: {fileID: 2634293135067543865}
   - component: {fileID: 2634293135067543866}
-  - component: {fileID: 2634293135067543867}
-  - component: {fileID: 2634293135067543868}
   m_Layer: 10
   m_Name: AirHockeyTable.224
   m_TagString: Untagged
@@ -22413,81 +19762,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2634293135068223621
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293135068223624}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1.0244253, y: 1.2490374, z: 12.1}
-  m_Center: {x: -0.0093857655, y: -0.022667466, z: -0.0000000010263774}
---- !u!114 &2634293135068223622
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293135068223624}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.6472, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293135068223623
 Transform:
   m_ObjectHideFlags: 0
@@ -22514,8 +19788,6 @@ GameObject:
   - component: {fileID: 2634293135068223623}
   - component: {fileID: 2634293135068223619}
   - component: {fileID: 2634293135068223620}
-  - component: {fileID: 2634293135068223621}
-  - component: {fileID: 2634293135068223622}
   m_Layer: 10
   m_Name: AirHockeyTable.309
   m_TagString: Untagged
@@ -22586,68 +19858,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0244232, y: 1.2490358, z: 12.1}
   m_Center: {x: 0.0093869865, y: -0.022668064, z: 0.0000000012159516}
---- !u!114 &2634293135074443333
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293135074443335}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.6472, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293135074443334
 Transform:
   m_ObjectHideFlags: 0
@@ -22675,7 +19885,6 @@ GameObject:
   - component: {fileID: 2634293135074443330}
   - component: {fileID: 2634293135074443331}
   - component: {fileID: 2634293135074443332}
-  - component: {fileID: 2634293135074443333}
   - component: {fileID: 606320957}
   - component: {fileID: 606320956}
   m_Layer: 10
@@ -22735,81 +19944,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2634293135089556957
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293135089556960}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1.0244223, y: 1.2490381, z: 12.099998}
-  m_Center: {x: -0.020924656, y: -0.012820959, z: 3.8251413e-10}
---- !u!114 &2634293135089556958
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293135089556960}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.63734, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293135089556959
 Transform:
   m_ObjectHideFlags: 0
@@ -22836,8 +19970,6 @@ GameObject:
   - component: {fileID: 2634293135089556959}
   - component: {fileID: 2634293135089556955}
   - component: {fileID: 2634293135089556956}
-  - component: {fileID: 2634293135089556957}
-  - component: {fileID: 2634293135089556958}
   m_Layer: 10
   m_Name: AirHockeyTable.313
   m_TagString: Untagged
@@ -22895,81 +20027,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2634293135175769885
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293135175769888}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1.0244229, y: 1.2490355, z: 12.1}
-  m_Center: {x: 0.009388893, y: -0.022668062, z: 1.7454982e-11}
---- !u!114 &2634293135175769886
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293135175769888}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.6472, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293135175769887
 Transform:
   m_ObjectHideFlags: 0
@@ -22996,8 +20053,6 @@ GameObject:
   - component: {fileID: 2634293135175769887}
   - component: {fileID: 2634293135175769883}
   - component: {fileID: 2634293135175769884}
-  - component: {fileID: 2634293135175769885}
-  - component: {fileID: 2634293135175769886}
   m_Layer: 10
   m_Name: AirHockeyTable.304
   m_TagString: Untagged
@@ -23068,68 +20123,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0244272, y: 1.2490377, z: 12.1}
   m_Center: {x: -0.012821557, y: -0.020921528, z: 2.020199e-10}
---- !u!114 &2634293135253805977
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293135253805979}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.64545, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293135253805978
 Transform:
   m_ObjectHideFlags: 0
@@ -23157,7 +20150,6 @@ GameObject:
   - component: {fileID: 2634293135253805974}
   - component: {fileID: 2634293135253805975}
   - component: {fileID: 2634293135253805976}
-  - component: {fileID: 2634293135253805977}
   m_Layer: 10
   m_Name: AirHockeyTable.231
   m_TagString: Untagged
@@ -23228,68 +20220,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0244244, y: 1.249038, z: 12.1}
   m_Center: {x: 0.020920843, y: -0.012819947, z: -2.8119174e-10}
---- !u!114 &2634293135280733481
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293135280733483}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.637, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293135280733482
 Transform:
   m_ObjectHideFlags: 0
@@ -23317,7 +20247,6 @@ GameObject:
   - component: {fileID: 2634293135280733478}
   - component: {fileID: 2634293135280733479}
   - component: {fileID: 2634293135280733480}
-  - component: {fileID: 2634293135280733481}
   - component: {fileID: 356676682}
   - component: {fileID: 356676681}
   m_Layer: 10
@@ -23377,81 +20306,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2634293135305183612
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293135305183615}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1.0244247, y: 1.2490363, z: 12.1}
-  m_Center: {x: 0.015934959, y: -0.018654764, z: 0}
---- !u!114 &2634293135305183613
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293135305183615}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.6433, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293135305183614
 Transform:
   m_ObjectHideFlags: 0
@@ -23478,8 +20332,6 @@ GameObject:
   - component: {fileID: 2634293135305183614}
   - component: {fileID: 2634293135305183610}
   - component: {fileID: 2634293135305183611}
-  - component: {fileID: 2634293135305183612}
-  - component: {fileID: 2634293135305183613}
   m_Layer: 10
   m_Name: AirHockeyTable.302
   m_TagString: Untagged
@@ -23537,81 +20389,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2634293135318314874
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293135318314877}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1.0244244, y: 1.2490382, z: 12.1}
-  m_Center: {x: 0.020920845, y: -0.012818041, z: -1.4869564e-10}
---- !u!114 &2634293135318314875
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293135318314877}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.637, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293135318314876
 Transform:
   m_ObjectHideFlags: 0
@@ -23638,8 +20415,6 @@ GameObject:
   - component: {fileID: 2634293135318314876}
   - component: {fileID: 2634293135318314872}
   - component: {fileID: 2634293135318314873}
-  - component: {fileID: 2634293135318314874}
-  - component: {fileID: 2634293135318314875}
   m_Layer: 10
   m_Name: AirHockeyTable.300
   m_TagString: Untagged
@@ -23761,68 +20536,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0244235, y: 1.249038, z: 12.100003}
   m_Center: {x: 0.02266942, y: -0.009386661, z: 0.0000004775973}
---- !u!114 &2634293135409121029
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293135409121031}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.634, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293135409121030
 Transform:
   m_ObjectHideFlags: 0
@@ -23850,7 +20563,6 @@ GameObject:
   - component: {fileID: 2634293135409121026}
   - component: {fileID: 2634293135409121027}
   - component: {fileID: 2634293135409121028}
-  - component: {fileID: 2634293135409121029}
   - component: {fileID: 1827893581}
   - component: {fileID: 1827893580}
   m_Layer: 10
@@ -23959,81 +20671,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2634293135509927653
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293135509927656}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1.0244261, y: 1.2490387, z: 12.1}
-  m_Center: {x: -0.0019246653, y: -0.024459984, z: -0.0000000010738856}
---- !u!114 &2634293135509927654
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293135509927656}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.649, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293135509927655
 Transform:
   m_ObjectHideFlags: 0
@@ -24060,8 +20697,6 @@ GameObject:
   - component: {fileID: 2634293135509927655}
   - component: {fileID: 2634293135509927651}
   - component: {fileID: 2634293135509927652}
-  - component: {fileID: 2634293135509927653}
-  - component: {fileID: 2634293135509927654}
   m_Layer: 10
   m_Name: AirHockeyTable.307
   m_TagString: Untagged
@@ -24119,81 +20754,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2634293135519261857
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293135519261860}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1.0244263, y: 1.2490371, z: 12.1}
-  m_Center: {x: -0.012821555, y: -0.020921528, z: -2.2336289e-11}
---- !u!114 &2634293135519261858
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293135519261860}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.64545, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293135519261859
 Transform:
   m_ObjectHideFlags: 0
@@ -24220,8 +20780,6 @@ GameObject:
   - component: {fileID: 2634293135519261859}
   - component: {fileID: 2634293135519261855}
   - component: {fileID: 2634293135519261856}
-  - component: {fileID: 2634293135519261857}
-  - component: {fileID: 2634293135519261858}
   m_Layer: 10
   m_Name: AirHockeyTable.310
   m_TagString: Untagged
@@ -24279,81 +20837,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2634293135533377878
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293135533377881}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1.024428, y: 1.2490364, z: 12.1}
-  m_Center: {x: -0.022671476, y: -0.009389727, z: -1.4769412e-10}
---- !u!114 &2634293135533377879
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293135533377881}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.63391, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293135533377880
 Transform:
   m_ObjectHideFlags: 0
@@ -24380,8 +20863,6 @@ GameObject:
   - component: {fileID: 2634293135533377880}
   - component: {fileID: 2634293135533377876}
   - component: {fileID: 2634293135533377877}
-  - component: {fileID: 2634293135533377878}
-  - component: {fileID: 2634293135533377879}
   m_Layer: 10
   m_Name: AirHockeyTable.314
   m_TagString: Untagged
@@ -24439,81 +20920,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2634293135560802658
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293135560802661}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1.0244291, y: 1.2490385, z: 12.100006}
-  m_Center: {x: -0.022669576, y: -0.00939355, z: -0.0000004770913}
---- !u!114 &2634293135560802659
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293135560802661}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.63391, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293135560802660
 Transform:
   m_ObjectHideFlags: 0
@@ -24540,8 +20946,6 @@ GameObject:
   - component: {fileID: 2634293135560802660}
   - component: {fileID: 2634293135560802656}
   - component: {fileID: 2634293135560802657}
-  - component: {fileID: 2634293135560802658}
-  - component: {fileID: 2634293135560802659}
   m_Layer: 10
   m_Name: AirHockeyTable.235
   m_TagString: Untagged
@@ -24599,81 +21003,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2634293135674129032
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293135674129035}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1.0244237, y: 1.2490374, z: 12.1}
-  m_Center: {x: -0.02385363, y: -0.0057245195, z: -8.299796e-10}
---- !u!114 &2634293135674129033
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293135674129035}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.6302, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293135674129034
 Transform:
   m_ObjectHideFlags: 0
@@ -24700,8 +21029,6 @@ GameObject:
   - component: {fileID: 2634293135674129034}
   - component: {fileID: 2634293135674129030}
   - component: {fileID: 2634293135674129031}
-  - component: {fileID: 2634293135674129032}
-  - component: {fileID: 2634293135674129033}
   m_Layer: 10
   m_Name: AirHockeyTable.236
   m_TagString: Untagged
@@ -24759,81 +21086,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2634293135683775905
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293135683775908}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1.0244278, y: 1.2490387, z: 12.1}
-  m_Center: {x: 0.0019291654, y: -0.024461623, z: -0.0000000010740654}
---- !u!114 &2634293135683775906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293135683775908}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.649, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293135683775907
 Transform:
   m_ObjectHideFlags: 0
@@ -24860,8 +21112,6 @@ GameObject:
   - component: {fileID: 2634293135683775907}
   - component: {fileID: 2634293135683775903}
   - component: {fileID: 2634293135683775904}
-  - component: {fileID: 2634293135683775905}
-  - component: {fileID: 2634293135683775906}
   m_Layer: 10
   m_Name: AirHockeyTable.227
   m_TagString: Untagged
@@ -24919,81 +21169,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2634293135719159584
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293135719159587}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1.0244254, y: 1.2490374, z: 12.1}
-  m_Center: {x: -0.009386718, y: -0.022667468, z: -9.48254e-10}
---- !u!114 &2634293135719159585
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293135719159587}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.6472, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293135719159586
 Transform:
   m_ObjectHideFlags: 0
@@ -25020,8 +21195,6 @@ GameObject:
   - component: {fileID: 2634293135719159586}
   - component: {fileID: 2634293135719159582}
   - component: {fileID: 2634293135719159583}
-  - component: {fileID: 2634293135719159584}
-  - component: {fileID: 2634293135719159585}
   m_Layer: 10
   m_Name: AirHockeyTable.230
   m_TagString: Untagged
@@ -25079,81 +21252,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2634293135758258012
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293135758258015}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1.0244277, y: 1.2490379, z: 12.1}
-  m_Center: {x: -0.0057278583, y: -0.023856401, z: 5.7225635e-10}
---- !u!114 &2634293135758258013
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293135758258015}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.64835, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293135758258014
 Transform:
   m_ObjectHideFlags: 0
@@ -25180,8 +21278,6 @@ GameObject:
   - component: {fileID: 2634293135758258014}
   - component: {fileID: 2634293135758258010}
   - component: {fileID: 2634293135758258011}
-  - component: {fileID: 2634293135758258012}
-  - component: {fileID: 2634293135758258013}
   m_Layer: 10
   m_Name: AirHockeyTable.229
   m_TagString: Untagged
@@ -25239,81 +21335,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2634293135760973179
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293135760973182}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 0.99989283, y: 1.2497593, z: 12.1}
-  m_Center: {x: -0.012202218, y: -0.0014448763, z: 3.805338e-10}
---- !u!114 &2634293135760973180
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293135760973182}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.62633, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293135760973181
 Transform:
   m_ObjectHideFlags: 0
@@ -25340,8 +21361,6 @@ GameObject:
   - component: {fileID: 2634293135760973181}
   - component: {fileID: 2634293135760973177}
   - component: {fileID: 2634293135760973178}
-  - component: {fileID: 2634293135760973179}
-  - component: {fileID: 2634293135760973180}
   m_Layer: 10
   m_Name: AirHockeyTable.237
   m_TagString: Untagged
@@ -25399,81 +21418,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2634293135787904803
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293135787904806}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1.0244274, y: 1.2490387, z: 12.099998}
-  m_Center: {x: 0.0019272559, y: -0.024461625, z: -0.0000000011600083}
---- !u!114 &2634293135787904804
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293135787904806}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.649, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293135787904805
 Transform:
   m_ObjectHideFlags: 0
@@ -25500,8 +21444,6 @@ GameObject:
   - component: {fileID: 2634293135787904805}
   - component: {fileID: 2634293135787904801}
   - component: {fileID: 2634293135787904802}
-  - component: {fileID: 2634293135787904803}
-  - component: {fileID: 2634293135787904804}
   m_Layer: 10
   m_Name: AirHockeyTable.306
   m_TagString: Untagged
@@ -25559,81 +21501,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2634293135926980974
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293135926980977}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1.0244262, y: 1.2490362, z: 12.1}
-  m_Center: {x: 0.0057269335, y: -0.023859292, z: -5.64142e-10}
---- !u!114 &2634293135926980975
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293135926980977}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.6484, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293135926980976
 Transform:
   m_ObjectHideFlags: 0
@@ -25660,8 +21527,6 @@ GameObject:
   - component: {fileID: 2634293135926980976}
   - component: {fileID: 2634293135926980972}
   - component: {fileID: 2634293135926980973}
-  - component: {fileID: 2634293135926980974}
-  - component: {fileID: 2634293135926980975}
   m_Layer: 10
   m_Name: AirHockeyTable.305
   m_TagString: Untagged
@@ -25719,81 +21584,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2634293135934123240
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293135934123243}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1.0244257, y: 1.2490387, z: 12.099998}
-  m_Center: {x: -0.0019246631, y: -0.024459986, z: -0.0000000011599878}
---- !u!114 &2634293135934123241
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293135934123243}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.649, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293135934123242
 Transform:
   m_ObjectHideFlags: 0
@@ -25820,8 +21610,6 @@ GameObject:
   - component: {fileID: 2634293135934123242}
   - component: {fileID: 2634293135934123238}
   - component: {fileID: 2634293135934123239}
-  - component: {fileID: 2634293135934123240}
-  - component: {fileID: 2634293135934123241}
   m_Layer: 10
   m_Name: AirHockeyTable.228
   m_TagString: Untagged
@@ -25892,68 +21680,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0244275, y: 1.2490366, z: 12.1}
   m_Center: {x: 0.012820244, y: -0.02091983, z: -2.2336476e-11}
---- !u!114 &2634293135947876250
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293135947876252}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.6454, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293135947876251
 Transform:
   m_ObjectHideFlags: 0
@@ -25981,7 +21707,6 @@ GameObject:
   - component: {fileID: 2634293135947876247}
   - component: {fileID: 2634293135947876248}
   - component: {fileID: 2634293135947876249}
-  - component: {fileID: 2634293135947876250}
   - component: {fileID: 1857738086}
   - component: {fileID: 1857738085}
   m_Layer: 10
@@ -26041,81 +21766,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2634293135972018573
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293135972018576}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1.0242964, y: 1.2497592, z: 12.099998}
-  m_Center: {x: -5.3825833e-12, y: -0.0014448762, z: -7.8528174e-14}
---- !u!114 &2634293135972018574
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293135972018576}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.62633, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293135972018575
 Transform:
   m_ObjectHideFlags: 0
@@ -26142,8 +21792,6 @@ GameObject:
   - component: {fileID: 2634293135972018575}
   - component: {fileID: 2634293135972018571}
   - component: {fileID: 2634293135972018572}
-  - component: {fileID: 2634293135972018573}
-  - component: {fileID: 2634293135972018574}
   m_Layer: 10
   m_Name: AirHockeyTable.316
   m_TagString: Untagged
@@ -26201,81 +21849,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2634293135979969416
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293135979969419}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1.0244267, y: 1.2490373, z: 12.099998}
-  m_Center: {x: -0.0057297647, y: -0.023858309, z: 2.8839608e-10}
---- !u!114 &2634293135979969417
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293135979969419}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.64835, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293135979969418
 Transform:
   m_ObjectHideFlags: 0
@@ -26302,8 +21875,6 @@ GameObject:
   - component: {fileID: 2634293135979969418}
   - component: {fileID: 2634293135979969414}
   - component: {fileID: 2634293135979969415}
-  - component: {fileID: 2634293135979969416}
-  - component: {fileID: 2634293135979969417}
   m_Layer: 10
   m_Name: AirHockeyTable.308
   m_TagString: Untagged
@@ -26425,68 +21996,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.024424, y: 1.2490377, z: 12.1}
   m_Center: {x: -0.015932504, y: -0.01865471, z: -7.810404e-10}
---- !u!114 &2634293136083240234
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293136083240236}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.6432, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293136083240235
 Transform:
   m_ObjectHideFlags: 0
@@ -26514,7 +22023,6 @@ GameObject:
   - component: {fileID: 2634293136083240231}
   - component: {fileID: 2634293136083240232}
   - component: {fileID: 2634293136083240233}
-  - component: {fileID: 2634293136083240234}
   m_Layer: 10
   m_Name: AirHockeyTable.232
   m_TagString: Untagged
@@ -26533,8 +22041,6 @@ GameObject:
   - component: {fileID: 2634293136085440959}
   - component: {fileID: 2634293136085440955}
   - component: {fileID: 2634293136085440956}
-  - component: {fileID: 2634293136085440957}
-  - component: {fileID: 2634293136085440958}
   m_Layer: 10
   m_Name: AirHockeyTable.297
   m_TagString: Untagged
@@ -26592,81 +22098,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2634293136085440957
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293136085440576}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 0.99989283, y: 1.2497569, z: 12.1}
-  m_Center: {x: -0.011677384, y: -0.00008776784, z: 5.551733e-10}
---- !u!114 &2634293136085440958
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293136085440576}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.485, y: 0.625, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293136085440959
 Transform:
   m_ObjectHideFlags: 0
@@ -26732,81 +22163,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2634293136146464443
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293136146464446}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1.0244272, y: 1.2490377, z: 12.1}
-  m_Center: {x: -0.012821557, y: -0.020921528, z: 2.020199e-10}
---- !u!114 &2634293136146464444
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293136146464446}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.64545, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293136146464445
 Transform:
   m_ObjectHideFlags: 0
@@ -26833,8 +22189,6 @@ GameObject:
   - component: {fileID: 2634293136146464445}
   - component: {fileID: 2634293136146464441}
   - component: {fileID: 2634293136146464442}
-  - component: {fileID: 2634293136146464443}
-  - component: {fileID: 2634293136146464444}
   m_Layer: 10
   m_Name: AirHockeyTable.231
   m_TagString: Untagged
@@ -26892,81 +22246,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2634293136156777139
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293136156777142}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1.0244232, y: 1.2490358, z: 12.1}
-  m_Center: {x: 0.0093869865, y: -0.022668064, z: 0.0000000012159516}
---- !u!114 &2634293136156777140
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293136156777142}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.6472, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293136156777141
 Transform:
   m_ObjectHideFlags: 0
@@ -26993,8 +22272,6 @@ GameObject:
   - component: {fileID: 2634293136156777141}
   - component: {fileID: 2634293136156777137}
   - component: {fileID: 2634293136156777138}
-  - component: {fileID: 2634293136156777139}
-  - component: {fileID: 2634293136156777140}
   m_Layer: 10
   m_Name: AirHockeyTable.225
   m_TagString: Untagged
@@ -27065,68 +22342,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0244254, y: 1.2490374, z: 12.1}
   m_Center: {x: -0.009386718, y: -0.022667468, z: -9.48254e-10}
---- !u!114 &2634293136197710235
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293136197710237}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.6472, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293136197710236
 Transform:
   m_ObjectHideFlags: 0
@@ -27154,7 +22369,6 @@ GameObject:
   - component: {fileID: 2634293136197710232}
   - component: {fileID: 2634293136197710233}
   - component: {fileID: 2634293136197710234}
-  - component: {fileID: 2634293136197710235}
   m_Layer: 10
   m_Name: AirHockeyTable.230
   m_TagString: Untagged
@@ -27225,68 +22439,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0244277, y: 1.2490386, z: 12.1}
   m_Center: {x: -0.018657342, y: -0.01593554, z: -8.0916085e-10}
---- !u!114 &2634293136219159547
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293136219159549}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.64046, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293136219159548
 Transform:
   m_ObjectHideFlags: 0
@@ -27314,7 +22466,6 @@ GameObject:
   - component: {fileID: 2634293136219159544}
   - component: {fileID: 2634293136219159545}
   - component: {fileID: 2634293136219159546}
-  - component: {fileID: 2634293136219159547}
   m_Layer: 10
   m_Name: AirHockeyTable.233
   m_TagString: Untagged
@@ -27372,81 +22523,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2634293136222974697
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293136222974700}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1.0244256, y: 1.2490366, z: 12.1}
-  m_Center: {x: 0.005725026, y: -0.023863107, z: 0.0000000016957543}
---- !u!114 &2634293136222974698
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293136222974700}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.6484, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293136222974699
 Transform:
   m_ObjectHideFlags: 0
@@ -27473,8 +22549,6 @@ GameObject:
   - component: {fileID: 2634293136222974699}
   - component: {fileID: 2634293136222974695}
   - component: {fileID: 2634293136222974696}
-  - component: {fileID: 2634293136222974697}
-  - component: {fileID: 2634293136222974698}
   m_Layer: 10
   m_Name: AirHockeyTable.226
   m_TagString: Untagged
@@ -27532,81 +22606,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2634293136285592441
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293136285592444}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1.0244284, y: 1.2490371, z: 12.1}
-  m_Center: {x: 0.012822153, y: -0.02091983, z: 2.0190027e-10}
---- !u!114 &2634293136285592442
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293136285592444}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.6454, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293136285592443
 Transform:
   m_ObjectHideFlags: 0
@@ -27633,8 +22632,6 @@ GameObject:
   - component: {fileID: 2634293136285592443}
   - component: {fileID: 2634293136285592439}
   - component: {fileID: 2634293136285592440}
-  - component: {fileID: 2634293136285592441}
-  - component: {fileID: 2634293136285592442}
   m_Layer: 10
   m_Name: AirHockeyTable.303
   m_TagString: Untagged
@@ -27692,81 +22689,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2634293136294057350
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293136294057353}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1.0244244, y: 1.249038, z: 12.1}
-  m_Center: {x: 0.020920843, y: -0.012819947, z: -2.8119174e-10}
---- !u!114 &2634293136294057351
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293136294057353}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.637, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293136294057352
 Transform:
   m_ObjectHideFlags: 0
@@ -27793,8 +22715,6 @@ GameObject:
   - component: {fileID: 2634293136294057352}
   - component: {fileID: 2634293136294057348}
   - component: {fileID: 2634293136294057349}
-  - component: {fileID: 2634293136294057350}
-  - component: {fileID: 2634293136294057351}
   m_Layer: 10
   m_Name: AirHockeyTable.221
   m_TagString: Untagged
@@ -27852,81 +22772,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2634293136309835447
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293136309835450}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1.0244235, y: 1.2490371, z: 12.100003}
-  m_Center: {x: -0.015933454, y: -0.01865852, z: 6.9684404e-11}
---- !u!114 &2634293136309835448
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2634293136309835450}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.6432, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &2634293136309835449
 Transform:
   m_ObjectHideFlags: 0
@@ -27953,8 +22798,6 @@ GameObject:
   - component: {fileID: 2634293136309835449}
   - component: {fileID: 2634293136309835445}
   - component: {fileID: 2634293136309835446}
-  - component: {fileID: 2634293136309835447}
-  - component: {fileID: 2634293136309835448}
   m_Layer: 10
   m_Name: AirHockeyTable.311
   m_TagString: Untagged
@@ -29119,7 +23962,6 @@ GameObject:
   - component: {fileID: 5618978949850352891}
   - component: {fileID: 2485385339753910923}
   - component: {fileID: 3144088847877103068}
-  - component: {fileID: 3144088847877103069}
   m_Layer: 10
   m_Name: AirHockeyTable.306
   m_TagString: Untagged
@@ -29140,68 +23982,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0244274, y: 1.2490387, z: 12.099998}
   m_Center: {x: 0.0019272559, y: -0.024461625, z: -0.0000000011600083}
---- !u!114 &3144088847877103069
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3144088847877103066}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.649, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &3148892724007615538
 Transform:
   m_ObjectHideFlags: 0
@@ -29337,7 +24117,6 @@ GameObject:
   - component: {fileID: 319509591429869053}
   - component: {fileID: 7859316730090890976}
   - component: {fileID: 3186603073601236770}
-  - component: {fileID: 3186603073601236771}
   m_Layer: 10
   m_Name: AirHockeyTable.297
   m_TagString: Untagged
@@ -29358,68 +24137,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.99989283, y: 1.2497569, z: 12.1}
   m_Center: {x: -0.011677384, y: -0.00008776784, z: 5.551733e-10}
---- !u!114 &3186603073601236771
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3186603073601236768}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.485, y: 0.625, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!1 &3194972116204384586
 GameObject:
   m_ObjectHideFlags: 0
@@ -29571,68 +24288,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0242964, y: 1.2497592, z: 12.099998}
   m_Center: {x: -5.3825833e-12, y: -0.0014448762, z: -7.8528174e-14}
---- !u!114 &3233031644975076686
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3233031644975076687}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.62633, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!1 &3233031644975076687
 GameObject:
   m_ObjectHideFlags: 0
@@ -29645,7 +24300,6 @@ GameObject:
   - component: {fileID: 3961850693425877335}
   - component: {fileID: 1726061086643599181}
   - component: {fileID: 3233031644975076673}
-  - component: {fileID: 3233031644975076686}
   - component: {fileID: 1926073109}
   - component: {fileID: 1926073108}
   m_Layer: 10
@@ -29994,7 +24648,6 @@ GameObject:
   - component: {fileID: 3010074118851997437}
   - component: {fileID: 8754034931689699096}
   - component: {fileID: 3514633133727964450}
-  - component: {fileID: 3514633133727964451}
   m_Layer: 10
   m_Name: AirHockeyTable.304
   m_TagString: Untagged
@@ -30015,68 +24668,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0244229, y: 1.2490355, z: 12.1}
   m_Center: {x: 0.009388893, y: -0.022668062, z: 1.7454982e-11}
---- !u!114 &3514633133727964451
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3514633133727964448}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.6472, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!1 &3520384959393532443
 GameObject:
   m_ObjectHideFlags: 0
@@ -30363,68 +24954,6 @@ Transform:
   m_Father: {fileID: 1005368735560762322}
   m_RootOrder: 76
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3697846331477565286
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3697846331477565287}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.6454, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!1 &3697846331477565287
 GameObject:
   m_ObjectHideFlags: 0
@@ -30437,7 +24966,6 @@ GameObject:
   - component: {fileID: 5411776969028234475}
   - component: {fileID: 1837707092306721146}
   - component: {fileID: 3697846331477565305}
-  - component: {fileID: 3697846331477565286}
   m_Layer: 10
   m_Name: AirHockeyTable.303
   m_TagString: Untagged
@@ -30496,8 +25024,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8164541651454771241}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 86, y: 0, z: 50}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalPosition: {x: 111, y: 0, z: 50}
+  m_LocalScale: {x: 15, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1141013773}
@@ -30515,7 +25043,6 @@ GameObject:
   - component: {fileID: 8613251096703709245}
   - component: {fileID: 9059554184429927961}
   - component: {fileID: 3720839845388481228}
-  - component: {fileID: 3720839845388481229}
   m_Layer: 10
   m_Name: AirHockeyTable.298
   m_TagString: Untagged
@@ -30536,68 +25063,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0244285, y: 1.2490369, z: 12.1}
   m_Center: {x: 0.023857905, y: -0.0057281847, z: -1.3923554e-10}
---- !u!114 &3720839845388481229
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3720839845388481226}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.63, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &3746905269500721775
 Transform:
   m_ObjectHideFlags: 0
@@ -30621,8 +25086,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6921187243606401129}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -86, y: 0, z: 50}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalPosition: {x: -111, y: 0, z: 50}
+  m_LocalScale: {x: 15, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1141013773}
@@ -30831,9 +25296,9 @@ MonoBehaviour:
   actuatorX: {fileID: 1810052256}
   actuatorZ: {fileID: 1934841237}
   resetPuckState: 4
-  VEL: 200
+  VEL: 300
   ANG: 32
-  startPos: {x: 10, y: 0}
+  startPos: {x: 0, y: 0}
 --- !u!135 &3881779651548995391
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -31564,68 +26029,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7903613563545013135}
   m_Mesh: {fileID: 8121299432650216933, guid: 7663cb0862d42a042baccc55aafa2316, type: 3}
---- !u!114 &4209992819671951564
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4209992819671951565}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.6433, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!1 &4209992819671951565
 GameObject:
   m_ObjectHideFlags: 0
@@ -31638,7 +26041,6 @@ GameObject:
   - component: {fileID: 806136066392343755}
   - component: {fileID: 4968040008852709495}
   - component: {fileID: 4209992819671951567}
-  - component: {fileID: 4209992819671951564}
   m_Layer: 10
   m_Name: AirHockeyTable.302
   m_TagString: Untagged
@@ -31721,68 +26123,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1926455851647559810}
   m_Mesh: {fileID: -4151794364905045924, guid: 7663cb0862d42a042baccc55aafa2316, type: 3}
---- !u!114 &4256889358501812124
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4256889358501812125}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.64545, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!1 &4256889358501812125
 GameObject:
   m_ObjectHideFlags: 0
@@ -31795,7 +26135,6 @@ GameObject:
   - component: {fileID: 2428210720392784927}
   - component: {fileID: 7980862229978989582}
   - component: {fileID: 4256889358501812127}
-  - component: {fileID: 4256889358501812124}
   - component: {fileID: 48677577}
   - component: {fileID: 48677576}
   m_Layer: 10
@@ -31953,7 +26292,7 @@ Transform:
   m_GameObject: {fileID: 6288492918249185261}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -100}
-  m_LocalScale: {x: 25, y: 10, z: 20}
+  m_LocalScale: {x: 60, y: 10, z: 20}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1141013773}
@@ -32207,68 +26546,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &4383159031660633588
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4383159031660633589}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.63734, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!1 &4383159031660633589
 GameObject:
   m_ObjectHideFlags: 0
@@ -32281,7 +26558,6 @@ GameObject:
   - component: {fileID: 2302562847892615408}
   - component: {fileID: 6190005769124869315}
   - component: {fileID: 4383159031660633591}
-  - component: {fileID: 4383159031660633588}
   - component: {fileID: 1263752944}
   - component: {fileID: 1263752943}
   m_Layer: 10
@@ -34518,8 +28794,7 @@ Transform:
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1000, y: 1000, z: 1000}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1240471843}
+  m_Children: []
   m_Father: {fileID: 2445190500135963134}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -34795,68 +29070,6 @@ Transform:
   m_Father: {fileID: 1005368735560762322}
   m_RootOrder: 119
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5678351524995638376
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5678351524995638377}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.649, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!1 &5678351524995638377
 GameObject:
   m_ObjectHideFlags: 0
@@ -34869,7 +29082,6 @@ GameObject:
   - component: {fileID: 8875503335798086248}
   - component: {fileID: 2367347270755070674}
   - component: {fileID: 5678351524995638379}
-  - component: {fileID: 5678351524995638376}
   - component: {fileID: 715150787}
   - component: {fileID: 715150786}
   m_Layer: 10
@@ -36801,68 +31013,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &6251418594908393960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6251418594908393961}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.6472, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!1 &6251418594908393961
 GameObject:
   m_ObjectHideFlags: 0
@@ -36875,7 +31025,6 @@ GameObject:
   - component: {fileID: 3395242713973509615}
   - component: {fileID: 2565368150951678448}
   - component: {fileID: 6251418594908393963}
-  - component: {fileID: 6251418594908393960}
   - component: {fileID: 2094460628}
   - component: {fileID: 2094460627}
   m_Layer: 10
@@ -37023,7 +31172,6 @@ GameObject:
   - component: {fileID: 3974436339226720608}
   - component: {fileID: 6693553243965471854}
   - component: {fileID: 6302324686422194068}
-  - component: {fileID: 6302324686422194069}
   m_Layer: 10
   m_Name: AirHockeyTable.305
   m_TagString: Untagged
@@ -37044,68 +31192,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0244262, y: 1.2490362, z: 12.1}
   m_Center: {x: 0.0057269335, y: -0.023859292, z: -5.64142e-10}
---- !u!114 &6302324686422194069
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6302324686422194066}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.6484, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!33 &6309873001331563067
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -37384,8 +31470,7 @@ Transform:
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1000, y: 1000, z: 1000}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1721872215}
+  m_Children: []
   m_Father: {fileID: 2445190500135963134}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -38076,68 +32161,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0244234, y: 1.249037, z: 12.1}
   m_Center: {x: -0.023858398, y: -0.005728334, z: 2.0275509e-11}
---- !u!114 &6647929937900425102
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6647929937900425103}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.6302, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!1 &6647929937900425103
 GameObject:
   m_ObjectHideFlags: 0
@@ -38150,7 +32173,6 @@ GameObject:
   - component: {fileID: 4191876437205906278}
   - component: {fileID: 484133588103951672}
   - component: {fileID: 6647929937900425089}
-  - component: {fileID: 6647929937900425102}
   - component: {fileID: 1085952145}
   - component: {fileID: 1085952144}
   m_Layer: 10
@@ -39031,7 +33053,6 @@ GameObject:
   - component: {fileID: 8069251635815656762}
   - component: {fileID: 6668478219287263988}
   - component: {fileID: 6997775384070578954}
-  - component: {fileID: 6997775384070578955}
   m_Layer: 10
   m_Name: AirHockeyTable.301
   m_TagString: Untagged
@@ -39052,68 +33073,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0244267, y: 1.2490375, z: 12.1}
   m_Center: {x: 0.018660426, y: -0.015938222, z: 0.0000000012186283}
---- !u!114 &6997775384070578955
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6997775384070578952}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.6405, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &7001104810071316854
 Transform:
   m_ObjectHideFlags: 0
@@ -40982,7 +34941,6 @@ GameObject:
   - component: {fileID: 7266752575827706310}
   - component: {fileID: 7360434377908705258}
   - component: {fileID: 7451911531970511350}
-  - component: {fileID: 7451911531970511351}
   - component: {fileID: 243269126}
   - component: {fileID: 243269125}
   m_Layer: 10
@@ -41005,68 +34963,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0244278, y: 1.2490388, z: 12.100003}
   m_Center: {x: -0.018658292, y: -0.015935544, z: 4.6739623e-10}
---- !u!114 &7451911531970511351
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7451911531970511348}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.64046, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!4 &7474292117195337978
 Transform:
   m_ObjectHideFlags: 0
@@ -44217,8 +38113,7 @@ Transform:
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1000, y: 1000, z: 1000}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 689069801}
+  m_Children: []
   m_Father: {fileID: 2445190500135963134}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -47433,68 +41328,6 @@ Transform:
   m_Father: {fileID: 1005368735560762322}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8771826343010159132
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8771826343010159133}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8757a90afe442d9acfbd600758b843, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShapeType: 4
-  Sphere:
-    Radius: 0.5
-  Capsule:
-    Radius: 0.5
-    HalfHeight: 0.5
-  Cylinder:
-    Radius: 0.5
-    HalfHeight: 1
-  Box:
-    Extents: {x: 0.463, y: 0.63391, z: 6}
-  Ellipsoid:
-    Radiuses: {x: 0.5, y: 0.5, z: 0.5}
-  Plane:
-    Extents: {x: 1, y: 1}
-  Mesh:
-    Mesh: {fileID: 0}
-  Mass: 0
-  Density: 1000
-  Settings:
-    Priority: 0
-    Solver:
-      ConDim: 3
-      SolMix: 1
-      SolRef:
-        TimeConst: 0.02
-        DampRatio: 1
-      SolImp:
-        DMin: 0.9
-        DMax: 0.95
-        Width: 0.001
-        Midpoint: 0.5
-        Power: 2
-      Margin: 0
-      Gap: 0
-    Filtering:
-      Contype: 1
-      Conaffinity: 1
-      Group: 0
-    Friction:
-      Sliding: 1
-      Torsional: 0.005
-      Rolling: 0.0001
-    FluidShapeType: 0
-    FluidCoefficients:
-      BluntDrag: 5
-      SlenderDrag: 0.25
-      AngularDrag: 1.5
-      KuttaLift: 1
-      MagnusLift: 1
 --- !u!1 &8771826343010159133
 GameObject:
   m_ObjectHideFlags: 0
@@ -47507,7 +41340,6 @@ GameObject:
   - component: {fileID: 3870297035437219844}
   - component: {fileID: 6050650424147461968}
   - component: {fileID: 8771826343010159135}
-  - component: {fileID: 8771826343010159132}
   - component: {fileID: 194993667}
   - component: {fileID: 194993666}
   m_Layer: 10
@@ -49194,8 +43026,7 @@ Transform:
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1000, y: 1000, z: 1000}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1314927678}
+  m_Children: []
   m_Father: {fileID: 2445190500135963134}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -50151,8 +43982,7 @@ Transform:
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1000, y: 1000, z: 1000}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 868162824}
+  m_Children: []
   m_Father: {fileID: 2445190500135963134}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
