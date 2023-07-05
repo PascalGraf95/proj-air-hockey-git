@@ -103,14 +103,21 @@ public class PusherController : MonoBehaviour
                 // get current mouse position on left mouse button click
                 if (Input.GetMouseButton(0))
                 {
-                    // set target position
-                    pusherActuatorX.Control = -targetPosition.x;
-                    pusherActuatorZ.Control = -targetPosition.y - 43; // offset between AirHockeyTable and Pusher coordinate system
+                    if (targetPosition.x < Boundaries.humanPusherBoundaryHard.right &&
+                        targetPosition.x > Boundaries.humanPusherBoundaryHard.left)
+                    {
+                        pusherActuatorX.Control = -targetPosition.x;
+                    }
+                    if (targetPosition.y < Boundaries.humanPusherBoundaryHard.up &&
+                        targetPosition.y > Boundaries.humanPusherBoundaryHard.down)
+                    {
+                        pusherActuatorZ.Control = -targetPosition.y - 43; // offset between AirHockeyTable and Pusher coordinate system
+                    }
                 }
                 else
                 {
                     cursor.transform.position = new Vector3(targetPosition.x, cursorOffset.y, targetPosition.y + cursorOffset.z);
-                }               
+                }
                 break;
         }
     }
@@ -142,7 +149,7 @@ public class PusherController : MonoBehaviour
         // Todo: maybe change order of if-condition to detect raycast with collider agent side first
         if (colliderPlaneTable.Raycast(ray, out RaycastHit hitData, 1000f))
         {
-            mousePosTable = hitData.point;            
+            mousePosTable = hitData.point;
             targetPosition = new Vector2(mousePosTable.x, mousePosTable.z);
             cursor.transform.position = transform.position + cursorOffset;
         }
@@ -166,7 +173,7 @@ public class PusherController : MonoBehaviour
             }
             targetPosition.x = cursor.transform.position.x;
             targetPosition.y = cursor.transform.position.z;
-        }   
+        }
         return targetPosition;
     }
 
@@ -189,7 +196,7 @@ public class PusherController : MonoBehaviour
                 transform.position = new Vector3(xPos, 0, 45.75f + zPos);
             }
         }
-        else if(pusherType == "Human")
+        else if (pusherType == "Human")
         {
             if (setToNirvana)
             {
@@ -290,4 +297,3 @@ public class PusherController : MonoBehaviour
         lastVelocity = currentVelocity;
     }
 }
-
