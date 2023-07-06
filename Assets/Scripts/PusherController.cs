@@ -31,6 +31,7 @@ public class PusherController : MonoBehaviour
     public MjSlideJoint slideJointZ;
 
     // steering behavior fields
+    private ActionType actionType;
     private Vector2 targetPosition;
     private GameObject cursor;
     private readonly Vector3 cursorOffset = new Vector3(0, 5, -10);
@@ -57,6 +58,7 @@ public class PusherController : MonoBehaviour
     private Material selfplayMaterial;
     private Material humanplayMaterial;
     private GameObject hand;
+    private float pusherOffset = 45.75f;
     // Update is called once per frame
     private void Start()
     {
@@ -80,14 +82,25 @@ public class PusherController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
     }
 
-    public void SetPusherConfiguration(PusherConfiguration pusherConfiguration)
+    public void SetPusherConfiguration(PusherConfiguration pusherConfiguration, ActionType actionType)
     {
+        this.actionType = actionType;
         maxVelocity = pusherConfiguration.maxVelocity;
         slideJointX.Settings.Spring.Damping = pusherConfiguration.jointDamping;
         slideJointZ.Settings.Spring.Damping = pusherConfiguration.jointDamping;
         geom.Mass = pusherConfiguration.mass;
-        pusherActuatorX.CustomParams.Kv = pusherConfiguration.velocityControlFactor;
-        pusherActuatorZ.CustomParams.Kv = pusherConfiguration.velocityControlFactor;
+        if(actionType == ActionType.ContinuousVelocity)
+        {
+            pusherActuatorX.Type = MjActuator.ActuatorType.Velocity;
+            pusherActuatorX.CustomParams.Kv = pusherConfiguration.velocityControlFactor;
+            pusherActuatorZ.CustomParams.Kv = pusherConfiguration.velocityControlFactor;
+        }
+        else if(actionType == ActionType.ContinuousPosition)
+        {
+            pusherActuatorX.Type = MjActuator.ActuatorType.Position;
+            pusherActuatorX.CustomParams.Kp = pusherConfiguration.velocityControlFactor;
+            pusherActuatorZ.CustomParams.Kp = pusherConfiguration.velocityControlFactor;
+        }
     }
 
     void Update()
@@ -112,7 +125,7 @@ public class PusherController : MonoBehaviour
                     if (targetPosition.y < Boundaries.humanPusherBoundaryHard.up &&
                         targetPosition.y > Boundaries.humanPusherBoundaryHard.down)
                     {
-                        pusherActuatorZ.Control = -targetPosition.y - 43; // offset between AirHockeyTable and Pusher coordinate system
+                        pusherActuatorZ.Control = -targetPosition.y - pusherOffset; // offset between AirHockeyTable and Pusher coordinate system
                     }
                 }
                 else
@@ -188,13 +201,13 @@ public class PusherController : MonoBehaviour
         {
             if (resetMode == ResetPusherMode.Standard)
             {
-                transform.position = new Vector3(0, 0, 45.75f);
+                transform.position = new Vector3(0, 0, pusherOffset);
             }
             else if (resetMode == ResetPusherMode.Random)
             {
                 xPos = Random.Range(-30f, 30f);
                 zPos = Random.Range(-40f, 23f);
-                transform.position = new Vector3(xPos, 0, 45.75f + zPos);
+                transform.position = new Vector3(xPos, 0, pusherOffset + zPos);
             }
         }
         else if (pusherType == "Human")
@@ -207,13 +220,13 @@ public class PusherController : MonoBehaviour
             {
                 if (resetMode == ResetPusherMode.Standard)
                 {
-                    transform.position = new Vector3(0, 0, -45.75f);
+                    transform.position = new Vector3(0, 0, -pusherOffset);
                 }
                 else if (resetMode == ResetPusherMode.Random)
                 {
                     xPos = Random.Range(-30f, 30f);
                     zPos = Random.Range(-23f, 40f);
-                    transform.position = new Vector3(xPos, 0, -45.75f + zPos);
+                    transform.position = new Vector3(xPos, 0, -pusherOffset + zPos);
                 }
             }
         }
@@ -228,10 +241,26 @@ public class PusherController : MonoBehaviour
     /// Control pusher agents with maximum velocity. 
     /// </summary>
     /// <param name="targetVelocity"></param>
-    public void Act(Vector2 targetVelocity)
+    public void Act(Vector2 target)
     {
-        pusherActuatorX.Control = targetVelocity.x * maxVelocity;
-        pusherActuatorZ.Control = targetVelocity.y * maxVelocity;
+        if(actionType == ActionType.ContinuousVelocity)
+        {
+            pusherActuatorX.Control = target.x * maxVelocity;
+            pusherActuatorZ.Control = target.y * maxVelocity;
+        }
+        else if(actionType == ActionType.ContinuousPosition)
+        {
+            var x_mapped = RemapValue(target.x, -1f, 1f, Boundaries.agentPusherBoundaryHard.right, Boundaries.agentPusherBoundaryHard.left);
+            var y_mapped = RemapValue(target.x, -1f, 1f, Boundaries.agentPusherBoundaryHard.up, Boundaries.agentPusherBoundaryHard.down) + pusherOffset;
+            pusherActuatorX.Control = x_mapped;
+            pusherActuatorZ.Control = y_mapped;
+        }
+
+    }
+
+    private static float RemapValue(float x, float min_old, float max_old, float min_new, float max_new)
+    {
+        return (x - min_old)/(max_old - min_old)*(max_new - min_new) + min_new;
     }
 
     /// <summary>

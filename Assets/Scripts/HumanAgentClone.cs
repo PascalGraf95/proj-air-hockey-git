@@ -12,7 +12,7 @@ public class HumanAgentClone : Agent
     private PuckController puckController;
     private PusherController pusherAgentController;
     private PusherController pusherHumanController;
-    [SerializeField] private ActionType actionType = ActionType.Continuous;
+    [SerializeField] private ActionType actionType = ActionType.ContinuousVelocity;
 
     /*
      *  Rotationsmatrix 
@@ -62,7 +62,7 @@ public class HumanAgentClone : Agent
         float x = 0f;
         float z = 0f;
 
-        if (actionType == ActionType.Continuous)
+        if (actionType == ActionType.ContinuousVelocity)
         {
             var continouosActions = actionsIn.ContinuousActions;
             // MOVEMENT CALCULATIONS

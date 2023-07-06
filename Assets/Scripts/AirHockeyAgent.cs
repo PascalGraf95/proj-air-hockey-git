@@ -18,7 +18,7 @@ using Unity.Barracuda;
 using Unity.MLAgents.Policies;
 using System.Linq;
 
-public enum ActionType { Discrete, Continuous };
+public enum ActionType { Discrete, ContinuousVelocity, ContinuousPosition };
 public enum TaskType
 {
     FullGameUntilGoal,
@@ -47,12 +47,6 @@ public enum ObservationSpace
 public class AirHockeyAgent : Agent
 {
     #region Public Parameters
-    // PUBLIC
-    [Space(5)]
-    [Header("Learning Agent Parameters")]
-    [Tooltip("Choose between Discrete and Continuous action space. This depends on your training algorithm.")]
-    public ActionType actionType;
-
     [Space(5)]
     [Header("Training Scenario")]
     public TaskType taskType;
@@ -78,6 +72,7 @@ public class AirHockeyAgent : Agent
     #endregion
 
     #region Private Parameters
+    private ActionType actionType;
     private DemonstrationRecorder demonstrationRecorder;
     private SceneController sceneController;
     private PuckController puckController;
@@ -181,6 +176,7 @@ public class AirHockeyAgent : Agent
 
         // Get the controllers for scene, puck and the two pushers
         sceneController = GetComponent<SceneController>();
+        actionType = sceneController.actionType;
         pusherAgentController = GameObject.Find("PusherAgent").GetComponent<PusherController>();
         puckController = GameObject.Find("Puck").GetComponent<PuckController>();
 
@@ -276,7 +272,7 @@ public class AirHockeyAgent : Agent
 
     public override void Heuristic(in ActionBuffers actionsOut)
     {
-        if(actionType == ActionType.Continuous)
+        if(actionType == ActionType.ContinuousVelocity)
         {
             var continuousActionsOut = actionsOut.ContinuousActions;
             float horizontalInput = Input.GetAxis("Horizontal");
@@ -320,13 +316,16 @@ public class AirHockeyAgent : Agent
         #region Action Calculations
         float x = 0f;
         float z = 0f;
+        bool setNewTarget = false;
 
-        if(actionType == ActionType.Continuous)
+        if(actionType == ActionType.ContinuousVelocity || actionType == ActionType.ContinuousPosition)
         {
             var continouosActions = actionsIn.ContinuousActions;
             // MOVEMENT CALCULATIONS
             x = continouosActions[0];
             z = continouosActions[1];
+            setNewTarget = (continouosActions[2] > 0.5);
+
         }
         else
         {
@@ -590,7 +589,15 @@ public class AirHockeyAgent : Agent
 
         #region Movement and Clipping
         //print((puckController.GetCurrentPosition() - pusherAgentController.GetCurrentPosition()).magnitude);
-        pusherAgentController.Act(new Vector2(x, z));
+        if(actionType == ActionType.ContinuousPosition && !setNewTarget)
+        {
+            return;
+        }
+        else
+        {
+            pusherAgentController.Act(new Vector2(x, z));
+        }
+
         #endregion
     }
 

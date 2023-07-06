@@ -29,6 +29,7 @@ public class SceneController : MonoBehaviour
     [SerializeField] private BackwallColliderScript backwallColliderScriptRight;
     [SerializeField] private Transform airhockeyTableBends;
     [SerializeField] private PusherConfiguration pusherConfiguration;
+    public ActionType actionType;
 
     public delegate void OnEpisodeEnded();
     public event OnEpisodeEnded onEpisodeEnded;
@@ -112,13 +113,13 @@ public class SceneController : MonoBehaviour
         else if (GameObject.Find("PusherHumanSelfplay") != null)
         {
             pusherHumanController = GameObject.Find("PusherHumanSelfplay").GetComponent<PusherController>();
-            pusherHumanController.SetPusherConfiguration(pusherConfiguration);
+            pusherHumanController.SetPusherConfiguration(pusherConfiguration, actionType);
         }
         else
         {
             Debug.LogError("Pusher Human GameObject not found.");
         }
-        pusherAgentController.SetPusherConfiguration(pusherConfiguration);
+        pusherAgentController.SetPusherConfiguration(pusherConfiguration, actionType);
     }
 
 

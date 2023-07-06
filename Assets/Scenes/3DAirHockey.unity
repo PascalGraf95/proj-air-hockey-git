@@ -194,7 +194,7 @@ MonoBehaviour:
       SolMix: 1
       SolRef:
         TimeConst: -22000
-        DampRatio: -45
+        DampRatio: -50
       SolImp:
         DMin: 0.9
         DMax: 0.95
@@ -495,7 +495,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 21.45
+  m_fontSize: 19.65
   m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4147,7 +4147,7 @@ MonoBehaviour:
       SolMix: 1
       SolRef:
         TimeConst: -22000
-        DampRatio: -45
+        DampRatio: -50
       SolImp:
         DMin: 0.9
         DMax: 0.95
@@ -5270,7 +5270,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 29.35
+  m_fontSize: 25.2
   m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5653,7 +5653,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18.75
+  m_fontSize: 15.25
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -9539,7 +9539,7 @@ MonoBehaviour:
       SolMix: 1
       SolRef:
         TimeConst: -15000
-        DampRatio: -65
+        DampRatio: -68
       SolImp:
         DMin: 0.999
         DMax: 1
@@ -9944,7 +9944,7 @@ MonoBehaviour:
       SolMix: 1
       SolRef:
         TimeConst: -22000
-        DampRatio: -45
+        DampRatio: -50
       SolImp:
         DMin: 0.9
         DMax: 1
@@ -13442,6 +13442,7 @@ MonoBehaviour:
   airhockeyTableBends: {fileID: 2634293135502564582}
   pusherConfiguration: {fileID: 11400000, guid: 2c3593a0d2d75664ab1408233adbda74,
     type: 2}
+  actionType: 1
   maxScore: 4
   maxEpisodesWithoutScore: 5
 --- !u!114 &919132147958298413
@@ -13494,7 +13495,6 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 6000
-  actionType: 1
   taskType: 0
   resetPuckState: 4
   maxStepsPerGame: 0
