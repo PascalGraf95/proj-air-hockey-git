@@ -147,10 +147,12 @@ public class AirHockeyAgent : Agent
         SideChannelManager.RegisterSideChannel(environmentInformationSideChannel);
 
         // Init demonstration recorder
+        /*
         demonstrationRecorder = gameObject.AddComponent<DemonstrationRecorder>();
         demonstrationRecorder.DemonstrationDirectory = @"Demonstrations";
         demonstrationRecorder.DemonstrationName = DateTime.Now.ToString("'yy''MM''dd'_'HH''mm''ss'") + "_AirhockeyDemonstrationRecording";
         demonstrationRecorder.NumStepsToRecord = 0; // If you set Num Steps To Record to 0 then recording will continue until you manually end the play session.
+        */
 
     }
 
@@ -165,8 +167,7 @@ public class AirHockeyAgent : Agent
     public void SetupAirHockeyAgent()
     {
         // Get environment information to list of key value pairs format to send it via side channel
-        var rewardComposition = new Dictionary<string, string>();
-        rewardComposition = GetRewardComposition();
+        var rewardComposition = GetRewardComposition();
         var behaviorParametersList = GetBehaviorParameters();
         // convert dictionary to list of key value pairs
         var rewardCompositionList = rewardComposition.ToList();
@@ -186,12 +187,10 @@ public class AirHockeyAgent : Agent
         if (GameObject.Find("PusherHuman") != null)
         {
             pusherHumanController = GameObject.Find("PusherHuman").GetComponent<PusherController>();
-            demonstrationRecorder.Record = true;
         }
         else if (GameObject.Find("PusherHumanSelfplay") != null)
         {
             pusherHumanController = GameObject.Find("PusherHumanSelfplay").GetComponent<PusherController>();
-            demonstrationRecorder.Record = false;
         }
         else
         {

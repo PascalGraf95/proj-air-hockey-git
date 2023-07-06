@@ -102,7 +102,7 @@ public class SceneController : MonoBehaviour
         cursor = GameObject.Find("HandCursor");
         pusherAgentController = GameObject.Find("PusherAgent").GetComponent<PusherController>();
         puckController = GameObject.Find("Puck").GetComponent<PuckController>();
-        puckController.resetPuckState = gameObject.GetComponent<AirHockeyAgent>().resetPuckState;
+        //puckController.resetPuckState = gameObject.GetComponent<AirHockeyAgent>().resetPuckState;
 
 
         if (GameObject.Find("PusherHuman") != null)
@@ -196,6 +196,7 @@ public class SceneController : MonoBehaviour
         pusherHumanController.Reset("Human", false);
 
         // Reset Puck
+        puckController.resetPuckState = gameObject.GetComponent<AirHockeyAgent>().resetPuckState;
         puckController.Reset();
 
         // Reset Game Score

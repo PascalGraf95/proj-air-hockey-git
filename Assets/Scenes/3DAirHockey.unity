@@ -188,13 +188,13 @@ MonoBehaviour:
   Mass: 10
   Density: 0
   Settings:
-    Priority: 5
+    Priority: 20
     Solver:
-      ConDim: 4
+      ConDim: 3
       SolMix: 1
       SolRef:
-        TimeConst: 0.02
-        DampRatio: 0.9
+        TimeConst: -22000
+        DampRatio: -45
       SolImp:
         DMin: 0.9
         DMax: 0.95
@@ -4141,13 +4141,13 @@ MonoBehaviour:
   Mass: 10
   Density: 0
   Settings:
-    Priority: 5
+    Priority: 20
     Solver:
-      ConDim: 4
+      ConDim: 3
       SolMix: 1
       SolRef:
-        TimeConst: 0.02
-        DampRatio: 0.9
+        TimeConst: -22000
+        DampRatio: -45
       SolImp:
         DMin: 0.9
         DMax: 0.95
@@ -9538,14 +9538,14 @@ MonoBehaviour:
       ConDim: 3
       SolMix: 1
       SolRef:
-        TimeConst: -6000
-        DampRatio: -45
+        TimeConst: -15000
+        DampRatio: -65
       SolImp:
         DMin: 0.999
         DMax: 1
-        Width: 0.1
+        Width: 0.01
         Midpoint: 0.01
-        Power: 9
+        Power: 3
       Margin: 0
       Gap: 0
     Filtering:
@@ -9938,13 +9938,13 @@ MonoBehaviour:
   Mass: 10
   Density: 0
   Settings:
-    Priority: 5
+    Priority: 20
     Solver:
-      ConDim: 4
+      ConDim: 3
       SolMix: 1
       SolRef:
-        TimeConst: -200
-        DampRatio: -140
+        TimeConst: -22000
+        DampRatio: -45
       SolImp:
         DMin: 0.9
         DMax: 1
