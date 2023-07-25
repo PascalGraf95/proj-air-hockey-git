@@ -90,6 +90,8 @@ public class AirHockeyAgent : Agent
     public float currentAccMag;
     [HideInInspector]
     public float currentJerkMag;
+    [SerializeField] private Slider sliderX;
+    [SerializeField] private Slider sliderZ;
 
     private int gamesSinceNewEpisode;
     private int lastGameReset;
@@ -280,6 +282,15 @@ public class AirHockeyAgent : Agent
             continuousActionsOut[0] = horizontalInput;
             continuousActionsOut[1] = verticalInput;
         }
+        else if(actionType == ActionType.ContinuousPosition)
+        {
+            var continuousActionsOut = actionsOut.ContinuousActions;
+            float horizontalInput = Input.GetAxis("Horizontal");
+            float verticalInput = Input.GetAxis("Vertical");
+            continuousActionsOut[0] = sliderX.value;
+            continuousActionsOut[1] = sliderZ.value;
+            continuousActionsOut[2] = 1f;
+        }
         else
         {
             var discreteActionsOut = actionsOut.DiscreteActions;
@@ -307,7 +318,6 @@ public class AirHockeyAgent : Agent
                 discreteActionsOut[0] = 0;
             }
         }
-
     }
     
 
@@ -318,14 +328,30 @@ public class AirHockeyAgent : Agent
         float z = 0f;
         bool setNewTarget = false;
 
-        if(actionType == ActionType.ContinuousVelocity || actionType == ActionType.ContinuousPosition)
+        if(actionType == ActionType.ContinuousVelocity)
+        {
+            var continouosActions = actionsIn.ContinuousActions;
+            // MOVEMENT CALCULATIONS
+            x = continouosActions[0];
+            z = continouosActions[1];
+
+            // Action Dead Zone to avoid unneccessary movement
+            if (Mathf.Abs(x) < 0.03f)
+            {
+                x = 0f;
+            }
+            if (Mathf.Abs(z) < 0.03f)
+            {
+                z = 0f;
+            }
+        }
+        else if(actionType == ActionType.ContinuousPosition)
         {
             var continouosActions = actionsIn.ContinuousActions;
             // MOVEMENT CALCULATIONS
             x = continouosActions[0];
             z = continouosActions[1];
             setNewTarget = (continouosActions[2] > 0.5);
-
         }
         else
         {
@@ -356,15 +382,6 @@ public class AirHockeyAgent : Agent
             }
         }
 
-        // Action Dead Zone to avoid unneccessary movement
-        if (Mathf.Abs(x) < 0.03f)
-        {
-            x = 0f;
-        }
-        if (Mathf.Abs(z) < 0.03f)
-        {
-            z = 0f;
-        }
         #endregion
 
         #region RewardComposition

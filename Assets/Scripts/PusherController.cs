@@ -92,12 +92,14 @@ public class PusherController : MonoBehaviour
         if(actionType == ActionType.ContinuousVelocity)
         {
             pusherActuatorX.Type = MjActuator.ActuatorType.Velocity;
+            pusherActuatorZ.Type = MjActuator.ActuatorType.Velocity;
             pusherActuatorX.CustomParams.Kv = pusherConfiguration.velocityControlFactor;
             pusherActuatorZ.CustomParams.Kv = pusherConfiguration.velocityControlFactor;
         }
         else if(actionType == ActionType.ContinuousPosition)
         {
             pusherActuatorX.Type = MjActuator.ActuatorType.Position;
+            pusherActuatorZ.Type = MjActuator.ActuatorType.Position;
             pusherActuatorX.CustomParams.Kp = pusherConfiguration.velocityControlFactor;
             pusherActuatorZ.CustomParams.Kp = pusherConfiguration.velocityControlFactor;
         }
@@ -250,10 +252,15 @@ public class PusherController : MonoBehaviour
         }
         else if(actionType == ActionType.ContinuousPosition)
         {
-            var x_mapped = RemapValue(target.x, -1f, 1f, Boundaries.agentPusherBoundaryHard.right, Boundaries.agentPusherBoundaryHard.left);
-            var y_mapped = RemapValue(target.x, -1f, 1f, Boundaries.agentPusherBoundaryHard.up, Boundaries.agentPusherBoundaryHard.down) + pusherOffset;
+            var x_mapped = RemapValue(target.x, -1f, 1f, -30, 30);
+            var z_mapped = RemapValue(target.y, -1f, 1f,-23, 40);
+            if(transform.gameObject.name == "PusherAgent")
+            {
+                print("X:" + target.x + " " + x_mapped + "; Z:" + target.y + " " + z_mapped);
+            }
+
             pusherActuatorX.Control = x_mapped;
-            pusherActuatorZ.Control = y_mapped;
+            pusherActuatorZ.Control = z_mapped;
         }
 
     }
