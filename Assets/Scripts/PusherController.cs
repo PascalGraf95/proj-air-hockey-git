@@ -252,12 +252,8 @@ public class PusherController : MonoBehaviour
         }
         else if(actionType == ActionType.ContinuousPosition)
         {
-            var x_mapped = RemapValue(target.x, -1f, 1f, -30, 30);
-            var z_mapped = RemapValue(target.y, -1f, 1f,-23, 40);
-            if(transform.gameObject.name == "PusherAgent")
-            {
-                print("X:" + target.x + " " + x_mapped + "; Z:" + target.y + " " + z_mapped);
-            }
+            float x_mapped = RemapValue(target.x, -1f, 1f, -30, 30);
+            float z_mapped = RemapValue(target.y, -1f, 1f, -23, 40);
 
             pusherActuatorX.Control = x_mapped;
             pusherActuatorZ.Control = z_mapped;
