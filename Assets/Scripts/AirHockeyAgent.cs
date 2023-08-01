@@ -116,6 +116,7 @@ public class AirHockeyAgent : Agent
         episodeRewardShift["ScoreRewardShift"] = new float[shiftLen];
         episodeRewardShift["BackwallRewardShift"] = new float[shiftLen];
         episodeRewardShift["StayInCenterRewardShift"] = new float[shiftLen];
+        episodeRewardShift["AvoidPositionUpdateRewardShift"] = new float[shiftLen];
 
         episodeReward.Clear();
         episodeReward["StepReward"] = 0f;
@@ -127,6 +128,7 @@ public class AirHockeyAgent : Agent
         episodeReward["BackwallReward"] = 0f;
         episodeReward["OutOfBounds"] = 0f;
         episodeReward["StayInCenterReward"] = 0f;
+        episodeReward["AvoidPositionUpdateReward"] = 0f;
     }
 
     // Start is called before the first frame update
@@ -396,6 +398,7 @@ public class AirHockeyAgent : Agent
         episodeRewardShift["ScoreRewardShift"][shiftIdx] = 0;
         episodeRewardShift["BackwallRewardShift"][shiftIdx] = 0;
         episodeRewardShift["StayInCenterRewardShift"][shiftIdx] = 0;
+        episodeRewardShift["AvoidPositionUpdateRewardShift"][shiftIdx] = 0;
 
         #region UniversalRewards
 
@@ -472,6 +475,7 @@ public class AirHockeyAgent : Agent
             }
 
         }
+
         // Punish if the puck is in the agent's half.
         if (rewardComposition.puckInAgentsHalfReward < 0f)
         {
@@ -485,6 +489,7 @@ public class AirHockeyAgent : Agent
                 AddReward(scaledHalfReward);
             }
         }
+
         // Punish changing direction too much.
         if (rewardComposition.avoidDirectionChangesReward < 0f)
         {
@@ -496,7 +501,7 @@ public class AirHockeyAgent : Agent
             var currentJerk = lastAcc - currentAcc;
             if((pusherAgentController.GetCurrentPosition() - puckController.GetCurrentPosition()).magnitude > 10)
             {
-                currentJerkMag = currentJerk.magnitude / 100;
+                currentJerkMag = currentJerk.magnitude / 100f;
             }
             else
             {
@@ -512,6 +517,7 @@ public class AirHockeyAgent : Agent
             lastVel = currentVel;
             lastAcc = currentAcc;
         }
+
         // Punish running into boundaries.
         if (rewardComposition.avoidBoundariesReward < 0f)
         {
@@ -533,6 +539,7 @@ public class AirHockeyAgent : Agent
                 episodeRewardShift["BoundaryRewardShift"][shiftIdx] = currentBoundaryReward;
             }
         }
+
         // Punish staying away from the center as soon as the puck is in the opponent's half.
         if (rewardComposition.stayInCenterReward < 0f)
         {
@@ -565,6 +572,7 @@ public class AirHockeyAgent : Agent
                 episodeRewardShift["StayInCenterRewardShift"][shiftIdx] = scaledStepReward;
             }
         }
+
         // Reward high puck velocities
         if (rewardComposition.encouragePuckMovementReward > 0f)
         {
@@ -573,10 +581,25 @@ public class AirHockeyAgent : Agent
             episodeReward["PuckVelocityReward"] += Mathf.Clamp(puckVelocity.magnitude * rewardComposition.encouragePuckMovementReward, 0f, 1f);
             episodeRewardShift["PuckVelocityRewardShift"][shiftIdx] = Mathf.Clamp(puckVelocity.magnitude * rewardComposition.encouragePuckMovementReward, 0f, 1f);
         }
+
+        // Punish setting new target positions too often
+        if (rewardComposition.avoidPositionUpdateReward < 0f)
+        {
+            if(setNewTarget)
+            {
+                var scaledPositionUpdateReward = rewardComposition.avoidPositionUpdateReward / 50;
+                episodeReward["AvoidPositionUpdateReward"] += scaledPositionUpdateReward;
+                episodeRewardShift["AvoidPositionUpdateRewardShift"][shiftIdx] = scaledPositionUpdateReward;
+                AddReward(scaledPositionUpdateReward);
+            }
+        }
+
         // STEP REWARD
         var scaledReward = rewardComposition.stepReward / 100;
         AddReward(scaledReward);
         episodeReward["StepReward"] += scaledReward;
+
+
         #endregion
 
         #region TaskSpecificRewards

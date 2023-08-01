@@ -65,6 +65,7 @@ public class SceneController : MonoBehaviour
         humanGoalColliderScript.onGoalDetected += AgentPlayerScored;
         backwallColliderScriptLeft.onBackwallHitDetected += BackwallReached;
         backwallColliderScriptRight.onBackwallHitDetected += BackwallReached;
+
         foreach(Transform bend in airhockeyTableBends)
         {
             foreach(Transform block in bend)
