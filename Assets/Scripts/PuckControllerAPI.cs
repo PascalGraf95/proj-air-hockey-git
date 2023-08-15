@@ -32,6 +32,8 @@ public class PuckControllerAPI : MonoBehaviour
         puck = GameObject.Find("Puck");
 
         // disable all mujoco transforms on puck
+        puck.GetComponent<MjBody>().enabled = false;
+
         foreach (Transform t in puck.transform)
         {
             t.gameObject.SetActive(false);
@@ -43,6 +45,8 @@ public class PuckControllerAPI : MonoBehaviour
         puck = GameObject.Find("Puck");
 
         // enable all mujoco transforms on puck
+        puck.GetComponent<MjBody>().enabled = true;
+
         foreach (Transform t in puck.transform)
         {
             t.gameObject.SetActive(true);
