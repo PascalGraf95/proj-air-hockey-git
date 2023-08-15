@@ -7,7 +7,20 @@ namespace requestAPI
 {
 	public class httpRequestAPI
 	{
-		public const string puckPositionX = "positionX";
+        private string valPuckPosX = "0";
+        private string valPuckPosZ = "0";
+        private string valPuckVelX = "0";
+        private string valPuckVelZ = "0";
+        private string valPuckAccX = "0";
+        private string valPuckAccZ = "0";
+        private string valPusherPosX = "0";
+        private string valPusherPosZ = "0";
+        private string valPusherVelX = "0";
+        private string valPusherVelZ = "0";
+        private string valDistance = "0";
+        private string valFramrate = "0";
+
+        public const string puckPositionX = "positionX";
 		public const string puckPositionZ = "positionZ";
 		public const string puckVelocityX = "velocityX";
 		public const string puckVelocityZ = "velocityZ";
@@ -52,20 +65,95 @@ namespace requestAPI
 						break;
 					case UnityWebRequest.Result.Success:
 						JSONNode data = JSON.Parse(webRequest.downloadHandler.text);
-						value = data[uriParam];
+                        saveValue(data[uriParam], uriParam);
 						break;
 					default:
 						Debug.LogError("Undefined error in GetRequest!");
-						value = null;
+                        saveValue(null, uriParam);
 						break;
 				}
 			}
 			yield return null;
 		}
 
-		public string getValue()
+		public string getValue(string msgType)
 		{
-			return value;
+			switch (msgType)
+			{
+				case puckPositionX:
+					return valPuckPosX;
+				case puckPositionZ:
+					return valPuckPosZ;
+				case puckVelocityX:
+					return valPuckVelX;
+				case puckVelocityZ:
+					return valPuckVelZ;
+				case puckAccelerationX:
+					return valPuckAccX;
+				case puckAccelerationZ:
+					return valPuckAccZ;
+				case pusherPositionX:
+					return valPusherPosX;
+				case pusherPositionZ:
+					return valPusherPosZ;
+				case pusherVelocityX:
+					return valPusherVelX;
+				case pusherVelocityZ:
+					return valPusherVelZ;
+				case distance:
+					return valDistance;
+				case framerate:
+					return valFramrate;
+				default:
+					Debug.LogError("Undefined value type in getValue() GetRequest: " + msgType);
+					return null;
+			}
+		}
+
+		private void saveValue(string val, string msgType)
+		{
+			switch (msgType) 
+			{
+				case puckPositionX:
+					valPuckPosX = val;
+					break;
+                case puckPositionZ:
+					valPuckPosZ = val;
+                    break;
+                case puckVelocityX:
+					valPuckVelX = val;
+                    break;
+                case puckVelocityZ:
+					valPuckVelZ = val;
+                    break;
+                case puckAccelerationX:
+					valPuckAccX = val;
+                    break;
+                case puckAccelerationZ:
+					valPuckAccZ = val;
+                    break;
+                case pusherPositionX:
+					valPusherPosX = val;
+                    break;
+                case pusherPositionZ:
+					valPusherPosZ = val;
+                    break;
+                case pusherVelocityX:
+					valPusherVelX = val;
+                    break;
+                case pusherVelocityZ:
+					valPusherVelZ = val;
+                    break;
+				case distance:
+					valDistance = val;
+					break;
+				case framerate:
+					valFramrate = val;
+					break;
+                default :
+                    Debug.LogError("Undefined value type in saveValue() GetRequest: " + msgType);
+                    break;
+            }
 		}
     }
 }
