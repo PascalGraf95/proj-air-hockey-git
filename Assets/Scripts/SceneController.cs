@@ -20,6 +20,7 @@ public class SceneController : MonoBehaviour
 {
     #region Variables
     private PuckController puckController;
+    private PuckControllerAPI puckControllerAPI;
     private PusherController pusherHumanController;
     private PusherController pusherAgentController;
     private GameObject cursor;
@@ -82,6 +83,8 @@ public class SceneController : MonoBehaviour
         {
             uiController.ResetUI();
         }
+
+        puckControllerAPI = GetComponent<PuckControllerAPI>();
     }
 
     public void Awake()
@@ -140,6 +143,10 @@ public class SceneController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.I))
         {
             uiController.ToggleUiIsVisible();
+        }
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            puckControllerAPI.simulate_real_puck();
         }
     }
 
