@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mujoco;
 using System;
+using YamlDotNet.Core;
+using UnityEngine.Analytics;
 
 public enum ResetPuckState
 {
@@ -12,7 +14,9 @@ public enum ResetPuckState
     shotOnGoal,
     randomVelocity,
     randomMiddlePosition,
-    ColliderTest
+    ColliderTest,
+    scenarioCataloge,
+    scenarioCatalogeMove
 }
 
 public class PuckController : MonoBehaviour
@@ -22,6 +26,7 @@ public class PuckController : MonoBehaviour
     [SerializeField] private MjActuator actuatorX;
     [SerializeField] private MjActuator actuatorZ;
     [HideInInspector] public ResetPuckState resetPuckState;
+
     public float VEL = 0f;
     public float ANG = 0f;
     public Vector2 startPos = Vector2.zero;
@@ -30,6 +35,7 @@ public class PuckController : MonoBehaviour
     public Boundary puckBoundary = new Boundary(50f, -50f, -30f, 30f);
     private PusherController pusherAgentController;
     private PusherController pusherHumanController;
+    private ScenarioCataloge scenarioCataloge;
 
     // Acceleration calculation
     Vector2 lastVelocity;
@@ -56,6 +62,8 @@ public class PuckController : MonoBehaviour
         {
             Debug.LogError("Pusher Human GameObject not found.");
         }
+
+        scenarioCataloge = GameObject.Find("3DAirHockeyTable").GetComponent<ScenarioCataloge>();
     }
 
     private void FixedUpdate()
@@ -94,7 +102,7 @@ public class PuckController : MonoBehaviour
         else if (resetPuckState == ResetPuckState.randomPosition)
         {
             Vector2 newPuckPosition;
-            while(true)
+            while (true)
             {
                 var posX = UnityEngine.Random.Range(agentPusherBoundary.Left, agentPusherBoundary.Right) * 0.9f;
                 var posZ = UnityEngine.Random.Range(agentPusherBoundary.Down, agentPusherBoundary.Up) * 0.9f;
@@ -104,7 +112,7 @@ public class PuckController : MonoBehaviour
             }
             slideJointX.Configuration = newPuckPosition.x;
             slideJointZ.Configuration = newPuckPosition.y;
-            transform.position = new Vector3(newPuckPosition.x, 0.1f, newPuckPosition.y); 
+            transform.position = new Vector3(newPuckPosition.x, 0.1f, newPuckPosition.y);
         }
         else if (resetPuckState == ResetPuckState.randomPositionGlobal || resetPuckState == ResetPuckState.randomVelocity)
         {
@@ -114,8 +122,8 @@ public class PuckController : MonoBehaviour
                 var posX = UnityEngine.Random.Range(puckBoundary.Left, puckBoundary.Right) * 0.9f;
                 var posZ = UnityEngine.Random.Range(puckBoundary.Down, puckBoundary.Up) * 0.9f;
                 newPuckPosition = new Vector2(posX, posZ);
-                if (Vector2.Distance(newPuckPosition, pusherAgentController.GetCurrentPosition()) > 5f && 
-                    Vector2.Distance(newPuckPosition, pusherHumanController.GetCurrentPosition()) > 5f)  break;
+                if (Vector2.Distance(newPuckPosition, pusherAgentController.GetCurrentPosition()) > 5f &&
+                    Vector2.Distance(newPuckPosition, pusherHumanController.GetCurrentPosition()) > 5f) break;
             }
             slideJointX.Configuration = newPuckPosition.x;
             slideJointZ.Configuration = newPuckPosition.y;
@@ -136,12 +144,38 @@ public class PuckController : MonoBehaviour
         {
             transform.position = new Vector3(UnityEngine.Random.Range(puckBoundary.Left, puckBoundary.Right) * 0.9f, 0.5f, UnityEngine.Random.Range(agentPusherBoundary.Down, agentPusherBoundary.Up) * 0.9f);
         }
-        else if(resetPuckState == ResetPuckState.ColliderTest)
+        else if (resetPuckState == ResetPuckState.ColliderTest)
         {
             transform.position = new Vector3(startPos.x, 0.1f, startPos.y);
-            slideJointX.Velocity = Mathf.Sin(ANG * Mathf.Deg2Rad) * VEL;
-            slideJointZ.Velocity = Mathf.Cos(ANG * Mathf.Deg2Rad) * VEL;
+            //slideJointX.Velocity = Mathf.Sin(ANG * Mathf.Deg2Rad) * VEL;
+            //slideJointZ.Velocity = Mathf.Cos(ANG * Mathf.Deg2Rad) * VEL;
         }
+        else if (resetPuckState == ResetPuckState.scenarioCataloge || resetPuckState == ResetPuckState.scenarioCatalogeMove)
+        {
+            Vector2 newPuckPosition;
+            while (true)
+            {
+                var posX = UnityEngine.Random.Range(scenarioCataloge.currentScenarioParams.spawnPuck.Left, scenarioCataloge.currentScenarioParams.spawnPuck.Right) * 0.9f;
+                var posZ = UnityEngine.Random.Range(scenarioCataloge.currentScenarioParams.spawnPuck.Down, scenarioCataloge.currentScenarioParams.spawnPuck.Up) * 0.9f;
+                newPuckPosition = new Vector2(posX, posZ);
+                if (Vector2.Distance(newPuckPosition, pusherAgentController.GetCurrentPosition()) > 5f &&
+                    Vector2.Distance(newPuckPosition, pusherHumanController.GetCurrentPosition()) > 5f) break;
+            }
 
+            slideJointX.Configuration = newPuckPosition.x;
+            slideJointZ.Configuration = newPuckPosition.y;
+            transform.position = new Vector3(newPuckPosition.x, 0.1f, newPuckPosition.y);
+
+            if (resetPuckState == ResetPuckState.scenarioCatalogeMove)
+            {
+                var ang = UnityEngine.Random.Range(-180f, 180f);
+                var vel = UnityEngine.Random.Range(30f, 150f);
+
+                slideJointX.Velocity = Mathf.Sin(ang * Mathf.Deg2Rad) * vel;
+                slideJointZ.Velocity = Mathf.Cos(ang * Mathf.Deg2Rad) * vel;
+                //actuatorX.Control = Mathf.Sin(ang * Mathf.Deg2Rad) * vel * 100;
+                //actuatorZ.Control = Mathf.Cos(ang * Mathf.Deg2Rad) * vel * 100;
+            }
+        }
     }
 }

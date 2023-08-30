@@ -21,6 +21,7 @@ public class SceneController : MonoBehaviour
     #region Variables
     private PuckController puckController;
     private PuckControllerAPI puckControllerAPI;
+    private ScenarioCataloge scenarioCataloge;    // TODO delete
     private PusherController pusherHumanController;
     private PusherController pusherAgentController;
     private GameObject cursor;
@@ -85,6 +86,7 @@ public class SceneController : MonoBehaviour
         }
 
         puckControllerAPI = GetComponent<PuckControllerAPI>();
+        scenarioCataloge = GetComponent<ScenarioCataloge>();    // TODO delete
     }
 
     public void Awake()
@@ -146,7 +148,8 @@ public class SceneController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.X))
         {
-            puckControllerAPI.simulate_real_puck();
+            //puckControllerAPI.simulate_real_puck();
+            scenarioCataloge.startScenario(ScenarioCataloge.scenario.scenario_1);
         }
     }
 
