@@ -61,6 +61,7 @@ public class HumanAgentClone : Agent
         #region Action Calculations
         float x = 0f;
         float z = 0f;
+        bool setNewTarget = false;
 
         if (actionType == ActionType.ContinuousVelocity)
         {
@@ -68,6 +69,24 @@ public class HumanAgentClone : Agent
             // MOVEMENT CALCULATIONS
             x = continouosActions[0];
             z = continouosActions[1];
+
+            // Action Dead Zone to avoid unneccessary movement
+            if (Mathf.Abs(x) < 0.03f)
+            {
+                x = 0f;
+            }
+            if (Mathf.Abs(z) < 0.03f)
+            {
+                z = 0f;
+            }
+        }
+        else if (actionType == ActionType.ContinuousPosition)
+        {
+            var continouosActions = actionsIn.ContinuousActions;
+            // MOVEMENT CALCULATIONS
+            x = continouosActions[0];
+            z = continouosActions[1];
+            setNewTarget = (continouosActions[2] > 0.5);
         }
         else
         {
@@ -96,19 +115,16 @@ public class HumanAgentClone : Agent
                     break;
             }
         }
-
-        // Action Dead Zone to avoid unneccessary movement
-        if (Mathf.Abs(x) < 0.03f)
-        {
-            x = 0f;
-        }
-        if (Mathf.Abs(z) < 0.03f)
-        {
-            z = 0f;
-        }
         #endregion
         #region Movement and Clipping
-        pusherHumanController.Act(new Vector2(-x, -z));
+        if (actionType == ActionType.ContinuousPosition && !setNewTarget)
+        {
+            return;
+        }
+        else
+        {
+            pusherAgentController.Act(new Vector2(-x, -z));
+        }
         #endregion
         
     }
