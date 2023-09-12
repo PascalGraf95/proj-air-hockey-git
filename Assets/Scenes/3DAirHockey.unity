@@ -2612,7 +2612,6 @@ GameObject:
   - component: {fileID: 250115468}
   - component: {fileID: 250115467}
   - component: {fileID: 250115466}
-  - component: {fileID: 250115465}
   m_Layer: 9
   m_Name: PusherHumanSelfplay
   m_TagString: Agent
@@ -2640,22 +2639,6 @@ Transform:
   m_Father: {fileID: 919132147958298421}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &250115465
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 250115463}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88b6042bc9a5d4aa58d931eae49442e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agentParameters:
-    maxStep: 0
-  hasUpgradedFromAgentParameters: 1
-  MaxStep: 0
 --- !u!114 &250115466
 MonoBehaviour:
   m_ObjectHideFlags: 0

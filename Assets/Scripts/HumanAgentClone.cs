@@ -79,6 +79,7 @@ public class HumanAgentClone : Agent
             {
                 z = 0f;
             }
+            print(x +" " + z);
         }
         else if (actionType == ActionType.ContinuousPosition)
         {
