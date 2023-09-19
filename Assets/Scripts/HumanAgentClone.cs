@@ -79,7 +79,6 @@ public class HumanAgentClone : Agent
             {
                 z = 0f;
             }
-            print(x +" " + z);
         }
         else if (actionType == ActionType.ContinuousPosition)
         {
@@ -124,7 +123,7 @@ public class HumanAgentClone : Agent
         }
         else
         {
-            pusherAgentController.Act(new Vector2(-x, -z));
+            pusherHumanController.Act(new Vector2(-x, -z));
         }
         #endregion
         

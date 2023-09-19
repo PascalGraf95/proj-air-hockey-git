@@ -245,7 +245,7 @@ public class PusherController : MonoBehaviour
     /// <param name="targetVelocity"></param>
     public void Act(Vector2 target)
     {
-        if(actionType == ActionType.ContinuousVelocity)
+        if (actionType == ActionType.ContinuousVelocity)
         {
             pusherActuatorX.Control = target.x * maxVelocity;
             pusherActuatorZ.Control = target.y * maxVelocity;
