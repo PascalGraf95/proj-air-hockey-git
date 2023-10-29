@@ -173,8 +173,6 @@ public class PuckController : MonoBehaviour
 
                 slideJointX.Velocity = Mathf.Sin(ang * Mathf.Deg2Rad) * vel;
                 slideJointZ.Velocity = Mathf.Cos(ang * Mathf.Deg2Rad) * vel;
-                //actuatorX.Control = Mathf.Sin(ang * Mathf.Deg2Rad) * vel * 100;
-                //actuatorZ.Control = Mathf.Cos(ang * Mathf.Deg2Rad) * vel * 100;
             }
         }
     }

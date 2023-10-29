@@ -223,7 +223,7 @@
       "url": "https://packages.unity.com"
     },
     "org.mujoco": {
-      "version": "file:C:/workspace/mujoco/unity",
+      "version": "file:C:/not-saved-workspace/mujoco/unity",
       "depth": 0,
       "source": "local",
       "dependencies": {}

@@ -149,7 +149,18 @@ public class SceneController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X))
         {
             //puckControllerAPI.simulate_real_puck();
-            scenarioCataloge.startScenario(ScenarioCataloge.scenario.scenario_1);
+
+            // toggle enable / disable by pressing the KeyDown
+            if(!scenarioCataloge.currentScenarioParams.isEnabled)
+            {
+                Debug.Log("Scenario: enabled");
+                scenarioCataloge.startScenario(ScenarioCataloge.scenario.scenario_3);
+            }
+            else 
+            {
+                Debug.Log("Scenario: disabled");
+                scenarioCataloge.currentScenarioParams.isEnabled = false;
+            }
         }
     }
 

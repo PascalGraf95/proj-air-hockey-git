@@ -83,6 +83,7 @@ public class AirHockeyAgent : Agent
     private PuckController puckController;
     private PusherController pusherAgentController;
     private PusherController pusherHumanController;
+    private ScenarioCataloge scenarioCataloge;
     private Rigidbody guidanceRods;
     private const float PusherOffsetY = 0.01f;
 
@@ -182,6 +183,7 @@ public class AirHockeyAgent : Agent
         sceneController = GetComponent<SceneController>();
         pusherAgentController = GameObject.Find("PusherAgent").GetComponent<PusherController>();
         puckController = GameObject.Find("Puck").GetComponent<PuckController>();
+        scenarioCataloge = GetComponent<ScenarioCataloge>();
 
         if (GameObject.Find("PusherHuman") != null)
         {
@@ -591,7 +593,14 @@ public class AirHockeyAgent : Agent
 
         #region Movement and Clipping
         //print((puckController.GetCurrentPosition() - pusherAgentController.GetCurrentPosition()).magnitude);
-        pusherAgentController.Act(new Vector2(x, z));
+        if (scenarioCataloge.currentScenarioParams.isEnabled)
+        {
+            pusherAgentController.Act_Szenario(new Vector2(x, z), scenarioCataloge.currentScenarioParams.boundPusherAgent);
+        }
+        else
+        {
+            pusherAgentController.Act(new Vector2(x, z));
+        }
         #endregion
     }
 

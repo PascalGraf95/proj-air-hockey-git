@@ -495,7 +495,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 11.55
+  m_fontSize: 9.1
   m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2649,6 +2649,8 @@ MonoBehaviour:
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
   actionType: 1
+  pusherActuatorZ: {fileID: 0}
+  pusherActuatorX: {fileID: 0}
 --- !u!114 &250115468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5275,7 +5277,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 15.75
+  m_fontSize: 13.05
   m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5752,7 +5754,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 10.95
+  m_fontSize: 9.35
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -11732,7 +11734,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 21.75
+  m_fontSize: 17.25
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -13990,6 +13992,7 @@ GameObject:
   - component: {fileID: 919132147958298414}
   - component: {fileID: 919132147958298424}
   - component: {fileID: 919132147958298425}
+  - component: {fileID: 919132147958298426}
   m_Layer: 0
   m_Name: 3DAirHockeyTable
   m_TagString: Untagged
@@ -14191,6 +14194,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4279f19c903a4d84e8c1cf5bfab624fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &919132147958298426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132147958298411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47d9bccc528b98e409d210de1d14bbf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!33 &923504064602305110
@@ -36289,7 +36304,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3881779651548995388}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

@@ -6,6 +6,7 @@ using Unity;
 using Unity.MLAgents.Sensors;
 using Unity.MLAgents.Actuators;
 using System;
+using Mujoco;
 
 public class HumanAgentClone : Agent
 {
@@ -13,6 +14,9 @@ public class HumanAgentClone : Agent
     private PusherController pusherAgentController;
     private PusherController pusherHumanController;
     [SerializeField] private ActionType actionType = ActionType.Continuous;
+
+    public MjActuator pusherActuatorZ;
+    public MjActuator pusherActuatorX;
 
     /*
      *  Rotationsmatrix 
@@ -110,7 +114,6 @@ public class HumanAgentClone : Agent
         #region Movement and Clipping
         pusherHumanController.Act(new Vector2(-x, -z));
         #endregion
-        
-    }
 
+    }
 }

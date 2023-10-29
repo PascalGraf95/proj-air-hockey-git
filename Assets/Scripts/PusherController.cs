@@ -58,6 +58,9 @@ public class PusherController : MonoBehaviour
     private Vector3 agentGoalPos;
     private Vector3 humanGoalPos;
     private Vector3 puckPos;
+    //TODO: Test humanSelfplay borders
+    private GameObject SelfplayPusherAgentPosition;
+    private Vector3 tmpTarget;
 
     //Cameras
     private Camera playerViewCamera;
@@ -84,6 +87,7 @@ public class PusherController : MonoBehaviour
         agentGoalPos = GameObject.Find("AgentPlayerGoal").GetComponent<Transform>().position;
         humanGoalPos = GameObject.Find("AgentPlayerGoal").GetComponent<Transform>().position;
         puckPos = GameObject.Find("AgentPlayerGoal").GetComponent<Transform>().position;
+        SelfplayPusherAgentPosition = GameObject.Find("PusherAgent"); //TODO: Test humanSelfplay borders
         cursor = GameObject.Find("HandCursor");
         hand = GameObject.Find("StylizedHand");
         selfplayMaterial = Resources.Load("White-Hand-Selfplay") as Material;
@@ -120,12 +124,35 @@ public class PusherController : MonoBehaviour
                 // get current mouse position on left mouse button click
                 if (Input.GetMouseButton(0))
                 {
+                    // TODO: test border ! humand hand 
+                    /*if(targetPosition.x > 0)
+                    {
+                        pusherActuatorX.Control = 0;
+                        acceleration = arriveSteeringBehavior.Arrive(targetPosition, GetCurrentPosition(), GetCurrentVelocity(), TargetRadius, SlowDownRadius, MaxSpeed, MaxAcceleration, TimeToTarget);
+                        pusherActuatorZ.Control = -acceleration.y;
+                        cursor.transform.position = new Vector3(targetPosition.x, cursorOffset.y, targetPosition.y + cursorOffset.z);
+                    }
+                    else
+                    {
+                        // compute arrive steering behavior
+                        acceleration = arriveSteeringBehavior.Arrive(targetPosition, GetCurrentPosition(), GetCurrentVelocity(), TargetRadius, SlowDownRadius, MaxSpeed, MaxAcceleration, TimeToTarget);
+
+                        // set actuator acceleration
+                        pusherActuatorX.Control = -acceleration.x;
+                        pusherActuatorZ.Control = -acceleration.y;
+                    }*/
+
+                    //Debug.Log("Move:");
+                    //Debug.Log(targetPosition);
+
+                    //TODO: normale mode
                     // compute arrive steering behavior
                     acceleration = arriveSteeringBehavior.Arrive(targetPosition, GetCurrentPosition(), GetCurrentVelocity(), TargetRadius, SlowDownRadius, MaxSpeed, MaxAcceleration, TimeToTarget);
 
                     // set actuator acceleration
                     pusherActuatorX.Control = -acceleration.x;
                     pusherActuatorZ.Control = -acceleration.y;
+
                 }
                 else
                 {
@@ -237,11 +264,40 @@ public class PusherController : MonoBehaviour
     }
 
     /// <summary>
+    /// Control pusher agents with scenario boundaries. 
+    /// </summary>
+    /// <param name="targetVelocity"></param>
+    /// <param name="defenseBoundary"></param>
+    public void Act_Szenario(Vector2 targetVelocity, Boundary defenseBoundary)
+    {
+        Vector3 position = SelfplayPusherAgentPosition.transform.localPosition;
+
+        // check pusher agent clone right and left boundaries TODO: delete follow line 68.8f, 0f, -30f, 30f
+        if (((position.x > defenseBoundary.Left) && (targetVelocity.x > 0)) ||
+            ((position.x < defenseBoundary.Right) && (targetVelocity.x < 0)))
+        {
+            targetVelocity.x = 0;   // set target velocity zero if pusher out of boundary
+        }
+
+        // check pusher agent clone up and down boundaries
+       if (((position.z < defenseBoundary.Up) && (targetVelocity.y < 0)) ||
+            ((position.z > defenseBoundary.Down) && (targetVelocity.y > 0)))
+       {
+            targetVelocity.y = 0; // set target velocity zero if pusher out of boundary
+       }
+
+       Act(targetVelocity);    // continou with act
+    }
+
+    /// <summary>
     /// Control pusher agents with maximum velocity. 
     /// </summary>
     /// <param name="targetVelocity"></param>
     public void Act(Vector2 targetVelocity)
     {
+        /*Vector3 position = SelfplayPusherAgentPosition.GetComponent<Transform>().position;
+        Debug.Log("Position: (" + position.x + ";" + position.z + ")\n" + "Target: " + targetVelocity.x + ";" + targetVelocity.y + ")");
+        */
         pusherActuatorX.Control = targetVelocity.x * maxVelocity;
         pusherActuatorZ.Control = targetVelocity.y * maxVelocity;
     }
