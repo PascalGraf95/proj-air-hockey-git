@@ -593,11 +593,11 @@ public class AirHockeyAgent : Agent
 
         #region Movement and Clipping
         //print((puckController.GetCurrentPosition() - pusherAgentController.GetCurrentPosition()).magnitude);
-        if (scenarioCataloge.currentScenarioParams.isEnabled)
+        if (scenarioCataloge.currentScenarioParams.currentState == State.isRunnning)
         {
             pusherAgentController.Act_Szenario(new Vector2(x, z), scenarioCataloge.currentScenarioParams.boundPusherAgent);
         }
-        else
+        else if(scenarioCataloge.currentScenarioParams.currentState == State.disabled)
         {
             pusherAgentController.Act(new Vector2(x, z));
         }

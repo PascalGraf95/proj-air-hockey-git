@@ -3,117 +3,214 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using Mujoco;
 using UnityEngine;
 
-public enum puckMoveOnStart
+public enum PuckMoveOnStart
 {
     move,
     rest
 }
 
+public enum State
+{
+    disabled,
+    drivePusherToPosition,
+    start,
+    isRunnning,
+    timeout
+}
+
+// enum with all possibility scenarios
+public enum Scenario
+{
+    scenario_0,
+    scenario_1,
+    scenario_2,
+    scenario_3,
+    scenario_4,
+    scenario_5,
+    scenario_6
+}
+
 // contains all start parameters and configurations of a scenario
 public struct Scenario_t
 {
-    public bool isEnabled;
+    public State currentState;
     public Boundary spawnPuck;
     public Boundary boundPusherAgent;
-    public puckMoveOnStart puckMoveState;
+    public PuckMoveOnStart puckMoveState;
+    public Vector2 targetPusherVelocity;
+    public Vector2 targetPusherPosition;
+    public Scenario currentScenario;
 
-    public Scenario_t(bool enableFlag,
+    public Scenario_t(State state,
                     float puckUp, float puckDown, float puckLeft, float puckRight,
                     float pusherUp, float pusherDown, float pusherLeft, float pusherRight,
-                    puckMoveOnStart moveState)
+                    PuckMoveOnStart moveState,
+                    Vector2 targetVelocity,
+                    Vector2 targetPosition,
+                    Scenario scenario)
     {
-        isEnabled = enableFlag;
+        currentState = state;
         spawnPuck = new Boundary(puckUp, puckDown, puckLeft, puckRight);
         boundPusherAgent = new Boundary(pusherUp, pusherDown, pusherLeft, pusherRight);
         puckMoveState = moveState;
+        targetPusherVelocity = targetVelocity;
+        targetPusherPosition = targetPosition;
+        currentScenario = scenario;
     }
 }
 
 public class ScenarioCataloge : MonoBehaviour
 {
-    // enum with all possibility scenarios
-    public enum scenario
-    {
-        scenario_0,
-        scenario_1,
-        scenario_2,
-        scenario_3,
-        scenario_4,
-        scenario_5,
-        scenario_6
-    }
-
-    public Scenario_t currentScenarioParams  = new Scenario_t(false, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, puckMoveOnStart.rest);
+    #region privates
+    public Scenario_t currentScenarioParams  = new Scenario_t(State.disabled, 
+                                                            0f, 0f, 0f, 0f, 
+                                                            0f, 0f, 0f, 0f, 
+                                                            PuckMoveOnStart.rest,
+                                                            new Vector2(0, 0),
+                                                            new Vector2(0, 0),
+                                                            Scenario.scenario_0);
 
     private SceneController sceneController;
+    private PusherController pusherAgentController;
+    private GameObject PusherAgentPosition;
+
+    private readonly int TimeoutTimeMS = 5000;   // scenario timeout in milliseconds
+    private Timer t;
+    #endregion
 
     void Start()
     {
-        setupSzenarioCataloge();
-    }
-
-    private void setupSzenarioCataloge()
-    {
         // find game objects
         sceneController = GameObject.Find("3DAirHockeyTable").GetComponent<SceneController>();
+        pusherAgentController = GameObject.Find("PusherAgent").GetComponent<PusherController>();
+        PusherAgentPosition = GameObject.Find("PusherAgent");
     }
 
-    public void startScenario(scenario scen)
+    private void Update()
+    {
+        switch(currentScenarioParams.currentState)
+        {
+            case State.disabled:
+                // do nothing
+                break;
+            case State.drivePusherToPosition:
+                Vector3 position = PusherAgentPosition.transform.localPosition;
+
+                Int32 x = 20;
+                Int32 z = -20;
+
+                if (position.x > currentScenarioParams.boundPusherAgent.Right || 
+                    position.z < currentScenarioParams.boundPusherAgent.Up)
+                {
+                    // drive pusher as long as the scenario pusher zone is not reached
+                    if(position.x > currentScenarioParams.boundPusherAgent.Right)
+                    {
+                        x = 0;
+                    }
+                    if(position.z < currentScenarioParams.boundPusherAgent.Up)
+                    {
+                        z = 0;
+                    }
+                    pusherAgentController.Act(new Vector2(x, z));
+                }
+                else
+                {
+                    // go into next step
+                    currentScenarioParams.currentState = State.start;
+                }
+                break;
+            case State.start:
+                Debug.Log("State: Start");
+                // start scenario timer to create timeout if agent failed task
+                t = new Timer();
+                t.Interval = TimeoutTimeMS;
+                t.Elapsed += OnTimedEvent;
+                t.Start();
+
+                // go into running state
+                currentScenarioParams.currentState = State.isRunnning;
+                break;
+            case State.isRunnning:
+                // TODO: if scenario is succeed go also into timeout or end state                
+                break;
+            case State.timeout:
+                // TODO: start next scenario
+                Debug.Log("State: Timeout");
+                t.Stop();
+                currentScenarioParams.currentState = State.disabled;
+                break;
+        }
+    }
+
+    private void OnTimedEvent(object sender,ElapsedEventArgs e)
+    {
+        currentScenarioParams.currentState = State.timeout;
+    }
+
+    public void startScenario(Scenario scen)
     {
         // setup the scenario correspong to the scenario case
         switch (scen)
         {
-            case scenario.scenario_0:
-                /*currentScenarioParams = new Scenario_t(true,
+            case Scenario.scenario_0:
+                currentScenarioParams = new Scenario_t(State.drivePusherToPosition,
                                                         -35f, 0f, 33f, -33f, // up down left right
-                                                        70f, 30f, -30f, -15f,   // up down left right
-                                                        puckMoveOnStart.rest);*/
+                                                        -68f, -50f, 30f, 20f,   // up down left right
+                                                        PuckMoveOnStart.rest,
+                                                        new Vector2(0,0),
+                                                        new Vector2(0,0),
+                                                        Scenario.scenario_0);
+                // drive oponent pusher in zone
+                // start time
+                // spawn puck
+                // finished after goal or timeout
                 break;
-            case scenario.scenario_1:
+            case Scenario.scenario_1:
                 /*currentScenarioParams = new Scenario_t(true,
                                                         -35f, 0f, 33f, -33f, // up down left right
                                                         70f, 0f, -30f, 15f,   // up down left right
-                                                        puckMoveOnStart.rest);*/
+                                                        PuckMoveOnStart.rest);*/
                 break;
-            case scenario.scenario_2:
+            /*case scenario.scenario_2:
                 currentScenarioParams = new Scenario_t(true,
                                                         -35f, 0f, 33f, -33f, // up down left right
                                                         -55f, -25f, 15f, -15f,   // up down left right
-                                                        puckMoveOnStart.rest);
+                                                        PuckMoveOnStart.rest);
                 break;
             case scenario.scenario_3:
                 currentScenarioParams = new Scenario_t(true,
                                                         -35f, 0f, 33f, -33f, // up down left right
                                                         -55f, -25f, 15f, -15f,   // up down left right
-                                                        puckMoveOnStart.rest);
+                                                        PuckMoveOnStart.rest);
                 break;
             case scenario.scenario_4:
                 currentScenarioParams = new Scenario_t(true,
                                                         -35f, 0f, 33f, -33f, // up down left right
                                                         -55f, -25f, 15f, -15f,   // up down left right
-                                                        puckMoveOnStart.rest);
+                                                        PuckMoveOnStart.rest);
                 break;
             case scenario.scenario_5:
                 currentScenarioParams = new Scenario_t(true,
                                                         -35f, 0f, 33f, -33f, // up down left right
                                                         -55f, -25f, 15f, -15f,   // up down left right
-                                                        puckMoveOnStart.rest);
+                                                        PuckMoveOnStart.rest);
                 break;
             case scenario.scenario_6:
                 currentScenarioParams = new Scenario_t(true,
                                                         -35f, 0f, 33f, -33f, // up down left right
                                                         -55f, -25f, 15f, -15f,   // up down left right
-                                                        puckMoveOnStart.rest);
-                break;
+                                                        PuckMoveOnStart.rest);
+                break;*/
             default:
                 break;
         }
 
         // set reset puck state correspond to the moving state
-        /*if (currentScenarioParams.puckMoveState == puckMoveOnStart.move)
+        /*if (currentScenarioParams.puckMoveState == PuckMoveOnStart.move)
         {
             gameObject.GetComponent<AirHockeyAgent>().resetPuckState = ResetPuckState.scenarioCatalogeMove;
         }
