@@ -5,6 +5,7 @@ using Mujoco;
 using System;
 using YamlDotNet.Core;
 using UnityEngine.Analytics;
+using Google.Protobuf.WellKnownTypes;
 
 public enum ResetPuckState
 {
@@ -168,7 +169,7 @@ public class PuckController : MonoBehaviour
 
             if (resetPuckState == ResetPuckState.scenarioCatalogeMove)
             {
-                var ang = UnityEngine.Random.Range(-180f, 180f);
+                var ang = UnityEngine.Random.Range(-270f, -90f);
                 var vel = UnityEngine.Random.Range(30f, 150f);
 
                 slideJointX.Velocity = Mathf.Sin(ang * Mathf.Deg2Rad) * vel;

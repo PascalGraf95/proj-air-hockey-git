@@ -78,8 +78,9 @@ public class ScenarioCataloge : MonoBehaviour
     private PusherController pusherAgentController;
     private GameObject PusherAgentPosition;
     private PuckController puckController;
+    private MjScene mjScene;
 
-    private readonly int TimeoutTimeMS = 5000;   // scenario timeout in milliseconds
+    private readonly int TimeoutTimeMS = 1000;   // scenario timeout in milliseconds
     private Timer t;
     #endregion
 
@@ -102,8 +103,8 @@ public class ScenarioCataloge : MonoBehaviour
             case State.drivePusherToPosition:
                 Vector3 position = PusherAgentPosition.transform.localPosition;
 
-                Int32 x = 10;
-                Int32 z = -10;
+                Int32 x = 5;
+                Int32 z = -5;
 
                 if (position.x < currentScenarioParams.boundPusherAgent.Right || 
                     position.z > currentScenarioParams.boundPusherAgent.Down)
@@ -111,12 +112,10 @@ public class ScenarioCataloge : MonoBehaviour
                     // drive pusher as long as the scenario pusher zone is not reached
                     if(position.x > currentScenarioParams.boundPusherAgent.Right)
                     {
-                        Debug.Log("x: " + position.x);
                         x = 0;
                     }
                     if(position.z < currentScenarioParams.boundPusherAgent.Down)
                     {
-                        Debug.Log("z: " + position.z);
                         z = 0;
                     }
                     pusherAgentController.Act(new Vector2(x, z));
@@ -124,30 +123,36 @@ public class ScenarioCataloge : MonoBehaviour
                 else
                 {
                     // go into next step
-                    Debug.Log("\npos x: " + position.x + " > " + currentScenarioParams.boundPusherAgent.Right);    //  -68f, -50f, 30f, 20f up down left right
-                    Debug.Log("\npos z: " + position.z + " < " + currentScenarioParams.boundPusherAgent.Down);
                     currentScenarioParams.currentState = State.start;
                 }
                 break;
             case State.start:
-                Debug.Log("State: Start");
                 // start scenario timer to create timeout if agent failed task
                 t = new Timer();
                 t.Interval = TimeoutTimeMS;
                 t.Elapsed += OnTimedEvent;
                 t.Start();
 
-                // TODO: spawn puck
                 // set reset puck state correspond to the moving state
+                //puckController.transform.GetComponent<MeshRenderer>().enabled = false;
                 if (currentScenarioParams.puckMoveState == PuckMoveOnStart.move)
                 {
-                    gameObject.GetComponent<AirHockeyAgent>().resetPuckState = ResetPuckState.scenarioCatalogeMove;
+                    puckController.resetPuckState = ResetPuckState.scenarioCatalogeMove;
                 }
                 else
                 {
-                    gameObject.GetComponent<AirHockeyAgent>().resetPuckState = ResetPuckState.scenarioCataloge;
+                    puckController.resetPuckState = ResetPuckState.scenarioCataloge;
                 }
                 puckController.Reset();
+
+                // Mujoco Scene Reset
+                if (mjScene == null)
+                {
+                    mjScene = GameObject.Find("MjScene").GetComponent<MjScene>();
+                }
+                mjScene.DestroyScene();
+                mjScene.CreateScene();
+                //puckController.transform.GetComponent<MeshRenderer>().enabled = true;
 
                 // TODO: disable selfplay and start agentClone
 
@@ -180,7 +185,7 @@ public class ScenarioCataloge : MonoBehaviour
                 currentScenarioParams = new Scenario_t(State.drivePusherToPosition,
                                                         -35f, 0f, 33f, -33f, // up down left right
                                                         -68f, -50f, 30f, 20f,   // up down left right
-                                                        PuckMoveOnStart.rest,
+                                                        PuckMoveOnStart.move,
                                                         new Vector2(0,0),
                                                         new Vector2(0,0),
                                                         Scenario.scenario_0);
