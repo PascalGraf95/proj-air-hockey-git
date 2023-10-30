@@ -77,6 +77,7 @@ public class ScenarioCataloge : MonoBehaviour
     private SceneController sceneController;
     private PusherController pusherAgentController;
     private GameObject PusherAgentPosition;
+    private PuckController puckController;
 
     private readonly int TimeoutTimeMS = 5000;   // scenario timeout in milliseconds
     private Timer t;
@@ -88,6 +89,7 @@ public class ScenarioCataloge : MonoBehaviour
         sceneController = GameObject.Find("3DAirHockeyTable").GetComponent<SceneController>();
         pusherAgentController = GameObject.Find("PusherAgent").GetComponent<PusherController>();
         PusherAgentPosition = GameObject.Find("PusherAgent");
+        puckController = GameObject.Find("Puck").GetComponent<PuckController>();
     }
 
     private void Update()
@@ -100,19 +102,21 @@ public class ScenarioCataloge : MonoBehaviour
             case State.drivePusherToPosition:
                 Vector3 position = PusherAgentPosition.transform.localPosition;
 
-                Int32 x = 20;
-                Int32 z = -20;
+                Int32 x = 10;
+                Int32 z = -10;
 
-                if (position.x > currentScenarioParams.boundPusherAgent.Right || 
-                    position.z < currentScenarioParams.boundPusherAgent.Up)
+                if (position.x < currentScenarioParams.boundPusherAgent.Right || 
+                    position.z > currentScenarioParams.boundPusherAgent.Down)
                 {
                     // drive pusher as long as the scenario pusher zone is not reached
                     if(position.x > currentScenarioParams.boundPusherAgent.Right)
                     {
+                        Debug.Log("x: " + position.x);
                         x = 0;
                     }
-                    if(position.z < currentScenarioParams.boundPusherAgent.Up)
+                    if(position.z < currentScenarioParams.boundPusherAgent.Down)
                     {
+                        Debug.Log("z: " + position.z);
                         z = 0;
                     }
                     pusherAgentController.Act(new Vector2(x, z));
@@ -120,6 +124,8 @@ public class ScenarioCataloge : MonoBehaviour
                 else
                 {
                     // go into next step
+                    Debug.Log("\npos x: " + position.x + " > " + currentScenarioParams.boundPusherAgent.Right);    //  -68f, -50f, 30f, 20f up down left right
+                    Debug.Log("\npos z: " + position.z + " < " + currentScenarioParams.boundPusherAgent.Down);
                     currentScenarioParams.currentState = State.start;
                 }
                 break;
@@ -130,6 +136,20 @@ public class ScenarioCataloge : MonoBehaviour
                 t.Interval = TimeoutTimeMS;
                 t.Elapsed += OnTimedEvent;
                 t.Start();
+
+                // TODO: spawn puck
+                // set reset puck state correspond to the moving state
+                if (currentScenarioParams.puckMoveState == PuckMoveOnStart.move)
+                {
+                    gameObject.GetComponent<AirHockeyAgent>().resetPuckState = ResetPuckState.scenarioCatalogeMove;
+                }
+                else
+                {
+                    gameObject.GetComponent<AirHockeyAgent>().resetPuckState = ResetPuckState.scenarioCataloge;
+                }
+                puckController.Reset();
+
+                // TODO: disable selfplay and start agentClone
 
                 // go into running state
                 currentScenarioParams.currentState = State.isRunnning;
@@ -164,10 +184,6 @@ public class ScenarioCataloge : MonoBehaviour
                                                         new Vector2(0,0),
                                                         new Vector2(0,0),
                                                         Scenario.scenario_0);
-                // drive oponent pusher in zone
-                // start time
-                // spawn puck
-                // finished after goal or timeout
                 break;
             case Scenario.scenario_1:
                 /*currentScenarioParams = new Scenario_t(true,
@@ -224,7 +240,7 @@ public class ScenarioCataloge : MonoBehaviour
         //gameObject.transform.Find("PusherHumanSelfplay").GetComponent<MeshRenderer>().enabled = true;
 
         // reset game and start scenario
-        sceneController.ResetSceneAgentPlaying();
+        //sceneController.ResetSceneAgentPlaying();
         // TODO start scenario
     }
 }
