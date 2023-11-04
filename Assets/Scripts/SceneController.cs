@@ -21,7 +21,7 @@ public class SceneController : MonoBehaviour
     #region Variables
     private PuckController puckController;
     private PuckControllerAPI puckControllerAPI;
-    private ScenarioCataloge scenarioCataloge;    // TODO delete
+    private ScenarioCataloge scenarioCataloge;
     private PusherController pusherHumanController;
     private PusherController pusherAgentController;
     private GameObject cursor;
@@ -86,7 +86,7 @@ public class SceneController : MonoBehaviour
         }
 
         puckControllerAPI = GetComponent<PuckControllerAPI>();
-        scenarioCataloge = GetComponent<ScenarioCataloge>();    // TODO delete
+        scenarioCataloge = GetComponent<ScenarioCataloge>();
     }
 
     public void Awake()
@@ -150,7 +150,7 @@ public class SceneController : MonoBehaviour
         {
             //puckControllerAPI.simulate_real_puck();
 
-            // toggle enable / disable by pressing the KeyDown
+            // start scenario, if it is disabled
             if(scenarioCataloge.currentScenarioParams.currentState == State.disabled)
             {
                 Debug.Log("Scenario: enabled");
@@ -172,12 +172,19 @@ public class SceneController : MonoBehaviour
 
     private void HumanPlayerScored()
     {
-        episodesWithoutScore = 0;
-        humanPlayerScore++;
-        currentGameState = GameState.playerScored;
-        if (uiController != null)
+        if(scenarioCataloge.currentScenarioParams.currentState == State.isRunnning)
         {
-            uiController.HumanPlayerScored(humanPlayerScore);
+            scenarioCataloge.goalDetected();
+        }
+        else
+        {
+            episodesWithoutScore = 0;
+            humanPlayerScore++;
+            currentGameState = GameState.playerScored;
+            if (uiController != null)
+            {
+                uiController.HumanPlayerScored(humanPlayerScore);
+            }
         }
     }
 

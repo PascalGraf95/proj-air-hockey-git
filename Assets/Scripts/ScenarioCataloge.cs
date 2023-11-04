@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -80,8 +81,9 @@ public class ScenarioCataloge : MonoBehaviour
     private PuckController puckController;
     private MjScene mjScene;
 
-    private readonly int TimeoutTimeMS = 1000;   // scenario timeout in milliseconds
+    private readonly int TimeoutTimeMS = 10000;   // scenario timeout in milliseconds
     private Timer t;
+    private uint scenarioCnt = 0;
     #endregion
 
     void Start()
@@ -160,19 +162,26 @@ public class ScenarioCataloge : MonoBehaviour
                 currentScenarioParams.currentState = State.isRunnning;
                 break;
             case State.isRunnning:
-                // TODO: if scenario is succeed go also into timeout or end state                
+                // keep running as long as a goal is detected or the timeout event is triggered                
                 break;
             case State.timeout:
-                // TODO: start next scenario
                 Debug.Log("State: Timeout");
                 t.Stop();
                 currentScenarioParams.currentState = State.disabled;
+                scenarioCnt++;
+                startScenario((Scenario)scenarioCnt);
                 break;
         }
     }
 
     private void OnTimedEvent(object sender,ElapsedEventArgs e)
     {
+        currentScenarioParams.currentState = State.timeout;
+    }
+
+    public void goalDetected()
+    {
+        Debug.Log("Scenario succeed!");
         currentScenarioParams.currentState = State.timeout;
     }
 
@@ -183,69 +192,17 @@ public class ScenarioCataloge : MonoBehaviour
         {
             case Scenario.scenario_0:
                 currentScenarioParams = new Scenario_t(State.drivePusherToPosition,
-                                                        -35f, 0f, 33f, -33f, // up down left right
+                                                        -35f, 0f, 33f, -33f,    // up down left right
                                                         -68f, -50f, 30f, 20f,   // up down left right
                                                         PuckMoveOnStart.move,
                                                         new Vector2(0,0),
                                                         new Vector2(0,0),
                                                         Scenario.scenario_0);
                 break;
-            case Scenario.scenario_1:
-                /*currentScenarioParams = new Scenario_t(true,
-                                                        -35f, 0f, 33f, -33f, // up down left right
-                                                        70f, 0f, -30f, 15f,   // up down left right
-                                                        PuckMoveOnStart.rest);*/
-                break;
-            /*case scenario.scenario_2:
-                currentScenarioParams = new Scenario_t(true,
-                                                        -35f, 0f, 33f, -33f, // up down left right
-                                                        -55f, -25f, 15f, -15f,   // up down left right
-                                                        PuckMoveOnStart.rest);
-                break;
-            case scenario.scenario_3:
-                currentScenarioParams = new Scenario_t(true,
-                                                        -35f, 0f, 33f, -33f, // up down left right
-                                                        -55f, -25f, 15f, -15f,   // up down left right
-                                                        PuckMoveOnStart.rest);
-                break;
-            case scenario.scenario_4:
-                currentScenarioParams = new Scenario_t(true,
-                                                        -35f, 0f, 33f, -33f, // up down left right
-                                                        -55f, -25f, 15f, -15f,   // up down left right
-                                                        PuckMoveOnStart.rest);
-                break;
-            case scenario.scenario_5:
-                currentScenarioParams = new Scenario_t(true,
-                                                        -35f, 0f, 33f, -33f, // up down left right
-                                                        -55f, -25f, 15f, -15f,   // up down left right
-                                                        PuckMoveOnStart.rest);
-                break;
-            case scenario.scenario_6:
-                currentScenarioParams = new Scenario_t(true,
-                                                        -35f, 0f, 33f, -33f, // up down left right
-                                                        -55f, -25f, 15f, -15f,   // up down left right
-                                                        PuckMoveOnStart.rest);
-                break;*/
             default:
+                currentScenarioParams.currentState = State.disabled;
+                scenarioCnt = 0;    // reset scenario counter
                 break;
         }
-
-        // set reset puck state correspond to the moving state
-        /*if (currentScenarioParams.puckMoveState == PuckMoveOnStart.move)
-        {
-            gameObject.GetComponent<AirHockeyAgent>().resetPuckState = ResetPuckState.scenarioCatalogeMove;
-        }
-        else
-        {
-            gameObject.GetComponent<AirHockeyAgent>().resetPuckState = ResetPuckState.scenarioCataloge;
-        }*/
-
-        // set pusherHumanSelfplay  TODO add later (it is always aas selfplay game)
-        //gameObject.transform.Find("PusherHuman").GetComponent<MeshRenderer>().enabled = false;
-        //gameObject.transform.Find("PusherHumanSelfplay").GetComponent<MeshRenderer>().enabled = true;
-
-        // reset game and start scenario
-        //sceneController.ResetSceneAgentPlaying();
-        // TODO start scenario
     }
 }
