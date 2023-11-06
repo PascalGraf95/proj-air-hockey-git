@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Timers;
 using Mujoco;
 using UnityEngine;
+using UnityEngine.UIElements;
+using static Mujoco.MujocoLib;
 
 public enum PuckMoveOnStart
 {
@@ -80,10 +82,16 @@ public class ScenarioCataloge : MonoBehaviour
     private GameObject PusherAgentPosition;
     private PuckController puckController;
     private MjScene mjScene;
+    private string[] csvMsgScen = new string[Enum.GetValues(typeof(Scenario)).Length];
 
-    private readonly int TimeoutTimeMS = 10000;   // scenario timeout in milliseconds
+    private readonly int TimeoutTimeMS = 2000;   // scenario timeout in milliseconds
+    private string filePath = "csvFiles/";
+    private uint numberOfRounds = 3;
+
     private Timer t;
     private uint scenarioCnt = 0;
+    private uint roundsCnt = 0;
+    
     #endregion
 
     void Start()
@@ -93,6 +101,9 @@ public class ScenarioCataloge : MonoBehaviour
         pusherAgentController = GameObject.Find("PusherAgent").GetComponent<PusherController>();
         PusherAgentPosition = GameObject.Find("PusherAgent");
         puckController = GameObject.Find("Puck").GetComponent<PuckController>();
+
+        // initial csv scenario message
+        resetCSVmsgState();
     }
 
     private void Update()
@@ -165,7 +176,7 @@ public class ScenarioCataloge : MonoBehaviour
                 // keep running as long as a goal is detected or the timeout event is triggered                
                 break;
             case State.timeout:
-                Debug.Log("State: Timeout");
+                Debug.Log("timeout");
                 t.Stop();
                 currentScenarioParams.currentState = State.disabled;
                 scenarioCnt++;
@@ -174,14 +185,42 @@ public class ScenarioCataloge : MonoBehaviour
         }
     }
 
+    private void resetCSVmsgState()
+    {
+        // initial csv scenario message
+        for (int i = 0; i < Enum.GetValues(typeof(Scenario)).Length; i++)
+        {
+            csvMsgScen[i] = "notPlayed";
+        }
+    }
+
     private void OnTimedEvent(object sender,ElapsedEventArgs e)
     {
+        csvMsgScen[scenarioCnt] = "timeout";
         currentScenarioParams.currentState = State.timeout;
+    }
+
+    private string toCSV()
+    {
+        /*
+         * create a csv string to write it into the csv file
+         */
+        string str = "";
+        for(int i = 0; i < Enum.GetValues(typeof(Scenario)).Length; i++)
+        {
+            if(i != 0)
+            {
+                str += ";";
+            }
+            str += csvMsgScen[i];
+        }
+
+        return str;
     }
 
     public void goalDetected()
     {
-        Debug.Log("Scenario succeed!");
+        csvMsgScen[scenarioCnt] = "succeed";
         currentScenarioParams.currentState = State.timeout;
     }
 
@@ -200,8 +239,64 @@ public class ScenarioCataloge : MonoBehaviour
                                                         Scenario.scenario_0);
                 break;
             default:
-                currentScenarioParams.currentState = State.disabled;
                 scenarioCnt = 0;    // reset scenario counter
+
+                // write CSV file
+                if(roundsCnt == 0)
+                {
+                    // Get the current date and time
+                    DateTime currentDateTime = DateTime.Now;
+                    filePath += currentDateTime.ToString("yyMMddHHmmss") + "scenarioResult.csv";
+
+                    // create and write to file
+                    try
+                    {
+                        using (StreamWriter writer = new StreamWriter(filePath))
+                        {
+                            writer.WriteLine(toCSV());
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.LogError(ex);
+                    }
+                    resetCSVmsgState();
+
+                    roundsCnt++;
+
+                    startScenario(Scenario.scenario_0);
+                    break;
+                }
+                // start scenario again, if not all rounds are played
+                else if (roundsCnt >= numberOfRounds) 
+                {
+                    Debug.Log("lastRound");
+                    currentScenarioParams.currentState = State.disabled;
+                    roundsCnt = 0;
+                    sceneController.ResetScene(false);
+                }
+                // if scenario is going on in the next round
+                else
+                {
+                    // start new round
+                    startScenario(Scenario.scenario_0);
+
+                    roundsCnt++;
+                }
+
+                //write to existing file
+                try
+                {
+                    using (StreamWriter writer = File.AppendText(filePath))
+                    {
+                        writer.WriteLine(toCSV());
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.LogError(ex);
+                }
+                resetCSVmsgState();
                 break;
         }
     }
