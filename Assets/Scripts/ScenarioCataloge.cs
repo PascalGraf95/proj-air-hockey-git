@@ -176,7 +176,7 @@ public class ScenarioCataloge : MonoBehaviour
                 // keep running as long as a goal is detected or the timeout event is triggered                
                 break;
             case State.timeout:
-                Debug.Log("timeout");
+                Debug.Log("timeout");   // TODO: delte line
                 t.Stop();
                 currentScenarioParams.currentState = State.disabled;
                 scenarioCnt++;
@@ -244,15 +244,27 @@ public class ScenarioCataloge : MonoBehaviour
                 // write CSV file
                 if(roundsCnt == 0)
                 {
-                    // Get the current date and time
+                    // get the current date and time
                     DateTime currentDateTime = DateTime.Now;
                     filePath += currentDateTime.ToString("yyMMddHHmmss") + "scenarioResult.csv";
+
+                    // add file header
+                    string header = "";
+                    for(int i = 0; i < Enum.GetValues(typeof(Scenario)).Length; i++)
+                    {
+                        if(i != 0)
+                        {
+                            header += ";";
+                        }
+                        header += "Scenario_" + i.ToString();
+                    }
 
                     // create and write to file
                     try
                     {
                         using (StreamWriter writer = new StreamWriter(filePath))
                         {
+                            writer.WriteLine(header);
                             writer.WriteLine(toCSV());
                         }
                     }
@@ -268,9 +280,8 @@ public class ScenarioCataloge : MonoBehaviour
                     break;
                 }
                 // start scenario again, if not all rounds are played
-                else if (roundsCnt >= numberOfRounds) 
+                else if (roundsCnt >= (numberOfRounds - 1)) 
                 {
-                    Debug.Log("lastRound");
                     currentScenarioParams.currentState = State.disabled;
                     roundsCnt = 0;
                     sceneController.ResetScene(false);
