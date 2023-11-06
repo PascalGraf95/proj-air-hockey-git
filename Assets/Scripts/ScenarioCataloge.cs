@@ -85,9 +85,10 @@ public class ScenarioCataloge : MonoBehaviour
     private string[] csvMsgScen = new string[Enum.GetValues(typeof(Scenario)).Length];
 
     private readonly int TimeoutTimeMS = 2000;   // scenario timeout in milliseconds
-    private string filePath = "csvFiles/";
-    private uint numberOfRounds = 3;
-
+    private string path = "csvFiles/";
+    private string filePath = "";
+    
+    private uint numberOfRounds = 1;
     private Timer t;
     private uint scenarioCnt = 0;
     private uint roundsCnt = 0;
@@ -180,7 +181,7 @@ public class ScenarioCataloge : MonoBehaviour
                 t.Stop();
                 currentScenarioParams.currentState = State.disabled;
                 scenarioCnt++;
-                startScenario((Scenario)scenarioCnt);
+                selectScenario((Scenario)scenarioCnt);
                 break;
         }
     }
@@ -218,13 +219,31 @@ public class ScenarioCataloge : MonoBehaviour
         return str;
     }
 
+    public int startScenario(uint rounds)
+    {
+        // start scenario, if it is not already running
+        if (currentScenarioParams.currentState == State.disabled)
+        {
+            numberOfRounds = rounds;    // set scenario raounds
+
+            selectScenario(Scenario.scenario_0); // start with first scenario
+
+            return 1;
+        }
+        // retrun 0, if scenario is already running
+        else
+        {
+            return 0;
+        }
+    }
+
     public void goalDetected()
     {
         csvMsgScen[scenarioCnt] = "succeed";
         currentScenarioParams.currentState = State.timeout;
     }
 
-    public void startScenario(Scenario scen)
+    public void selectScenario(Scenario scen)
     {
         // setup the scenario correspong to the scenario case
         switch (scen)
@@ -246,7 +265,7 @@ public class ScenarioCataloge : MonoBehaviour
                 {
                     // get the current date and time
                     DateTime currentDateTime = DateTime.Now;
-                    filePath += currentDateTime.ToString("yyMMddHHmmss") + "scenarioResult.csv";
+                    filePath = path + currentDateTime.ToString("yyMMddHHmmss") + "scenarioResult.csv";
 
                     // add file header
                     string header = "";
@@ -276,7 +295,7 @@ public class ScenarioCataloge : MonoBehaviour
 
                     roundsCnt++;
 
-                    startScenario(Scenario.scenario_0);
+                    selectScenario(Scenario.scenario_0);
                     break;
                 }
                 // start scenario again, if not all rounds are played
@@ -290,7 +309,7 @@ public class ScenarioCataloge : MonoBehaviour
                 else
                 {
                     // start new round
-                    startScenario(Scenario.scenario_0);
+                    selectScenario(Scenario.scenario_0);
 
                     roundsCnt++;
                 }
