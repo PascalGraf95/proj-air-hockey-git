@@ -12,7 +12,8 @@ using static Mujoco.MujocoLib;
 
 public enum PuckMoveOnStart
 {
-    move,
+    moveSlow,
+    moveFast,
     rest
 }
 
@@ -29,12 +30,18 @@ public enum State
 public enum Scenario
 {
     scenario_0,
+    scenario_0_1,
     scenario_1,
+    scenario_1_1,
     scenario_2,
+    scenario_2_1,
     scenario_3,
+    scenario_3_1,
     scenario_4,
+    scenario_4_1,
     scenario_5,
-    scenario_6
+    scenario_5_1,
+    scenario_D1
 }
 
 // contains all start parameters and configurations of a scenario
@@ -117,6 +124,7 @@ public class ScenarioCataloge : MonoBehaviour
             case State.drivePusherToPosition:
                 Vector3 position = PusherAgentPosition.transform.localPosition;
 
+                // drive to position velocity
                 Int32 x = 5;
                 Int32 z = -5;
 
@@ -149,9 +157,13 @@ public class ScenarioCataloge : MonoBehaviour
 
                 // set reset puck state correspond to the moving state
                 //puckController.transform.GetComponent<MeshRenderer>().enabled = false;
-                if (currentScenarioParams.puckMoveState == PuckMoveOnStart.move)
+                if (currentScenarioParams.puckMoveState == PuckMoveOnStart.moveSlow)
                 {
-                    puckController.resetPuckState = ResetPuckState.scenarioCatalogeMove;
+                    puckController.resetPuckState = ResetPuckState.scenarioCatalogeMoveSlow;
+                }
+                else if (currentScenarioParams.puckMoveState == PuckMoveOnStart.moveFast)
+                {
+                    puckController.resetPuckState = ResetPuckState.scenarioCatalogeMoveFast;
                 }
                 else
                 {
@@ -252,10 +264,29 @@ public class ScenarioCataloge : MonoBehaviour
                 currentScenarioParams = new Scenario_t(State.drivePusherToPosition,
                                                         -35f, 0f, 33f, -33f,    // up down left right
                                                         -68f, -50f, 30f, 20f,   // up down left right
-                                                        PuckMoveOnStart.move,
+                                                        PuckMoveOnStart.moveSlow,
                                                         new Vector2(0,0),
                                                         new Vector2(0,0),
                                                         Scenario.scenario_0);
+                break;
+            case Scenario.scenario_0_1:
+                currentScenarioParams.currentState = State.drivePusherToPosition;
+                currentScenarioParams.puckMoveState = PuckMoveOnStart.moveFast;
+                currentScenarioParams.currentScenario = Scenario.scenario_0_1;
+                break;
+            case Scenario.scenario_1:
+                currentScenarioParams = new Scenario_t(State.drivePusherToPosition,
+                                                        -68f, -50f, 33f, -33f,  // up down left right
+                                                        -68f, -50f, 30f, 20f,   // up down left right
+                                                        PuckMoveOnStart.moveSlow,
+                                                        new Vector2(0, 0),
+                                                        new Vector2(0, 0),
+                                                        Scenario.scenario_1);
+                break;
+            case Scenario.scenario_1_1:
+                currentScenarioParams.currentState = State.drivePusherToPosition;
+                currentScenarioParams.puckMoveState = PuckMoveOnStart.moveFast;
+                currentScenarioParams.currentScenario = Scenario.scenario_1_1;
                 break;
             default:
                 scenarioCnt = 0;    // reset scenario counter

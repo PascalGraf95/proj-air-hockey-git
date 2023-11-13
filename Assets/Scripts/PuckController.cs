@@ -17,7 +17,8 @@ public enum ResetPuckState
     randomMiddlePosition,
     ColliderTest,
     scenarioCataloge,
-    scenarioCatalogeMove
+    scenarioCatalogeMoveSlow,
+    scenarioCatalogeMoveFast
 }
 
 public class PuckController : MonoBehaviour
@@ -151,7 +152,8 @@ public class PuckController : MonoBehaviour
             //slideJointX.Velocity = Mathf.Sin(ANG * Mathf.Deg2Rad) * VEL;
             //slideJointZ.Velocity = Mathf.Cos(ANG * Mathf.Deg2Rad) * VEL;
         }
-        else if (resetPuckState == ResetPuckState.scenarioCataloge || resetPuckState == ResetPuckState.scenarioCatalogeMove)
+        else if (resetPuckState == ResetPuckState.scenarioCataloge || resetPuckState == ResetPuckState.scenarioCatalogeMoveSlow 
+                || resetPuckState == ResetPuckState.scenarioCatalogeMoveFast)
         {
             Vector2 newPuckPosition;
             while (true)
@@ -167,10 +169,18 @@ public class PuckController : MonoBehaviour
             slideJointZ.Configuration = newPuckPosition.y;
             transform.position = new Vector3(newPuckPosition.x, 0.1f, newPuckPosition.y);
 
-            if (resetPuckState == ResetPuckState.scenarioCatalogeMove)
+            if (resetPuckState == ResetPuckState.scenarioCatalogeMoveSlow)
             {
                 var ang = UnityEngine.Random.Range(-270f, -90f);
-                var vel = UnityEngine.Random.Range(30f, 150f);
+                var vel = UnityEngine.Random.Range(10f, 30f);
+
+                slideJointX.Velocity = Mathf.Sin(ang * Mathf.Deg2Rad) * vel;
+                slideJointZ.Velocity = Mathf.Cos(ang * Mathf.Deg2Rad) * vel;
+            }
+            else if (resetPuckState == ResetPuckState.scenarioCatalogeMoveFast)
+            {
+                var ang = UnityEngine.Random.Range(-270f, -90f);
+                var vel = UnityEngine.Random.Range(80f, 150f);
 
                 slideJointX.Velocity = Mathf.Sin(ang * Mathf.Deg2Rad) * vel;
                 slideJointZ.Velocity = Mathf.Cos(ang * Mathf.Deg2Rad) * vel;
