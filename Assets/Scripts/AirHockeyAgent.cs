@@ -18,7 +18,7 @@ using Unity.Barracuda;
 using Unity.MLAgents.Policies;
 using System.Linq;
 
-public enum ActionType { Discrete, Continuous };
+public enum ActionType { Discrete, ContinuousVelocity, ContinuousPosition };
 public enum TaskType
 {
     FullGameUntilGoal,
@@ -47,12 +47,6 @@ public enum ObservationSpace
 public class AirHockeyAgent : Agent
 {
     #region Public Parameters
-    // PUBLIC
-    [Space(5)]
-    [Header("Learning Agent Parameters")]
-    [Tooltip("Choose between Discrete and Continuous action space. This depends on your training algorithm.")]
-    public ActionType actionType;
-
     [Space(5)]
     [Header("Training Scenario")]
     public TaskType taskType;
@@ -78,6 +72,7 @@ public class AirHockeyAgent : Agent
     #endregion
 
     #region Private Parameters
+    private ActionType actionType;
     private DemonstrationRecorder demonstrationRecorder;
     private SceneController sceneController;
     private PuckController puckController;
@@ -96,6 +91,8 @@ public class AirHockeyAgent : Agent
     public float currentAccMag;
     [HideInInspector]
     public float currentJerkMag;
+    [SerializeField] private Slider sliderX;
+    [SerializeField] private Slider sliderZ;
 
     private int gamesSinceNewEpisode;
     private int lastGameReset;
@@ -120,6 +117,7 @@ public class AirHockeyAgent : Agent
         episodeRewardShift["ScoreRewardShift"] = new float[shiftLen];
         episodeRewardShift["BackwallRewardShift"] = new float[shiftLen];
         episodeRewardShift["StayInCenterRewardShift"] = new float[shiftLen];
+        episodeRewardShift["AvoidPositionUpdateRewardShift"] = new float[shiftLen];
 
         episodeReward.Clear();
         episodeReward["StepReward"] = 0f;
@@ -131,6 +129,7 @@ public class AirHockeyAgent : Agent
         episodeReward["BackwallReward"] = 0f;
         episodeReward["OutOfBounds"] = 0f;
         episodeReward["StayInCenterReward"] = 0f;
+        episodeReward["AvoidPositionUpdateReward"] = 0f;
     }
 
     // Start is called before the first frame update
@@ -148,10 +147,12 @@ public class AirHockeyAgent : Agent
         SideChannelManager.RegisterSideChannel(environmentInformationSideChannel);
 
         // Init demonstration recorder
+        /*
         demonstrationRecorder = gameObject.AddComponent<DemonstrationRecorder>();
         demonstrationRecorder.DemonstrationDirectory = @"Demonstrations";
         demonstrationRecorder.DemonstrationName = DateTime.Now.ToString("'yy''MM''dd'_'HH''mm''ss'") + "_AirhockeyDemonstrationRecording";
         demonstrationRecorder.NumStepsToRecord = 0; // If you set Num Steps To Record to 0 then recording will continue until you manually end the play session.
+        */
 
     }
 
@@ -166,8 +167,7 @@ public class AirHockeyAgent : Agent
     public void SetupAirHockeyAgent()
     {
         // Get environment information to list of key value pairs format to send it via side channel
-        var rewardComposition = new Dictionary<string, string>();
-        rewardComposition = GetRewardComposition();
+        var rewardComposition = GetRewardComposition();
         var behaviorParametersList = GetBehaviorParameters();
         // convert dictionary to list of key value pairs
         var rewardCompositionList = rewardComposition.ToList();
@@ -181,6 +181,7 @@ public class AirHockeyAgent : Agent
 
         // Get the controllers for scene, puck and the two pushers
         sceneController = GetComponent<SceneController>();
+        actionType = sceneController.actionType;
         pusherAgentController = GameObject.Find("PusherAgent").GetComponent<PusherController>();
         puckController = GameObject.Find("Puck").GetComponent<PuckController>();
         scenarioCataloge = GetComponent<ScenarioCataloge>();
@@ -188,12 +189,10 @@ public class AirHockeyAgent : Agent
         if (GameObject.Find("PusherHuman") != null)
         {
             pusherHumanController = GameObject.Find("PusherHuman").GetComponent<PusherController>();
-            demonstrationRecorder.Record = true;
         }
         else if (GameObject.Find("PusherHumanSelfplay") != null)
         {
             pusherHumanController = GameObject.Find("PusherHumanSelfplay").GetComponent<PusherController>();
-            demonstrationRecorder.Record = false;
         }
         else
         {
@@ -279,13 +278,22 @@ public class AirHockeyAgent : Agent
 
     public override void Heuristic(in ActionBuffers actionsOut)
     {
-        if(actionType == ActionType.Continuous)
+        if(actionType == ActionType.ContinuousVelocity)
         {
             var continuousActionsOut = actionsOut.ContinuousActions;
             float horizontalInput = Input.GetAxis("Horizontal");
             float verticalInput = Input.GetAxis("Vertical");
             continuousActionsOut[0] = horizontalInput;
             continuousActionsOut[1] = verticalInput;
+        }
+        else if(actionType == ActionType.ContinuousPosition)
+        {
+            var continuousActionsOut = actionsOut.ContinuousActions;
+            float horizontalInput = Input.GetAxis("Horizontal");
+            float verticalInput = Input.GetAxis("Vertical");
+            continuousActionsOut[0] = sliderX.value;
+            continuousActionsOut[1] = sliderZ.value;
+            continuousActionsOut[2] = 1f;
         }
         else
         {
@@ -314,7 +322,6 @@ public class AirHockeyAgent : Agent
                 discreteActionsOut[0] = 0;
             }
         }
-
     }
     
 
@@ -323,13 +330,32 @@ public class AirHockeyAgent : Agent
         #region Action Calculations
         float x = 0f;
         float z = 0f;
+        bool setNewTarget = false;
 
-        if(actionType == ActionType.Continuous)
+        if(actionType == ActionType.ContinuousVelocity)
         {
             var continouosActions = actionsIn.ContinuousActions;
             // MOVEMENT CALCULATIONS
             x = continouosActions[0];
             z = continouosActions[1];
+
+            // Action Dead Zone to avoid unneccessary movement
+            if (Mathf.Abs(x) < 0.03f)
+            {
+                x = 0f;
+            }
+            if (Mathf.Abs(z) < 0.03f)
+            {
+                z = 0f;
+            }
+        }
+        else if(actionType == ActionType.ContinuousPosition)
+        {
+            var continouosActions = actionsIn.ContinuousActions;
+            // MOVEMENT CALCULATIONS
+            x = continouosActions[0];
+            z = continouosActions[1];
+            setNewTarget = (continouosActions[2] > 0.5);
         }
         else
         {
@@ -360,15 +386,6 @@ public class AirHockeyAgent : Agent
             }
         }
 
-        // Action Dead Zone to avoid unneccessary movement
-        if (Mathf.Abs(x) < 0.03f)
-        {
-            x = 0f;
-        }
-        if (Mathf.Abs(z) < 0.03f)
-        {
-            z = 0f;
-        }
         #endregion
 
         #region RewardComposition
@@ -383,6 +400,7 @@ public class AirHockeyAgent : Agent
         episodeRewardShift["ScoreRewardShift"][shiftIdx] = 0;
         episodeRewardShift["BackwallRewardShift"][shiftIdx] = 0;
         episodeRewardShift["StayInCenterRewardShift"][shiftIdx] = 0;
+        episodeRewardShift["AvoidPositionUpdateRewardShift"][shiftIdx] = 0;
 
         #region UniversalRewards
 
@@ -459,6 +477,7 @@ public class AirHockeyAgent : Agent
             }
 
         }
+
         // Punish if the puck is in the agent's half.
         if (rewardComposition.puckInAgentsHalfReward < 0f)
         {
@@ -472,6 +491,7 @@ public class AirHockeyAgent : Agent
                 AddReward(scaledHalfReward);
             }
         }
+
         // Punish changing direction too much.
         if (rewardComposition.avoidDirectionChangesReward < 0f)
         {
@@ -483,7 +503,7 @@ public class AirHockeyAgent : Agent
             var currentJerk = lastAcc - currentAcc;
             if((pusherAgentController.GetCurrentPosition() - puckController.GetCurrentPosition()).magnitude > 10)
             {
-                currentJerkMag = currentJerk.magnitude / 100;
+                currentJerkMag = currentJerk.magnitude / 100f;
             }
             else
             {
@@ -499,6 +519,7 @@ public class AirHockeyAgent : Agent
             lastVel = currentVel;
             lastAcc = currentAcc;
         }
+
         // Punish running into boundaries.
         if (rewardComposition.avoidBoundariesReward < 0f)
         {
@@ -520,6 +541,7 @@ public class AirHockeyAgent : Agent
                 episodeRewardShift["BoundaryRewardShift"][shiftIdx] = currentBoundaryReward;
             }
         }
+
         // Punish staying away from the center as soon as the puck is in the opponent's half.
         if (rewardComposition.stayInCenterReward < 0f)
         {
@@ -552,6 +574,7 @@ public class AirHockeyAgent : Agent
                 episodeRewardShift["StayInCenterRewardShift"][shiftIdx] = scaledStepReward;
             }
         }
+
         // Reward high puck velocities
         if (rewardComposition.encouragePuckMovementReward > 0f)
         {
@@ -560,10 +583,25 @@ public class AirHockeyAgent : Agent
             episodeReward["PuckVelocityReward"] += Mathf.Clamp(puckVelocity.magnitude * rewardComposition.encouragePuckMovementReward, 0f, 1f);
             episodeRewardShift["PuckVelocityRewardShift"][shiftIdx] = Mathf.Clamp(puckVelocity.magnitude * rewardComposition.encouragePuckMovementReward, 0f, 1f);
         }
+
+        // Punish setting new target positions too often
+        if (rewardComposition.avoidPositionUpdateReward < 0f)
+        {
+            if(setNewTarget)
+            {
+                var scaledPositionUpdateReward = rewardComposition.avoidPositionUpdateReward / 50;
+                episodeReward["AvoidPositionUpdateReward"] += scaledPositionUpdateReward;
+                episodeRewardShift["AvoidPositionUpdateRewardShift"][shiftIdx] = scaledPositionUpdateReward;
+                AddReward(scaledPositionUpdateReward);
+            }
+        }
+
         // STEP REWARD
         var scaledReward = rewardComposition.stepReward / 100;
         AddReward(scaledReward);
         episodeReward["StepReward"] += scaledReward;
+
+
         #endregion
 
         #region TaskSpecificRewards
@@ -599,7 +637,14 @@ public class AirHockeyAgent : Agent
         }
         else if(scenarioCataloge.currentScenarioParams.currentState == State.disabled)
         {
-            pusherAgentController.Act(new Vector2(x, z));
+            if(actionType == ActionType.ContinuousPosition && !setNewTarget)
+            {
+                return;
+            }
+            else
+            {
+                pusherAgentController.Act(new Vector2(x, z));
+            }
         }
         #endregion
     }

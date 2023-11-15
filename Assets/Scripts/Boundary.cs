@@ -1,3 +1,4 @@
+/*
 public struct Boundary
 {
     public float Up, Down, Left, Right;
@@ -7,3 +8,4 @@ public struct Boundary
         Up = up; Down = down; Left = left; Right = right;
     }
 }
+*/

@@ -32,9 +32,6 @@ public class PuckController : MonoBehaviour
     public float VEL = 0f;
     public float ANG = 0f;
     public Vector2 startPos = Vector2.zero;
-    public Boundary agentPusherBoundary = new Boundary(68.8f, 0f, -30f, 30f);
-    public Boundary humanPusherBoundary = new Boundary(0, -68.8f, -30f, 30f);
-    public Boundary puckBoundary = new Boundary(50f, -50f, -30f, 30f);
     private PusherController pusherAgentController;
     private PusherController pusherHumanController;
     private ScenarioCataloge scenarioCataloge;
@@ -106,8 +103,8 @@ public class PuckController : MonoBehaviour
             Vector2 newPuckPosition;
             while (true)
             {
-                var posX = UnityEngine.Random.Range(agentPusherBoundary.Left, agentPusherBoundary.Right) * 0.9f;
-                var posZ = UnityEngine.Random.Range(agentPusherBoundary.Down, agentPusherBoundary.Up) * 0.9f;
+                var posX = UnityEngine.Random.Range(Boundaries.agentPusherBoundarySoft.left, Boundaries.agentPusherBoundarySoft.right) * 0.9f;
+                var posZ = UnityEngine.Random.Range(Boundaries.agentPusherBoundarySoft.down, Boundaries.agentPusherBoundarySoft.up) * 0.9f;
                 newPuckPosition = new Vector2(posX, posZ);
                 if (Vector2.Distance(newPuckPosition, pusherAgentController.GetCurrentPosition()) > 5f &&
                     Vector2.Distance(newPuckPosition, pusherHumanController.GetCurrentPosition()) > 5f) break;
@@ -121,8 +118,8 @@ public class PuckController : MonoBehaviour
             Vector2 newPuckPosition;
             while (true)
             {
-                var posX = UnityEngine.Random.Range(puckBoundary.Left, puckBoundary.Right) * 0.9f;
-                var posZ = UnityEngine.Random.Range(puckBoundary.Down, puckBoundary.Up) * 0.9f;
+                var posX = UnityEngine.Random.Range(Boundaries.puckBoundary.left, Boundaries.puckBoundary.right) * 0.9f;
+                var posZ = UnityEngine.Random.Range(Boundaries.puckBoundary.down, Boundaries.puckBoundary.up) * 0.9f;
                 newPuckPosition = new Vector2(posX, posZ);
                 if (Vector2.Distance(newPuckPosition, pusherAgentController.GetCurrentPosition()) > 5f &&
                     Vector2.Distance(newPuckPosition, pusherHumanController.GetCurrentPosition()) > 5f) break;
@@ -138,13 +135,11 @@ public class PuckController : MonoBehaviour
 
                 slideJointX.Velocity = Mathf.Sin(ang * Mathf.Deg2Rad) * vel;
                 slideJointZ.Velocity = Mathf.Cos(ang * Mathf.Deg2Rad) * vel;
-                //actuatorX.Control = Mathf.Sin(ang * Mathf.Deg2Rad) * vel * 100;
-                //actuatorZ.Control = Mathf.Cos(ang * Mathf.Deg2Rad) * vel * 100;
             }
         }
         else if (resetPuckState == ResetPuckState.randomMiddlePosition)
         {
-            transform.position = new Vector3(UnityEngine.Random.Range(puckBoundary.Left, puckBoundary.Right) * 0.9f, 0.5f, UnityEngine.Random.Range(agentPusherBoundary.Down, agentPusherBoundary.Up) * 0.9f);
+            transform.position = new Vector3(UnityEngine.Random.Range(Boundaries.puckBoundary.left, Boundaries.puckBoundary.right) * 0.9f, 0.5f, UnityEngine.Random.Range(Boundaries.agentPusherBoundarySoft.down, Boundaries.agentPusherBoundarySoft.up) * 0.9f);
         }
         else if (resetPuckState == ResetPuckState.ColliderTest)
         {

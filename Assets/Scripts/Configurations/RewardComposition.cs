@@ -30,5 +30,7 @@ public class RewardComposition : ScriptableObject
     public float stepReward;
     [Range(-10f, 0f)]
     public float outOfBoundsReward;
+    [Range(-1f, 0f)]
+    public float avoidPositionUpdateReward;
 
 }

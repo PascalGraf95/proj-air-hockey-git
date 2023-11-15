@@ -29,23 +29,10 @@ public class PusherController : MonoBehaviour
     public MjActuator pusherActuatorX;
     public MjSlideJoint slideJointX;
     public MjSlideJoint slideJointZ;
-    
-    [Header("Steering Behavior")]
-    [Tooltip("Maximum acceleration the Character is able to reach.")]
-    public float MaxAcceleration;
-    [Tooltip("Maximum speed the Character is able to reach.")]
-    public float MaxSpeed;
-    [Tooltip("Radius for arriving at the target.")]
-    public float TargetRadius;
-    [Tooltip("Radius for beginning to slow down.")]
-    public float SlowDownRadius;
-    [Tooltip("Time over which to achieve the target speed.")]
-    public float TimeToTarget;
 
     // steering behavior fields
+    private ActionType actionType;
     private Vector2 targetPosition;
-    private Vector2 acceleration;
-    private ArriveSteeringBehavior arriveSteeringBehavior;
     private GameObject cursor;
     private readonly Vector3 cursorOffset = new Vector3(0, 5, -10);
 
@@ -74,6 +61,7 @@ public class PusherController : MonoBehaviour
     private Material selfplayMaterial;
     private Material humanplayMaterial;
     private GameObject hand;
+    private float pusherOffset = 45.75f;
     // Update is called once per frame
     private void Start()
     {
@@ -92,22 +80,33 @@ public class PusherController : MonoBehaviour
         hand = GameObject.Find("StylizedHand");
         selfplayMaterial = Resources.Load("White-Hand-Selfplay") as Material;
         humanplayMaterial = Resources.Load("White-Hand") as Material;
-
-        arriveSteeringBehavior = new ArriveSteeringBehavior();
         targetPosition = GetCurrentPosition();
 
         Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
-    public void SetPusherConfiguration(PusherConfiguration pusherConfiguration)
+    public void SetPusherConfiguration(PusherConfiguration pusherConfiguration, ActionType actionType)
     {
+        this.actionType = actionType;
         maxVelocity = pusherConfiguration.maxVelocity;
         slideJointX.Settings.Spring.Damping = pusherConfiguration.jointDamping;
         slideJointZ.Settings.Spring.Damping = pusherConfiguration.jointDamping;
         geom.Mass = pusherConfiguration.mass;
-        pusherActuatorX.CustomParams.Kv = pusherConfiguration.velocityControlFactor;
-        pusherActuatorZ.CustomParams.Kv = pusherConfiguration.velocityControlFactor;
-        MaxAcceleration = pusherConfiguration.maxVelocity;
+        if(actionType == ActionType.ContinuousVelocity)
+        {
+            pusherActuatorX.Type = MjActuator.ActuatorType.Velocity;
+            pusherActuatorZ.Type = MjActuator.ActuatorType.Velocity;
+            pusherActuatorX.CustomParams.Kv = pusherConfiguration.velocityControlFactor;
+            pusherActuatorZ.CustomParams.Kv = pusherConfiguration.velocityControlFactor;
+        }
+        else if(actionType == ActionType.ContinuousPosition)
+        {
+            pusherActuatorX.Type = MjActuator.ActuatorType.Position;
+            pusherActuatorZ.Type = MjActuator.ActuatorType.Position;
+            pusherActuatorX.CustomParams.Kp = pusherConfiguration.velocityControlFactor;
+            pusherActuatorZ.CustomParams.Kp = pusherConfiguration.velocityControlFactor;
+        }
     }
 
     void Update()
@@ -124,40 +123,21 @@ public class PusherController : MonoBehaviour
                 // get current mouse position on left mouse button click
                 if (Input.GetMouseButton(0))
                 {
-                    // TODO: test border ! humand hand 
-                    /*if(targetPosition.x > 0)
+                    if (targetPosition.x < Boundaries.humanPusherBoundaryHard.right &&
+                        targetPosition.x > Boundaries.humanPusherBoundaryHard.left)
                     {
-                        pusherActuatorX.Control = 0;
-                        acceleration = arriveSteeringBehavior.Arrive(targetPosition, GetCurrentPosition(), GetCurrentVelocity(), TargetRadius, SlowDownRadius, MaxSpeed, MaxAcceleration, TimeToTarget);
-                        pusherActuatorZ.Control = -acceleration.y;
-                        cursor.transform.position = new Vector3(targetPosition.x, cursorOffset.y, targetPosition.y + cursorOffset.z);
+                        pusherActuatorX.Control = -targetPosition.x;
                     }
-                    else
+                    if (targetPosition.y < Boundaries.humanPusherBoundaryHard.up &&
+                        targetPosition.y > Boundaries.humanPusherBoundaryHard.down)
                     {
-                        // compute arrive steering behavior
-                        acceleration = arriveSteeringBehavior.Arrive(targetPosition, GetCurrentPosition(), GetCurrentVelocity(), TargetRadius, SlowDownRadius, MaxSpeed, MaxAcceleration, TimeToTarget);
-
-                        // set actuator acceleration
-                        pusherActuatorX.Control = -acceleration.x;
-                        pusherActuatorZ.Control = -acceleration.y;
-                    }*/
-
-                    //Debug.Log("Move:");
-                    //Debug.Log(targetPosition);
-
-                    //TODO: normale mode
-                    // compute arrive steering behavior
-                    acceleration = arriveSteeringBehavior.Arrive(targetPosition, GetCurrentPosition(), GetCurrentVelocity(), TargetRadius, SlowDownRadius, MaxSpeed, MaxAcceleration, TimeToTarget);
-
-                    // set actuator acceleration
-                    pusherActuatorX.Control = -acceleration.x;
-                    pusherActuatorZ.Control = -acceleration.y;
-
+                        pusherActuatorZ.Control = -targetPosition.y - pusherOffset; // offset between AirHockeyTable and Pusher coordinate system
+                    }
                 }
                 else
                 {
                     cursor.transform.position = new Vector3(targetPosition.x, cursorOffset.y, targetPosition.y + cursorOffset.z);
-                }               
+                }
                 break;
         }
     }
@@ -189,7 +169,7 @@ public class PusherController : MonoBehaviour
         // Todo: maybe change order of if-condition to detect raycast with collider agent side first
         if (colliderPlaneTable.Raycast(ray, out RaycastHit hitData, 1000f))
         {
-            mousePosTable = hitData.point;            
+            mousePosTable = hitData.point;
             targetPosition = new Vector2(mousePosTable.x, mousePosTable.z);
             cursor.transform.position = transform.position + cursorOffset;
         }
@@ -213,7 +193,7 @@ public class PusherController : MonoBehaviour
             }
             targetPosition.x = cursor.transform.position.x;
             targetPosition.y = cursor.transform.position.z;
-        }   
+        }
         return targetPosition;
     }
 
@@ -227,16 +207,16 @@ public class PusherController : MonoBehaviour
         {
             if (resetMode == ResetPusherMode.Standard)
             {
-                transform.position = new Vector3(0, 0, 45.75f);
+                transform.position = new Vector3(0, 0, pusherOffset);
             }
             else if (resetMode == ResetPusherMode.Random)
             {
                 xPos = Random.Range(-30f, 30f);
                 zPos = Random.Range(-40f, 23f);
-                transform.position = new Vector3(xPos, 0, 45.75f + zPos);
+                transform.position = new Vector3(xPos, 0, pusherOffset + zPos);
             }
         }
-        else if(pusherType == "Human")
+        else if (pusherType == "Human")
         {
             if (setToNirvana)
             {
@@ -246,13 +226,13 @@ public class PusherController : MonoBehaviour
             {
                 if (resetMode == ResetPusherMode.Standard)
                 {
-                    transform.position = new Vector3(0, 0, -45.75f);
+                    transform.position = new Vector3(0, 0, -pusherOffset);
                 }
                 else if (resetMode == ResetPusherMode.Random)
                 {
                     xPos = Random.Range(-30f, 30f);
                     zPos = Random.Range(-23f, 40f);
-                    transform.position = new Vector3(xPos, 0, -45.75f + zPos);
+                    transform.position = new Vector3(xPos, 0, -pusherOffset + zPos);
                 }
             }
         }
@@ -293,13 +273,27 @@ public class PusherController : MonoBehaviour
     /// Control pusher agents with maximum velocity. 
     /// </summary>
     /// <param name="targetVelocity"></param>
-    public void Act(Vector2 targetVelocity)
+    public void Act(Vector2 target)
     {
-        /*Vector3 position = SelfplayPusherAgentPosition.GetComponent<Transform>().position;
-        Debug.Log("Position: (" + position.x + ";" + position.z + ")\n" + "Target: " + targetVelocity.x + ";" + targetVelocity.y + ")");
-        */
-        pusherActuatorX.Control = targetVelocity.x * maxVelocity;
-        pusherActuatorZ.Control = targetVelocity.y * maxVelocity;
+        if (actionType == ActionType.ContinuousVelocity)
+        {
+            pusherActuatorX.Control = target.x * maxVelocity;
+            pusherActuatorZ.Control = target.y * maxVelocity;
+        }
+        else if(actionType == ActionType.ContinuousPosition)
+        {
+            float x_mapped = RemapValue(target.x, -1f, 1f, -30, 30);
+            float z_mapped = RemapValue(target.y, -1f, 1f, -23, 40);
+
+            pusherActuatorX.Control = x_mapped;
+            pusherActuatorZ.Control = z_mapped;
+        }
+
+    }
+
+    private static float RemapValue(float x, float min_old, float max_old, float min_new, float max_new)
+    {
+        return (x - min_old)/(max_old - min_old)*(max_new - min_new) + min_new;
     }
 
     /// <summary>
@@ -366,4 +360,3 @@ public class PusherController : MonoBehaviour
         lastVelocity = currentVelocity;
     }
 }
-

@@ -288,6 +288,20 @@ public class ScenarioCataloge : MonoBehaviour
                 currentScenarioParams.puckMoveState = PuckMoveOnStart.moveFast;
                 currentScenarioParams.currentScenario = Scenario.scenario_1_1;
                 break;
+            case Scenario.scenario_2:
+                currentScenarioParams = new Scenario_t(State.drivePusherToPosition,
+                                                        -68f, -50f, 33f, -33f,  // up down left right
+                                                        -68f, -50f, 30f, 20f,   // up down left right
+                                                        PuckMoveOnStart.moveSlow,
+                                                        new Vector2(0, 0),
+                                                        new Vector2(0, 0),
+                                                        Scenario.scenario_2);
+                break;
+            case Scenario.scenario_2_1:
+                currentScenarioParams.currentState = State.drivePusherToPosition;
+                currentScenarioParams.puckMoveState = PuckMoveOnStart.moveFast;
+                currentScenarioParams.currentScenario = Scenario.scenario_2_1;
+                break;
             default:
                 scenarioCnt = 0;    // reset scenario counter
 
