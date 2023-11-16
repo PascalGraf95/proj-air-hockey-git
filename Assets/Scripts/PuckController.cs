@@ -153,8 +153,8 @@ public class PuckController : MonoBehaviour
             Vector2 newPuckPosition;
             while (true)
             {
-                var posX = UnityEngine.Random.Range(scenarioCataloge.currentScenarioParams.spawnPuck.Left, scenarioCataloge.currentScenarioParams.spawnPuck.Right) * 0.9f;
-                var posZ = UnityEngine.Random.Range(scenarioCataloge.currentScenarioParams.spawnPuck.Down, scenarioCataloge.currentScenarioParams.spawnPuck.Up) * 0.9f;
+                var posX = UnityEngine.Random.Range(scenarioCataloge.currentScenarioParams.spawnPuck.left, scenarioCataloge.currentScenarioParams.spawnPuck.right) * 0.9f;
+                var posZ = UnityEngine.Random.Range(scenarioCataloge.currentScenarioParams.spawnPuck.down, scenarioCataloge.currentScenarioParams.spawnPuck.up) * 0.9f;
                 newPuckPosition = new Vector2(posX, posZ);
                 if (Vector2.Distance(newPuckPosition, pusherAgentController.GetCurrentPosition()) > 5f &&
                     Vector2.Distance(newPuckPosition, pusherHumanController.GetCurrentPosition()) > 5f) break;

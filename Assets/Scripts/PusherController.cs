@@ -253,15 +253,15 @@ public class PusherController : MonoBehaviour
         Vector3 position = PusherAgentPosition.transform.localPosition;
 
         // check pusher agent clone right and left boundaries TODO: delete follow line 68.8f, 0f, -30f, 30f
-        if (((position.x > defenseBoundary.Left) && (targetVelocity.x > 0)) ||
-            ((position.x < defenseBoundary.Right) && (targetVelocity.x < 0)))
+        if (((position.x > defenseBoundary.left) && (targetVelocity.x > 0)) ||
+            ((position.x < defenseBoundary.right) && (targetVelocity.x < 0)))
         {
             targetVelocity.x = 0;   // set target velocity zero if pusher out of boundary
         }
 
         // check pusher agent clone up and down boundaries
-       if (((position.z < defenseBoundary.Up) && (targetVelocity.y < 0)) ||
-            ((position.z > defenseBoundary.Down) && (targetVelocity.y > 0)))
+       if (((position.z < defenseBoundary.up) && (targetVelocity.y < 0)) ||
+            ((position.z > defenseBoundary.down) && (targetVelocity.y > 0)))
        {
             targetVelocity.y = 0; // set target velocity zero if pusher out of boundary
        }

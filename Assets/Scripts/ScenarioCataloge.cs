@@ -128,15 +128,15 @@ public class ScenarioCataloge : MonoBehaviour
                 Int32 x = 5;
                 Int32 z = -5;
 
-                if (position.x < currentScenarioParams.boundPusherAgent.Right || 
-                    position.z > currentScenarioParams.boundPusherAgent.Down)
+                if (position.x < currentScenarioParams.boundPusherAgent.right || 
+                    position.z > currentScenarioParams.boundPusherAgent.down)
                 {
                     // drive pusher as long as the scenario pusher zone is not reached
-                    if(position.x > currentScenarioParams.boundPusherAgent.Right)
+                    if(position.x > currentScenarioParams.boundPusherAgent.right)
                     {
                         x = 0;
                     }
-                    if(position.z < currentScenarioParams.boundPusherAgent.Down)
+                    if(position.z < currentScenarioParams.boundPusherAgent.down)
                     {
                         z = 0;
                     }
