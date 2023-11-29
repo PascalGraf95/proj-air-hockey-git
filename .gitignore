@@ -66,6 +66,9 @@ sysinfo.txt
 *.aab
 *.unitypackage
 
+# generated file on scenario catalogue
+*.csv
+
 # Crashlytics generated file
 crashlytics-build.properties
 

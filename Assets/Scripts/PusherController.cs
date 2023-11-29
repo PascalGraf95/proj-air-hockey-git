@@ -46,6 +46,9 @@ public class PusherController : MonoBehaviour
     private Vector3 humanGoalPos;
     private Vector3 puckPos;
 
+    // Scenario cataloge
+    private GameObject PusherAgentPosition;
+
     //Cameras
     private Camera playerViewCamera;
     private Camera agentViewCamera;
@@ -72,6 +75,7 @@ public class PusherController : MonoBehaviour
         agentGoalPos = GameObject.Find("AgentPlayerGoal").GetComponent<Transform>().position;
         humanGoalPos = GameObject.Find("AgentPlayerGoal").GetComponent<Transform>().position;
         puckPos = GameObject.Find("AgentPlayerGoal").GetComponent<Transform>().position;
+        PusherAgentPosition = GameObject.Find("PusherAgent");
         cursor = GameObject.Find("HandCursor");
         hand = GameObject.Find("StylizedHand");
         selfplayMaterial = Resources.Load("White-Hand-Selfplay") as Material;
@@ -237,6 +241,32 @@ public class PusherController : MonoBehaviour
         slideJointX.Velocity = 0f;
         slideJointZ.Velocity = 0f;
         targetPosition = GetCurrentPosition();
+    }
+
+    /// <summary>
+    /// Control pusher agents with scenario boundaries. 
+    /// </summary>
+    /// <param name="targetVelocity"></param>
+    /// <param name="defenseBoundary"></param>
+    public void Act_Szenario(Vector2 targetVelocity, Boundary defenseBoundary)
+    {
+        Vector3 position = PusherAgentPosition.transform.localPosition;
+
+        // check pusher agent clone right and left boundaries TODO: delete follow line 68.8f, 0f, -30f, 30f
+        if (((position.x > defenseBoundary.left) && (targetVelocity.x > 0)) ||
+            ((position.x < defenseBoundary.right) && (targetVelocity.x < 0)))
+        {
+            targetVelocity.x = 0;   // set target velocity zero if pusher out of boundary
+        }
+
+        // check pusher agent clone up and down boundaries
+       if (((position.z < defenseBoundary.up) && (targetVelocity.y < 0)) ||
+            ((position.z > defenseBoundary.down) && (targetVelocity.y > 0)))
+       {
+            targetVelocity.y = 0; // set target velocity zero if pusher out of boundary
+       }
+
+       Act(targetVelocity);    // continou with act
     }
 
     /// <summary>

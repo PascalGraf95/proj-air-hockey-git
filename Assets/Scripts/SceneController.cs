@@ -21,6 +21,7 @@ public class SceneController : MonoBehaviour
     #region Variables
     private PuckController puckController;
     private PuckControllerAPI puckControllerAPI;
+    private ScenarioCataloge scenarioCataloge;
     private PusherController pusherHumanController;
     private PusherController pusherAgentController;
     private GameObject cursor;
@@ -87,6 +88,7 @@ public class SceneController : MonoBehaviour
         }
 
         puckControllerAPI = GetComponent<PuckControllerAPI>();
+        scenarioCataloge = GetComponent<ScenarioCataloge>();
     }
 
     public void Awake()
@@ -148,7 +150,11 @@ public class SceneController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.X))
         {
-            puckControllerAPI.simulate_real_puck();
+            //puckControllerAPI.simulate_real_puck();
+
+            // start scenario, if it is disabled
+            int err = scenarioCataloge.startScenario(3);
+            Debug.Log("Start Scenario State: " + err);
         }
     }
 
@@ -165,12 +171,19 @@ public class SceneController : MonoBehaviour
 
     private void HumanPlayerScored()
     {
-        episodesWithoutScore = 0;
-        humanPlayerScore++;
-        currentGameState = GameState.playerScored;
-        if (uiController != null)
+        if(scenarioCataloge.currentScenarioParams.currentState == State.isRunnning)
         {
-            uiController.HumanPlayerScored(humanPlayerScore);
+            scenarioCataloge.goalDetected();
+        }
+        else
+        {
+            episodesWithoutScore = 0;
+            humanPlayerScore++;
+            currentGameState = GameState.playerScored;
+            if (uiController != null)
+            {
+                uiController.HumanPlayerScored(humanPlayerScore);
+            }
         }
     }
 
