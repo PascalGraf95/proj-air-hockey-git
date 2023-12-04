@@ -160,12 +160,19 @@ public class SceneController : MonoBehaviour
 
     public void AgentPlayerScored()
     {
-        episodesWithoutScore = 0;
-        agentPlayerScore++;
-        currentGameState = GameState.agentScored;
-        if (uiController != null)
+        if (scenarioCataloge.currentScenarioParams.currentState == State.isRunnning)
         {
-            uiController.AgentPlayerScored(agentPlayerScore);
+            scenarioCataloge.goalDetectedAgent();
+        }
+        else 
+        { 
+            episodesWithoutScore = 0;
+            agentPlayerScore++;
+            currentGameState = GameState.agentScored;
+            if (uiController != null)
+            {
+                uiController.AgentPlayerScored(agentPlayerScore);
+            }
         }
     }
 
@@ -173,7 +180,7 @@ public class SceneController : MonoBehaviour
     {
         if(scenarioCataloge.currentScenarioParams.currentState == State.isRunnning)
         {
-            scenarioCataloge.goalDetected();
+            scenarioCataloge.goalDetectedHuman();
         }
         else
         {
