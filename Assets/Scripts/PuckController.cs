@@ -166,7 +166,7 @@ public class PuckController : MonoBehaviour
 
             if (resetPuckState == ResetPuckState.scenarioCatalogeMoveSlow)
             {
-                var ang = UnityEngine.Random.Range(-270f, -90f);
+                var ang = UnityEngine.Random.Range(-90f, 90f);
                 var vel = UnityEngine.Random.Range(10f, 30f);
 
                 slideJointX.Velocity = Mathf.Sin(ang * Mathf.Deg2Rad) * vel;
@@ -174,7 +174,7 @@ public class PuckController : MonoBehaviour
             }
             else if (resetPuckState == ResetPuckState.scenarioCatalogeMoveFast)
             {
-                var ang = UnityEngine.Random.Range(-270f, -90f);
+                var ang = UnityEngine.Random.Range(-90f, 90f);
                 var vel = UnityEngine.Random.Range(80f, 150f);
 
                 slideJointX.Velocity = Mathf.Sin(ang * Mathf.Deg2Rad) * vel;

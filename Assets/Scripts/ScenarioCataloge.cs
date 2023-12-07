@@ -85,8 +85,8 @@ public class ScenarioCataloge : MonoBehaviour
                                                             Scenario.scenario_0);
 
     private SceneController sceneController;
-    private PusherController pusherAgentController;
-    private GameObject PusherAgentPosition;
+    private PusherController pusherOpponentController;
+    private GameObject pusherOpponentPosition;
     private PuckController puckController;
     private MjScene mjScene;
     private string[] csvMsgScen = new string[Enum.GetValues(typeof(Scenario)).Length];
@@ -106,9 +106,21 @@ public class ScenarioCataloge : MonoBehaviour
     {
         // find game objects
         sceneController = GameObject.Find("3DAirHockeyTable").GetComponent<SceneController>();
-        pusherAgentController = GameObject.Find("PusherAgent").GetComponent<PusherController>();
-        PusherAgentPosition = GameObject.Find("PusherAgent");
+        pusherOpponentPosition = GameObject.Find("PusherHumanSelfplay");
         puckController = GameObject.Find("Puck").GetComponent<PuckController>();
+
+        if (GameObject.Find("PusherHuman") != null)
+        {
+            pusherOpponentController = GameObject.Find("PusherHuman").GetComponent<PusherController>();
+        }
+        else if (GameObject.Find("PusherHumanSelfplay") != null)
+        {
+            pusherOpponentController = GameObject.Find("PusherHumanSelfplay").GetComponent<PusherController>();
+        }
+        else
+        {
+            Debug.LogError("Pusher Human GameObject not found.");
+        }
 
         // initial csv scenario message
         resetCSVmsgState();
@@ -122,25 +134,26 @@ public class ScenarioCataloge : MonoBehaviour
                 // do nothing
                 break;
             case State.drivePusherToPosition:
-                Vector3 position = PusherAgentPosition.transform.localPosition;
+                Vector3 position = pusherOpponentPosition.transform.localPosition;
 
                 // drive to position velocity
                 Int32 x = 5;
-                Int32 z = -5;
+                Int32 z = 5;
 
                 if (position.x < currentScenarioParams.boundPusherAgent.right || 
-                    position.z > currentScenarioParams.boundPusherAgent.down)
+                    position.z < currentScenarioParams.boundPusherAgent.up)
                 {
+                    //Debug.Log("drive to in IF");
                     // drive pusher as long as the scenario pusher zone is not reached
                     if(position.x > currentScenarioParams.boundPusherAgent.right)
                     {
                         x = 0;
                     }
-                    if(position.z < currentScenarioParams.boundPusherAgent.down)
+                    if(position.z > currentScenarioParams.boundPusherAgent.up)
                     {
                         z = 0;
                     }
-                    pusherAgentController.Act(new Vector2(x, z));
+                    pusherOpponentController.Act(new Vector2(x, z));
                 }
                 else
                 {
@@ -249,9 +262,15 @@ public class ScenarioCataloge : MonoBehaviour
         }
     }
 
-    public void goalDetected()
+    public void goalDetectedAgent()
     {
-        csvMsgScen[scenarioCnt] = "succeed";
+        csvMsgScen[scenarioCnt] = "Goal";   // goal for the evaluated agent
+        currentScenarioParams.currentState = State.timeout;
+    }
+
+    public void goalDetectedHuman()
+    {
+        csvMsgScen[scenarioCnt] = "failed"; // gaol for the non evaluated oppenet agent
         currentScenarioParams.currentState = State.timeout;
     }
 
@@ -263,7 +282,7 @@ public class ScenarioCataloge : MonoBehaviour
             case Scenario.scenario_0:
                 currentScenarioParams = new Scenario_t(State.drivePusherToPosition,
                                                         -35f, 0f, 33f, -33f,    // up down left right
-                                                        -68f, -50f, 30f, 20f,   // up down left right
+                                                        50f, 68f, 30f, 20f,     // up down left right
                                                         PuckMoveOnStart.moveSlow,
                                                         new Vector2(0,0),
                                                         new Vector2(0,0),

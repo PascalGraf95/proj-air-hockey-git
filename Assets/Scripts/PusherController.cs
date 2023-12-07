@@ -47,7 +47,7 @@ public class PusherController : MonoBehaviour
     private Vector3 puckPos;
 
     // Scenario cataloge
-    private GameObject PusherAgentPosition;
+    private GameObject pusherOpponentPosition;
 
     //Cameras
     private Camera playerViewCamera;
@@ -75,7 +75,7 @@ public class PusherController : MonoBehaviour
         agentGoalPos = GameObject.Find("AgentPlayerGoal").GetComponent<Transform>().position;
         humanGoalPos = GameObject.Find("AgentPlayerGoal").GetComponent<Transform>().position;
         puckPos = GameObject.Find("AgentPlayerGoal").GetComponent<Transform>().position;
-        PusherAgentPosition = GameObject.Find("PusherAgent");
+        pusherOpponentPosition = GameObject.Find("PusherHumanSelfplay");
         cursor = GameObject.Find("HandCursor");
         hand = GameObject.Find("StylizedHand");
         selfplayMaterial = Resources.Load("White-Hand-Selfplay") as Material;
@@ -250,7 +250,7 @@ public class PusherController : MonoBehaviour
     /// <param name="defenseBoundary"></param>
     public void Act_Szenario(Vector2 targetVelocity, Boundary defenseBoundary)
     {
-        Vector3 position = PusherAgentPosition.transform.localPosition;
+        Vector3 position = pusherOpponentPosition.transform.localPosition;
 
         // check pusher agent clone right and left boundaries TODO: delete follow line 68.8f, 0f, -30f, 30f
         if (((position.x > defenseBoundary.left) && (targetVelocity.x > 0)) ||

@@ -7,12 +7,14 @@ using Unity.MLAgents.Sensors;
 using Unity.MLAgents.Actuators;
 using System;
 using Mujoco;
+using System.Runtime.CompilerServices;
 
 public class HumanAgentClone : Agent
 {
     private PuckController puckController;
     private PusherController pusherAgentController;
     private PusherController pusherHumanController;
+    private ScenarioCataloge scenarioCataloge;
     [SerializeField] private ActionType actionType = ActionType.ContinuousVelocity;
 
     public MjActuator pusherActuatorZ;
@@ -28,6 +30,8 @@ public class HumanAgentClone : Agent
     {
         pusherAgentController = GameObject.Find("PusherAgent").GetComponent<PusherController>();
         puckController = GameObject.Find("Puck").GetComponent<PuckController>();
+        scenarioCataloge = GameObject.Find("3DAirHockeyTable").GetComponent<ScenarioCataloge>();
+
         if (GameObject.Find("PusherHuman") != null)
         {
             pusherHumanController = GameObject.Find("PusherHuman").GetComponent<PusherController>();
@@ -120,14 +124,23 @@ public class HumanAgentClone : Agent
             }
         }
         #endregion
+
         #region Movement and Clipping
-        if (actionType == ActionType.ContinuousPosition && !setNewTarget)
+        //print((puckController.GetCurrentPosition() - pusherAgentController.GetCurrentPosition()).magnitude);
+        if (scenarioCataloge.currentScenarioParams.currentState == State.isRunnning)
         {
-            return;
+            pusherHumanController.Act_Szenario(new Vector2(x, z), scenarioCataloge.currentScenarioParams.boundPusherAgent);
         }
-        else
+        else if (scenarioCataloge.currentScenarioParams.currentState == State.disabled)
         {
-            pusherHumanController.Act(new Vector2(-x, -z));
+            if (actionType == ActionType.ContinuousPosition && !setNewTarget)
+            {
+                return;
+            }
+            else
+            {
+                pusherHumanController.Act(new Vector2(-x, -z));
+            }
         }
         #endregion
 
