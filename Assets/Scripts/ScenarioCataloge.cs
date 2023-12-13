@@ -29,18 +29,18 @@ public enum State
 // enum with all possibility scenarios
 public enum Scenario
 {
-    scenario_0,
-    scenario_0_1,
-    scenario_1,
-    scenario_1_1,
-    scenario_2,
-    scenario_2_1,
-    scenario_3,
-    scenario_3_1,
-    scenario_4,
-    scenario_4_1,
-    scenario_5,
-    scenario_5_1,
+    scenario_00,
+    scenario_01,
+    scenario_02,
+    scenario_03,
+    scenario_04,
+    scenario_05,
+    scenario_06,
+    scenario_07,
+    scenario_08,
+    scenario_09,
+    scenario_10,
+    scenario_11,
     scenario_D1
 }
 
@@ -82,7 +82,7 @@ public class ScenarioCataloge : MonoBehaviour
                                                             PuckMoveOnStart.rest,
                                                             new Vector2(0, 0),
                                                             new Vector2(0, 0),
-                                                            Scenario.scenario_0);
+                                                            Scenario.scenario_00);
 
     private SceneController sceneController;
     private PusherController pusherOpponentController;
@@ -251,7 +251,7 @@ public class ScenarioCataloge : MonoBehaviour
         {
             numberOfRounds = rounds;    // set scenario raounds
 
-            selectScenario(Scenario.scenario_0); // start with first scenario
+            selectScenario(Scenario.scenario_00); // start with first scenario
 
             return 1;
         }
@@ -279,47 +279,89 @@ public class ScenarioCataloge : MonoBehaviour
         // setup the scenario correspong to the scenario case
         switch (scen)
         {
-            case Scenario.scenario_0:
+            case Scenario.scenario_00:
                 currentScenarioParams = new Scenario_t(State.drivePusherToPosition,
                                                         -35f, 0f, 33f, -33f,    // up down left right
                                                         50f, 68f, 30f, 20f,     // up down left right
                                                         PuckMoveOnStart.moveSlow,
                                                         new Vector2(0,0),
                                                         new Vector2(0,0),
-                                                        Scenario.scenario_0);
+                                                        Scenario.scenario_00);
                 break;
-            case Scenario.scenario_0_1:
+            case Scenario.scenario_01:
                 currentScenarioParams.currentState = State.drivePusherToPosition;
                 currentScenarioParams.puckMoveState = PuckMoveOnStart.moveFast;
-                currentScenarioParams.currentScenario = Scenario.scenario_0_1;
+                currentScenarioParams.currentScenario = Scenario.scenario_01;
                 break;
-            case Scenario.scenario_1:
+            case Scenario.scenario_02:
                 currentScenarioParams = new Scenario_t(State.drivePusherToPosition,
-                                                        -68f, -50f, 33f, -33f,  // up down left right
-                                                        -68f, -50f, 30f, 20f,   // up down left right
+                                                        -65f, -35f, 33f, -33f,  // puck: up down left right
+                                                        50f, 68f, 30f, 20f,      // pusher: up down left right
                                                         PuckMoveOnStart.moveSlow,
                                                         new Vector2(0, 0),
                                                         new Vector2(0, 0),
-                                                        Scenario.scenario_1);
+                                                        Scenario.scenario_02);
                 break;
-            case Scenario.scenario_1_1:
+            case Scenario.scenario_03:
                 currentScenarioParams.currentState = State.drivePusherToPosition;
                 currentScenarioParams.puckMoveState = PuckMoveOnStart.moveFast;
-                currentScenarioParams.currentScenario = Scenario.scenario_1_1;
+                currentScenarioParams.currentScenario = Scenario.scenario_03;
                 break;
-            case Scenario.scenario_2:
+            case Scenario.scenario_04:
                 currentScenarioParams = new Scenario_t(State.drivePusherToPosition,
-                                                        -68f, -50f, 33f, -33f,  // up down left right
-                                                        -68f, -50f, 30f, 20f,   // up down left right
+                                                        -35f, 0f, 33f, -33f,    // puck: up down left right
+                                                        53f, 20f, 8f, -8f,      // pusher: up down left right
                                                         PuckMoveOnStart.moveSlow,
                                                         new Vector2(0, 0),
                                                         new Vector2(0, 0),
-                                                        Scenario.scenario_2);
+                                                        Scenario.scenario_04);
                 break;
-            case Scenario.scenario_2_1:
+            case Scenario.scenario_05:
                 currentScenarioParams.currentState = State.drivePusherToPosition;
                 currentScenarioParams.puckMoveState = PuckMoveOnStart.moveFast;
-                currentScenarioParams.currentScenario = Scenario.scenario_2_1;
+                currentScenarioParams.currentScenario = Scenario.scenario_05;
+                break;
+            case Scenario.scenario_06:
+                currentScenarioParams = new Scenario_t(State.drivePusherToPosition,
+                                                        -35f, 0f, 33f, -33f,    // puck: up down left right
+                                                        53f, 20f, 15f, -15f,     // pusher: up down left right
+                                                        PuckMoveOnStart.moveSlow,
+                                                        new Vector2(0, 0),
+                                                        new Vector2(0, 0),
+                                                        Scenario.scenario_06);
+                break;
+            case Scenario.scenario_07:
+                currentScenarioParams.currentState = State.drivePusherToPosition;
+                currentScenarioParams.puckMoveState = PuckMoveOnStart.moveFast;
+                currentScenarioParams.currentScenario = Scenario.scenario_07;
+                break;
+            case Scenario.scenario_08:
+                currentScenarioParams = new Scenario_t(State.drivePusherToPosition,
+                                                        -35f, 0f, 33f, -33f,    // puck: up down left right
+                                                        5f, 20f, 15f, -15f,     // pusher: up down left right
+                                                        PuckMoveOnStart.moveSlow,
+                                                        new Vector2(0, 0),
+                                                        new Vector2(0, 0),
+                                                        Scenario.scenario_08);
+                break;
+            case Scenario.scenario_09:
+                currentScenarioParams.currentState = State.drivePusherToPosition;
+                currentScenarioParams.puckMoveState = PuckMoveOnStart.moveFast;
+                currentScenarioParams.currentScenario = Scenario.scenario_09;
+                break;
+            case Scenario.scenario_10:
+                currentScenarioParams = new Scenario_t(State.drivePusherToPosition,
+                                                        -35f, 0f, 33f, -33f,    // puck: up down left right
+                                                        5f, 20f, 33f, -33f,     // pusher: up down left right
+                                                        PuckMoveOnStart.moveSlow,
+                                                        new Vector2(0, 0),
+                                                        new Vector2(0, 0),
+                                                        Scenario.scenario_10);
+                break;
+            case Scenario.scenario_11:
+                currentScenarioParams.currentState = State.drivePusherToPosition;
+                currentScenarioParams.puckMoveState = PuckMoveOnStart.moveFast;
+                currentScenarioParams.currentScenario = Scenario.scenario_11;
                 break;
             default:
                 scenarioCnt = 0;    // reset scenario counter
@@ -359,7 +401,7 @@ public class ScenarioCataloge : MonoBehaviour
 
                     roundsCnt++;
 
-                    selectScenario(Scenario.scenario_0);
+                    selectScenario(Scenario.scenario_00);
                     break;
                 }
                 // start scenario again, if not all rounds are played
@@ -373,7 +415,7 @@ public class ScenarioCataloge : MonoBehaviour
                 else
                 {
                     // start new round
-                    selectScenario(Scenario.scenario_0);
+                    selectScenario(Scenario.scenario_00);
 
                     roundsCnt++;
                 }
