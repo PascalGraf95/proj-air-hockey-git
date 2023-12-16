@@ -91,7 +91,7 @@ public class ScenarioCataloge : MonoBehaviour
     private MjScene mjScene;
     private string[] csvMsgScen = new string[Enum.GetValues(typeof(Scenario)).Length];
 
-    private readonly int TimeoutTimeMS = 2000;   // scenario timeout in milliseconds
+    private readonly int TimeoutTimeMS = 4000;   // scenario timeout in milliseconds
     private string path = "csvFiles/";
     private string filePath = "";
     

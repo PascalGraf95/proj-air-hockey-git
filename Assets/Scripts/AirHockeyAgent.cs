@@ -75,6 +75,7 @@ public class AirHockeyAgent : Agent
     private ActionType actionType;
     private DemonstrationRecorder demonstrationRecorder;
     private SceneController sceneController;
+    private ScenarioCataloge scenarioCataloge;
     private PuckController puckController;
     private PusherController pusherAgentController;
     private PusherController pusherHumanController;
@@ -103,6 +104,10 @@ public class AirHockeyAgent : Agent
     private EnvironmentInformationSideChannel environmentInformationSideChannel;
 
     //StringBuilder csv = new StringBuilder();
+
+    // scenario variables
+    private uint roundsOfScenario = 3;      // number of rounds the scenario will be played
+    private int episodesPerScenario = 10;   // number of episods played before trigger the scenario
     #endregion
 
     private void ResetEpisodeRewards()
@@ -183,6 +188,7 @@ public class AirHockeyAgent : Agent
         actionType = sceneController.actionType;
         pusherAgentController = GameObject.Find("PusherAgent").GetComponent<PusherController>();
         puckController = GameObject.Find("Puck").GetComponent<PuckController>();
+        scenarioCataloge = GetComponent<ScenarioCataloge>();
 
         if (GameObject.Find("PusherHuman") != null)
         {
@@ -213,11 +219,18 @@ public class AirHockeyAgent : Agent
         sceneController.ResetScene(false);
         ResetEpisodeRewards();
 
-        if(episodesPlayed % 15 == 0)
+        if (episodesPlayed % episodesPerScenario == 0)
+        {
+            int err = scenarioCataloge.startScenario(roundsOfScenario);
+            Debug.Log("Start Scenario State: " + err);
+        }
+
+        if (episodesPlayed % 15 == 0)
         {
             Resources.UnloadUnusedAssets();
             GC.Collect();
         }
+
         episodesPlayed++;
     }
 
