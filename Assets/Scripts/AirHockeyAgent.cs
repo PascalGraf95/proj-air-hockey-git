@@ -106,7 +106,7 @@ public class AirHockeyAgent : Agent
     //StringBuilder csv = new StringBuilder();
 
     // scenario variables
-    private uint roundsOfScenario = 3;      // number of rounds the scenario will be played
+    private ushort roundsOfScenario = 3;      // number of rounds the scenario will be played
     private int episodesPerScenario = 10;   // number of episods played before trigger the scenario
     #endregion
 
@@ -221,7 +221,7 @@ public class AirHockeyAgent : Agent
 
         if (episodesPlayed % episodesPerScenario == 0)
         {
-            int err = scenarioCataloge.startScenario(roundsOfScenario);
+            int err = scenarioCataloge.startScenario(roundsOfScenario, 0);  // 0: write all scenarios in one CSV-File
             Debug.Log("Start Scenario State: " + err);
         }
 

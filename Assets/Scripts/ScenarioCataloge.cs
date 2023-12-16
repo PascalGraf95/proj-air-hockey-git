@@ -99,6 +99,8 @@ public class ScenarioCataloge : MonoBehaviour
     private Timer t;
     private uint scenarioCnt = 0;
     private uint roundsCnt = 0;
+    private uint newCSVfile = 0;    // 0: just create a csv file in the first place and write all triggered scenarios in one file
+                                    // 1: create a new file every time the scenario is triggered
     
     #endregion
 
@@ -244,8 +246,20 @@ public class ScenarioCataloge : MonoBehaviour
         return str;
     }
 
-    public int startScenario(uint rounds)
+    public int startScenario(ushort rounds, uint oneFileFlagCSV)
     {
+        // use rounds as ushort to not overload round counter
+
+        newCSVfile = oneFileFlagCSV;
+        if(newCSVfile == 1) // reset round counter, if the new CSV-File flag is set
+        {
+            roundsCnt = 0;
+        }
+        else if(roundsCnt + rounds > 4294967295)    // handle overflow
+        {
+            roundsCnt = rounds;
+        }
+
         // start scenario, if it is not already running
         if (currentScenarioParams.currentState == State.disabled)
         {
@@ -365,9 +379,10 @@ public class ScenarioCataloge : MonoBehaviour
                 break;
             default:
                 scenarioCnt = 0;    // reset scenario counter
+                roundsCnt++;
 
                 // write CSV file
-                if(roundsCnt == 0)
+                if (roundsCnt == 1)
                 {
                     // get the current date and time
                     DateTime currentDateTime = DateTime.Now;
@@ -399,16 +414,23 @@ public class ScenarioCataloge : MonoBehaviour
                     }
                     resetCSVmsgState();
 
-                    roundsCnt++;
+                    if(numberOfRounds == 1)
+                    {
+                        break;
+                    }
 
                     selectScenario(Scenario.scenario_00);
                     break;
                 }
                 // start scenario again, if not all rounds are played
-                else if (roundsCnt >= (numberOfRounds - 1)) 
+                //else if (roundsCnt % (numberOfRounds - 1) == 0)
+                else if (roundsCnt % numberOfRounds == 0)
                 {
+                    if(newCSVfile == 1)
+                    {
+                        roundsCnt = 0;
+                    }
                     currentScenarioParams.currentState = State.disabled;
-                    roundsCnt = 0;
                     sceneController.ResetScene(false);
                 }
                 // if scenario is going on in the next round
@@ -416,8 +438,6 @@ public class ScenarioCataloge : MonoBehaviour
                 {
                     // start new round
                     selectScenario(Scenario.scenario_00);
-
-                    roundsCnt++;
                 }
 
                 //write to existing file
