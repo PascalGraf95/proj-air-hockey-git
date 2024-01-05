@@ -210,28 +210,33 @@ public class AirHockeyAgent : Agent
 
     public override void OnEpisodeBegin()
     {
-        string dict_string = "";
-        foreach (KeyValuePair<string, float> kvp in episodeReward)
+        if (scenarioCataloge.currentScenarioParams.currentState == State.disabled)
         {
-            dict_string += kvp.Key + ": " + kvp.Value + ";   ";
-        }
-        //print(dict_string);
-        sceneController.ResetScene(false);
-        ResetEpisodeRewards();
+            string dict_string = "";
+            foreach (KeyValuePair<string, float> kvp in episodeReward)
+            {
+                dict_string += kvp.Key + ": " + kvp.Value + ";   ";
+            }
+            //print(dict_string);
+            sceneController.ResetScene(false);
+            ResetEpisodeRewards();
 
-        if (episodesPlayed % episodesPerScenario == 0)
-        {
-            int err = scenarioCataloge.startScenario(roundsOfScenario, 0);  // 0: write all scenarios in one CSV-File
-            Debug.Log("Start Scenario State: " + err);
-        }
+            Debug.Log("OnEpisodeBegin");
 
-        if (episodesPlayed % 15 == 0)
-        {
-            Resources.UnloadUnusedAssets();
-            GC.Collect();
-        }
+            /*if ((episodesPlayed % episodesPerScenario == 0) && (episodesPlayed !=0))
+            {
+                int err = scenarioCataloge.startScenario(roundsOfScenario, 0);  // 0: write all scenarios in one CSV-File
+                Debug.Log("Start Scenario State: " + err);
+            }*/
 
-        episodesPlayed++;
+            if (episodesPlayed % 15 == 0)
+            {
+                Resources.UnloadUnusedAssets();
+                GC.Collect();
+            }
+
+            episodesPlayed++;
+        }
     }
 
     public void ResetGameWithoutNewEpisode()

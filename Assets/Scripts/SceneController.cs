@@ -160,7 +160,7 @@ public class SceneController : MonoBehaviour
 
     public void AgentPlayerScored()
     {
-        if (scenarioCataloge.currentScenarioParams.currentState == State.isRunnning)
+        if (scenarioCataloge.currentScenarioParams.currentState != State.disabled)//== State.isRunnning)
         {
             scenarioCataloge.goalDetectedAgent();
         }
@@ -178,7 +178,7 @@ public class SceneController : MonoBehaviour
 
     private void HumanPlayerScored()
     {
-        if(scenarioCataloge.currentScenarioParams.currentState == State.isRunnning)
+        if(scenarioCataloge.currentScenarioParams.currentState != State.disabled)// == State.isRunnning)
         {
             scenarioCataloge.goalDetectedHuman();
         }

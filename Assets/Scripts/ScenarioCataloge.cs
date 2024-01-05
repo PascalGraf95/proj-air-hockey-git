@@ -41,7 +41,7 @@ public enum Scenario
     scenario_09,
     scenario_10,
     scenario_11,
-    scenario_D1
+    scenario_end_round
 }
 
 // contains all start parameters and configurations of a scenario
@@ -52,7 +52,6 @@ public struct Scenario_t
     public Boundary boundPusherAgent;
     public PuckMoveOnStart puckMoveState;
     public Vector2 targetPusherVelocity;
-    public Vector2 targetPusherPosition;
     public Scenario currentScenario;
 
     public Scenario_t(State state,
@@ -60,7 +59,6 @@ public struct Scenario_t
                     float pusherUp, float pusherDown, float pusherLeft, float pusherRight,
                     PuckMoveOnStart moveState,
                     Vector2 targetVelocity,
-                    Vector2 targetPosition,
                     Scenario scenario)
     {
         currentState = state;
@@ -68,7 +66,6 @@ public struct Scenario_t
         boundPusherAgent = new Boundary(pusherUp, pusherDown, pusherLeft, pusherRight);
         puckMoveState = moveState;
         targetPusherVelocity = targetVelocity;
-        targetPusherPosition = targetPosition;
         currentScenario = scenario;
     }
 }
@@ -81,7 +78,6 @@ public class ScenarioCataloge : MonoBehaviour
                                                             0f, 0f, 0f, 0f, 
                                                             PuckMoveOnStart.rest,
                                                             new Vector2(0, 0),
-                                                            new Vector2(0, 0),
                                                             Scenario.scenario_00);
 
     private SceneController sceneController;
@@ -91,7 +87,7 @@ public class ScenarioCataloge : MonoBehaviour
     private MjScene mjScene;
     private string[] csvMsgScen = new string[Enum.GetValues(typeof(Scenario)).Length];
 
-    private readonly int TimeoutTimeMS = 4000;   // scenario timeout in milliseconds
+    private readonly int TimeoutTimeMS = 3500;   // scenario timeout in milliseconds
     private string path = "csvFiles/";
     private string filePath = "";
     
@@ -126,6 +122,10 @@ public class ScenarioCataloge : MonoBehaviour
 
         // initial csv scenario message
         resetCSVmsgState();
+
+        // init timer
+        t = new Timer(TimeoutTimeMS);
+        t.Elapsed += OnTimedEvent;
     }
 
     private void Update()
@@ -139,13 +139,12 @@ public class ScenarioCataloge : MonoBehaviour
                 Vector3 position = pusherOpponentPosition.transform.localPosition;
 
                 // drive to position velocity
-                Int32 x = 5;
-                Int32 z = 5;
+                float x = currentScenarioParams.targetPusherVelocity.x;
+                float z = currentScenarioParams.targetPusherVelocity.y;
 
                 if (position.x < currentScenarioParams.boundPusherAgent.right || 
                     position.z < currentScenarioParams.boundPusherAgent.up)
                 {
-                    //Debug.Log("drive to in IF");
                     // drive pusher as long as the scenario pusher zone is not reached
                     if(position.x > currentScenarioParams.boundPusherAgent.right)
                     {
@@ -161,15 +160,11 @@ public class ScenarioCataloge : MonoBehaviour
                 {
                     // go into next step
                     currentScenarioParams.currentState = State.start;
+                    Debug.Log("DriveToPosition: State = State.start");
+                    Debug.Log(position);
                 }
                 break;
             case State.start:
-                // start scenario timer to create timeout if agent failed task
-                t = new Timer();
-                t.Interval = TimeoutTimeMS;
-                t.Elapsed += OnTimedEvent;
-                t.Start();
-
                 // set reset puck state correspond to the moving state
                 //puckController.transform.GetComponent<MeshRenderer>().enabled = false;
                 if (currentScenarioParams.puckMoveState == PuckMoveOnStart.moveSlow)
@@ -195,18 +190,19 @@ public class ScenarioCataloge : MonoBehaviour
                 mjScene.CreateScene();
                 //puckController.transform.GetComponent<MeshRenderer>().enabled = true;
 
-                // TODO: disable selfplay and start agentClone
-
                 // go into running state
                 currentScenarioParams.currentState = State.isRunnning;
+                Debug.Log("Start: State = State.isRunning");
                 break;
             case State.isRunnning:
                 // keep running as long as a goal is detected or the timeout event is triggered                
                 break;
             case State.timeout:
-                Debug.Log("timeout");   // TODO: delte line
-                t.Stop();
-                currentScenarioParams.currentState = State.disabled;
+                Debug.Log("timeout: t.stop()");
+
+                ResetAndRestartTimer();
+
+                currentScenarioParams.currentState = State.isRunnning;
                 scenarioCnt++;
                 selectScenario((Scenario)scenarioCnt);
                 break;
@@ -222,8 +218,36 @@ public class ScenarioCataloge : MonoBehaviour
         }
     }
 
+    private void ResetAndRestartTimer()
+    {
+        // Stop the timer
+        t.Stop();
+
+        // Reset the timer properties
+        t.Interval = TimeoutTimeMS; // Set the interval to the desired value
+        t.Enabled = false; // Disable the timer to ensure it doesn't start immediately
+        t.Elapsed -= OnTimedEvent; // Remove the existing event handler (optional, if already assigned)
+
+        // Add the new event handler
+        t.Elapsed += OnTimedEvent;
+
+        // Restart the timer
+        t.Enabled = true;
+    }
+
+
     private void OnTimedEvent(object sender,ElapsedEventArgs e)
     {
+        try
+        {
+            // Dein Timer-Handler-Code hier
+            Debug.Log("Timer abgelaufen: " + DateTime.Now);
+        }
+        catch (Exception ex)
+        {
+            Debug.Log("Fehler im Timer-Handler: " + ex.Message);
+        }
+
         csvMsgScen[scenarioCnt] = "timeout";
         currentScenarioParams.currentState = State.timeout;
     }
@@ -250,6 +274,14 @@ public class ScenarioCataloge : MonoBehaviour
     {
         // use rounds as ushort to not overload round counter
 
+        // start scenario, if it is not already running
+        if (currentScenarioParams.currentState != State.disabled)
+        {
+            return 0;   // retrun 0, if scenario is already running
+        }
+
+        Debug.Log("start senario");
+
         newCSVfile = oneFileFlagCSV;
         if(newCSVfile == 1) // reset round counter, if the new CSV-File flag is set
         {
@@ -260,20 +292,11 @@ public class ScenarioCataloge : MonoBehaviour
             roundsCnt = rounds;
         }
 
-        // start scenario, if it is not already running
-        if (currentScenarioParams.currentState == State.disabled)
-        {
-            numberOfRounds = rounds;    // set scenario raounds
+        numberOfRounds = rounds;    // set scenario raounds
 
-            selectScenario(Scenario.scenario_00); // start with first scenario
+        selectScenario(Scenario.scenario_00); // start with first scenario
 
-            return 1;
-        }
-        // retrun 0, if scenario is already running
-        else
-        {
-            return 0;
-        }
+        return 1;   // retrun 1, if a new scenario start
     }
 
     public void goalDetectedAgent()
@@ -290,6 +313,18 @@ public class ScenarioCataloge : MonoBehaviour
 
     public void selectScenario(Scenario scen)
     {
+        Debug.Log("scenario: " + scen);
+
+        pusherOpponentController.Reset("Human", false);
+
+        // Mujoco Scene Reset
+        if (mjScene == null)
+        {
+            mjScene = GameObject.Find("MjScene").GetComponent<MjScene>();
+        }
+        mjScene.DestroyScene();
+        mjScene.CreateScene();
+
         // setup the scenario correspong to the scenario case
         switch (scen)
         {
@@ -298,86 +333,89 @@ public class ScenarioCataloge : MonoBehaviour
                                                         -35f, 0f, 33f, -33f,    // up down left right
                                                         50f, 68f, 30f, 20f,     // up down left right
                                                         PuckMoveOnStart.moveSlow,
-                                                        new Vector2(0,0),
-                                                        new Vector2(0,0),
+                                                        new Vector2(5f, 5f),
                                                         Scenario.scenario_00);
+                t.Start();
                 break;
             case Scenario.scenario_01:
                 currentScenarioParams.currentState = State.drivePusherToPosition;
                 currentScenarioParams.puckMoveState = PuckMoveOnStart.moveFast;
                 currentScenarioParams.currentScenario = Scenario.scenario_01;
+                t.Start();
                 break;
             case Scenario.scenario_02:
                 currentScenarioParams = new Scenario_t(State.drivePusherToPosition,
                                                         -65f, -35f, 33f, -33f,  // puck: up down left right
                                                         50f, 68f, 30f, 20f,      // pusher: up down left right
                                                         PuckMoveOnStart.moveSlow,
-                                                        new Vector2(0, 0),
-                                                        new Vector2(0, 0),
+                                                        new Vector2(5f, 5f),
                                                         Scenario.scenario_02);
+                t.Start();
                 break;
             case Scenario.scenario_03:
                 currentScenarioParams.currentState = State.drivePusherToPosition;
                 currentScenarioParams.puckMoveState = PuckMoveOnStart.moveFast;
                 currentScenarioParams.currentScenario = Scenario.scenario_03;
+                t.Start();
                 break;
             case Scenario.scenario_04:
                 currentScenarioParams = new Scenario_t(State.drivePusherToPosition,
                                                         -35f, 0f, 33f, -33f,    // puck: up down left right
                                                         53f, 20f, 8f, -8f,      // pusher: up down left right
                                                         PuckMoveOnStart.moveSlow,
-                                                        new Vector2(0, 0),
-                                                        new Vector2(0, 0),
+                                                        new Vector2(0.1f, 0.1f),
                                                         Scenario.scenario_04);
                 break;
             case Scenario.scenario_05:
                 currentScenarioParams.currentState = State.drivePusherToPosition;
                 currentScenarioParams.puckMoveState = PuckMoveOnStart.moveFast;
                 currentScenarioParams.currentScenario = Scenario.scenario_05;
+                t.Start();
                 break;
             case Scenario.scenario_06:
                 currentScenarioParams = new Scenario_t(State.drivePusherToPosition,
                                                         -35f, 0f, 33f, -33f,    // puck: up down left right
                                                         53f, 20f, 15f, -15f,     // pusher: up down left right
                                                         PuckMoveOnStart.moveSlow,
-                                                        new Vector2(0, 0),
-                                                        new Vector2(0, 0),
+                                                        new Vector2(0.1f, 0.1f),
                                                         Scenario.scenario_06);
                 break;
             case Scenario.scenario_07:
                 currentScenarioParams.currentState = State.drivePusherToPosition;
                 currentScenarioParams.puckMoveState = PuckMoveOnStart.moveFast;
                 currentScenarioParams.currentScenario = Scenario.scenario_07;
+                t.Start();
                 break;
             case Scenario.scenario_08:
                 currentScenarioParams = new Scenario_t(State.drivePusherToPosition,
                                                         -35f, 0f, 33f, -33f,    // puck: up down left right
                                                         5f, 20f, 15f, -15f,     // pusher: up down left right
                                                         PuckMoveOnStart.moveSlow,
-                                                        new Vector2(0, 0),
-                                                        new Vector2(0, 0),
+                                                        new Vector2(-5f, -5f),
                                                         Scenario.scenario_08);
                 break;
             case Scenario.scenario_09:
                 currentScenarioParams.currentState = State.drivePusherToPosition;
                 currentScenarioParams.puckMoveState = PuckMoveOnStart.moveFast;
                 currentScenarioParams.currentScenario = Scenario.scenario_09;
+                t.Start();
                 break;
             case Scenario.scenario_10:
                 currentScenarioParams = new Scenario_t(State.drivePusherToPosition,
                                                         -35f, 0f, 33f, -33f,    // puck: up down left right
                                                         5f, 20f, 33f, -33f,     // pusher: up down left right
                                                         PuckMoveOnStart.moveSlow,
-                                                        new Vector2(0, 0),
-                                                        new Vector2(0, 0),
+                                                        new Vector2(0.1f, -5f),
                                                         Scenario.scenario_10);
                 break;
             case Scenario.scenario_11:
                 currentScenarioParams.currentState = State.drivePusherToPosition;
                 currentScenarioParams.puckMoveState = PuckMoveOnStart.moveFast;
                 currentScenarioParams.currentScenario = Scenario.scenario_11;
+                t.Start();
                 break;
             default:
+                Debug.Log("defualt in scenario");
                 scenarioCnt = 0;    // reset scenario counter
                 roundsCnt++;
 
@@ -414,8 +452,15 @@ public class ScenarioCataloge : MonoBehaviour
                     }
                     resetCSVmsgState();
 
+                    // spacial case: if number of rounds = 1
                     if(numberOfRounds == 1)
                     {
+                        if (newCSVfile == 1)
+                        {
+                            roundsCnt = 0;
+                        }
+                        currentScenarioParams.currentState = State.disabled;
+                        sceneController.ResetScene(false);
                         break;
                     }
 
@@ -423,7 +468,6 @@ public class ScenarioCataloge : MonoBehaviour
                     break;
                 }
                 // start scenario again, if not all rounds are played
-                //else if (roundsCnt % (numberOfRounds - 1) == 0)
                 else if (roundsCnt % numberOfRounds == 0)
                 {
                     if(newCSVfile == 1)
