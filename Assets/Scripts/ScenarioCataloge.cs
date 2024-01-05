@@ -23,7 +23,8 @@ public enum State
     drivePusherToPosition,
     start,
     isRunnning,
-    timeout
+    timeout,
+    newRound
 }
 
 // enum with all possibility scenarios
@@ -87,7 +88,7 @@ public class ScenarioCataloge : MonoBehaviour
     private MjScene mjScene;
     private string[] csvMsgScen = new string[Enum.GetValues(typeof(Scenario)).Length];
 
-    private readonly int TimeoutTimeMS = 3500;   // scenario timeout in milliseconds
+    private readonly int TimeoutTimeMS = 1000;//3500;   // scenario timeout in milliseconds
     private string path = "csvFiles/";
     private string filePath = "";
     
@@ -160,8 +161,6 @@ public class ScenarioCataloge : MonoBehaviour
                 {
                     // go into next step
                     currentScenarioParams.currentState = State.start;
-                    Debug.Log("DriveToPosition: State = State.start");
-                    Debug.Log(position);
                 }
                 break;
             case State.start:
@@ -192,19 +191,21 @@ public class ScenarioCataloge : MonoBehaviour
 
                 // go into running state
                 currentScenarioParams.currentState = State.isRunnning;
-                Debug.Log("Start: State = State.isRunning");
                 break;
             case State.isRunnning:
                 // keep running as long as a goal is detected or the timeout event is triggered                
                 break;
             case State.timeout:
-                Debug.Log("timeout: t.stop()");
+                //Debug.Log("timeout: t.stop()");
 
                 ResetAndRestartTimer();
 
                 currentScenarioParams.currentState = State.isRunnning;
                 scenarioCnt++;
                 selectScenario((Scenario)scenarioCnt);
+                break;
+            case State.newRound:
+                selectScenario(Scenario.scenario_00);
                 break;
         }
     }
@@ -230,26 +231,19 @@ public class ScenarioCataloge : MonoBehaviour
 
         // Add the new event handler
         t.Elapsed += OnTimedEvent;
-
-        // Restart the timer
-        t.Enabled = true;
     }
-
 
     private void OnTimedEvent(object sender,ElapsedEventArgs e)
     {
         try
         {
-            // Dein Timer-Handler-Code hier
-            Debug.Log("Timer abgelaufen: " + DateTime.Now);
+            csvMsgScen[scenarioCnt] = "timeout";
+            currentScenarioParams.currentState = State.timeout;
         }
         catch (Exception ex)
         {
             Debug.Log("Fehler im Timer-Handler: " + ex.Message);
         }
-
-        csvMsgScen[scenarioCnt] = "timeout";
-        currentScenarioParams.currentState = State.timeout;
     }
 
     private string toCSV()
@@ -279,8 +273,6 @@ public class ScenarioCataloge : MonoBehaviour
         {
             return 0;   // retrun 0, if scenario is already running
         }
-
-        Debug.Log("start senario");
 
         newCSVfile = oneFileFlagCSV;
         if(newCSVfile == 1) // reset round counter, if the new CSV-File flag is set
@@ -365,6 +357,7 @@ public class ScenarioCataloge : MonoBehaviour
                                                         PuckMoveOnStart.moveSlow,
                                                         new Vector2(0.1f, 0.1f),
                                                         Scenario.scenario_04);
+                t.Start();
                 break;
             case Scenario.scenario_05:
                 currentScenarioParams.currentState = State.drivePusherToPosition;
@@ -379,6 +372,7 @@ public class ScenarioCataloge : MonoBehaviour
                                                         PuckMoveOnStart.moveSlow,
                                                         new Vector2(0.1f, 0.1f),
                                                         Scenario.scenario_06);
+                t.Start();
                 break;
             case Scenario.scenario_07:
                 currentScenarioParams.currentState = State.drivePusherToPosition;
@@ -393,6 +387,7 @@ public class ScenarioCataloge : MonoBehaviour
                                                         PuckMoveOnStart.moveSlow,
                                                         new Vector2(-5f, -5f),
                                                         Scenario.scenario_08);
+                t.Start();
                 break;
             case Scenario.scenario_09:
                 currentScenarioParams.currentState = State.drivePusherToPosition;
@@ -407,6 +402,7 @@ public class ScenarioCataloge : MonoBehaviour
                                                         PuckMoveOnStart.moveSlow,
                                                         new Vector2(0.1f, -5f),
                                                         Scenario.scenario_10);
+                t.Start();
                 break;
             case Scenario.scenario_11:
                 currentScenarioParams.currentState = State.drivePusherToPosition;
@@ -415,7 +411,6 @@ public class ScenarioCataloge : MonoBehaviour
                 t.Start();
                 break;
             default:
-                Debug.Log("defualt in scenario");
                 scenarioCnt = 0;    // reset scenario counter
                 roundsCnt++;
 
@@ -464,11 +459,12 @@ public class ScenarioCataloge : MonoBehaviour
                         break;
                     }
 
-                    selectScenario(Scenario.scenario_00);
+                    //selectScenario(Scenario.scenario_00);
+                    currentScenarioParams.currentState = State.newRound;
                     break;
                 }
                 // start scenario again, if not all rounds are played
-                else if (roundsCnt % numberOfRounds == 0)
+                else if ((roundsCnt % numberOfRounds) == 0)
                 {
                     if(newCSVfile == 1)
                     {
@@ -481,7 +477,8 @@ public class ScenarioCataloge : MonoBehaviour
                 else
                 {
                     // start new round
-                    selectScenario(Scenario.scenario_00);
+                    //selectScenario(Scenario.scenario_00);
+                    currentScenarioParams.currentState = State.newRound;
                 }
 
                 //write to existing file
