@@ -223,11 +223,11 @@ public class AirHockeyAgent : Agent
 
             Debug.Log("OnEpisodeBegin");
 
-            /*if ((episodesPlayed % episodesPerScenario == 0) && (episodesPlayed !=0))
+            if ((episodesPlayed % episodesPerScenario == 0) && (episodesPlayed !=0))
             {
                 int err = scenarioCataloge.startScenario(roundsOfScenario, 0);  // 0: write all scenarios in one CSV-File
                 Debug.Log("Start Scenario State: " + err);
-            }*/
+            }
 
             if (episodesPlayed % 15 == 0)
             {

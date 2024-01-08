@@ -90,7 +90,7 @@ public class ScenarioCataloge : MonoBehaviour
     private MjScene mjScene;
     private string[] csvMsgScen = new string[Enum.GetValues(typeof(Scenario)).Length];
 
-    private readonly int TimeoutTimeMS = 99999;//3500;   // scenario timeout in milliseconds
+    private readonly int TimeoutTimeMS = 3500;   // scenario timeout in milliseconds
     private string path = "csvFiles/";
     private string filePath = "";
     
@@ -166,10 +166,10 @@ public class ScenarioCataloge : MonoBehaviour
                                  position.z + " - " + currentScenarioParams.boundPusherAgent.up + " * " + Math.Sign(z) + " < 0");
                     Debug.Log("pos x: " + position.x + "; z: " + position.z);
                     pusherOpponentController.Act(new Vector2(x, z));
-                    if (scenDebug)
-                    {
-                        currentScenarioParams.currentState = State.timeout;
-                    }
+                    //if (scenDebug)
+                    //{
+                    //    currentScenarioParams.currentState = State.timeout;
+                    //}
                 }
                 else
                 {
@@ -209,18 +209,18 @@ public class ScenarioCataloge : MonoBehaviour
                 break;
             case State.isRunnning:
                 // keep running as long as a goal is detected or the timeout event is triggered
-                if (scenDebug)
-                {
-                    currentScenarioParams.currentState = State.timeout;
-                }
+                //if (scenDebug)
+                //{
+                //    currentScenarioParams.currentState = State.timeout;
+                //}
                 break;
             case State.timeout:
                 //Debug.Log("timeout: t.stop()");
-                if(!scenDebug)
-                {
-                    break;
-                }
-                scenDebug = false;
+                //if(!scenDebug)
+                //{
+                //    break;
+                //}
+                //scenDebug = false;
 
                 ResetAndRestartTimer();
 

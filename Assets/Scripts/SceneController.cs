@@ -156,10 +156,10 @@ public class SceneController : MonoBehaviour
             int err = scenarioCataloge.startScenario(2, 1);
             Debug.Log("Start Scenario State: " + err);
         }
-        if (Input.GetKeyDown(KeyCode.Y))
-        {
-            scenarioCataloge.scenDebug = true;
-        }
+        //if (Input.GetKeyDown(KeyCode.Y))
+        //{
+        //    scenarioCataloge.scenDebug = true;
+        //}
     }
 
     public void AgentPlayerScored()
