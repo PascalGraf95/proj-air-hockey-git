@@ -90,7 +90,7 @@ public class ScenarioCataloge : MonoBehaviour
     private MjScene mjScene;
     private string[] csvMsgScen = new string[Enum.GetValues(typeof(Scenario)).Length];
 
-    private readonly int TimeoutTimeMS = 1000;//3500;   // scenario timeout in milliseconds
+    private readonly int TimeoutTimeMS = 99999;//3500;   // scenario timeout in milliseconds
     private string path = "csvFiles/";
     private string filePath = "";
     
@@ -149,7 +149,7 @@ public class ScenarioCataloge : MonoBehaviour
                 //    position.z < currentScenarioParams.boundPusherAgent.up)
                 if ((((position.x - currentScenarioParams.boundPusherAgent.right) * Math.Sign(x)) < 0) ||
                     (((position.z - currentScenarioParams.boundPusherAgent.up) * Math.Sign(z)) < 0))
-                    {
+                {
                     // drive pusher as long as the scenario pusher zone is not reached
                     //if(position.x > currentScenarioParams.boundPusherAgent.right)
                     if (((position.x - currentScenarioParams.boundPusherAgent.right) * Math.Sign(x)) > 0)
@@ -161,14 +161,21 @@ public class ScenarioCataloge : MonoBehaviour
                     {
                         z = 0;
                     }
-                    //Debug.Log("vel x: " + x + "; z:" + z);
-                    //Debug.Log("if: " + position.x + " < " + currentScenarioParams.boundPusherAgent.right + " || " + position.z + " < " + currentScenarioParams.boundPusherAgent.up);
+                    Debug.Log("vel x: " + x + "; z:" + z);
+                    Debug.Log("if: " + position.x + " - " + currentScenarioParams.boundPusherAgent.right + " * " + Math.Sign(x) + " < 0" + " || " + 
+                                 position.z + " - " + currentScenarioParams.boundPusherAgent.up + " * " + Math.Sign(z) + " < 0");
+                    Debug.Log("pos x: " + position.x + "; z: " + position.z);
                     pusherOpponentController.Act(new Vector2(x, z));
+                    if (scenDebug)
+                    {
+                        currentScenarioParams.currentState = State.timeout;
+                    }
                 }
                 else
                 {
                     // go into next step
                     currentScenarioParams.currentState = State.start;
+                    Debug.Log("Reach scen range! REEEEEEEEEEEEEEEEEEEEEEEE");
                 }
                 break;
             case State.start:
@@ -201,7 +208,11 @@ public class ScenarioCataloge : MonoBehaviour
                 currentScenarioParams.currentState = State.isRunnning;
                 break;
             case State.isRunnning:
-                // keep running as long as a goal is detected or the timeout event is triggered                
+                // keep running as long as a goal is detected or the timeout event is triggered
+                if (scenDebug)
+                {
+                    currentScenarioParams.currentState = State.timeout;
+                }
                 break;
             case State.timeout:
                 //Debug.Log("timeout: t.stop()");
@@ -366,7 +377,7 @@ public class ScenarioCataloge : MonoBehaviour
             case Scenario.scenario_04:
                 currentScenarioParams = new Scenario_t(State.drivePusherToPosition,
                                                         -35f, 0f, 33f, -33f,    // puck: up down left right
-                                                        53f, 20f, 8f, -8f,      // pusher: up down left right
+                                                        20f, 53f, 8f, -8f,      // pusher: up down left right
                                                         PuckMoveOnStart.moveSlow,
                                                         new Vector2(0.1f, 0.1f),
                                                         Scenario.scenario_04);
@@ -381,7 +392,7 @@ public class ScenarioCataloge : MonoBehaviour
             case Scenario.scenario_06:
                 currentScenarioParams = new Scenario_t(State.drivePusherToPosition,
                                                         -35f, 0f, 33f, -33f,    // puck: up down left right
-                                                        53f, 20f, 15f, -15f,     // pusher: up down left right
+                                                        20f, 53f, 15f, -15f,     // pusher: up down left right
                                                         PuckMoveOnStart.moveSlow,
                                                         new Vector2(0.1f, 0.1f),
                                                         Scenario.scenario_06);
@@ -398,7 +409,7 @@ public class ScenarioCataloge : MonoBehaviour
                                                         -35f, 0f, 33f, -33f,    // puck: up down left right
                                                         8f, 20f, 15f, -15f,     // pusher: up down left right
                                                         PuckMoveOnStart.moveSlow,
-                                                        new Vector2(-0.1f, -1f),
+                                                        new Vector2(0.1f, -1f),
                                                         Scenario.scenario_08);
                 t.Start();
                 break;
@@ -413,7 +424,7 @@ public class ScenarioCataloge : MonoBehaviour
                                                         -35f, 0f, 33f, -33f,    // puck: up down left right
                                                         8f, 20f, 33f, -33f,     // pusher: up down left right
                                                         PuckMoveOnStart.moveSlow,
-                                                        new Vector2(-0.1f, -1f),
+                                                        new Vector2(0.1f, -1f),
                                                         Scenario.scenario_10);
                 t.Start();
                 break;
