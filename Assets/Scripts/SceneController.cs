@@ -153,8 +153,12 @@ public class SceneController : MonoBehaviour
             //puckControllerAPI.simulate_real_puck();
 
             // start scenario, if it is disabled
-            int err = scenarioCataloge.startScenario(3, 1);
+            int err = scenarioCataloge.startScenario(2, 1);
             Debug.Log("Start Scenario State: " + err);
+        }
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            scenarioCataloge.scenDebug = true;
         }
     }
 

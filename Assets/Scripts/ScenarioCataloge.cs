@@ -74,6 +74,8 @@ public struct Scenario_t
 public class ScenarioCataloge : MonoBehaviour
 {
     #region privates
+    public bool scenDebug = false;
+
     public Scenario_t currentScenarioParams  = new Scenario_t(State.disabled, 
                                                             0f, 0f, 0f, 0f, 
                                                             0f, 0f, 0f, 0f, 
@@ -143,18 +145,24 @@ public class ScenarioCataloge : MonoBehaviour
                 float x = currentScenarioParams.targetPusherVelocity.x;
                 float z = currentScenarioParams.targetPusherVelocity.y;
 
-                if (position.x < currentScenarioParams.boundPusherAgent.right || 
-                    position.z < currentScenarioParams.boundPusherAgent.up)
-                {
+                //if (position.x < currentScenarioParams.boundPusherAgent.right || 
+                //    position.z < currentScenarioParams.boundPusherAgent.up)
+                if ((((position.x - currentScenarioParams.boundPusherAgent.right) * Math.Sign(x)) < 0) ||
+                    (((position.z - currentScenarioParams.boundPusherAgent.up) * Math.Sign(z)) < 0))
+                    {
                     // drive pusher as long as the scenario pusher zone is not reached
-                    if(position.x > currentScenarioParams.boundPusherAgent.right)
+                    //if(position.x > currentScenarioParams.boundPusherAgent.right)
+                    if (((position.x - currentScenarioParams.boundPusherAgent.right) * Math.Sign(x)) > 0)
                     {
                         x = 0;
                     }
-                    if(position.z > currentScenarioParams.boundPusherAgent.up)
+                    //if(position.z > currentScenarioParams.boundPusherAgent.up)
+                    if (((position.z - currentScenarioParams.boundPusherAgent.up) * Math.Sign(z)) > 0)
                     {
                         z = 0;
                     }
+                    //Debug.Log("vel x: " + x + "; z:" + z);
+                    //Debug.Log("if: " + position.x + " < " + currentScenarioParams.boundPusherAgent.right + " || " + position.z + " < " + currentScenarioParams.boundPusherAgent.up);
                     pusherOpponentController.Act(new Vector2(x, z));
                 }
                 else
@@ -197,6 +205,11 @@ public class ScenarioCataloge : MonoBehaviour
                 break;
             case State.timeout:
                 //Debug.Log("timeout: t.stop()");
+                if(!scenDebug)
+                {
+                    break;
+                }
+                scenDebug = false;
 
                 ResetAndRestartTimer();
 
@@ -383,9 +396,9 @@ public class ScenarioCataloge : MonoBehaviour
             case Scenario.scenario_08:
                 currentScenarioParams = new Scenario_t(State.drivePusherToPosition,
                                                         -35f, 0f, 33f, -33f,    // puck: up down left right
-                                                        5f, 20f, 15f, -15f,     // pusher: up down left right
+                                                        8f, 20f, 15f, -15f,     // pusher: up down left right
                                                         PuckMoveOnStart.moveSlow,
-                                                        new Vector2(-5f, -5f),
+                                                        new Vector2(-0.1f, -1f),
                                                         Scenario.scenario_08);
                 t.Start();
                 break;
@@ -398,9 +411,9 @@ public class ScenarioCataloge : MonoBehaviour
             case Scenario.scenario_10:
                 currentScenarioParams = new Scenario_t(State.drivePusherToPosition,
                                                         -35f, 0f, 33f, -33f,    // puck: up down left right
-                                                        5f, 20f, 33f, -33f,     // pusher: up down left right
+                                                        8f, 20f, 33f, -33f,     // pusher: up down left right
                                                         PuckMoveOnStart.moveSlow,
-                                                        new Vector2(0.1f, -5f),
+                                                        new Vector2(-0.1f, -1f),
                                                         Scenario.scenario_10);
                 t.Start();
                 break;
