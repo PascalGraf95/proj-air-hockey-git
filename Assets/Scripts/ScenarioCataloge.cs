@@ -346,10 +346,10 @@ public class ScenarioCataloge : MonoBehaviour
         {
             case Scenario.scenario_00:
                 currentScenarioParams = new Scenario_t(State.drivePusherToPosition,
-                                                        -35f, 0f, 33f, -33f,    // up down left right
+                                                        35f, 5f, 30f, -30f,    // up down left right
                                                         50f, 68f, 30f, 20f,     // up down left right
                                                         PuckMoveOnStart.moveSlow,
-                                                        new Vector2(5f, 5f),
+                                                        new Vector2(1f, 1f),
                                                         Scenario.scenario_00);
                 t.Start();
                 break;
@@ -361,10 +361,10 @@ public class ScenarioCataloge : MonoBehaviour
                 break;
             case Scenario.scenario_02:
                 currentScenarioParams = new Scenario_t(State.drivePusherToPosition,
-                                                        -65f, -35f, 33f, -33f,  // puck: up down left right
+                                                        35f, 5f, 30f, -30f,  // puck: up down left right
                                                         50f, 68f, 30f, 20f,      // pusher: up down left right
                                                         PuckMoveOnStart.moveSlow,
-                                                        new Vector2(5f, 5f),
+                                                        new Vector2(1f, 1f),
                                                         Scenario.scenario_02);
                 t.Start();
                 break;
@@ -376,7 +376,7 @@ public class ScenarioCataloge : MonoBehaviour
                 break;
             case Scenario.scenario_04:
                 currentScenarioParams = new Scenario_t(State.drivePusherToPosition,
-                                                        -35f, 0f, 33f, -33f,    // puck: up down left right
+                                                        35f, 5f, 30f, -30f,    // puck: up down left right
                                                         20f, 53f, 8f, -8f,      // pusher: up down left right
                                                         PuckMoveOnStart.moveSlow,
                                                         new Vector2(0.1f, 0.1f),
@@ -391,7 +391,7 @@ public class ScenarioCataloge : MonoBehaviour
                 break;
             case Scenario.scenario_06:
                 currentScenarioParams = new Scenario_t(State.drivePusherToPosition,
-                                                        -35f, 0f, 33f, -33f,    // puck: up down left right
+                                                        35f, 5f, 30f, -30f,    // puck: up down left right
                                                         20f, 53f, 15f, -15f,     // pusher: up down left right
                                                         PuckMoveOnStart.moveSlow,
                                                         new Vector2(0.1f, 0.1f),
@@ -406,7 +406,7 @@ public class ScenarioCataloge : MonoBehaviour
                 break;
             case Scenario.scenario_08:
                 currentScenarioParams = new Scenario_t(State.drivePusherToPosition,
-                                                        -35f, 0f, 33f, -33f,    // puck: up down left right
+                                                        35f, 5f, 30f, -30f,    // puck: up down left right
                                                         8f, 20f, 15f, -15f,     // pusher: up down left right
                                                         PuckMoveOnStart.moveSlow,
                                                         new Vector2(0.1f, -1f),
@@ -421,7 +421,7 @@ public class ScenarioCataloge : MonoBehaviour
                 break;
             case Scenario.scenario_10:
                 currentScenarioParams = new Scenario_t(State.drivePusherToPosition,
-                                                        -35f, 0f, 33f, -33f,    // puck: up down left right
+                                                        35f, 5f, 30f, -30f,    // puck: up down left right
                                                         8f, 20f, 33f, -33f,     // pusher: up down left right
                                                         PuckMoveOnStart.moveSlow,
                                                         new Vector2(0.1f, -1f),
