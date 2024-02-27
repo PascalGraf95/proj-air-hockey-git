@@ -6,6 +6,7 @@ using System;
 using YamlDotNet.Core;
 using UnityEngine.Analytics;
 using Google.Protobuf.WellKnownTypes;
+using System.Data.SqlTypes;
 
 public enum ResetPuckState
 {
@@ -18,7 +19,9 @@ public enum ResetPuckState
     ColliderTest,
     scenarioCataloge,
     scenarioCatalogeMoveSlow,
-    scenarioCatalogeMoveFast
+    scenarioCatalogeMoveFast,
+    scenarioCatalogeDefenseSlow,
+    scenarioCatalogeDefenseFast
 }
 
 public class PuckController : MonoBehaviour
@@ -148,7 +151,8 @@ public class PuckController : MonoBehaviour
             //slideJointZ.Velocity = Mathf.Cos(ANG * Mathf.Deg2Rad) * VEL;
         }
         else if (resetPuckState == ResetPuckState.scenarioCataloge || resetPuckState == ResetPuckState.scenarioCatalogeMoveSlow 
-                || resetPuckState == ResetPuckState.scenarioCatalogeMoveFast)
+                || resetPuckState == ResetPuckState.scenarioCatalogeMoveFast || resetPuckState == ResetPuckState.scenarioCatalogeDefenseSlow
+                || resetPuckState == ResetPuckState.scenarioCatalogeDefenseFast)
         {
             Vector2 newPuckPosition;
             while (true)
@@ -179,6 +183,45 @@ public class PuckController : MonoBehaviour
 
                 slideJointX.Velocity = Mathf.Sin(ang * Mathf.Deg2Rad) * vel;
                 slideJointZ.Velocity = Mathf.Cos(ang * Mathf.Deg2Rad) * vel;
+            }
+            else if (resetPuckState == ResetPuckState.scenarioCatalogeDefenseSlow
+                    || resetPuckState == ResetPuckState.scenarioCatalogeDefenseFast)
+            {
+                // angle calculation
+                var posGoal = UnityEngine.Random.Range(-8.5f, 8.5f);
+                var posStart = -newPuckPosition.x;
+                var ang = 0f;
+
+                var width = Mathf.Sqrt(Mathf.Pow(posStart - posGoal, 2));
+                //Debug.LogError("[posStart] " + posStart);
+                //Debug.LogError("[posGoal] " + posGoal);
+                //Debug.LogError("[width] " + width);
+
+                if (posGoal < posStart)
+                {
+                    ang = (Mathf.Deg2Rad * 90f) - Mathf.Atan(75 / width);
+                }
+                else if (posGoal > posStart)
+                {
+                    ang = ((Mathf.Deg2Rad * 90f) - Mathf.Atan(75 / width)) * (-1f);
+                }
+                else
+                {
+                    ang = 0f;
+                }
+
+                var vel = 0f;
+                if (resetPuckState == ResetPuckState.scenarioCatalogeDefenseSlow)
+                {
+                    vel = UnityEngine.Random.Range(60f, 100f);
+                }
+                else if (resetPuckState == ResetPuckState.scenarioCatalogeDefenseFast)
+                {
+                    vel = UnityEngine.Random.Range(100f, 150f);
+                }
+
+                slideJointX.Velocity = Mathf.Sin(ang) * vel;
+                slideJointZ.Velocity = Mathf.Cos(ang) * vel;
             }
         }
     }

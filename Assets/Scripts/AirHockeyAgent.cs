@@ -107,7 +107,7 @@ public class AirHockeyAgent : Agent
 
     // scenario variables
     private ushort roundsOfScenario = 3;      // number of rounds the scenario will be played
-    private int episodesPerScenario = 10;   // number of episods played before trigger the scenario
+    private int episodesPerScenario = 1;   // number of episods played before trigger the scenario
     #endregion
 
     private void ResetEpisodeRewards()
@@ -221,13 +221,13 @@ public class AirHockeyAgent : Agent
             sceneController.ResetScene(false);
             ResetEpisodeRewards();
 
-            Debug.Log("OnEpisodeBegin");
+            //Debug.Log("OnEpisodeBegin");
 
-            if ((episodesPlayed % episodesPerScenario == 0) && (episodesPlayed !=0))
-            {
-                int err = scenarioCataloge.startScenario(roundsOfScenario, 0);  // 0: write all scenarios in one CSV-File
-                Debug.Log("Start Scenario State: " + err);
-            }
+            //if ((episodesPlayed % episodesPerScenario == 0) && (episodesPlayed != 0))
+            //{
+            //    int err = scenarioCataloge.startScenario(roundsOfScenario, 0);  // 0: write all scenarios in one CSV-File
+            //    Debug.Log("Start Scenario State: " + err);
+            //}
 
             if (episodesPlayed % 15 == 0)
             {

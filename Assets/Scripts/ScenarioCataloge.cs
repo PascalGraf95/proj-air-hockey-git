@@ -14,7 +14,9 @@ public enum PuckMoveOnStart
 {
     moveSlow,
     moveFast,
-    rest
+    rest,
+    defenseSlow,
+    defenseFast
 }
 
 public enum State
@@ -42,6 +44,8 @@ public enum Scenario
     scenario_09,
     scenario_10,
     scenario_11,
+    scenario_D1,
+    scenario_D2,
     scenario_end_round
 }
 
@@ -88,15 +92,15 @@ public class ScenarioCataloge : MonoBehaviour
     private GameObject pusherOpponentPosition;
     private PuckController puckController;
     private MjScene mjScene;
-    private string[] csvMsgScen = new string[Enum.GetValues(typeof(Scenario)).Length];
+    private string[] csvMsgScen = new string[Enum.GetValues(typeof(Scenario)).Length - 1];
 
-    private readonly int TimeoutTimeMS = 3500;   // scenario timeout in milliseconds
+    private readonly int TimeoutTimeMS = 2000;//3500;   // scenario timeout in milliseconds
     private string path = "csvFiles/";
     private string filePath = "";
     
     private uint numberOfRounds = 1;
     private Timer t;
-    private uint scenarioCnt = 0;
+    private uint scenarioCnt = 12;//0;
     private uint roundsCnt = 0;
     private uint newCSVfile = 0;    // 0: just create a csv file in the first place and write all triggered scenarios in one file
                                     // 1: create a new file every time the scenario is triggered
@@ -161,10 +165,10 @@ public class ScenarioCataloge : MonoBehaviour
                     {
                         z = 0;
                     }
-                    Debug.Log("vel x: " + x + "; z:" + z);
-                    Debug.Log("if: " + position.x + " - " + currentScenarioParams.boundPusherAgent.right + " * " + Math.Sign(x) + " < 0" + " || " + 
-                                 position.z + " - " + currentScenarioParams.boundPusherAgent.up + " * " + Math.Sign(z) + " < 0");
-                    Debug.Log("pos x: " + position.x + "; z: " + position.z);
+                    //Debug.Log("vel x: " + x + "; z:" + z);
+                    //Debug.Log("if: " + position.x + " - " + currentScenarioParams.boundPusherAgent.right + " * " + Math.Sign(x) + " < 0" + " || " + 
+                    //             position.z + " - " + currentScenarioParams.boundPusherAgent.up + " * " + Math.Sign(z) + " < 0");
+                    //Debug.Log("pos x: " + position.x + "; z: " + position.z);
                     pusherOpponentController.Act(new Vector2(x, z));
                     //if (scenDebug)
                     //{
@@ -175,7 +179,7 @@ public class ScenarioCataloge : MonoBehaviour
                 {
                     // go into next step
                     currentScenarioParams.currentState = State.start;
-                    Debug.Log("Reach scen range! REEEEEEEEEEEEEEEEEEEEEEEE");
+                    //Debug.Log("Reach scen range! REEEEEEEEEEEEEEEEEEEEEEEE");
                 }
                 break;
             case State.start:
@@ -188,6 +192,14 @@ public class ScenarioCataloge : MonoBehaviour
                 else if (currentScenarioParams.puckMoveState == PuckMoveOnStart.moveFast)
                 {
                     puckController.resetPuckState = ResetPuckState.scenarioCatalogeMoveFast;
+                }
+                else if(currentScenarioParams.puckMoveState == PuckMoveOnStart.defenseSlow)
+                {
+                    puckController.resetPuckState = ResetPuckState.scenarioCatalogeDefenseSlow;
+                }
+                else if(currentScenarioParams.puckMoveState == PuckMoveOnStart.defenseFast)
+                {
+                    puckController.resetPuckState = ResetPuckState.scenarioCatalogeDefenseFast;
                 }
                 else
                 {
@@ -229,7 +241,8 @@ public class ScenarioCataloge : MonoBehaviour
                 selectScenario((Scenario)scenarioCnt);
                 break;
             case State.newRound:
-                selectScenario(Scenario.scenario_00);
+                //selectScenario(Scenario.scenario_00);
+                selectScenario(Scenario.scenario_D1);
                 break;
         }
     }
@@ -237,7 +250,7 @@ public class ScenarioCataloge : MonoBehaviour
     private void resetCSVmsgState()
     {
         // initial csv scenario message
-        for (int i = 0; i < Enum.GetValues(typeof(Scenario)).Length; i++)
+        for (int i = 0; i < Enum.GetValues(typeof(Scenario)).Length - 1; i++)
         {
             csvMsgScen[i] = "notPlayed";
         }
@@ -266,7 +279,7 @@ public class ScenarioCataloge : MonoBehaviour
         }
         catch (Exception ex)
         {
-            Debug.Log("Fehler im Timer-Handler: " + ex.Message);
+            Debug.LogError("Fehler im Timer-Handler: " + ex.Message);
         }
     }
 
@@ -276,7 +289,7 @@ public class ScenarioCataloge : MonoBehaviour
          * create a csv string to write it into the csv file
          */
         string str = "";
-        for(int i = 0; i < Enum.GetValues(typeof(Scenario)).Length; i++)
+        for(int i = 0; i < Enum.GetValues(typeof(Scenario)).Length - 1; i++)
         {
             if(i != 0)
             {
@@ -310,7 +323,8 @@ public class ScenarioCataloge : MonoBehaviour
 
         numberOfRounds = rounds;    // set scenario raounds
 
-        selectScenario(Scenario.scenario_00); // start with first scenario
+        //selectScenario(Scenario.scenario_00); // start with first scenario
+        selectScenario(Scenario.scenario_D1); // start with first scenario
 
         return 1;   // retrun 1, if a new scenario start
     }
@@ -408,7 +422,7 @@ public class ScenarioCataloge : MonoBehaviour
                 currentScenarioParams = new Scenario_t(State.drivePusherToPosition,
                                                         35f, 5f, 30f, -30f,    // puck: up down left right
                                                         8f, 20f, 15f, -15f,     // pusher: up down left right
-                                                        PuckMoveOnStart.moveSlow,
+                                                        PuckMoveOnStart.moveFast,
                                                         new Vector2(0.1f, -1f),
                                                         Scenario.scenario_08);
                 t.Start();
@@ -434,8 +448,24 @@ public class ScenarioCataloge : MonoBehaviour
                 currentScenarioParams.currentScenario = Scenario.scenario_11;
                 t.Start();
                 break;
+            case Scenario.scenario_D1:
+                currentScenarioParams = new Scenario_t(State.drivePusherToPosition,
+                                                        0f, 0f, 36f, -36f,      // puck start on centreline
+                                                        0f, 68f, 32f, -32f,     // it doesn't matter how pusher moves
+                                                        PuckMoveOnStart.defenseSlow,
+                                                        new Vector2(0.1f, 0.1f),
+                                                        Scenario.scenario_D1);
+                t.Start();
+                break;
+            case Scenario.scenario_D2:
+                currentScenarioParams.currentState = State.drivePusherToPosition;
+                currentScenarioParams.puckMoveState = PuckMoveOnStart.defenseFast;
+                currentScenarioParams.currentScenario = Scenario.scenario_D2;
+                t.Start();
+                break;
             default:
-                scenarioCnt = 0;    // reset scenario counter
+                //scenarioCnt = 0;    // reset scenario counter
+                scenarioCnt = 12;    // reset scenario counter
                 roundsCnt++;
 
                 // write CSV file
@@ -447,7 +477,7 @@ public class ScenarioCataloge : MonoBehaviour
 
                     // add file header
                     string header = "";
-                    for(int i = 0; i < Enum.GetValues(typeof(Scenario)).Length; i++)
+                    for(int i = 0; i < Enum.GetValues(typeof(Scenario)).Length - 1; i++)
                     {
                         if(i != 0)
                         {
