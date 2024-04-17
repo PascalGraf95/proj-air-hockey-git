@@ -59,9 +59,12 @@ public class PusherController : MonoBehaviour
     private Material humanplayMaterial;
     private GameObject hand;
     private float pusherOffset = 45.75f;
+    private AirHockeyAgent airHockeyAgent;
+
     // Update is called once per frame
     private void Start()
     {
+        airHockeyAgent = GameObject.Find("3DAirHockeyTable").GetComponent<AirHockeyAgent>();
         playerViewCamera = GameObject.Find("PlayerViewCamera").GetComponent<Camera>();
         agentViewCamera = GameObject.Find("AgentViewCamera").GetComponent<Camera>();
         colliderPlaneTable = GameObject.Find("AirHockeyTableTop").GetComponent<Collider>();
@@ -117,7 +120,7 @@ public class PusherController : MonoBehaviour
             case ControlMode.Human:
                 hand.GetComponent<SkinnedMeshRenderer>().material = humanplayMaterial;
                 // get current mouse position on left mouse button click
-                if (Input.GetMouseButton(0))
+                if (Input.GetMouseButton(0) && !airHockeyAgent.IsInWarmup())
                 {
                     if (targetPosition.x < Boundaries.humanPusherBoundaryHard.right &&
                         targetPosition.x > Boundaries.humanPusherBoundaryHard.left)

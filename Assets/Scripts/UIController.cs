@@ -12,6 +12,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private Transform humanScoreTextTopPerspective;
     [SerializeField] private Transform humanGoalLight;
     [SerializeField] private Transform agentGoalLight;
+    [SerializeField] private Transform countdownTextHumanPerspective;
     [SerializeField] private GameObject infoCanvas;
     [SerializeField] private bool infoVisibleOnStart = true;
 
@@ -26,24 +27,44 @@ public class UIController : MonoBehaviour
         agentGoalLight.GetComponent<Animator>().SetTrigger("GoalScored");
     }
 
-    public void AgentPlayerScored(int score)
+    public void ActivateCountdown(bool demoMode = false)
+    {
+        if (demoMode)
+        {
+            countdownTextHumanPerspective.gameObject.SetActive(true);
+            countdownTextHumanPerspective.GetComponent<TextMeshPro>().text = "3";
+        }
+    }
+
+    public void SetCountdownTo(int countdown)
+    {
+        countdownTextHumanPerspective.GetComponent<TextMeshPro>().text = countdown.ToString();
+    }
+
+    public void DeactivateCountdown()
+    {
+        countdownTextHumanPerspective.gameObject.SetActive(false);
+    }
+
+    public void AgentPlayerScored(int score, bool demoMode = false)
     {
         agentScoreTextHumanPerspective.GetComponent<TextMeshPro>().text = score.ToString();
         agentScoreTextHumanPerspective.GetComponent<Animator>().SetTrigger("GoalScored");
         agentScoreTextTopPerspective.GetComponent<TextMeshPro>().text = score.ToString();
         agentScoreTextTopPerspective.GetComponent<Animator>().SetTrigger("GoalScored");
         humanGoalLight.GetComponent<Animator>().SetTrigger("GoalScored");
+        ActivateCountdown(demoMode);
 
     }
 
-    public void HumanPlayerScored(int score)
+    public void HumanPlayerScored(int score, bool demoMode=false)
     {
         humanScoreTextHumanPerspective.GetComponent<TextMeshPro>().text = score.ToString();
         humanScoreTextHumanPerspective.GetComponent<Animator>().SetTrigger("GoalScored");
         humanScoreTextTopPerspective.GetComponent<TextMeshPro>().text = score.ToString();
         humanScoreTextHumanPerspective.GetComponent<Animator>().SetTrigger("GoalScored");
         agentGoalLight.GetComponent<Animator>().SetTrigger("GoalScored");
-
+        ActivateCountdown(demoMode);
     }
 
     /// <summary>

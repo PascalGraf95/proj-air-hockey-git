@@ -97,6 +97,7 @@ public class AirHockeyAgent : Agent
     private int lastGameReset;
     private int shiftIdx;
     private int shiftLen = 100;
+    private bool warmupPhase = false;
 
     private int episodesPlayed = 0;
 
@@ -137,11 +138,26 @@ public class AirHockeyAgent : Agent
         SetupAirHockeyAgent();
     }
 
+    public void DeactivateWarmup()
+    {
+        warmupPhase = false;
+    }
+
+    public void ActivateWarmup()
+    {
+        warmupPhase = true;
+    }
+
+    public bool IsInWarmup()
+    {
+        return warmupPhase;
+    }    
+
     protected override void Awake()
     {
         // It is always necessary to call the base Awake class from the Agent
         base.Awake();
-        // Register Sidechanell for environment informations like reward composition
+        // Register Side-Channel for environment informations like reward composition
         environmentInformationSideChannel = new EnvironmentInformationSideChannel();
         SideChannelManager.RegisterSideChannel(environmentInformationSideChannel);
 
@@ -180,6 +196,7 @@ public class AirHockeyAgent : Agent
 
         // Get the controllers for scene, puck and the two pushers
         sceneController = GetComponent<SceneController>();
+        if(sceneController.demoMode == true) { MaxStep = 0; }
         actionType = sceneController.actionType;
         pusherAgentController = GameObject.Find("PusherAgent").GetComponent<PusherController>();
         puckController = GameObject.Find("Puck").GetComponent<PuckController>();
@@ -383,7 +400,6 @@ public class AirHockeyAgent : Agent
                     break;
             }
         }
-
         #endregion
 
         #region RewardComposition
@@ -628,8 +644,8 @@ public class AirHockeyAgent : Agent
         #endregion
 
         #region Movement and Clipping
-        //print((puckController.GetCurrentPosition() - pusherAgentController.GetCurrentPosition()).magnitude);
-        if(actionType == ActionType.ContinuousPosition && !setNewTarget)
+
+        if((actionType == ActionType.ContinuousPosition && !setNewTarget) || warmupPhase == true)
         {
             return;
         }
@@ -637,7 +653,6 @@ public class AirHockeyAgent : Agent
         {
             pusherAgentController.Act(new Vector2(x, z));
         }
-
         #endregion
     }
 

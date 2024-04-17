@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 using Assets.Scripts;
 using Unity.MLAgents.SideChannels;
 using Unity.MLAgents;
+using System.Runtime.CompilerServices;
 
 public enum GameState
 {
@@ -23,13 +24,14 @@ public class SceneController : MonoBehaviour
     private PuckControllerAPI puckControllerAPI;
     private PusherController pusherHumanController;
     private PusherController pusherAgentController;
-    private GameObject cursor;
+    //private GameObject cursor;
     [SerializeField] private GoalColliderScript agentGoalColliderScript;
     [SerializeField] private GoalColliderScript humanGoalColliderScript;
     [SerializeField] private BackwallColliderScript backwallColliderScriptLeft;
     [SerializeField] private BackwallColliderScript backwallColliderScriptRight;
     [SerializeField] private Transform airhockeyTableBends;
     [SerializeField] private PusherConfiguration pusherConfiguration;
+    [SerializeField] public bool demoMode;
     public ActionType actionType;
 
     public delegate void OnEpisodeEnded();
@@ -52,6 +54,8 @@ public class SceneController : MonoBehaviour
     private int gamesPlayed = 0;
     private float lastBackwallHitDetected;
     private int episodesWithoutScore = 0;
+    private AirHockeyAgent airHockeyAgent;
+    private IEnumerator warmupCoroutine;
 
     AdditionalGameInformationsSideChannel gameResultsSideChannel;
     #endregion
@@ -104,10 +108,10 @@ public class SceneController : MonoBehaviour
     }
     public void SetupSceneController()
     {
-        cursor = GameObject.Find("HandCursor");
+        warmupCoroutine = DeactivateWarmupCoroutine();
         pusherAgentController = GameObject.Find("PusherAgent").GetComponent<PusherController>();
         puckController = GameObject.Find("Puck").GetComponent<PuckController>();
-        //puckController.resetPuckState = gameObject.GetComponent<AirHockeyAgent>().resetPuckState;
+        airHockeyAgent = gameObject.GetComponent<AirHockeyAgent>();
 
 
         if (GameObject.Find("PusherHuman") != null)
@@ -159,7 +163,7 @@ public class SceneController : MonoBehaviour
         currentGameState = GameState.agentScored;
         if (uiController != null)
         {
-            uiController.AgentPlayerScored(agentPlayerScore);
+            uiController.AgentPlayerScored(agentPlayerScore, demoMode);
         }
     }
 
@@ -170,7 +174,7 @@ public class SceneController : MonoBehaviour
         currentGameState = GameState.playerScored;
         if (uiController != null)
         {
-            uiController.HumanPlayerScored(humanPlayerScore);
+            uiController.HumanPlayerScored(humanPlayerScore, demoMode);
         }
     }
 
@@ -205,7 +209,11 @@ public class SceneController : MonoBehaviour
         pusherHumanController.Reset("Human", false);
 
         // Reset Puck
-        puckController.resetPuckState = gameObject.GetComponent<AirHockeyAgent>().resetPuckState;
+        if (demoMode == true){ 
+            puckController.resetPuckState = ResetPuckState.randomPositionGlobal;
+            airHockeyAgent.ActivateWarmup();        
+        }
+        else { puckController.resetPuckState = gameObject.GetComponent<AirHockeyAgent>().resetPuckState; }
         puckController.Reset();
 
         // Reset Game Score
@@ -242,7 +250,27 @@ public class SceneController : MonoBehaviour
 
         puckController.transform.GetComponent<MeshRenderer>().enabled = true;
         episodesWithoutScore++;
+
+        uiController.ActivateCountdown(demoMode);
+        if(demoMode)
+        {
+            StopAllCoroutines();
+            StartCoroutine(warmupCoroutine);
+        }
     }
+
+    public IEnumerator DeactivateWarmupCoroutine()
+    {
+        for(int i = 3; i > 0; i--)
+        {
+            uiController.SetCountdownTo(i);
+            yield return new WaitForSeconds(1f);
+        }
+        uiController.DeactivateCountdown();
+        airHockeyAgent.DeactivateWarmup();
+    }
+
+
 
     /// <summary>
     /// Resets the scene in a way so that a human player can play against the artificial intelligence for one game to 10.

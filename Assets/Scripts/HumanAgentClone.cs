@@ -12,6 +12,7 @@ public class HumanAgentClone : Agent
     private PuckController puckController;
     private PusherController pusherAgentController;
     private PusherController pusherHumanController;
+    private AirHockeyAgent airHockeyAgent;
     [SerializeField] private ActionType actionType = ActionType.ContinuousVelocity;
 
     /*
@@ -24,6 +25,7 @@ public class HumanAgentClone : Agent
     {
         pusherAgentController = GameObject.Find("PusherAgent").GetComponent<PusherController>();
         puckController = GameObject.Find("Puck").GetComponent<PuckController>();
+        airHockeyAgent = GameObject.Find("3DAirHockeyTable").GetComponent<AirHockeyAgent>();
         if (GameObject.Find("PusherHuman") != null)
         {
             pusherHumanController = GameObject.Find("PusherHuman").GetComponent<PusherController>();
@@ -117,7 +119,7 @@ public class HumanAgentClone : Agent
         }
         #endregion
         #region Movement and Clipping
-        if (actionType == ActionType.ContinuousPosition && !setNewTarget)
+        if (actionType == ActionType.ContinuousPosition && !setNewTarget || airHockeyAgent.IsInWarmup())
         {
             return;
         }
