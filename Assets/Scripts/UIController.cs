@@ -27,13 +27,12 @@ public class UIController : MonoBehaviour
         agentGoalLight.GetComponent<Animator>().SetTrigger("GoalScored");
     }
 
-    public void ActivateCountdown(bool demoMode = false)
+    public void ActivateCountdown()
     {
-        if (demoMode)
-        {
-            countdownTextHumanPerspective.gameObject.SetActive(true);
-            countdownTextHumanPerspective.GetComponent<TextMeshPro>().text = "3";
-        }
+        countdownTextHumanPerspective.gameObject.SetActive(true);
+        countdownTextHumanPerspective.GetComponent<Animator>().Rebind();
+        countdownTextHumanPerspective.GetComponent<Animator>().Update(0f);
+        countdownTextHumanPerspective.GetComponent<TextMeshPro>().text = "3";
     }
 
     public void SetCountdownTo(int countdown)
@@ -46,25 +45,22 @@ public class UIController : MonoBehaviour
         countdownTextHumanPerspective.gameObject.SetActive(false);
     }
 
-    public void AgentPlayerScored(int score, bool demoMode = false)
+    public void AgentPlayerScored(int score)
     {
         agentScoreTextHumanPerspective.GetComponent<TextMeshPro>().text = score.ToString();
         agentScoreTextHumanPerspective.GetComponent<Animator>().SetTrigger("GoalScored");
         agentScoreTextTopPerspective.GetComponent<TextMeshPro>().text = score.ToString();
         agentScoreTextTopPerspective.GetComponent<Animator>().SetTrigger("GoalScored");
         humanGoalLight.GetComponent<Animator>().SetTrigger("GoalScored");
-        ActivateCountdown(demoMode);
-
     }
 
-    public void HumanPlayerScored(int score, bool demoMode=false)
+    public void HumanPlayerScored(int score)
     {
         humanScoreTextHumanPerspective.GetComponent<TextMeshPro>().text = score.ToString();
         humanScoreTextHumanPerspective.GetComponent<Animator>().SetTrigger("GoalScored");
         humanScoreTextTopPerspective.GetComponent<TextMeshPro>().text = score.ToString();
         humanScoreTextHumanPerspective.GetComponent<Animator>().SetTrigger("GoalScored");
         agentGoalLight.GetComponent<Animator>().SetTrigger("GoalScored");
-        ActivateCountdown(demoMode);
     }
 
     /// <summary>

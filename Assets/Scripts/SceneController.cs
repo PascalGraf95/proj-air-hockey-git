@@ -108,7 +108,6 @@ public class SceneController : MonoBehaviour
     }
     public void SetupSceneController()
     {
-        warmupCoroutine = DeactivateWarmupCoroutine();
         pusherAgentController = GameObject.Find("PusherAgent").GetComponent<PusherController>();
         puckController = GameObject.Find("Puck").GetComponent<PuckController>();
         airHockeyAgent = gameObject.GetComponent<AirHockeyAgent>();
@@ -163,7 +162,7 @@ public class SceneController : MonoBehaviour
         currentGameState = GameState.agentScored;
         if (uiController != null)
         {
-            uiController.AgentPlayerScored(agentPlayerScore, demoMode);
+            uiController.AgentPlayerScored(agentPlayerScore);
         }
     }
 
@@ -174,7 +173,7 @@ public class SceneController : MonoBehaviour
         currentGameState = GameState.playerScored;
         if (uiController != null)
         {
-            uiController.HumanPlayerScored(humanPlayerScore, demoMode);
+            uiController.HumanPlayerScored(humanPlayerScore);
         }
     }
 
@@ -211,7 +210,7 @@ public class SceneController : MonoBehaviour
         // Reset Puck
         if (demoMode == true){ 
             puckController.resetPuckState = ResetPuckState.randomPositionGlobal;
-            airHockeyAgent.ActivateWarmup();        
+            airHockeyAgent.ActivateWarmup();
         }
         else { puckController.resetPuckState = gameObject.GetComponent<AirHockeyAgent>().resetPuckState; }
         puckController.Reset();
@@ -237,6 +236,8 @@ public class SceneController : MonoBehaviour
             else
             {
                 ResetSceneAgentPlaying();
+
+                return;
             }
         }
 
@@ -251,11 +252,12 @@ public class SceneController : MonoBehaviour
         puckController.transform.GetComponent<MeshRenderer>().enabled = true;
         episodesWithoutScore++;
 
-        uiController.ActivateCountdown(demoMode);
         if(demoMode)
         {
+            GameObject.Find("PuckTrail").GetComponent<TrailRenderer>().enabled = false;
+            uiController.ActivateCountdown();
             StopAllCoroutines();
-            StartCoroutine(warmupCoroutine);
+            StartCoroutine(DeactivateWarmupCoroutine());
         }
     }
 
@@ -268,6 +270,7 @@ public class SceneController : MonoBehaviour
         }
         uiController.DeactivateCountdown();
         airHockeyAgent.DeactivateWarmup();
+        GameObject.Find("PuckTrail").GetComponent<TrailRenderer>().enabled = true;
     }
 
 
