@@ -11,4 +11,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/3DAirHockey.unity
     guid: e6df5230f0ba60a4994898b2f0b8130f
+  - enabled: 1
+    path: Assets/GUIPack-Clean&Minimalist/Demo/Scenes/Demo/Demo.unity
+    guid: d82d5deb2fb554889b365029cce103fb
+  - enabled: 1
+    path: Assets/GUIPack-Clean&Minimalist/Demo/Scenes/Themes/Dark/Dark - Home.unity
+    guid: 68c3b27ea42954caab63ca4b921ad14d
+  - enabled: 1
+    path: Assets/GUIPack-Clean&Minimalist/Demo/Scenes/Themes/Dark/Dark - Game.unity
+    guid: 3e961f553cad04680b4e67a97dbaf86a
   m_configObjects: {}

@@ -312,6 +312,8 @@ public class SceneController : MonoBehaviour
 
     public void ResetSceneAgentPlaying()
     {
+        // Activate info UI Elements if not already there
+        uiController.ResetInfoUI();
         // Deactivate the Agent Controlled Pusher
         gameObject.transform.Find("PusherHumanSelfplay").GetComponent<MeshRenderer>().enabled = true;
 

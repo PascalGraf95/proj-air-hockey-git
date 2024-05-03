@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mujoco;
 using TMPro;
+using Ricimi;
 
 public class UIController : MonoBehaviour
 {
@@ -25,6 +26,14 @@ public class UIController : MonoBehaviour
 
         humanGoalLight.GetComponent<Animator>().SetTrigger("GoalScored");
         agentGoalLight.GetComponent<Animator>().SetTrigger("GoalScored");
+    }
+
+    public void ResetInfoUI()
+    {
+        if(GameObject.Find("InfoPopup") == null)
+        {
+            GetComponent<PopupOpener>().OpenPopup();
+        }
     }
 
     public void ActivateCountdown()

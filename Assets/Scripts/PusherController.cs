@@ -201,6 +201,8 @@ public class PusherController : MonoBehaviour
         float xPos = 0f;
         float zPos = 0f;
 
+        pusherActuatorZ.Control = 0;
+        pusherActuatorX.Control = 0;
 
         if (pusherType == "Agent")
         {
