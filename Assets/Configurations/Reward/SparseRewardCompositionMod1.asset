@@ -14,13 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agentScoredReward: 5
   humanScoredReward: -5
-  avoidBoundariesReward: -0.1
+  avoidBoundariesReward: -0.05
   avoidDirectionChangesReward: 0
-  encouragePuckMovementReward: 0.1
+  encouragePuckMovementReward: 0.03
   stayInCenterReward: 0
   backWallReward: 0.5
   endOnBackWall: 0
-  puckInAgentsHalfReward: -0.1
+  puckInAgentsHalfReward: -0.05
   maxStepReward: 0
-  stepReward: 0
+  stepReward: -0.01
   outOfBoundsReward: -5
+  avoidPositionUpdateReward: 0

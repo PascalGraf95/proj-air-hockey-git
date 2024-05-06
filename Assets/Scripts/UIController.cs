@@ -28,14 +28,6 @@ public class UIController : MonoBehaviour
         agentGoalLight.GetComponent<Animator>().SetTrigger("GoalScored");
     }
 
-    public void ResetInfoUI()
-    {
-        if(GameObject.Find("InfoPopup") == null)
-        {
-            GetComponent<PopupOpener>().OpenPopup();
-        }
-    }
-
     public void ActivateCountdown()
     {
         countdownTextHumanPerspective.gameObject.SetActive(true);
