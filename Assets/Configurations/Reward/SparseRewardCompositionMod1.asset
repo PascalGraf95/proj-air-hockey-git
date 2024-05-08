@@ -16,11 +16,11 @@ MonoBehaviour:
   humanScoredReward: -5
   avoidBoundariesReward: -0.05
   avoidDirectionChangesReward: 0
-  encouragePuckMovementReward: 0.03
+  encouragePuckMovementReward: 0.01
   stayInCenterReward: 0
-  backWallReward: 0.5
+  backWallReward: 0.7
   endOnBackWall: 0
-  puckInAgentsHalfReward: -0.05
+  puckInAgentsHalfReward: -0.03
   maxStepReward: 0
   stepReward: -0.01
   outOfBoundsReward: -5
