@@ -57,6 +57,9 @@ public class SceneController : MonoBehaviour
     private AirHockeyAgent airHockeyAgent;
     private IEnumerator warmupCoroutine;
 
+    private int demoWarmupTime = 2;
+    private int demoRoundTime = 30;
+
     AdditionalGameInformationsSideChannel gameResultsSideChannel;
     #endregion
 
@@ -255,7 +258,8 @@ public class SceneController : MonoBehaviour
         if(demoMode)
         {
             GameObject.Find("PuckTrail").GetComponent<TrailRenderer>().enabled = false;
-            uiController.ActivateCountdown();
+            uiController.ActivateCountdown(startTime: demoWarmupTime);
+            uiController.DeactivateTimer();
             StopAllCoroutines();
             StartCoroutine(DeactivateWarmupCoroutine());
         }
@@ -263,17 +267,29 @@ public class SceneController : MonoBehaviour
 
     public IEnumerator DeactivateWarmupCoroutine()
     {
-        for(int i = 3; i > 0; i--)
+        for(int i = demoWarmupTime; i > 0; i--)
         {
             uiController.SetCountdownTo(i);
             yield return new WaitForSeconds(1f);
         }
         uiController.DeactivateCountdown();
+        uiController.ActivateTimer(startTime: demoRoundTime);
         airHockeyAgent.DeactivateWarmup();
         GameObject.Find("PuckTrail").GetComponent<TrailRenderer>().enabled = true;
+        StartCoroutine(DeactivateTimerCoroutine());
+
     }
 
-
+    public IEnumerator DeactivateTimerCoroutine()
+    {
+        for(int i=demoRoundTime; i > 0; i--)
+        {
+            uiController.SetTimerTo(i);
+            yield return new WaitForSeconds(1f);
+        }
+        uiController.DeactivateCountdown();
+        ResetSceneAgentPlaying();
+    }
 
     /// <summary>
     /// Resets the scene in a way so that a human player can play against the artificial intelligence for one game to 10.

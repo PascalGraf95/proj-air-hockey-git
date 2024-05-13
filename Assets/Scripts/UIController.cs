@@ -11,6 +11,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private Transform agentScoreTextTopPerspective;
     [SerializeField] private Transform humanScoreTextHumanPerspective;
     [SerializeField] private Transform humanScoreTextTopPerspective;
+    [SerializeField] private Transform timer;
     [SerializeField] private Transform humanGoalLight;
     [SerializeField] private Transform agentGoalLight;
     [SerializeField] private Transform countdownTextHumanPerspective;
@@ -28,12 +29,12 @@ public class UIController : MonoBehaviour
         agentGoalLight.GetComponent<Animator>().SetTrigger("GoalScored");
     }
 
-    public void ActivateCountdown()
+    public void ActivateCountdown(int startTime=2)
     {
         countdownTextHumanPerspective.gameObject.SetActive(true);
         countdownTextHumanPerspective.GetComponent<Animator>().Rebind();
         countdownTextHumanPerspective.GetComponent<Animator>().Update(0f);
-        countdownTextHumanPerspective.GetComponent<TextMeshPro>().text = "3";
+        countdownTextHumanPerspective.GetComponent<TextMeshPro>().text = startTime.ToString();
     }
 
     public void SetCountdownTo(int countdown)
@@ -44,6 +45,23 @@ public class UIController : MonoBehaviour
     public void DeactivateCountdown()
     {
         countdownTextHumanPerspective.gameObject.SetActive(false);
+    }
+
+
+    public void ActivateTimer(int startTime = 40)
+    {
+        timer.gameObject.SetActive(true);
+        timer.Find("TimerText").GetComponent<TextMeshProUGUI>().text = "00:" + startTime.ToString("D2");
+    }
+
+    public void SetTimerTo(int timeToPlay)
+    {
+        timer.Find("TimerText").GetComponent<TextMeshProUGUI>().text = "00:" + timeToPlay.ToString("D2");
+    }
+
+    public void DeactivateTimer()
+    {
+        timer.gameObject.SetActive(false);
     }
 
     public void AgentPlayerScored(int score)
