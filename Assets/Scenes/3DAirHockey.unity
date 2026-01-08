@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.103
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.008449229, g: 0.008449229, b: 0.008449229, a: 0.103}
+  m_IndirectSpecularColor: {r: 0.036994208, g: 0.035108645, b: 0.03351897, a: 0.103}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1589,7 +1589,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &136206757
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12384,7 +12384,7 @@ MonoBehaviour:
       TimeConstant: 0
       DampingRatio: 0
       Stiffness: 0
-      Damping: 200
+      Damping: 250
       EquilibriumPose: 0
     Solver:
       Limited: 1
@@ -12522,7 +12522,7 @@ MonoBehaviour:
     - 0
     - 0
     - 0
-    Kp: 2000
+    Kp: 5000
     Kv: 1
     CylinderTimeConst: 1
     Area: 1
@@ -13455,7 +13455,7 @@ MonoBehaviour:
       TimeConstant: 0
       DampingRatio: 0
       Stiffness: 0
-      Damping: 200
+      Damping: 250
       EquilibriumPose: 0
     Solver:
       Limited: 1
@@ -14836,7 +14836,7 @@ PrefabInstance:
     - target: {fileID: 1339766844331456943, guid: 2d079fbf7d4806e45a65e7ad0a24b042,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1339766845312131544, guid: 2d079fbf7d4806e45a65e7ad0a24b042,
         type: 3}
@@ -15694,7 +15694,7 @@ MonoBehaviour:
     - 0
     - 0
     - 0
-    Kp: 2000
+    Kp: 5000
     Kv: 1
     CylinderTimeConst: 1
     Area: 1
